@@ -1,5 +1,7 @@
 
 
+import 'dart:async';
+
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +37,49 @@ class ProviderClass extends ChangeNotifier{
   bool submitValid = false;
   EmailOTP myAuth = EmailOTP();
 
- // var response;
+
+
+  Timer? countdownTimer;
+  Duration myDuration =   Duration(days: 5);
+  String strDigits(int n) => n.toString().padLeft(2, '0');
+
+  void startTimer() {
+    countdownTimer =
+        Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+  }
+  // Step 4
+  void stopTimer() {
+    countdownTimer!.cancel();
+    notifyListeners();
+  }
+  // Step 5
+  void resetTimer() {
+    stopTimer();
+    myDuration = Duration(days: 5);
+    notifyListeners();
+  }
+  // Step 6
+  void setCountDown() {
+    const reduceSecondsBy = 1;
+    final seconds = myDuration.inSeconds - reduceSecondsBy;
+      if (seconds < 0) {
+        countdownTimer!.cancel();
+      } else {
+        myDuration = Duration(seconds: seconds);
+      }
+    notifyListeners();
+  }
+
+
+
+
+  void delay(int seconds){
+    Duration waitTime =  Duration(seconds: seconds);
+    Future.delayed(waitTime, (){
+      {isLoading = false;}
+      notifyListeners();
+    });
+  }
 
   void sendOtp() async {
     myAuth.setConfig(
@@ -45,7 +89,6 @@ class ProviderClass extends ChangeNotifier{
         otpLength: 4,
         otpType: OTPType.digitsOnly
     );
-
   }
 
 }

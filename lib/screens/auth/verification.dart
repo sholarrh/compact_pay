@@ -1,5 +1,6 @@
 
-import 'package:compact_pay/screens/set_password.dart';
+import 'package:compact_pay/screens/auth/new_password.dart';
+import 'package:compact_pay/screens/set_transaction_pin.dart';
 import 'package:compact_pay/widgets/otp_box.dart';
 //import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,14 @@ import '../../provider/provider.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
+import '../../widgets/show_snackbar.dart';
 
 class Verification extends StatefulWidget {
-  const Verification({Key? key}) : super(key: key);
+  bool goToPasswordScreen;
+
+  Verification(
+      this.goToPasswordScreen,
+      );
 
   @override
   State<Verification> createState() => _VerificationState();
@@ -20,8 +26,16 @@ class Verification extends StatefulWidget {
 class _VerificationState extends State<Verification> {
 
   @override
+  void initState() {
+    super.initState();
+    ProviderClass().startTimer();
+    ProviderClass().setCountDown();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+    final seconds = data.strDigits(data.myDuration.inSeconds.remainder(60));
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -95,10 +109,10 @@ class _VerificationState extends State<Verification> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MyText(
-                        'Resend in ',
+                        'Resend in $seconds',
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w400,
-                        fontSize: 12,
+                        fontSize: 18,
                         color: Color(0xff212121),
                       ),
                       MyText(
@@ -122,19 +136,15 @@ class _VerificationState extends State<Verification> {
                       print('this is the otp: ${data.otpCodeList.join("")}');
                        if (await data.myAuth.verifyOTP(otp: data.otpCodeList.join("")) == true) {
                         data.isLoading = true;
-
                         setState(() {});
-                        Duration waitTime = const Duration(seconds: 4);
-                        Future.delayed(waitTime, (){
-                          if (mounted) {
-                            data.isLoading = false;
-                          }
-                          setState(() {});
-                        });
-
+                        data.delay(4);
                         try {
+                          print(widget.goToPasswordScreen);
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const SetPassword()));
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  widget.goToPasswordScreen ?  const NewPassword()
+                              :const SetTransactionPin()));
                         }
                         catch(e,s){
                           print(e);
@@ -142,10 +152,10 @@ class _VerificationState extends State<Verification> {
                         }
                       }
                       else{
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text(
-                              'Invalid OTP'),
-                          duration: Duration(seconds: 5),),);
+                         const ShowSnackBar(
+                           text: "Invalid OTP",
+                           duration: 5,
+                         );
                       }
                     },
                     child: data.isLoading == false ? MyText(

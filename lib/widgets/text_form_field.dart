@@ -66,7 +66,7 @@ class _InputFieldState extends State<InputField> {
           hintText: widget.hintText,
           hintStyle: TextStyle(
               color: Colors.grey.withOpacity(.75),
-              fontSize: 14,
+              fontSize: 10,
               fontWeight: FontWeight.bold),
           suffixIcon: widget.hasSuffixIcon == true
               ? GestureDetector(

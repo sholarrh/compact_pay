@@ -10,14 +10,14 @@ import '../widgets/my_button.dart';
 import '../widgets/my_text.dart';
 import '../widgets/otp_box.dart';
 
-class SetPassword extends StatefulWidget {
-  const SetPassword({Key? key}) : super(key: key);
+class SetTransactionPin extends StatefulWidget {
+  const SetTransactionPin({Key? key}) : super(key: key);
 
   @override
-  State<SetPassword> createState() => _SetPasswordState();
+  State<SetTransactionPin> createState() => _SetTransactionPinState();
 }
 
-class _SetPasswordState extends State<SetPassword> {
+class _SetTransactionPinState extends State<SetTransactionPin> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);

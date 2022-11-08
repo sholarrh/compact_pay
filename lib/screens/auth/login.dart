@@ -2,7 +2,9 @@
 
 
 import 'package:compact_pay/screens/auth/verification.dart';
+import 'package:compact_pay/screens/forgot_password.dart';
 import 'package:compact_pay/utils/app_colors.dart';
+import 'package:compact_pay/widgets/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +22,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  bool goToPasswordScreen = false;
 
   @override
   Widget build(BuildContext context) {
@@ -105,10 +109,28 @@ class _LoginState extends State<Login> {
                         keyBoardType: TextInputType.text,
                         validator: validatePassword,
                       ),
+                    ],),
+                ),
 
-                      //const SizedBox(height: 150,),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const ForgotPassword()));
+                      },
+                      child: MyText('Forgot Password?',
+                        color: mainBlue,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
 
-                      Padding(
+
+                Padding(
                         padding: const EdgeInsets.only(top: 80),
                         child: MyButton(
                           height: 50,
@@ -117,25 +139,17 @@ class _LoginState extends State<Login> {
                           onTap: () async {
                             if (data.formkey.currentState!.validate()) {
                               data.isLoading = true;
-
                               setState(() {});
-                              Duration waitTime = const Duration(seconds: 4);
-                              Future.delayed(waitTime, (){
-                                if (mounted) {
-                                  data.isLoading = false;
-                                }
-                                setState(() {});
-                              });
-
+                              data.delay(4);
                               try {
                                 data.sendOtp();
                                 if (await data.myAuth.sendOTP() == true) {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                        content: Text("OTP has been sent"),
-                                  ));
+                                  const ShowSnackBar(
+                                    text: "OTP has been sent",
+                                    duration: 5,
+                                  );
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) => const Verification()));
+                                      MaterialPageRoute(builder: (context) =>  Verification(goToPasswordScreen)));
                                 }
                               }
                               catch(e,s){
@@ -144,10 +158,10 @@ class _LoginState extends State<Login> {
                               }
                             }
                             else{
-                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                content: Text(
-                                    'There is an error'),
-                                duration: Duration(seconds: 5),),);
+                              const ShowSnackBar(
+                                text: "There is an error",
+                                duration: 5,
+                              );
                             }
                           },
                           child: data.isLoading == false ? MyText(
@@ -162,9 +176,8 @@ class _LoginState extends State<Login> {
                               ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
+
+
                 Padding(
                   padding: const EdgeInsets.only(top: 20,),
                   child: Row(
@@ -177,8 +190,8 @@ class _LoginState extends State<Login> {
 
                       InkWell(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const Login()));
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) => const Login()));
                         },
                         child: MyText('Sign Up',
                           color: mainBlue,
@@ -189,8 +202,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ]),
           ),
         ),
       ),
