@@ -1,3 +1,6 @@
+import 'package:compact_pay/screens/Get%20Started/get_started.dart';
+import 'package:compact_pay/screens/SplashScreen/splashscreen.dart';
+import 'package:compact_pay/screens/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home:  Onboarding(),
     );
   }
 }
