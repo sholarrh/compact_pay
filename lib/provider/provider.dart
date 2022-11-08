@@ -1,6 +1,8 @@
 
 
-import 'package:flutter/cupertino.dart';
+import 'package:email_otp/email_otp.dart';
+import 'package:flutter/material.dart';
+
 
 class ProviderClass extends ChangeNotifier{
   final TextEditingController _fullnameTextController = TextEditingController();
@@ -8,6 +10,15 @@ class ProviderClass extends ChangeNotifier{
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _phoneNumberTextController = TextEditingController();
   final TextEditingController _confirmPasswordTextController = TextEditingController();
+
+  final List<String> _otpCodeList = [];
+  final List<String> _pinList = [];
+  final List<String> _confirmPinList = [];
+
+  List<String> get pinList  => _pinList;
+  List<String> get otpCodeList  => _otpCodeList;
+  List<String> get confirmPinList  => _confirmPinList;
+
 
   final _formkey = GlobalKey<FormState>();
 
@@ -20,5 +31,21 @@ class ProviderClass extends ChangeNotifier{
 
   GlobalKey<FormState> get formkey => _formkey;
   bool isLoading = false;
+
+  bool submitValid = false;
+  EmailOTP myAuth = EmailOTP();
+
+ // var response;
+
+  void sendOtp() async {
+    myAuth.setConfig(
+        appEmail: "compactPay@gmail.com",
+        appName: "CompactPay",
+        userEmail: emailTextController.text,
+        otpLength: 4,
+        otpType: OTPType.digitsOnly
+    );
+
+  }
 
 }

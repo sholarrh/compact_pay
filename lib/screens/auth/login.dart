@@ -20,6 +20,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -127,9 +128,15 @@ class _LoginState extends State<Login> {
                               });
 
                               try {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) => const Verification()));
-
+                                data.sendOtp();
+                                if (await data.myAuth.sendOTP() == true) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                        content: Text("OTP has been sent"),
+                                  ));
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => const Verification()));
+                                }
                               }
                               catch(e,s){
                                 print(e);

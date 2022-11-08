@@ -1,5 +1,6 @@
 
 
+import 'package:compact_pay/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,10 +18,6 @@ class SetPassword extends StatefulWidget {
 }
 
 class _SetPasswordState extends State<SetPassword> {
-  var pin1;
-  var pin2;
-  var pin3;
-  var pin4;
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -73,14 +70,17 @@ class _SetPasswordState extends State<SetPassword> {
                   padding: const EdgeInsets.only(top: 8, left: 20, right: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      OtpBox(  obscureText: true,),
-                      const SizedBox(width: 25,),
-                      OtpBox( obscureText: true,),
-                      const SizedBox(width: 25,),
-                      OtpBox( obscureText: true,),
-                      const SizedBox(width: 25,),
-                      OtpBox( obscureText: true,),
+                    children:  const [
+                      OtpBox1(  obscureText: true,
+                        ),
+                      SizedBox(width: 25,),
+                      OtpBox1( obscureText: true,
+                       ),
+                      SizedBox(width: 25,),
+                      OtpBox1( obscureText: true,
+                       ),
+                      SizedBox(width: 25,),
+                      OtpBox1( obscureText: true,),
                     ],
                   ),
                 ),
@@ -103,14 +103,18 @@ class _SetPasswordState extends State<SetPassword> {
                   padding: const EdgeInsets.only(top: 8, left: 20, right: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const OtpBox( obscureText: true,),
-                      const SizedBox(width: 25,),
-                      const OtpBox( obscureText: true,),
-                      const SizedBox(width: 25,),
-                      OtpBox( obscureText: true,),
-                      const SizedBox(width: 25,),
-                      OtpBox( obscureText: true,),
+                    children: const [
+                       OtpBox2( obscureText: true,
+                         ),
+                      SizedBox(width: 25,),
+                       OtpBox2( obscureText: true,
+                         ),
+                      SizedBox(width: 25,),
+                      OtpBox2( obscureText: true,
+                       ),
+                      SizedBox(width: 25,),
+                      OtpBox2( obscureText: true,
+                       ),
                     ],
                   ),
                 ),
@@ -122,7 +126,9 @@ class _SetPasswordState extends State<SetPassword> {
                     width: double.infinity,
                     color: mainBlue,
                     onTap: () async {
-                      if (data.formkey.currentState!.validate()) {
+                      print(data.pinList.join(""));
+                      print(data.confirmPinList.join(""));
+                      if (data.pinList.join("") == data.confirmPinList.join("")) {
                         data.isLoading = true;
 
                         setState(() {});
@@ -136,7 +142,7 @@ class _SetPasswordState extends State<SetPassword> {
 
                         try {
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const SetPassword()));
+                              MaterialPageRoute(builder: (context) => const HomePage()));
 
                         }
                         catch(e,s){
@@ -147,7 +153,7 @@ class _SetPasswordState extends State<SetPassword> {
                       else{
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text(
-                              'There is an error'),
+                              'Transaction pin does not match'),
                           duration: Duration(seconds: 5),),);
                       }
                     },

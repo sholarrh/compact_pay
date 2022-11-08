@@ -13,6 +13,7 @@ class InputField extends StatefulWidget {
   final Function? onSaved;
   final TextInputType keyBoardType;
   final TextInputAction? textInputAction;
+
   const InputField(
       {Key? key,
         required this.inputController,

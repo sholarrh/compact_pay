@@ -1,9 +1,7 @@
 
-
-
-
 import 'package:compact_pay/screens/set_password.dart';
 import 'package:compact_pay/widgets/otp_box.dart';
+//import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,10 +19,6 @@ class Verification extends StatefulWidget {
 
 class _VerificationState extends State<Verification> {
 
-   var pin1;
-   var pin2;
-   var pin3;
-   var pin4;
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -33,7 +27,7 @@ class _VerificationState extends State<Verification> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -64,14 +58,19 @@ class _VerificationState extends State<Verification> {
                   padding: const EdgeInsets.only(top: 74, left: 20, right: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      OtpBox( obscureText: false,),
-                      const SizedBox(width: 25,),
-                      OtpBox( obscureText: false,),
-                      const SizedBox(width: 25,),
-                      OtpBox( obscureText: false,),
-                      const SizedBox(width: 25,),
-                      OtpBox(  obscureText: false,),
+                    children:  const [
+                      OtpBox(
+                        obscureText: false,
+                        ),
+                      SizedBox(width: 25,),
+                      OtpBox( obscureText: false,
+                      ),
+                      SizedBox(width: 25,),
+                      OtpBox( obscureText: false,
+                        ),
+                      SizedBox(width: 25,),
+                      OtpBox(  obscureText: false,
+                       ),
                     ],
                   ),
                 ),
@@ -120,7 +119,8 @@ class _VerificationState extends State<Verification> {
                     width: double.infinity,
                     color: mainBlue,
                     onTap: () async {
-                      if (data.formkey.currentState!.validate()) {
+                      print('this is the otp: ${data.otpCodeList.join("")}');
+                       if (await data.myAuth.verifyOTP(otp: data.otpCodeList.join("")) == true) {
                         data.isLoading = true;
 
                         setState(() {});
@@ -135,7 +135,6 @@ class _VerificationState extends State<Verification> {
                         try {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => const SetPassword()));
-
                         }
                         catch(e,s){
                           print(e);
@@ -145,7 +144,7 @@ class _VerificationState extends State<Verification> {
                       else{
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text(
-                              'There is an error'),
+                              'Invalid OTP'),
                           duration: Duration(seconds: 5),),);
                       }
                     },
