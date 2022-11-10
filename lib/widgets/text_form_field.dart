@@ -15,15 +15,15 @@ class InputField extends StatefulWidget {
   final TextInputAction? textInputAction;
   const InputField(
       {Key? key,
-        required this.inputController,
-        required this.isPassword,
-        this.prefixIcon,
-        required this.hintText,
-        required this.hasSuffixIcon,
-        this.validator,
-        this.onSaved,
-        required this.keyBoardType,
-        this.textInputAction})
+      required this.inputController,
+      required this.isPassword,
+      this.prefixIcon,
+      required this.hintText,
+      required this.hasSuffixIcon,
+      this.validator,
+      this.onSaved,
+      required this.keyBoardType,
+      this.textInputAction})
       : super(key: key);
 
   @override
@@ -69,24 +69,24 @@ class _InputFieldState extends State<InputField> {
               fontWeight: FontWeight.bold),
           suffixIcon: widget.hasSuffixIcon == true
               ? GestureDetector(
-            onTap: () {
-              setState(() {
-                _obscureText = !_obscureText;
-                print(_obscureText);
-              });
-            },
-            child: _obscureText
-                ? Icon(
-              Icons.remove_red_eye_outlined,
-              color: Colors.grey,
-            )
-                : Icon(Icons.visibility_off_outlined),
-          )
+                  onTap: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                      print(_obscureText);
+                    });
+                  },
+                  child: _obscureText
+                      ? Icon(
+                          Icons.remove_red_eye_outlined,
+                          color: Colors.grey,
+                        )
+                      : Icon(Icons.visibility_off_outlined),
+                )
               : null,
           suffixIconColor: mainBlue,
 
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent, width: 0.7),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),

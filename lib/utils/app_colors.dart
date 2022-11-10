@@ -10,3 +10,4 @@ const oddBlue = Color(0xFF486484);
 const lightGrey = Color(0xFF7F8192);
 const black = Colors.black;
 const deepBlue = Color(0xff151940);
+const ashColor = Color(0xffE0E0E0);
