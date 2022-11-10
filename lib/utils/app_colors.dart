@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const mainBlue = Color(0xFF2488B0);
 const lightMainBlue = Color(0xFF314BCE);
 const white = Color(0xFFFFFFFF);
-const darkFont = Color(0xFF151940);
+const darkBlue = Color(0xFF193b6c);
 const cardColor = Color(0xFFF5F6FA);
 const orange = Color(0xFFFF897E);
 const oddBlue = Color(0xFF486484);

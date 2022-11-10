@@ -2,9 +2,14 @@
 
 import 'dart:async';
 
+import 'package:compact_pay/screens/cards.dart';
+import 'package:compact_pay/screens/homepage.dart';
+import 'package:compact_pay/screens/more.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:timer_count_down/timer_controller.dart';
+
+import '../screens/payments.dart';
 
 
 class ProviderClass extends ChangeNotifier{
@@ -24,6 +29,8 @@ class ProviderClass extends ChangeNotifier{
 
 
   final _formkey = GlobalKey<FormState>();
+
+
 
   TextEditingController get fullnameTextController => _fullnameTextController;
   TextEditingController get passwordTextController => _passwordTextController;
@@ -51,6 +58,10 @@ class ProviderClass extends ChangeNotifier{
   }
   void restartTimer() {
     controller.restart();
+  }
+  void Countdown() {
+
+    controller.start();
   }
 
 
