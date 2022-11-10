@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
+import 'package:timer_count_down/timer_controller.dart';
 
 
 class ProviderClass extends ChangeNotifier{
@@ -37,38 +38,52 @@ class ProviderClass extends ChangeNotifier{
   bool submitValid = false;
   EmailOTP myAuth = EmailOTP();
 
+  final CountdownController _controller =
+  CountdownController(autoStart: true);
 
-
-  Timer? countdownTimer;
-  Duration myDuration =   Duration(days: 5);
-  String strDigits(int n) => n.toString().padLeft(2, '0');
+  CountdownController get controller => _controller;
 
   void startTimer() {
-    countdownTimer =
-        Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+    controller.start();
+    }
+  void pauseTimer() {
+    controller.pause();
   }
-  // Step 4
-  void stopTimer() {
-    countdownTimer!.cancel();
-    notifyListeners();
+  void restartTimer() {
+    controller.restart();
   }
-  // Step 5
-  void resetTimer() {
-    stopTimer();
-    myDuration = Duration(days: 5);
-    notifyListeners();
-  }
-  // Step 6
-  void setCountDown() {
-    const reduceSecondsBy = 1;
-    final seconds = myDuration.inSeconds - reduceSecondsBy;
-      if (seconds < 0) {
-        countdownTimer!.cancel();
-      } else {
-        myDuration = Duration(seconds: seconds);
-      }
-    notifyListeners();
-  }
+
+
+  // Timer? countdownTimer;
+  // Duration myDuration =   Duration(days: 5);
+  // String strDigits(int n) => n.toString().padLeft(2, '0');
+  //
+  // void startTimer() {
+  //   countdownTimer =
+  //       Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+  // }
+  // // Step 4
+  // void stopTimer() {
+  //   countdownTimer!.cancel();
+  //   notifyListeners();
+  // }
+  // // Step 5
+  // void resetTimer() {
+  //   stopTimer();
+  //   myDuration = Duration(days: 5);
+  //   notifyListeners();
+  // }
+  // // Step 6
+  // void setCountDown() {
+  //   const reduceSecondsBy = 1;
+  //   final seconds = myDuration.inSeconds - reduceSecondsBy;
+  //     if (seconds < 0) {
+  //       countdownTimer!.cancel();
+  //     } else {
+  //       myDuration = Duration(seconds: seconds);
+  //     }
+  //   notifyListeners();
+  // }
 
 
 

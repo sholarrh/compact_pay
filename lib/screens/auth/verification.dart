@@ -2,8 +2,9 @@
 import 'package:compact_pay/screens/auth/new_password.dart';
 import 'package:compact_pay/screens/set_transaction_pin.dart';
 import 'package:compact_pay/widgets/otp_box.dart';
-//import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
+//import 'package:timer_count_down/timer_controller.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/provider.dart';
@@ -13,10 +14,10 @@ import '../../widgets/my_text.dart';
 import '../../widgets/show_snackbar.dart';
 
 class Verification extends StatefulWidget {
-  bool goToPasswordScreen;
+  final bool goToPasswordScreen;
 
-  Verification(
-      this.goToPasswordScreen,
+  const Verification(
+      this.goToPasswordScreen, {super.key}
       );
 
   @override
@@ -28,14 +29,14 @@ class _VerificationState extends State<Verification> {
   @override
   void initState() {
     super.initState();
-    ProviderClass().startTimer();
-    ProviderClass().setCountDown();
+     ProviderClass().startTimer();
+    // ProviderClass().setCountDown();
   }
 
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
-    final seconds = data.strDigits(data.myDuration.inSeconds.remainder(60));
+    //final seconds = data.strDigits(data.myDuration.inSeconds.remainder(60));
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -109,19 +110,26 @@ class _VerificationState extends State<Verification> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MyText(
-                        'Resend in $seconds',
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18,
-                        color: Color(0xff212121),
-                      ),
-                      MyText(
-                        '59s',
+                        'Resend in ',
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w400,
                         fontSize: 12,
-                        color: Color(0xff212121),
+                        color: const Color(0xff212121),
                       ),
+                      Countdown(
+                          seconds: 60,
+                          build: (_, double time) => MyText(
+                            time.toString(),
+                              fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            ),)
+                      // MyText(
+                      //   '59s',
+                      //   textAlign: TextAlign.center,
+                      //   fontWeight: FontWeight.w400,
+                      //   fontSize: 12,
+                      //   color: const Color(0xff212121),
+                      // ),
                     ],
                   ),
                 ),
