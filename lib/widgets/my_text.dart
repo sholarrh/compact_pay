@@ -22,24 +22,24 @@ class MyText extends StatelessWidget {
   final double? wordSpacing;
 
   MyText(
-      this.data, {
-        Key? key,
-        this.fontSize,
-        this.color,
-        this.fontWeight,
-        this.letterSpacing,
-        this.overflow,
-        this.maxLines,
-        this.height,
-        this.textAlign,
-        this.textDecoration,
-        this.textDirection,
-        this.decorationColor,
-        this.haveShadow = false,
-        this.fontFamily,
-        this.foreground,
-        this.wordSpacing,
-      }) : super(key: key);
+    this.data, {
+    Key? key,
+    this.fontSize,
+    this.color,
+    this.fontWeight,
+    this.letterSpacing,
+    this.overflow,
+    this.maxLines,
+    this.height,
+    this.textAlign,
+    this.textDecoration,
+    this.textDirection,
+    this.decorationColor,
+    this.haveShadow = false,
+    this.fontFamily,
+    this.foreground,
+    this.wordSpacing,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

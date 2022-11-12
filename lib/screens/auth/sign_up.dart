@@ -1,8 +1,14 @@
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
+import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/validator.dart';
+
+// This The Code for the Signup Page
+// Juwon's Code
+// Compact Pay
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -22,40 +28,6 @@ class _SignUpState extends State<SignUp> {
 
   final formkey = GlobalKey<FormState>();
 
-  String? validateFullName(String? formFullName) {
-    if (formFullName == null || formFullName.isEmpty)
-      return 'Full Name is required.';
-
-    return null;
-  }
-
-  String? validateEmail(String? formEmail) {
-    if (formEmail == null || formEmail.isEmpty) {
-      return 'E-mail address is required.';
-    }
-
-    String pattern = r'\w+@\w+\.\w+';
-    RegExp regex = RegExp(pattern);
-    if (!regex.hasMatch(formEmail)) return 'Invalid E-mail Address format.';
-
-    return null;
-  }
-
-  String? validatePhoneNumber(String? formPhoneNumber) {
-    if (formPhoneNumber == null || formPhoneNumber.isEmpty)
-      return 'PhoneNumber is required.';
-
-    return null;
-  }
-
-  String? validatePassword(String? formPassword) {
-    if (formPassword == null || formPassword.isEmpty) {
-      return 'Password is required.';
-    }
-
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,24 +42,20 @@ class _SignUpState extends State<SignUp> {
                 children: [
                   Icon(Icons.cancel_outlined),
                   SizedBox(height: 10),
-                  Text(
+                  MyText(
                     'Create Account',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Poppins',
-                      color: black,
-                    ),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    color: black,
                   ),
                   SizedBox(height: 38),
-                  Text(
+                  MyText(
                     ' Full Name',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: black,
-                      fontFamily: 'Poppins',
-                    ),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
                   ),
                   SizedBox(height: 8),
                   InputField(
@@ -99,14 +67,12 @@ class _SignUpState extends State<SignUp> {
                     inputController: _fullname,
                   ),
                   SizedBox(height: 25),
-                  Text(
+                  MyText(
                     'Email Address',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: black,
-                      fontFamily: 'Poppins',
-                    ),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
                   ),
                   SizedBox(height: 8),
                   InputField(
@@ -118,14 +84,12 @@ class _SignUpState extends State<SignUp> {
                     inputController: _email,
                   ),
                   SizedBox(height: 25),
-                  Text(
+                  MyText(
                     'Phone Number',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: black,
-                      fontFamily: 'Poppins',
-                    ),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
                   ),
                   SizedBox(height: 8),
                   InputField(
@@ -140,23 +104,26 @@ class _SignUpState extends State<SignUp> {
                       style: const TextStyle(color: black),
                       items: <String>[
                         '+234',
-                        '+25',
-                        '+225',
-                        '+230',
-                        '+1',
-                        '+226',
+                        '+218',
+                        '+235',
+                        '+385',
+                        '+30',
+                        '+221',
                         '+227',
-                        '+220',
-                        '+12',
+                        '+44',
+                        '+93',
+                        '+27',
+                        '+33',
+                        '+233',
                         '+1229',
-                        '+237',
-                        '+238',
-                        '+19',
-                        '+266'
+                        '+594',
+                        '+256',
+                        '+263',
+                        '+260'
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text(value),
+                          child: MyText(value),
                         );
                       }).toList(),
                       onChanged: (String? newValue) {
@@ -168,14 +135,12 @@ class _SignUpState extends State<SignUp> {
                     inputController: _phonenumber,
                   ),
                   SizedBox(height: 25),
-                  Text(
+                  MyText(
                     'Password',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: black,
-                      fontFamily: 'Poppins',
-                    ),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
                   ),
                   SizedBox(height: 9),
                   InputField(
@@ -187,14 +152,12 @@ class _SignUpState extends State<SignUp> {
                     inputController: _password,
                   ),
                   SizedBox(height: 25),
-                  Text(
+                  MyText(
                     'Referral Code (Optional)',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: black,
-                      fontFamily: 'Poppins',
-                    ),
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
                   ),
                   SizedBox(height: 9),
                   InputField(
@@ -216,84 +179,75 @@ class _SignUpState extends State<SignUp> {
                           });
                         },
                       ),
-                      Text(
+                      MyText(
                         'I agree to the ',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 9,
-                          fontWeight: FontWeight.w400,
-                          color: lightGrey,
-                        ),
+                        fontFamily: 'Poppins',
+                        fontSize: 9,
+                        fontWeight: FontWeight.w400,
+                        color: lightGrey,
                       ),
-                      Text(
+                      MyText(
                         'Terms of Service',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 9,
-                          fontWeight: FontWeight.w500,
-                          color: lightMainBlue,
-                        ),
+                        fontFamily: 'Poppins',
+                        fontSize: 9,
+                        fontWeight: FontWeight.w500,
+                        color: lightMainBlue,
                       ),
-                      Text(
+                      MyText(
                         '  and',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 9,
-                          fontWeight: FontWeight.w400,
-                          color: lightGrey,
-                        ),
+                        fontFamily: 'Poppins',
+                        fontSize: 9,
+                        fontWeight: FontWeight.w400,
+                        color: lightGrey,
                       ),
-                      Text(
+                      MyText(
                         '  Privacy Policy',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 9,
-                          fontWeight: FontWeight.w500,
-                          color: lightMainBlue,
-                        ),
+                        fontFamily: 'Poppins',
+                        fontSize: 9,
+                        fontWeight: FontWeight.w500,
+                        color: lightMainBlue,
                       ),
                     ],
                   ),
                   SizedBox(height: 5),
                   MyButton(
-                      onTap: () {
-                        if (formkey.currentState!.validate()) {
-                          isLoading = true;
+                    onTap: () {
+                      if (formkey.currentState!.validate()) {
+                        isLoading = true;
+                        setState(() {});
+                        Future.delayed(Duration(seconds: 10))
+                            .then((value) async {
+                          isLoading = false;
                           setState(() {});
-                          Future.delayed(Duration(seconds: 10))
-                              .then((value) async {
-                            isLoading = false;
-                            setState(() {});
-                          });
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Login()));
-                        }
-                      },
-                      child: Container(
-                        height: 54,
-                        width: 335,
-                        decoration: BoxDecoration(
-                          color: ashColor,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: isLoading == false
-                            ? Center(
-                                child: Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                    color: white,
-                                    fontFamily: 'Poppins',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              )
-                            : Center(
-                                child: CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
+                        });
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Login()));
+                      }
+                    },
+                    child: Container(
+                      height: 54,
+                      width: 335,
+                      decoration: BoxDecoration(
+                        color: ashColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: isLoading == false
+                          ? Center(
+                              child: MyText(
+                                'Sign Up',
+                                color: white,
+                                fontFamily: 'Poppins',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
                               ),
-                      ))
+                            )
+                          : Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            ),
+                    ),
+                  ),
                 ],
               ),
             ),
