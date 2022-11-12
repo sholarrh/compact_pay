@@ -1,5 +1,7 @@
 
 
+import 'package:compact_pay/screens/edit_profile.dart';
+import 'package:compact_pay/screens/settings.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -26,12 +28,17 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 10,),
-                    child: IconButton(
-                      icon: const Icon(Icons.close),
-                      iconSize: 17,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          iconSize: 17,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },),
+                      ],
+                    ),
                   ),
 
                   const CircleAvatar(
@@ -77,15 +84,21 @@ class _ProfileState extends State<Profile> {
                                 MyText('View and edit your profile',
                                   fontSize: 9,
                                   fontWeight: FontWeight.w500 ,
-                                  color: Color(0xff8A8D8F),
+                                  color: const Color(0xff8A8D8F),
                                 ),
                               ],
                             ),
                           ],
                         ),
-                        Icon(Icons.arrow_forward_ios_outlined,
-                          color: mainBlue,
-                        size: 14,
+                        IconButton(
+                          onPressed: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const Settings()));
+                          },
+                          icon: const Icon(Icons.arrow_forward_ios_outlined,
+                            color: mainBlue,
+                          size: 14,
+                          ),
                         ),
 
                       ],
@@ -127,9 +140,15 @@ class _ProfileState extends State<Profile> {
                             ),
                           ],
                         ),
-                        Icon(Icons.arrow_forward_ios_outlined,
-                          color: mainBlue,
-                          size: 14,
+                        IconButton(
+                          onPressed: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const EditProfile()));
+                          },
+                          icon: const Icon(Icons.arrow_forward_ios_outlined,
+                            color: mainBlue,
+                            size: 14,
+                          ),
                         ),
 
                       ],
@@ -171,9 +190,15 @@ class _ProfileState extends State<Profile> {
                             ),
                           ],
                         ),
-                        Icon(Icons.arrow_forward_ios_outlined,
-                          color: mainBlue,
-                          size: 14,
+                        IconButton(
+                          onPressed: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const EditProfile()));
+                          },
+                          icon: const Icon(Icons.arrow_forward_ios_outlined,
+                            color: mainBlue,
+                            size: 14,
+                          ),
                         ),
 
                       ],

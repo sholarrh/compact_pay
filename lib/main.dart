@@ -1,5 +1,6 @@
 import 'package:compact_pay/provider/provider.dart';
 import 'package:compact_pay/screens/auth/login.dart';
+import 'package:compact_pay/screens/profile.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: const Login(),
+        home: const Profile(),
       ),);
   }
 }
