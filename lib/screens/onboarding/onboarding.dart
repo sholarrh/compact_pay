@@ -58,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ],
                     ),
-                    Spacer(
+                    const Spacer(
                       flex: 5,
                     ),
                     Expanded(
@@ -94,7 +94,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),
