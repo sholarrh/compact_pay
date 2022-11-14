@@ -119,8 +119,8 @@ final List<Map<String, String>> onboardingDetails = <Map<String, String>>[
     "image": "assets/images/onboard3.png",
     "text": "Low cost transaction",
   },
-  {
-    "image": "assets/images/getstarted.png",
-    "text": "Get Started",
-  },
+  // {
+  //   "image": "assets/images/getstarted.png",
+  //   "text": "Get Started",
+  // },
 ];
