@@ -1,202 +1,126 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../models/onboarding_model.dart';
-
-import '../auth/login.dart';
-
-
-
-class Onboarding extends StatefulWidget {
-  const Onboarding({Key? key}) : super(key: key);
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
 
   @override
-  State<Onboarding> createState() => _OnboardingState();
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingState extends State<Onboarding> {
-  late PageController _pageController;
-
-  int _pageIndex=0;
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: 0);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-// final Controller= PageController();
-
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  final PageController pageController = PageController();
+  int pagenum = 0;
   @override
   Widget build(BuildContext context) {
-    final List<OnboardingModel> demo_data=[
-      OnboardingModel(
-        'assets/images/onboard1.png',
-        'Send and receive money',
-        'online',
-      ),
-      OnboardingModel(
-        'assets/images/onboard2.png',
-        'Pay your bills easier and',
-        'faster',
-      ),
-      OnboardingModel(
-        'assets/images/onboard3.png',
-        'Low cost',
-        'transaction',
-      ),
-    ];
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Stack(children: [
-        PageView.builder(itemCount: demo_data.length,
-                        controller: _pageController,
-                        onPageChanged:(index){
-                          setState((){
-                            _pageIndex = index;
-                          });
-                        },
-                        itemBuilder: (context, index) => OnboardingScreen(
-                          image: demo_data[index].assetImage,
-                          title: demo_data[index].title,
-                          description:demo_data[index].subtitle,
-                        )),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8.0,),
-                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20.0, bottom: 20),
-                              child: SmoothPageIndicator(controller: _pageController, count: 3,
-                                effect: const SlideEffect(
-                                  spacing: 8,
-                                  dotColor: Color(0xffC4C4C4),
-                                  activeDotColor: Color(0xff0F68ED),
-                                ),
-                                onDotClicked:(index){
-                                  _pageController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
-                                },),
+        child: Stack(
+          children: [
+            PageView.builder(
+              itemCount: onboardingDetails.length,
+              controller: pageController,
+              onPageChanged: (value) => setState(() {
+                pagenum = value;
+              }),
+              itemBuilder: (context, index) => Image.asset(
+                "${onboardingDetails[index]["image"]}",
+                fit: BoxFit.fill,
+              ),
+            ),
+            Align(
+              // heightFactor: ,
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: TextButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                              size: 13,
                             ),
-                            GestureDetector(
-                              onTap: (){
-                                _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.ease);
-                                if (_pageIndex==2){
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Login()));
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 24.0, bottom: 20),
-                                child: Container(
-                                  height: 50,
-                                  width: 133,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xff0F68ED),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Center(
-                                      child: Text(
-                                        'Next',
-                                        style: TextStyle(color: Colors.white),
-                                      )),
-                                ),
+                            label: const Text(
+                              "Skip",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
                               ),
                             ),
-                          ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(
+                      flex: 5,
+                    ),
+                    Expanded(
+                      child: Text(
+                        "${onboardingDetails[pagenum]["text"]}",
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ],
-                  )
-                ],
-              ),
-            ));
-  }
-}
-
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({
-    Key? key,
-    required this.image,
-    required this.title,
-    required this.description,
-  }) : super(key: key);
-  final image, title, description;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          child: Container(
-            height: 550,
-            width: 428,
-            decoration: BoxDecoration(
-
-              image: DecorationImage(
-                  image: AssetImage(image),
-                  fit: BoxFit.cover
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(
-                      left: 24,top: 52
-                  ),
-
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 68.0,right: 19),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Login(),
+                    ),
+                    const SizedBox(
+                      height: 18,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ...List.generate(
+                          onboardingDetails.length,
+                              (index) => Container(
+                            margin: const EdgeInsets.all(10),
+                            height: index == pagenum ? 16 : 12,
+                            width: index == pagenum ? 16 : 12,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: index == pagenum
+                                  ? const Color(0xffCECCCC)
+                                  : const Color(0xff787676),
+                            ),
+                          ),
                         ),
-                      );
-                    },
-                    child: const Text('Skip',
-                      style: TextStyle(
-                          color:Colors.white
-                      ),),
-                  ),
+                      ],
+                    ),
+                    Spacer(),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
-        const SizedBox(height: 48),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        const SizedBox(
-          height: 38,
-        ),
-        Text(
-          description,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-            color: Color(0xff222222),
-          ),
-        )
-      ],
+      ),
     );
   }
 }
 
+final List<Map<String, String>> onboardingDetails = <Map<String, String>>[
+  {
+    "image": "assets/images/onboard1.png",
+    "text": "Send and receive money \nonline",
+  },
+  {
+    "image": "assets/images/onboard2.png",
+    "text": "Pay bills easier and \nfaster",
+  },
+  {
+    "image": "assets/images/onboard3.png",
+    "text": "Low cost transaction",
+  },
+  {
+    "image": "assets/images/getstarted.png",
+    "text": "Get Started",
+  },
+];
