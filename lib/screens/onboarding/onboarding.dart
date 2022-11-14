@@ -1,10 +1,11 @@
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../models/onboarding_model.dart';
-import '../Pages/Login Page/login.dart';
+
+import '../auth/login.dart';
 
 
 
@@ -76,20 +77,20 @@ class _OnboardingState extends State<Onboarding> {
                             Padding(
                               padding: const EdgeInsets.only(left: 20.0, bottom: 20),
                               child: SmoothPageIndicator(controller: _pageController, count: 3,
-                                effect: SlideEffect(
+                                effect: const SlideEffect(
                                   spacing: 8,
                                   dotColor: Color(0xffC4C4C4),
                                   activeDotColor: Color(0xff0F68ED),
                                 ),
                                 onDotClicked:(index){
-                                  _pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                                  _pageController.animateToPage(index, duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
                                 },),
                             ),
                             GestureDetector(
                               onTap: (){
-                                _pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.ease);
+                                _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.ease);
                                 if (_pageIndex==2){
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginPage()));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Login()));
                                 }
                               },
                               child: Padding(
@@ -98,10 +99,10 @@ class _OnboardingState extends State<Onboarding> {
                                   height: 50,
                                   width: 133,
                                   decoration: BoxDecoration(
-                                    color: Color(0xff0F68ED),
+                                    color: const Color(0xff0F68ED),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                       child: Text(
                                         'Next',
                                         style: TextStyle(color: Colors.white),
@@ -147,8 +148,8 @@ class OnboardingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
+                const Padding(
+                  padding: EdgeInsets.only(
                       left: 24,top: 52
                   ),
 
@@ -160,11 +161,11 @@ class OnboardingScreen extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginPage(),
+                          builder: (context) => const Login(),
                         ),
                       );
                     },
-                    child: Text('Skip',
+                    child: const Text('Skip',
                       style: TextStyle(
                           color:Colors.white
                       ),),
@@ -174,21 +175,21 @@ class OnboardingScreen extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 48),
+        const SizedBox(height: 48),
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w700,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 38,
         ),
         Text(
           description,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
             color: Color(0xff222222),

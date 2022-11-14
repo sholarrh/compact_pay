@@ -1,4 +1,8 @@
+import 'package:compact_pay/provider/provider.dart';
+import 'package:compact_pay/screens/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
