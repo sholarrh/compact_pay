@@ -3,10 +3,30 @@
 String? validateEmail(String? formEmail) {
   if (formEmail == null || formEmail.isEmpty)
     return 'E-mail address is required.';
+// This The  Validator for the Textform Fields
+
+String? validateFullName(String? formFullName) {
+  if (formFullName == null || formFullName.isEmpty)
+    return 'Full Name is required.';
+
+  return null;
+}
+
+String? validateEmail(String? formEmail) {
+  if (formEmail == null || formEmail.isEmpty) {
+    return 'E-mail address is required.';
+  }
 
   String pattern = r'\w+@\w+\.\w+';
   RegExp regex = RegExp(pattern);
   if (!regex.hasMatch(formEmail)) return 'Invalid E-mail Address format.';
+
+  return null;
+}
+
+String? validatePhoneNumber(String? formPhoneNumber) {
+  if (formPhoneNumber == null || formPhoneNumber.isEmpty)
+    return 'PhoneNumber is required.';
 
   return null;
 }

@@ -93,3 +93,4 @@ const error_90 = Color(0xff9B0000);
 const error_100 = Color(0xff750000);
 const error_110 = Color(0xff4E0000);
 const error_120 = Color(0xff2F0000);
+const ashColor = Color(0xffE0E0E0);
