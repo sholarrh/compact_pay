@@ -1,5 +1,6 @@
 
 // This is the splash screen
+import 'package:compact_pay/screens/onboarding/onboarding2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,9 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   initState(){
     super.initState();
-    Future.delayed(Duration(seconds: 2),(){
+    Future.delayed(const Duration(seconds: 2),(){
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => OnboardingScreen()));
+          context, MaterialPageRoute(builder: (context) => const OnBoarding()));
     });
   }
   Widget build(BuildContext context) {
@@ -32,9 +33,9 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(height: 317),
+                const SizedBox(height: 317),
                 Image.asset('assets/images/Logo.png'),
-                SizedBox(height: 15.11),
+                const SizedBox(height: 15.11),
                 MyText(
                   'CompactPay',
                   color: white,
