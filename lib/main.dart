@@ -1,4 +1,5 @@
 
+import 'package:compact_pay/screens/SplashScreen/splashscreen.dart';
 import 'package:compact_pay/screens/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:  OnboardingScreen(),
+      home: SplashScreen(),
     );
   }
 }
