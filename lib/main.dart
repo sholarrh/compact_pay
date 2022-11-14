@@ -1,5 +1,8 @@
 import 'package:compact_pay/provider/provider.dart';
 import 'package:compact_pay/screens/auth/login.dart';
+
+import 'package:compact_pay/screens/SplashScreen/splashscreen.dart';
+import 'package:compact_pay/screens/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -31,3 +34,5 @@ class MyApp extends StatelessWidget {
       ),);
   }
 }
+
+
