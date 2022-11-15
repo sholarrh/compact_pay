@@ -33,10 +33,12 @@ class _ProfileState extends State<Profile> {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.close),
+                          color: white,
                           iconSize: 17,
                           onPressed: () {
                             Navigator.pop(context);
-                          },),
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -92,8 +94,10 @@ class _ProfileState extends State<Profile> {
                         ),
                         IconButton(
                           onPressed: (){
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const Settings()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const EditProfile()));
                           },
                           icon: const Icon(Icons.arrow_forward_ios_outlined,
                             color: mainBlue,
@@ -131,10 +135,11 @@ class _ProfileState extends State<Profile> {
                                   color: black2121,
                                 ),
                                 const SizedBox(height: 2,),
-                                MyText('security settings and notification settings',
+                                MyText(
+                                  'security settings and notification settings',
                                   fontSize: 9,
-                                  fontWeight: FontWeight.w500 ,
-                                  color: Color(0xff8A8D8F),
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xff8A8D8F),
                                 ),
                               ],
                             ),
@@ -142,8 +147,10 @@ class _ProfileState extends State<Profile> {
                         ),
                         IconButton(
                           onPressed: (){
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const EditProfile()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Settings()));
                           },
                           icon: const Icon(Icons.arrow_forward_ios_outlined,
                             color: mainBlue,

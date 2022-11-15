@@ -59,11 +59,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
 
                   Form(
-                    key: data.formkey,
+                    key: data.formKey,
                     child: Column(
                       children: [
-                        const SizedBox(height: 40,),
-
+                        const SizedBox(
+                          height: 40,
+                        ),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: MyText(
@@ -93,12 +94,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {
-                        if (data.formkey.currentState!.validate()) {
+                        if (data.formKey.currentState!.validate()) {
                           data.isLoading = true;
 
                           setState(() {});
                           Duration waitTime = const Duration(seconds: 4);
-                          Future.delayed(waitTime, (){
+                          Future.delayed(waitTime, () {
                             if (mounted) {
                               data.isLoading = false;
                             }

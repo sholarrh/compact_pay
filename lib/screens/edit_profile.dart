@@ -20,6 +20,8 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  String dropdownValue = 'Male';
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -32,18 +34,23 @@ class _EditProfileState extends State<EditProfile> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10,),
+                  padding: const EdgeInsets.only(top: 10, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       IconButton(
                         icon: const Icon(Icons.close),
                         iconSize: 17,
+                        color: white,
                         onPressed: () {
                           Navigator.pop(context);
-                        },),
-                      SizedBox(width: 30,),
-                      MyText('Edit Profile',
+                        },
+                      ),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      MyText(
+                        'Edit Profile',
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: white,
@@ -51,128 +58,147 @@ class _EditProfileState extends State<EditProfile> {
                     ],
                   ),
                 ),
-
                 Align(
                   alignment: Alignment.centerLeft,
                   child: MyText(
                     'Full Name',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: black,
+                    color: white,
                   ),
                 ),
-
-                const SizedBox(height: 20,),
-
-                InputField(
-                  inputController: data.emailTextController,
-                  isPassword: false,
+                const SizedBox(
+                  height: 10,
+                ),
+                InputField2(
+                  inputController: data.fullNameTextController,
                   hintText: 'Babatunde Samson',
-                  hasSuffixIcon: false,
                   keyBoardType: TextInputType.emailAddress,
-                  validator: validateEmail,),
-
+                  validator: validateEmail,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: MyText(
                     'Email Address',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: black,
+                    color: white,
                   ),
                 ),
-
-                const SizedBox(height: 20,),
-
-                InputField(
+                const SizedBox(
+                  height: 10,
+                ),
+                InputField2(
                   inputController: data.emailTextController,
-                  isPassword: false,
                   hintText: 'babatundesamson@gmail.com',
-                  hasSuffixIcon: false,
                   keyBoardType: TextInputType.emailAddress,
-                  validator: validateEmail,),
-
+                  validator: validateEmail,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: MyText(
                     'Date of Birth',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: black,
+                    color: white,
                   ),
                 ),
-
-                const SizedBox(height: 20,),
-
-                InputField(
-                  inputController: data.emailTextController,
-                  isPassword: false,
+                const SizedBox(
+                  height: 10,
+                ),
+                InputField2(
+                  inputController: data.ageTextController,
                   hintText: 'dd/mm/yy',
-                  hasSuffixIcon: false,
                   keyBoardType: TextInputType.emailAddress,
-                  validator: validateEmail,),
-
+                  validator: validateEmail,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: MyText(
                     'Gender',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: black,
+                    color: white,
                   ),
                 ),
-
-                const SizedBox(height: 20,),
-
-                InputField(
-                  inputController: data.emailTextController,
-                  isPassword: false,
+                const SizedBox(
+                  height: 10,
+                ),
+                InputField2(
+                  inputController: data.genderTextController,
                   hintText: 'Male',
-                  hasSuffixIcon: false,
-                  keyBoardType: TextInputType.emailAddress,
-                  validator: validateEmail,),
-
+                  keyBoardType: TextInputType.name,
+                  validator: validateEmail,
+                  suffixIcon: DropdownButton<String>(
+                    value: dropdownValue,
+                    elevation: 16,
+                    style: const TextStyle(color: white),
+                    items: <String>[
+                      'Male',
+                      'Female',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: MyText(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: MyText(
                     'BVN',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: black,
+                    color: white,
                   ),
                 ),
-
-                const SizedBox(height: 20,),
-
-                InputField(
-                  inputController: data.emailTextController,
-                  isPassword: false,
+                const SizedBox(
+                  height: 10,
+                ),
+                InputField2(
+                  inputController: data.bvnTextController,
                   hintText: '22123333333',
-                  hasSuffixIcon: false,
                   keyBoardType: TextInputType.emailAddress,
-                  validator: validateEmail,),
-
+                  validator: validateEmail,
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 40),
+                  padding: const EdgeInsets.only(top: 100),
                   child: MyButton(
                     height: 50,
                     width: double.infinity,
                     color: mainBlue,
                     onTap: () async {
-                      if (data.formkey.currentState!.validate()) {
+                      if (data.formKey.currentState!.validate()) {
                         data.isLoading = true;
                         setState(() {});
                         data.delay(4);
                         try {
-
                           //if (await data.myAuth.sendOTP() == true) {
-                            const ShowSnackBar(
-                              text: "OTP has been sent",
-                              duration: 5,
-                            );
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) =>  const Profile()));
-                          }
+                          const ShowSnackBar(
+                            text: "OTP has been sent",
+                            duration: 5,
+                          );
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) =>  const Profile()));
+                        }
                         //}
                         catch(e,s){
                           print(e);
@@ -192,9 +218,9 @@ class _EditProfileState extends State<EditProfile> {
                       fontWeight: FontWeight.w700,
                       fontSize: 20,)
                         : const Center(
-                          child: CircularProgressIndicator(
-                            color: mainBlue,
-                          ),
+                      child: CircularProgressIndicator(
+                        color: mainBlue,
+                      ),
                     ),
                   ),
                 ),
@@ -209,3 +235,4 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 }
+

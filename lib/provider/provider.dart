@@ -2,51 +2,61 @@
 
 import 'dart:async';
 
-import 'package:compact_pay/screens/cards.dart';
-import 'package:compact_pay/screens/homepage.dart';
-import 'package:compact_pay/screens/more.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:timer_count_down/timer_controller.dart';
 
-import '../screens/payments.dart';
 
 
 class ProviderClass extends ChangeNotifier{
-  final TextEditingController _fullnameTextController = TextEditingController();
+  final TextEditingController _fullNameTextController = TextEditingController();
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
-  final TextEditingController _phoneNumberTextController = TextEditingController();
-  final TextEditingController _confirmPasswordTextController = TextEditingController();
+  final TextEditingController _phoneNumberTextController =
+      TextEditingController();
+  final TextEditingController _confirmPasswordTextController =
+      TextEditingController();
+  final TextEditingController _bvnTextController = TextEditingController();
+  final TextEditingController _genderTextController = TextEditingController();
+  final TextEditingController _ageTextController = TextEditingController();
 
   final List<String> _otpCodeList = [];
   final List<String> _pinList = [];
   final List<String> _confirmPinList = [];
 
-  List<String> get pinList  => _pinList;
-  List<String> get otpCodeList  => _otpCodeList;
-  List<String> get confirmPinList  => _confirmPinList;
+  List<String> get pinList => _pinList;
 
+  List<String> get otpCodeList => _otpCodeList;
 
-  final _formkey = GlobalKey<FormState>();
+  List<String> get confirmPinList => _confirmPinList;
 
+  final _formKey = GlobalKey<FormState>();
 
+  TextEditingController get fullNameTextController => _fullNameTextController;
 
-  TextEditingController get fullnameTextController => _fullnameTextController;
   TextEditingController get passwordTextController => _passwordTextController;
+
   TextEditingController get emailTextController => _emailTextController;
-  TextEditingController get phoneNumberTextController => _phoneNumberTextController;
-  TextEditingController get confirmPasswordTextController => _confirmPasswordTextController;
 
+  TextEditingController get phoneNumberTextController =>
+      _phoneNumberTextController;
 
-  GlobalKey<FormState> get formkey => _formkey;
+  TextEditingController get confirmPasswordTextController =>
+      _confirmPasswordTextController;
+
+  TextEditingController get bvnTextController => _bvnTextController;
+
+  TextEditingController get genderTextController => _genderTextController;
+
+  TextEditingController get ageTextController => _ageTextController;
+
+  GlobalKey<FormState> get formKey => _formKey;
   bool isLoading = false;
 
   bool submitValid = false;
   EmailOTP myAuth = EmailOTP();
 
-  final CountdownController _controller =
-  CountdownController(autoStart: true);
+  final CountdownController _controller = CountdownController(autoStart: true);
 
   CountdownController get controller => _controller;
 
@@ -56,14 +66,14 @@ class ProviderClass extends ChangeNotifier{
   void pauseTimer() {
     controller.pause();
   }
+
   void restartTimer() {
     controller.restart();
   }
-  void Countdown() {
 
+  void countdown() {
     controller.start();
   }
-
 
   // Timer? countdownTimer;
   // Duration myDuration =   Duration(days: 5);

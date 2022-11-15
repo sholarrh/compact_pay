@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 import '../widgets/my_text.dart';
-import 'edit_profile.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -25,18 +24,21 @@ class _SettingsState extends State<Settings> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10,),
+                  padding: const EdgeInsets.only(top: 10, bottom: 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       IconButton(
                         icon: const Icon(Icons.close),
                         iconSize: 17,
+                        color: white,
                         onPressed: () {
                           Navigator.pop(context);
-                        },),
+                        },
+                      ),
                       const SizedBox(width: 30,),
-                      MyText('Edit Profile',
+                      MyText(
+                        'Settings',
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: white,
@@ -45,10 +47,9 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
 
-
                 Container(
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                  padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 12.0),
+                  margin: const EdgeInsets.symmetric(vertical: 5),
+                  padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
                   height: 60,
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -57,7 +58,7 @@ class _SettingsState extends State<Settings> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
+                    children: [
                       Row(
                         children: [
                           const Icon(Icons.notifications,
@@ -83,9 +84,9 @@ class _SettingsState extends State<Settings> {
                         ],
                       ),
                       IconButton(
-                        onPressed: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const EditProfile()));
+                        onPressed: () {
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
                         },
                         icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,
@@ -98,7 +99,7 @@ class _SettingsState extends State<Settings> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 4),
-                  padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 12.0),
+                  padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
                   height: 60,
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -107,7 +108,7 @@ class _SettingsState extends State<Settings> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:  [
+                    children: [
                       Row(
                         children: [
                           const Icon(Icons.lock_outline_sharp,
@@ -133,9 +134,9 @@ class _SettingsState extends State<Settings> {
                         ],
                       ),
                       IconButton(
-                        onPressed: (){
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => const EditProfile()));
+                        onPressed: () {
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
                         },
                         icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,

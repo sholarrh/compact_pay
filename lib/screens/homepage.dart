@@ -1,5 +1,6 @@
 
 
+import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
@@ -30,25 +31,41 @@ class _HomePageState extends State<HomePage> {
                   child: IconButton(
                     icon: const Icon(Icons.close),
                     iconSize: 17,
+                    color: Colors.black,
                     onPressed: () {
                       Navigator.pop(context);
-                    },),
+                    },
+                  ),
                 ),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.person),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Profile()));
+                      },
+                      child: const CircleAvatar(
+                        radius: 20,
+                        backgroundImage:
+                            AssetImage('assets/images/profileImage.png'),
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          onTap: (){},
-                            child: Image.asset('assets/images/scanner.png'),
+                          onTap: () {},
+                          child: Image.asset('assets/images/scanner.png'),
                         ),
-                        const SizedBox(width: 24,),
+                        const SizedBox(
+                          width: 24,
+                        ),
                         GestureDetector(
-                            onTap: (){},
+                            onTap: () {},
                             child: Image.asset('assets/images/notification.png')),
                       ],
                     ),

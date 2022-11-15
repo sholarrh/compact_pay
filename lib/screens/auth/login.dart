@@ -62,18 +62,19 @@ class _LoginState extends State<Login> {
                 ),
 
                 Form(
-                  key: data.formkey,
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 40,),
-
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: MyText(
-                          'Email Address',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: black,
+                  key: data.formKey,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: MyText(
+                            'Email Address',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            color: black,
                         ),
                       ),
 
@@ -137,18 +138,18 @@ class _LoginState extends State<Login> {
                           width: double.infinity,
                           color: mainBlue,
                           onTap: () async {
-                            if (data.formkey.currentState!.validate()) {
-                              data.isLoading = true;
-                              setState(() {});
-                              data.delay(4);
-                              try {
-                                data.sendOtp();
-                                if (await data.myAuth.sendOTP() == true) {
-                                  const ShowSnackBar(
-                                    text: "OTP has been sent",
-                                    duration: 5,
-                                  );
-                                  Navigator.push(context,
+                            if (data.formKey.currentState!.validate()) {
+                          data.isLoading = true;
+                          setState(() {});
+                          data.delay(4);
+                          try {
+                            data.sendOtp();
+                            if (await data.myAuth.sendOTP() == true) {
+                              const ShowSnackBar(
+                                text: "OTP has been sent",
+                                duration: 5,
+                              );
+                              Navigator.push(context,
                                       MaterialPageRoute(builder: (context) =>  Verification(goToPasswordScreen)));
                                 }
                               }
