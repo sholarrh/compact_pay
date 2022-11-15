@@ -9,6 +9,7 @@ import '../widgets/my_button.dart';
 import '../widgets/my_text.dart';
 import '../widgets/text_form_field.dart';
 import '../widgets/validator.dart';
+import 'auth/sign_up.dart';
 import 'auth/verification.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -21,6 +22,8 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
 
   bool goToPasswordScreen = true;
+  final _formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> get formkey => _formkey;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
 
                   Form(
-                    key: data.formkey,
+                    key: formkey,
                     child: Column(
                       children: [
                         const SizedBox(height: 40,),
@@ -93,17 +96,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {
-                        if (data.formkey.currentState!.validate()) {
+                        if (formkey.currentState!.validate()) {
                           data.isLoading = true;
-
                           setState(() {});
-                          Duration waitTime = const Duration(seconds: 4);
-                          Future.delayed(waitTime, (){
-                            if (mounted) {
-                              data.isLoading = false;
-                            }
-                            setState(() {});
-                          });
+
+                          data.delay(4);
 
                           try {
                             data.sendOtp();
@@ -154,8 +151,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
                         InkWell(
                           onTap: () {
-                            // Navigator.push(context,
-                            //     MaterialPageRoute(builder: (context) => const 'SignUp'()));
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const SignUp()));
                           },
                           child: MyText('Sign Up',
                             color: mainBlue,

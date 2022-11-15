@@ -1,14 +1,16 @@
 
 
 
-import 'package:compact_pay/screens/auth/verification.dart';
+import 'package:compact_pay/screens/auth/sign_up.dart';
 import 'package:compact_pay/screens/forgot_password.dart';
+
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/provider.dart';
+import '../../widgets/bottom_nav.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/text_form_field.dart';
@@ -23,7 +25,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
-  bool goToPasswordScreen = false;
+  final _formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> get formkey => _formkey;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,7 @@ class _LoginState extends State<Login> {
                 ),
 
                 Form(
-                  key: data.formkey,
+                  key: formkey,
                   child: Column(
                     children: [
                       const SizedBox(height: 40,),
@@ -137,20 +140,15 @@ class _LoginState extends State<Login> {
                           width: double.infinity,
                           color: mainBlue,
                           onTap: () async {
-                            if (data.formkey.currentState!.validate()) {
+                            if (formkey.currentState!.validate()) {
                               data.isLoading = true;
                               setState(() {});
                               data.delay(4);
                               try {
-                                data.sendOtp();
-                                if (await data.myAuth.sendOTP() == true) {
-                                  const ShowSnackBar(
-                                    text: "OTP has been sent",
-                                    duration: 5,
-                                  );
+                                data.passwordTextController.clear();
+                                data.emailTextController.clear();
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) =>  Verification(goToPasswordScreen)));
-                                }
+                                      MaterialPageRoute(builder: (context) =>  const BottomNav()));
                               }
                               catch(e,s){
                                 print(e);
@@ -171,13 +169,11 @@ class _LoginState extends State<Login> {
                             fontSize: 20,)
                               : const Center(
                                 child: CircularProgressIndicator(
-                                  color: mainBlue,
+                                  color: white,
                                 ),
                               ),
                         ),
                       ),
-
-
                 Padding(
                   padding: const EdgeInsets.only(top: 20,),
                   child: Row(
@@ -190,8 +186,8 @@ class _LoginState extends State<Login> {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => const Login()));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const SignUp()));
                         },
                         child: MyText('Sign Up',
                           color: mainBlue,

@@ -19,6 +19,10 @@ class NewPassword extends StatefulWidget {
 }
 
 class _NewPasswordState extends State<NewPassword> {
+
+  final _formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> get formkey => _formkey;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -56,7 +60,7 @@ class _NewPasswordState extends State<NewPassword> {
                   ),
 
                   Form(
-                    key: data.formkey,
+                    key: formkey,
                     child: Column(
                       children: [
                         const SizedBox(height: 40,),
@@ -113,7 +117,7 @@ class _NewPasswordState extends State<NewPassword> {
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {
-                        if (data.formkey.currentState!.validate()) {
+                        if (formkey.currentState!.validate()) {
                           data.isLoading = true;
 
                           setState(() {});

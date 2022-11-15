@@ -1,4 +1,5 @@
 
+import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/screens/auth/new_password.dart';
 import 'package:compact_pay/screens/set_transaction_pin.dart';
 import 'package:compact_pay/widgets/otp_box.dart';
@@ -152,7 +153,7 @@ class _VerificationState extends State<Verification> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                   widget.goToPasswordScreen ?  const NewPassword()
-                              :const SetTransactionPin()));
+                              :const Login()));
                         }
                         catch(e,s){
                           print(e);

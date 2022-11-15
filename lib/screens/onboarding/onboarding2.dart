@@ -1,10 +1,10 @@
 
-
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/my_text.dart';
+import '../auth/sign_up.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);

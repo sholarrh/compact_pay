@@ -1,9 +1,5 @@
 
 
-String? validateEmail(String? formEmail) {
-  if (formEmail == null || formEmail.isEmpty)
-    return 'E-mail address is required.';
-// This The  Validator for the Textform Fields
 
 String? validateFullName(String? formFullName) {
   if (formFullName == null || formFullName.isEmpty)
@@ -49,18 +45,3 @@ String? validatePassword(String? formPassword) {
   return null;
 }
 
-String? validateFullName(String? formFullName) {
-  if (formFullName == null || formFullName.isEmpty) {
-    return 'Full Name is required.';
-  }
-
-  return null;
-}
-
-String? validatePhoneNumber(String? formPhoneNumber) {
-  if (formPhoneNumber == null || formPhoneNumber.isEmpty) {
-    return 'Phone Number is required.';
-  }
-
-  return null;
-}

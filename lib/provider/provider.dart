@@ -18,6 +18,7 @@ class ProviderClass extends ChangeNotifier{
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _phoneNumberTextController = TextEditingController();
   final TextEditingController _confirmPasswordTextController = TextEditingController();
+  final TextEditingController _referralCodeTextController = TextEditingController();
 
   final List<String> _otpCodeList = [];
   final List<String> _pinList = [];
@@ -28,7 +29,7 @@ class ProviderClass extends ChangeNotifier{
   List<String> get confirmPinList  => _confirmPinList;
 
 
-  final _formkey = GlobalKey<FormState>();
+
 
 
 
@@ -37,9 +38,10 @@ class ProviderClass extends ChangeNotifier{
   TextEditingController get emailTextController => _emailTextController;
   TextEditingController get phoneNumberTextController => _phoneNumberTextController;
   TextEditingController get confirmPasswordTextController => _confirmPasswordTextController;
+  TextEditingController get referralCodeTextController => _referralCodeTextController;
 
 
-  GlobalKey<FormState> get formkey => _formkey;
+
   bool isLoading = false;
 
   bool submitValid = false;
