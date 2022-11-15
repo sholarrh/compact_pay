@@ -65,8 +65,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     key: formkey,
                     child: Column(
                       children: [
-                        const SizedBox(height: 40,),
-
+                        const SizedBox(
+                          height: 40,
+                        ),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: MyText(
