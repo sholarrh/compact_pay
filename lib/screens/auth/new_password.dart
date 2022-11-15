@@ -19,9 +19,9 @@ class NewPassword extends StatefulWidget {
 }
 
 class _NewPasswordState extends State<NewPassword> {
+  final _formKey = GlobalKey<FormState>();
 
-  final _formkey = GlobalKey<FormState>();
-  GlobalKey<FormState> get formkey => _formkey;
+  GlobalKey<FormState> get formKey => _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _NewPasswordState extends State<NewPassword> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: white,
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 18,),
@@ -60,7 +60,7 @@ class _NewPasswordState extends State<NewPassword> {
                   ),
 
                   Form(
-                    key: formkey,
+                    key: formKey,
                     child: Column(
                       children: [
                         const SizedBox(
@@ -118,27 +118,23 @@ class _NewPasswordState extends State<NewPassword> {
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {
-                        if (formkey.currentState!.validate()) {
+                        if (formKey.currentState!.validate()) {
                           data.isLoading = true;
-
                           setState(() {});
-                          Duration waitTime = const Duration(seconds: 4);
-                          Future.delayed(waitTime, () {
-                            if (mounted) {
-                              data.isLoading = false;
-                            }
-                            setState(() {});
-                          });
+
+                          data.delay(4);
 
                           try {
                             data.sendOtp();
                             if (await data.myAuth.sendOTP() == true) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                   content: Text("OTP has been sent"),
+                                content: Text("OTP has been sent"),
                               ));
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => const HomePage()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const HomePage()));
                             }
                           }
                           catch(e,s){

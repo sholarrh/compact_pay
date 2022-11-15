@@ -19,6 +19,8 @@ class ProviderClass extends ChangeNotifier{
   final TextEditingController _bvnTextController = TextEditingController();
   final TextEditingController _genderTextController = TextEditingController();
   final TextEditingController _ageTextController = TextEditingController();
+  final TextEditingController _referralCodeTextController =
+      TextEditingController();
 
   final List<String> _otpCodeList = [];
   final List<String> _pinList = [];
@@ -49,6 +51,9 @@ class ProviderClass extends ChangeNotifier{
   TextEditingController get genderTextController => _genderTextController;
 
   TextEditingController get ageTextController => _ageTextController;
+
+  TextEditingController get referralCodeTextController =>
+      _referralCodeTextController;
 
   GlobalKey<FormState> get formKey => _formKey;
   bool isLoading = false;

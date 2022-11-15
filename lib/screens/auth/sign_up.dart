@@ -5,6 +5,7 @@ import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../provider/provider.dart';
 import '../../widgets/show_snackbar.dart';
 import '../../widgets/validator.dart';
@@ -73,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: data.fullnameTextController,
+                    inputController: data.fullNameTextController,
                   ),
                   const SizedBox(height: 25),
                   MyText(
