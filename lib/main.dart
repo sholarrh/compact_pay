@@ -1,5 +1,10 @@
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/screens/auth/sign_up.dart';
+import 'package:compact_pay/screens/changepassword.dart';
+import 'package:compact_pay/screens/notificationsettings.dart';
+import 'package:compact_pay/screens/passwordsettings.dart';
+import 'package:compact_pay/screens/securitysettings.dart';
+import 'package:compact_pay/screens/settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SignUp(),
+      home: NotificationSettings(),
     );
   }
 }

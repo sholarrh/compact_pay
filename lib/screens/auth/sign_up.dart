@@ -226,7 +226,7 @@ class _SignUpState extends State<SignUp> {
                     },
                     child: Container(
                       height: 54,
-                      width: 335,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: ashColor,
                         borderRadius: BorderRadius.circular(10),
