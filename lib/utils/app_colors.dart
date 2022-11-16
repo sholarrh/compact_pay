@@ -96,8 +96,5 @@ const error_100 = Color(0xff750000);
 const error_110 = Color(0xff4E0000);
 const error_120 = Color(0xff2F0000);
 const ashColor = Color(0xffE0E0E0);
-const deepBlue1 = Color(0xff193B6C);
-const black2121 = Color(0xff212121);
+
 const ash2 = Color(0xff8A8D8F);
-const lightGreen = Color(0xff1AAE9F);
-const lightGrey2 = Color(0xffE0E0E0);

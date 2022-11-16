@@ -18,7 +18,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
         backgroundColor: deepBlue1,
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
                 Padding(
@@ -26,7 +26,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                         color: white,
                         iconSize: 17,
                         onPressed: () {
@@ -56,7 +56,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                           padding: const EdgeInsets.all(14),
                           child: Image.asset('assets/images/key.png'),
                         ),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.arrow_forward_ios,
                           color: mainBlue,
                         ),
@@ -91,7 +91,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                         ListTile(
                           leading:
                               Image.asset('assets/images/finger-cricle.png'),
-                          trailing: Icon(
+                          trailing: const Icon(
                             Icons.arrow_forward_ios,
                             color: mainBlue,
                           ),

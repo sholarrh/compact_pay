@@ -29,7 +29,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                       color: white,
                       iconSize: 17,
                       onPressed: () {
@@ -115,7 +115,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   ),
                 ],
               ),
-              SizedBox(height: 400),
+              const SizedBox(height: 400),
               MyButton(
                 child: Container(
                   height: 54,
