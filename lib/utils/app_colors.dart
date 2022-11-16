@@ -10,10 +10,12 @@ const oddBlue = Color(0xFF486484);
 const lightGrey = Color(0xFF7F8192);
 const black = Colors.black;
 const deepBlue = Color(0xff151940);
+const deepBlue1 = Color(0xff193B6C);
 const tintBlue = Color(0xff182E50);
 const black2121 = Color(0xff212121);
 const darkFont = Color(0xFF151940);
-
+const lightGreen = Color(0xff1AAE9F);
+const lightGrey2 = Color(0xffE0E0E0);
 
 const kPrimaryColor = Color(0xffFF8F2B);
 const kSecondaryColor = Color(0xff12908E);
