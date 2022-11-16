@@ -2,8 +2,9 @@
 
 
 String? validateFullName(String? formFullName) {
-  if (formFullName == null || formFullName.isEmpty)
+  if (formFullName == null || formFullName.isEmpty) {
     return 'Full Name is required.';
+  }
 
   return null;
 }
@@ -45,3 +46,11 @@ String? validatePassword(String? formPassword) {
   return null;
 }
 
+String? validateTransactionPin(String? formTransactionPin) {
+  if (formTransactionPin == null ||
+      formTransactionPin.isEmpty && formTransactionPin.length == 4) {
+    return 'Pin is required and must be four numbers.';
+  }
+
+  return null;
+}

@@ -21,6 +21,9 @@ class ProviderClass extends ChangeNotifier{
   final TextEditingController _ageTextController = TextEditingController();
   final TextEditingController _referralCodeTextController =
       TextEditingController();
+  final TextEditingController _oldTransactionPin = TextEditingController();
+  final TextEditingController _newTransactionPin = TextEditingController();
+  final TextEditingController _confirmTransactionPin = TextEditingController();
 
   final List<String> _otpCodeList = [];
   final List<String> _pinList = [];
@@ -54,6 +57,12 @@ class ProviderClass extends ChangeNotifier{
 
   TextEditingController get referralCodeTextController =>
       _referralCodeTextController;
+
+  TextEditingController get oldTransactionPin => _oldTransactionPin;
+
+  TextEditingController get newTransactionPin => _newTransactionPin;
+
+  TextEditingController get confirmTransactionPin => _confirmTransactionPin;
 
   GlobalKey<FormState> get formKey => _formKey;
   bool isLoading = false;

@@ -203,17 +203,18 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Container(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   width: double.infinity,
                   height: 400,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     color: mainBlue,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      MyText('01 Nov 2022',
+                      MyText(
+                        '01 Nov 2022',
                         fontSize: 8,
                         fontWeight: FontWeight.w400 ,
                         color: white,
@@ -221,18 +222,22 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.circle),
-                          SizedBox(width: 15,),
+                          const Icon(Icons.circle),
+                          const SizedBox(
+                            width: 15,
+                          ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              MyText('Charles Kelvin',
+                              MyText(
+                                'Charles Kelvin',
                                 fontSize: 12,
-                                fontWeight: FontWeight.w500 ,
+                                fontWeight: FontWeight.w500,
                                 color: white,
                               ),
-                              MyText('12:05 AM',
+                              MyText(
+                                '12:05 AM',
                                 fontSize:8,
                                 fontWeight: FontWeight.w400 ,
                                 color: white,

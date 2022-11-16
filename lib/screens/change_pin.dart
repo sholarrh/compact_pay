@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../utils/app_colors.dart';
-import '../../widgets/my_button.dart';
-import '../../widgets/my_text.dart';
-import '../../widgets/text_form_field.dart';
-import '../../widgets/validator.dart';
+import '../provider/provider.dart';
+import '../utils/app_colors.dart';
+import '../widgets/my_button.dart';
+import '../widgets/my_text.dart';
+import '../widgets/text_form_field.dart';
+import '../widgets/validator.dart';
 
 class ChangePin extends StatefulWidget {
   const ChangePin({Key? key}) : super(key: key);
@@ -14,17 +16,14 @@ class ChangePin extends StatefulWidget {
 }
 
 class _ChangePinState extends State<ChangePin> {
-  TextEditingController _Oldpin = TextEditingController();
-  TextEditingController _Newpin = TextEditingController();
-  TextEditingController _Repeatpin = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: deepBlue1,
         body: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +33,7 @@ class _ChangePinState extends State<ChangePin> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                         color: white,
                         iconSize: 17,
                         onPressed: () {
@@ -56,46 +55,46 @@ class _ChangePinState extends State<ChangePin> {
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w400,
                     fontSize: 13),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 InputField(
                   hintText: '',
-                  validator: validateFullName,
-                  keyBoardType: TextInputType.name,
+                  validator: validateTransactionPin,
+                  keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: true,
-                  inputController: _Oldpin,
+                  inputController: data.oldTransactionPin,
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 MyText('New Pin',
                     color: white,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w400,
                     fontSize: 13),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 InputField(
                   hintText: '',
-                  validator: validateFullName,
-                  keyBoardType: TextInputType.name,
+                  validator: validateTransactionPin,
+                  keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: true,
-                  inputController: _Newpin,
+                  inputController: data.newTransactionPin,
                 ),
-                SizedBox(height: 25),
+                const SizedBox(height: 25),
                 MyText('Repeat Pin',
                     color: white,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w400,
                     fontSize: 13),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 InputField(
                   hintText: '',
-                  validator: validateFullName,
-                  keyBoardType: TextInputType.name,
+                  validator: validateTransactionPin,
+                  keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: true,
-                  inputController: _Repeatpin,
+                  inputController: data.confirmTransactionPin,
                 ),
-                SizedBox(height: 80),
+                const SizedBox(height: 80),
                 MyButton(
                   child: Container(
                     height: 54,
