@@ -1,3 +1,5 @@
+import 'package:compact_pay/screens/notificationsettings.dart';
+import 'package:compact_pay/screens/securitysettings.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -58,9 +60,18 @@ class _SettingsState extends State<Settings> {
                             Icons.notifications_none,
                             color: mainBlue,
                           ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios,
-                            color: mainBlue,
+                          trailing: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          NotificationSettings()));
+                            },
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: mainBlue,
+                            ),
                           ),
                           title: MyText(
                             'Notification Settings',
@@ -96,9 +107,18 @@ class _SettingsState extends State<Settings> {
                             Icons.lock_outline_rounded,
                             color: mainBlue,
                           ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios,
-                            color: mainBlue,
+                          trailing: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          SecuritySettings()));
+                            },
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: mainBlue,
+                            ),
                           ),
                           title: MyText(
                             'Security Settings',
