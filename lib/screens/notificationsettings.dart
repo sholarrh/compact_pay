@@ -117,6 +117,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
               ),
               SizedBox(height: 400),
               MyButton(
+                onTap: () {},
                 child: Container(
                   height: 54,
                   width: double.infinity,

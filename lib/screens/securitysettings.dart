@@ -63,7 +63,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ChangePassword()));
+                                    builder: (context) => PasswordSettings()));
                           },
                           child: Icon(
                             Icons.arrow_forward_ios,

@@ -1,3 +1,4 @@
+import 'package:compact_pay/screens/changepassword.dart';
 import 'package:compact_pay/screens/securitysettings.dart';
 import 'package:flutter/material.dart';
 
@@ -57,9 +58,17 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                           padding: const EdgeInsets.all(14),
                           child: Image.asset('assets/images/key.png'),
                         ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: mainBlue,
+                        trailing: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChangePassword()));
+                          },
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: mainBlue,
+                          ),
                         ),
                         title: MyText(
                           'Change Password',
@@ -92,9 +101,17 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                           padding: const EdgeInsets.all(14),
                           child: Image.asset('assets/images/key.png'),
                         ),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: mainBlue,
+                        trailing: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChangePin()));
+                          },
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: mainBlue,
+                          ),
                         ),
                         title: MyText(
                           'Change Pin',

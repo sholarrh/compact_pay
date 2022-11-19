@@ -228,8 +228,10 @@ class _SignUpState extends State<SignUp> {
                           isLoading = false;
                           setState(() {});
                         });
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Login()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Verification()));
                       }
                     },
                     child: Container(
