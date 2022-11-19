@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_button.dart';
 import '../../../widgets/my_text.dart';
+import 'add_biometric.dart';
 
 class BiometricVerification extends StatefulWidget {
   const BiometricVerification({Key? key}) : super(key: key);
@@ -83,12 +84,16 @@ class _BiometricVerificationState extends State<BiometricVerification> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
-                    child: MyText(
-                      'Add Biometric',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                    child: GestureDetector(onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AddBiometric()));
+                    },
+                      child: MyText(
+                        'Add Biometric',
+                        color: white,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),

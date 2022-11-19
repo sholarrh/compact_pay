@@ -13,14 +13,14 @@ class ProviderClass extends ChangeNotifier{
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _phoneNumberTextController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController _confirmPasswordTextController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController _bvnTextController = TextEditingController();
   final TextEditingController _genderTextController = TextEditingController();
   final TextEditingController _ageTextController = TextEditingController();
   final TextEditingController _referralCodeTextController =
-      TextEditingController();
+  TextEditingController();
 
   final List<String> _otpCodeList = [];
   final List<String> _pinList = [];
@@ -67,7 +67,7 @@ class ProviderClass extends ChangeNotifier{
 
   void startTimer() {
     controller.start();
-    }
+  }
   void pauseTimer() {
     controller.pause();
   }
@@ -133,3 +133,5 @@ class ProviderClass extends ChangeNotifier{
   }
 
 }
+
+

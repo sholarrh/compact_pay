@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_button.dart';
 import '../../../widgets/my_text.dart';
+import 'enable_biometric.dart';
 
 class Biometric_Auth extends StatefulWidget {
   const Biometric_Auth({Key? key}) : super(key: key);
@@ -72,12 +73,16 @@ class _Biometric_AuthState extends State<Biometric_Auth> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
-                        child: MyText(
-                          'Enable Biometric',
-                          color: white,
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                        child: GestureDetector(onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BiometricVerification()));
+                    },
+                          child: MyText(
+                            'Enable Biometric',
+                            color: white,
+                            fontFamily: 'Poppins',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),

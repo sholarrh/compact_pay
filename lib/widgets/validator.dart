@@ -45,3 +45,21 @@ String? validatePassword(String? formPassword) {
   return null;
 }
 
+// String? validatePin(String? formPin) {
+//   if (formPin == null || formPin.isEmpty) {
+//     return 'Pin is required.';
+//   }
+//
+//   String pattern =
+//       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+//   RegExp regex = RegExp(pattern);
+//   if (!regex.hasMatch(formPin)) {
+//     return '''
+//     Pin must be at least 6 numbers,
+//    number .
+//     ''';
+//   }
+//
+//   return null;
+// }
+
