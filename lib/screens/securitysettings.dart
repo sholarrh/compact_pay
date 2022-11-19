@@ -1,3 +1,5 @@
+import 'package:compact_pay/screens/changepassword.dart';
+import 'package:compact_pay/screens/passwordsettings.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
@@ -18,7 +20,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
         backgroundColor: deepBlue1,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
                 Padding(
@@ -26,7 +28,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.close),
+                        icon: Icon(Icons.close),
                         color: white,
                         iconSize: 17,
                         onPressed: () {
@@ -56,9 +58,17 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                           padding: const EdgeInsets.all(14),
                           child: Image.asset('assets/images/key.png'),
                         ),
-                        trailing: const Icon(
-                          Icons.arrow_forward_ios,
-                          color: mainBlue,
+                        trailing: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChangePassword()));
+                          },
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: mainBlue,
+                          ),
                         ),
                         title: MyText(
                           'Password Settings',
@@ -91,9 +101,18 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                         ListTile(
                           leading:
                               Image.asset('assets/images/finger-cricle.png'),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios,
-                            color: mainBlue,
+                          trailing: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          BiometricVerification()));
+                            },
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: mainBlue,
+                            ),
                           ),
                           title: MyText(
                             'Biometric Verification',
