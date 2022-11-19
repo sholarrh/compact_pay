@@ -25,6 +25,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _email = TextEditingController();
   TextEditingController _phonenumber = TextEditingController();
   TextEditingController _password = TextEditingController();
+  TextEditingController _referralcode = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
 
@@ -40,7 +41,14 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.cancel_outlined),
+                  IconButton(
+                    icon: Icon(Icons.close),
+                    color: black,
+                    iconSize: 17,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                   SizedBox(height: 10),
                   MyText(
                     'Create Account',
@@ -78,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                   InputField(
                     validator: validateEmail,
                     hintText: 'Email Address',
-                    keyBoardType: TextInputType.name,
+                    keyBoardType: TextInputType.emailAddress,
                     isPassword: false,
                     hasSuffixIcon: false,
                     inputController: _email,
@@ -165,7 +173,7 @@ class _SignUpState extends State<SignUp> {
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: _password,
+                    inputController: _referralcode,
                   ),
                   SizedBox(height: 15),
                   Row(
