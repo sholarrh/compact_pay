@@ -58,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ],
                     ),
-                    Spacer(
+                    const Spacer(
                       flex: 5,
                     ),
                     Expanded(
@@ -94,7 +94,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
               ),
@@ -119,10 +119,10 @@ final List<Map<String, String>> onboardingDetails = <Map<String, String>>[
     "image": "assets/images/onboard3.png",
     "text": "Low cost transaction",
   },
-  // {
-  //   "image": "assets/images/getstarted.png",
-  //   "text": "Get Started",
-  // },
+  {
+    "image": "assets/images/getstarted.png",
+    "text": "Get Started",
+  },
 ];
 // import 'package:flutter/material.dart';
 //
