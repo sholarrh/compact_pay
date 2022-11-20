@@ -1,9 +1,9 @@
 import 'package:compact_pay/screens/changepassword.dart';
-import 'package:compact_pay/screens/securitysettings.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 import '../widgets/my_text.dart';
+import 'change_pin.dart';
 
 // This The Code for the PasswordSettings Page
 // Juwon's Code
@@ -23,7 +23,7 @@ class _PasswordSettingsState extends State<PasswordSettings> {
         backgroundColor: deepBlue1,
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
                 Padding(
@@ -31,7 +31,7 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                         color: white,
                         iconSize: 17,
                         onPressed: () {
@@ -66,9 +66,10 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ChangePassword()));
+                                    builder: (context) =>
+                                        const ChangePassword()));
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_forward_ios,
                             color: mainBlue,
                           ),
@@ -109,9 +110,9 @@ class _PasswordSettingsState extends State<PasswordSettings> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ChangePin()));
+                                    builder: (context) => const ChangePin()));
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_forward_ios,
                             color: mainBlue,
                           ),
