@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
 import '../../widgets/my_text.dart';
-import '../onboarding/onboarding.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -20,14 +19,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   initState(){
     super.initState();
-    Future.delayed(const Duration(seconds: 3),(){
+    Future.delayed(const Duration(seconds: 10),(){
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const OnBoarding()));
     });
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: tintBlue,
+      backgroundColor:darkBlue,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
