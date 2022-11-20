@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 import '../widgets/my_text.dart';
 
+// This The Code for the SecuritySettings Page
+// Juwon's Code
+
 class SecuritySettings extends StatefulWidget {
   const SecuritySettings({Key? key}) : super(key: key);
 

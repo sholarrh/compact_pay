@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../widgets/my_text.dart';
 
+// This The Code for the Settings Page
+// Juwon's Code
+
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../widgets/my_text.dart';
 
+// This The Code for the NotificationSettings Page
+// Juwon's Code
+
 class NotificationSettings extends StatefulWidget {
   const NotificationSettings({Key? key}) : super(key: key);
 
