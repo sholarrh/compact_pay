@@ -1,5 +1,6 @@
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/my_text.dart';
@@ -107,7 +108,9 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     onChanged: (value) {
                       setState(() {
                         isSwitched3 = value;
-                        print(isSwitched3);
+                        if (kDebugMode) {
+                          print(isSwitched3);
+                        }
                       });
                     },
                     activeColor: lightGreen,
