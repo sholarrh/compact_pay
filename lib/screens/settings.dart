@@ -7,6 +7,9 @@ import '../utils/app_colors.dart';
 import '../widgets/my_text.dart';
 import 'notificationsettings.dart';
 
+// This The Code for the Settings Page
+// Juwon's Code
+
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 

@@ -1,9 +1,12 @@
 import 'package:compact_pay/screens/changepassword.dart';
+import 'package:compact_pay/screens/passwordsettings.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 import '../widgets/my_text.dart';
-import 'auth/Biometric Verification/enable_biometric.dart';
+
+// This The Code for the SecuritySettings Page
+// Juwon's Code
 
 class SecuritySettings extends StatefulWidget {
   const SecuritySettings({Key? key}) : super(key: key);
@@ -63,8 +66,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (
-                                        context) => const ChangePassword()));
+                                    builder: (context) => PasswordSettings()));
                           },
                           child: const Icon(
                             Icons.arrow_forward_ios,

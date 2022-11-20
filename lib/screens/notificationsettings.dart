@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../widgets/my_text.dart';
 
+// This The Code for the NotificationSettings Page
+// Juwon's Code
+
 class NotificationSettings extends StatefulWidget {
   const NotificationSettings({Key? key}) : super(key: key);
 
@@ -120,6 +123,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
               ),
               const SizedBox(height: 400),
               MyButton(
+                onTap: () {},
                 child: Container(
                   height: 54,
                   width: double.infinity,

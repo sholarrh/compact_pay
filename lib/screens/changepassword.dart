@@ -1,3 +1,4 @@
+import 'package:compact_pay/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
@@ -5,6 +6,9 @@ import '../widgets/my_button.dart';
 import '../widgets/my_text.dart';
 import '../widgets/text_form_field.dart';
 import '../widgets/validator.dart';
+
+// This The Code for the ChangePassword Page
+// Juwon's Code
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({Key? key}) : super(key: key);
@@ -100,32 +104,38 @@ class _ChangePasswordState extends State<ChangePassword> {
                     inputController: _Repeatpassword,
                   ),
                   SizedBox(height: 80),
-                  MyButton(
+                  GestureDetector(
                     onTap: () {
-                      if (formkey.currentState!.validate()) {
-                        isLoading = true;
-                        setState(() {});
-                        Future.delayed(Duration(seconds: 10))
-                            .then((value) async {
-                          isLoading = false;
-                          setState(() {});
-                        });
-                      }
+                      Navigator.pop(context,
+                          MaterialPageRoute(builder: (context) => Login()));
                     },
-                    child: Container(
-                      height: 54,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: mainBlue,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: MyText(
-                          'Done',
-                          color: white,
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                    child: MyButton(
+                      onTap: () {
+                        if (formkey.currentState!.validate()) {
+                          isLoading = true;
+                          setState(() {});
+                          Future.delayed(Duration(seconds: 10))
+                              .then((value) async {
+                            isLoading = false;
+                            setState(() {});
+                          });
+                        }
+                      },
+                      child: Container(
+                        height: 54,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: mainBlue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: MyText(
+                            'Done',
+                            color: white,
+                            fontFamily: 'Poppins',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
