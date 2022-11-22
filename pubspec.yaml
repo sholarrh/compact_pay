@@ -41,6 +41,7 @@ dependencies:
   email_otp: ^1.0.4
   timer_count_down: ^2.2.1
   smooth_page_indicator: ^1.0.0+2
+  nigerian_banks: ^0.0.2+10
 
 dev_dependencies:
   flutter_test:
