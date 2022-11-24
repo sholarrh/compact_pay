@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/Send Money/Send Money/bank_account.dart';
+import 'screens/Send Money/Send Money/confirm.dart';
 import 'screens/Send Money/Send Money/send_money.dart';
+import 'screens/Send Money/Send Money/transfer_successful.dart';
 import 'screens/Send Money/Send Money/wallet.dart';
 
 void main() {
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: const Wallet(),
+        home: const Confirm(),
       ),);
   }
 }
