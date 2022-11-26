@@ -22,8 +22,9 @@ String? validateEmail(String? formEmail) {
 }
 
 String? validatePhoneNumber(String? formPhoneNumber) {
-  if (formPhoneNumber == null || formPhoneNumber.isEmpty)
+  if (formPhoneNumber == null || formPhoneNumber.isEmpty) {
     return 'PhoneNumber is required.';
+  }
 
   return null;
 }

@@ -1,9 +1,10 @@
-
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/my_text.dart';
+
+// Adigun solafunmi
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -13,7 +14,6 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-
   int _currentIndex = 0;
   var currentIndex = 1;
   final PageController _pageController = PageController();

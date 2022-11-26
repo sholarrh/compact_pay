@@ -1,5 +1,5 @@
 import 'package:compact_pay/provider/provider.dart';
-import 'package:compact_pay/screens/SplashScreen/splashscreen.dart';
+import 'package:compact_pay/screens/add_money/request_money/add_by_request.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: const SplashScreen(),
+        home: const AddByRequest(),
       ),);
   }
 }
