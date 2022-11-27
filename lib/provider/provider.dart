@@ -10,6 +10,14 @@ class ProviderClass extends ChangeNotifier {
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _phoneNumberTextController =
       TextEditingController();
+
+  final TextEditingController _addressTextController = TextEditingController();
+  final TextEditingController _identificationNumberTextController =
+      TextEditingController();
+
+  final TextEditingController _identificationTextController =
+      TextEditingController();
+
   final TextEditingController _confirmPasswordTextController =
       TextEditingController();
   final TextEditingController _bvnTextController = TextEditingController();
@@ -53,6 +61,14 @@ class ProviderClass extends ChangeNotifier {
   TextEditingController get passwordTextController => _passwordTextController;
 
   TextEditingController get emailTextController => _emailTextController;
+
+  TextEditingController get addressTextController => _addressTextController;
+
+  TextEditingController get identificationNumberTextController =>
+      _identificationNumberTextController;
+
+  TextEditingController get identificationTextController =>
+      _identificationTextController;
 
   TextEditingController get phoneNumberTextController =>
       _phoneNumberTextController;
