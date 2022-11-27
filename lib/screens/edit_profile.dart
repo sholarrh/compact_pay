@@ -1,4 +1,4 @@
-
+// Adigun solafunmi
 
 import 'package:compact_pay/screens/profile.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +21,10 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   String dropdownValue = 'Male';
+
+  final _formKey = GlobalKey<FormState>();
+
+  GlobalKey<FormState> get formKey => _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +190,7 @@ class _EditProfileState extends State<EditProfile> {
                     width: double.infinity,
                     color: mainBlue,
                     onTap: () async {
-                      if (data.formKey.currentState!.validate()) {
+                      if (formKey.currentState!.validate()) {
                         data.isLoading = true;
                         setState(() {});
                         data.delay(4);
@@ -196,8 +200,10 @@ class _EditProfileState extends State<EditProfile> {
                             text: "OTP has been sent",
                             duration: 5,
                           );
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) =>  const Profile()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Profile()));
                         }
                         //}
                         catch(e,s){

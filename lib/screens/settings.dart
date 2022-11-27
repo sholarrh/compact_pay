@@ -1,9 +1,14 @@
+// Adigun solafunmi
 
-
+import 'package:compact_pay/screens/securitysettings.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
+import '../widgets/container_widget.dart';
 import '../widgets/my_text.dart';
+import 'notificationsettings.dart';
+
+// This The Code for the Settings Page
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -36,7 +41,9 @@ class _SettingsState extends State<Settings> {
                           Navigator.pop(context);
                         },
                       ),
-                      const SizedBox(width: 30,),
+                      const SizedBox(
+                        width: 30,
+                      ),
                       MyText(
                         'Settings',
                         fontSize: 16,
@@ -46,108 +53,19 @@ class _SettingsState extends State<Settings> {
                     ],
                   ),
                 ),
-
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 5),
-                  padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
-                  height: 60,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: white,
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.notifications,
-                            color: mainBlue,),
-                          const SizedBox(width: 9,),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              MyText('Notification Settings',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500 ,
-                                color: black2121,
-                              ),
-                              const SizedBox(height: 2,),
-                              MyText('Push notification, sms notification and email notification',
-                                fontSize: 9,
-                                fontWeight: FontWeight.w500 ,
-                                color: const Color(0xff8A8D8F),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios_outlined,
-                          color: mainBlue,
-                          size: 14,
-                        ),
-                      ),
-
-                    ],
-                  ),
+                const ContainerWidget(
+                  title: 'Notification Settings',
+                  subtitle:
+                      'Push notification, sms notification and email notification',
+                  screen: NotificationSettings(),
+                  icon: Icons.notifications,
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                  padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
-                  height: 60,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: white,
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.lock_outline_sharp,
-                            color: mainBlue,),
-                          const SizedBox(width: 9,),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              MyText('Security Settings',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500 ,
-                                color: black2121,
-                              ),
-                              const SizedBox(height: 2,),
-                              MyText('Password Settings and Biometric verification',
-                                fontSize: 9,
-                                fontWeight: FontWeight.w500 ,
-                                color: const Color(0xff8A8D8F),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
-                        },
-                        icon: const Icon(Icons.arrow_forward_ios_outlined,
-                          color: mainBlue,
-                          size: 14,
-                        ),
-                      ),
-
-                    ],
-                  ),
+                const ContainerWidget(
+                  title: 'Security Settings',
+                  subtitle: 'Password Settings and Biometric verification',
+                  screen: SecuritySettings(),
+                  icon: Icons.lock_outline,
                 ),
-
               ],
             ),
           ),

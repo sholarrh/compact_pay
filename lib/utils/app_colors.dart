@@ -5,7 +5,7 @@ const lightMainBlue = Color(0xFF314BCE);
 const white = Color(0xFFFFFFFF);
 const darkBlue = Color(0xFF193b6c);
 const cardColor = Color(0xFFF5F6FA);
-const orange = Color(0xFFFF897E);
+const backWhite = Color(0xFFF5F5F5);
 const oddBlue = Color(0xFF486484);
 const lightGrey = Color(0xFF7F8192);
 const black = Colors.black;
@@ -16,6 +16,7 @@ const black2121 = Color(0xff212121);
 const darkFont = Color(0xFF151940);
 const lightGreen = Color(0xff1AAE9F);
 const lightGrey2 = Color(0xffE0E0E0);
+const close = Color(0xff292D32);
 
 const kPrimaryColor = Color(0xffFF8F2B);
 const kSecondaryColor = Color(0xff12908E);
@@ -96,3 +97,6 @@ const error_100 = Color(0xff750000);
 const error_110 = Color(0xff4E0000);
 const error_120 = Color(0xff2F0000);
 const ashColor = Color(0xffE0E0E0);
+
+const ash2 = Color(0xff8A8D8F);
+const unValidated = Color(0xffE0E0E0);

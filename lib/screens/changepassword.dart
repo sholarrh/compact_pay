@@ -1,26 +1,27 @@
+import 'package:compact_pay/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 
-import '../../utils/app_colors.dart';
-import '../../widgets/my_button.dart';
-import '../../widgets/my_text.dart';
-import '../../widgets/text_form_field.dart';
-import '../settings.dart';
+import '../utils/app_colors.dart';
+import '../widgets/my_button.dart';
+import '../widgets/my_text.dart';
+import '../widgets/text_form_field.dart';
+import '../widgets/validator.dart';
 
-class ChangePin extends StatefulWidget {
-  const ChangePin({Key? key}) : super(key: key);
+// This The Code for the ChangePassword Page
+// Juwon's Code
+
+class ChangePassword extends StatefulWidget {
+  const ChangePassword({Key? key}) : super(key: key);
 
   @override
-  State<ChangePin> createState() => _ChangePinState();
+  State<ChangePassword> createState() => _ChangePasswordState();
 }
 
-class _ChangePinState extends State<ChangePin> {
-
-
-
+class _ChangePasswordState extends State<ChangePassword> {
   bool isLoading = false;
-  TextEditingController _Oldpin = TextEditingController();
-  TextEditingController _Newpin = TextEditingController();
-  TextEditingController _Repeatpin = TextEditingController();
+  TextEditingController _Oldpassword = TextEditingController();
+  TextEditingController _Newpassword = TextEditingController();
+  TextEditingController _Repeatpassword = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
   @override
@@ -49,7 +50,7 @@ class _ChangePinState extends State<ChangePin> {
                           },
                         ),
                         MyText(
-                          'Change Pin',
+                          'Change Password',
                           color: white,
                           fontFamily: 'Poppins',
                           fontSize: 16,
@@ -58,7 +59,7 @@ class _ChangePinState extends State<ChangePin> {
                       ],
                     ),
                   ),
-                  MyText('Old Pin',
+                  MyText('Old Password',
                       color: white,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
@@ -66,14 +67,14 @@ class _ChangePinState extends State<ChangePin> {
                   SizedBox(height: 8),
                   InputField(
                     hintText: '',
-                    // validator: validatePin,
+                    validator: validatePassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _Oldpin,
+                    inputController: _Oldpassword,
                   ),
                   SizedBox(height: 25),
-                  MyText('New Pin',
+                  MyText('New Password',
                       color: white,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
@@ -81,14 +82,14 @@ class _ChangePinState extends State<ChangePin> {
                   SizedBox(height: 8),
                   InputField(
                     hintText: '',
-                    // validator: validatePin,
+                    validator: validatePassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _Newpin,
+                    inputController: _Newpassword,
                   ),
                   SizedBox(height: 25),
-                  MyText('Repeat Pin',
+                  MyText('Repeat Password',
                       color: white,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
@@ -96,36 +97,40 @@ class _ChangePinState extends State<ChangePin> {
                   SizedBox(height: 8),
                   InputField(
                     hintText: '',
-                    // validator: validatePin,
+                    validator: validatePassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _Repeatpin,
+                    inputController: _Repeatpassword,
                   ),
                   SizedBox(height: 80),
-                  MyButton(
+                  GestureDetector(
                     onTap: () {
-                      if (formkey.currentState!.validate()) {
-                        isLoading = true;
-                        setState(() {});
-                        Future.delayed(Duration(seconds: 10))
-                            .then((value) async {
-                          isLoading = false;
-                          setState(() {});
-                        });
-                      }
+                      Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()));
                     },
-                    child: Container(
-                      height: 54,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: mainBlue,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: GestureDetector(onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Settings()));
-                        },
+                    child: MyButton(
+                      onTap: () {
+                        if (formkey.currentState!.validate()) {
+                          isLoading = true;
+                          setState(() {});
+                          Future.delayed(Duration(seconds: 10))
+                              .then((value) async {
+                            isLoading = false;
+                            setState(() {});
+                          });
+                        }
+                      },
+                      child: Container(
+                        height: 54,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: mainBlue,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
                           child: MyText(
                             'Done',
                             color: white,
@@ -146,5 +151,3 @@ class _ChangePinState extends State<ChangePin> {
     );
   }
 }
-
-

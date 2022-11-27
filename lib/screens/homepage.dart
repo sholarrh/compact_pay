@@ -1,11 +1,18 @@
-
-
+// Adigun solafunmi
+import 'package:compact_pay/screens/Grids/airtime.dart';
 import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 
-import '../models/grid_model.dart';
 import '../utils/app_colors.dart';
+import '../widgets/homepage_grid.dart';
+import 'Grids/cable_network.dart';
+import 'Grids/data.dart';
+import 'Grids/deals.dart';
+import 'Grids/electricity.dart';
+import 'Grids/refer_us.dart';
+import 'Grids/tv.dart';
+import 'Grids/wallet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -162,33 +169,56 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 20,bottom: 30),
-                  child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      crossAxisSpacing: 30,
-                        mainAxisSpacing: 20,
-                       mainAxisExtent: 80,
+                  padding: const EdgeInsets.only(top: 20, bottom: 30),
+                  child: GridView.count(
+                    padding: const EdgeInsets.all(20),
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 14,
+                    mainAxisSpacing: 20,
+                    shrinkWrap: true,
+                    children: const [
+                      Grids(
+                        screenName: Wallet(),
+                        image: 'assets/images/empty-wallet.png',
+                        title: 'Wallet',
+                      ),
+                      Grids(
+                        screenName: Airtime(),
+                        image: 'assets/images/mobile.png',
+                        title: 'Airtime',
+                      ),
+                      Grids(
+                        screenName: Data(),
+                        image: 'assets/images/mobile-programming.png',
+                        title: 'Data',
+                      ),
+                      Grids(
+                        screenName: Tv(),
+                        image: 'assets/images/youtube.png',
+                        title: 'Tv',
+                      ),
+                      Grids(
+                        screenName: CableNetwork(),
+                        image: 'assets/images/kyber-network-(knc).png',
+                        title: 'Cable Network',
+                      ),
+                      Grids(
+                        screenName: Electricity(),
+                        image: 'assets/images/electricity.png',
+                        title: 'Electricity',
+                      ),
+                      Grids(
+                        screenName: Deals(),
+                        image: 'assets/images/gift.png',
+                        title: 'Deals',
+                      ),
+                      Grids(
+                        screenName: ReferUs(),
+                        image: 'assets/images/people.png',
+                        title: 'Refer us',
+                      ),
+                    ],
                   ),
-                      itemCount: grids.length,
-                      shrinkWrap: true,
-                      itemBuilder: (BuildContext context, int index) {
-                        return SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(grids[index].assetImage),
-                              const SizedBox(height: 10,),
-                              MyText(grids[index].title,
-                              fontSize: 8,
-                              fontWeight: FontWeight.w400,
-                              color: black2121,
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
                 ),
                 
                 Image.asset('assets/images/referral.png'),
@@ -203,17 +233,18 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Container(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   width: double.infinity,
                   height: 400,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     color: mainBlue,
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      MyText('01 Nov 2022',
+                      MyText(
+                        '01 Nov 2022',
                         fontSize: 8,
                         fontWeight: FontWeight.w400 ,
                         color: white,
@@ -221,18 +252,22 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.circle),
-                          SizedBox(width: 15,),
+                          const Icon(Icons.circle),
+                          const SizedBox(
+                            width: 15,
+                          ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              MyText('Charles Kelvin',
+                              MyText(
+                                'Charles Kelvin',
                                 fontSize: 12,
-                                fontWeight: FontWeight.w500 ,
+                                fontWeight: FontWeight.w500,
                                 color: white,
                               ),
-                              MyText('12:05 AM',
+                              MyText(
+                                '12:05 AM',
                                 fontSize:8,
                                 fontWeight: FontWeight.w400 ,
                                 color: white,

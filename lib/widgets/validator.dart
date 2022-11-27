@@ -2,8 +2,9 @@
 
 
 String? validateFullName(String? formFullName) {
-  if (formFullName == null || formFullName.isEmpty)
+  if (formFullName == null || formFullName.isEmpty) {
     return 'Full Name is required.';
+  }
 
   return null;
 }
@@ -21,8 +22,9 @@ String? validateEmail(String? formEmail) {
 }
 
 String? validatePhoneNumber(String? formPhoneNumber) {
-  if (formPhoneNumber == null || formPhoneNumber.isEmpty)
+  if (formPhoneNumber == null || formPhoneNumber.isEmpty) {
     return 'PhoneNumber is required.';
+  }
 
   return null;
 }
@@ -45,21 +47,11 @@ String? validatePassword(String? formPassword) {
   return null;
 }
 
-// String? validatePin(String? formPin) {
-//   if (formPin == null || formPin.isEmpty) {
-//     return 'Pin is required.';
-//   }
-//
-//   String pattern =
-//       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-//   RegExp regex = RegExp(pattern);
-//   if (!regex.hasMatch(formPin)) {
-//     return '''
-//     Pin must be at least 6 numbers,
-//    number .
-//     ''';
-//   }
-//
-//   return null;
-// }
+String? validateTransactionPin(String? formTransactionPin) {
+  if (formTransactionPin == null ||
+      formTransactionPin.isEmpty && formTransactionPin.length == 4) {
+    return 'Pin is required and must be four numbers.';
+  }
 
+  return null;
+}

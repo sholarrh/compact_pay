@@ -1,12 +1,12 @@
 
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/screens/auth/new_password.dart';
-import 'package:compact_pay/screens/set_transaction_pin.dart';
 import 'package:compact_pay/widgets/otp_box.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 //import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
-import 'package:provider/provider.dart';
 
 import '../../provider/provider.dart';
 import '../../utils/app_colors.dart';
@@ -14,12 +14,12 @@ import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/show_snackbar.dart';
 
+// Adigun solafunmi
+
 class Verification extends StatefulWidget {
   final bool goToPasswordScreen;
 
-  const Verification(
-      this.goToPasswordScreen, {super.key}
-      );
+  const Verification(this.goToPasswordScreen, {super.key});
 
   @override
   State<Verification> createState() => _VerificationState();

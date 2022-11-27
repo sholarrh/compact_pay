@@ -1,4 +1,4 @@
-
+// Adigun solafunmi
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +30,7 @@ class OtpBox extends StatefulWidget {
 
 class _OtpBoxState extends State<OtpBox> {
 
-   bool _obscureText = false;
+  final bool _obscureText = false;
 
   @override
   Widget build(BuildContext context) {
