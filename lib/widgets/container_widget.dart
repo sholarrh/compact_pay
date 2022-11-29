@@ -22,7 +22,7 @@ class ContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.only(top: 12, bottom: 12, left: 12),
       height: 60,
       width: double.infinity,

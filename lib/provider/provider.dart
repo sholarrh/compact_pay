@@ -120,6 +120,9 @@ class ProviderClass extends ChangeNotifier {
   String? bankName;
   String? bankLogo;
 
+  String? profilePicture;
+  double? accountBalance;
+
   //GlobalKey<FormState> get formKey => _formKey;
   bool isLoading = false;
 

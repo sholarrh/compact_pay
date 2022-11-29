@@ -37,7 +37,7 @@ class _AddByUssdState extends State<AddByUssd> {
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
     return Scaffold(
-      backgroundColor: backWhite,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -47,13 +47,15 @@ class _AddByUssdState extends State<AddByUssd> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 10, bottom: 8),
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           IconButton(
                             icon: const Icon(Icons.close),
-                            iconSize: 12,
+                            iconSize: 20,
                             color: close,
                             onPressed: () {
                               Navigator.pop(context);
@@ -262,28 +264,42 @@ class _AddByUssdState extends State<AddByUssd> {
                             color: black2121,
                           ),
                           TextFormField(
+                            style: const TextStyle(
+                              color: black2121,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: 'poppins',
+                            ),
+                            showCursor: true,
                             validator: validatePhoneNumber,
                             controller: data.amountToSendTextController,
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
-                              fillColor: cardColor,
+                              border: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.transparent, width: 0.7),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              ),
+                              fillColor: white,
                               prefixIcon: Row(
                                 mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     getCurrency(),
                                     style: const TextStyle(
                                       color: black2121,
-                                      fontSize: 24,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.w400,
                                       fontFamily: 'poppins',
                                     ),
                                   ),
                                   const SizedBox(
-                                    width: 2,
+                                    width: 8,
                                   ),
-                                  const VerticalDivider(
-                                    width: 2,
+                                  Container(
+                                    width: 10,
                                     color: black2121,
                                   ),
                                 ],
@@ -362,146 +378,148 @@ class _AddByUssdState extends State<AddByUssd> {
         isDismissible: true,
         context: context,
         builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Stack(children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  iconSize: 17,
-                  color: close,
-                  padding: const EdgeInsets.all(10),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+          return Wrap(children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Stack(children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.close),
+                    iconSize: 17,
+                    color: close,
+                    padding: const EdgeInsets.all(10),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 30),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundColor: mainBlue,
-                          backgroundImage: NetworkImage(data.bankLogo!),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            MyText(
-                              data.bankName!,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: black2121,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 21.0),
-                    child: MyText(
-                      '${getCurrency()} ${data.amountToSendTextController.text}',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 24,
-                      fontFamily: 'poppins',
-                      color: black,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 47.0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MyText(
-                          'Dial the code below and follow the steps fund your \n account successfully.',
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 10,
-                          fontFamily: 'poppins',
-                          color: black2121,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 66.0),
-                    child: InkWell(
-                      onTap: () {},
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, bottom: 30),
                       child: Row(
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          MyText(
-                            '*737*000*6990#',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 24,
-                            fontFamily: 'poppins',
-                            color: black,
+                          CircleAvatar(
+                            radius: 20,
+                            backgroundColor: mainBlue,
+                            backgroundImage: NetworkImage(data.bankLogo!),
                           ),
                           const SizedBox(
-                            width: 8,
+                            width: 10,
                           ),
-                          const Icon(
-                            Icons.copy_sharp,
-                            size: 18,
-                            color: mainBlue,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              MyText(
+                                data.bankName!,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: black2121,
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 1, bottom: 30),
-                    child: MyButton(
-                      height: 50,
-                      width: double.infinity,
-                      color: mainBlue,
-                      onTap: () async {
-                        //if (formKey.currentState!.validate()) {
-                        data.isLoading = true;
-                        setState(() {});
-                        data.delay(4);
-                        try {
-                          data.amountToSendTextController.clear();
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const BottomNav()));
-                        } catch (e, s) {
-                          if (kDebugMode) {
-                            print(e);
-                          }
-                          if (kDebugMode) {
-                            print(s);
-                          }
-                        }
-                      },
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 21.0),
                       child: MyText(
-                        'Tap to call',
-                        color: white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
+                        '${getCurrency()} ${data.amountToSendTextController.text}',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 24,
+                        fontFamily: 'poppins',
+                        color: black,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ]),
-          );
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 47.0,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MyText(
+                            'Dial the code below and follow the steps fund your \n account successfully.',
+                            textAlign: TextAlign.center,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                            fontFamily: 'poppins',
+                            color: black2121,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 64.0),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MyText(
+                              '*737*000*6990#',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24,
+                              fontFamily: 'poppins',
+                              color: black,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            const Icon(
+                              Icons.copy_sharp,
+                              size: 18,
+                              color: mainBlue,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 1, bottom: 38),
+                      child: MyButton(
+                        height: 50,
+                        width: double.infinity,
+                        color: mainBlue,
+                        onTap: () async {
+                          //if (formKey.currentState!.validate()) {
+                          data.isLoading = true;
+                          setState(() {});
+                          data.delay(4);
+                          try {
+                            data.amountToSendTextController.clear();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const BottomNav()));
+                          } catch (e, s) {
+                            if (kDebugMode) {
+                              print(e);
+                            }
+                            if (kDebugMode) {
+                              print(s);
+                            }
+                          }
+                        },
+                        child: MyText(
+                          'Tap to call',
+                          color: white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ]),
+            ),
+          ]);
         });
   }
 }

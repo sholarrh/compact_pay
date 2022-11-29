@@ -1,10 +1,16 @@
+//ADIGUN SOLAFUNMI
+
+import 'package:compact_pay/screens/add_money/bank_transfer/add_by_bank_transfer.dart';
+import 'package:compact_pay/screens/add_money/card/add_by_card.dart';
+import 'package:compact_pay/screens/add_money/request_money/add_by_request.dart';
+import 'package:compact_pay/screens/add_money/scan_qr/qr_code.dart';
 import 'package:compact_pay/screens/add_money/ussd/add_by_ussd.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
 import '../../widgets/container_widget.dart';
 import '../../widgets/my_text.dart';
-import '../send_money/send_money.dart';
+import 'cash_deposit/add_by_cash_deposit.dart';
 
 class AddMoney extends StatefulWidget {
   const AddMoney({Key? key}) : super(key: key);
@@ -57,31 +63,31 @@ class _AddMoneyState extends State<AddMoney> {
               const ContainerWidget(
                 title: 'Bank Transfer',
                 subtitle: 'Add money from bank app or internet banking',
-                screen: SendMoney(),
+                screen: AddByBankTransfer(),
                 icon: Icons.house,
               ),
               const ContainerWidget(
                 title: 'Card',
                 subtitle: 'Add money with a debit card',
-                screen: SendMoney(),
+                screen: AddByCard(),
                 icon: Icons.wallet,
               ),
               const ContainerWidget(
                 title: 'Cash deposit',
                 subtitle: 'Fund your account with nearby merchants',
-                screen: SendMoney(),
+                screen: AddByCashDeposit(),
                 icon: Icons.account_balance_wallet,
               ),
               const ContainerWidget(
                 title: 'Request Money',
                 subtitle: 'Send a request to any CompactPay user',
-                screen: SendMoney(),
+                screen: AddByRequest(),
                 icon: Icons.account_balance_wallet_outlined,
               ),
               const ContainerWidget(
                 title: 'Scan my QR Code',
                 subtitle: 'Show QR code to any CompactPay user',
-                screen: SendMoney(),
+                screen: QrCode(),
                 icon: Icons.qr_code,
               ),
             ]),

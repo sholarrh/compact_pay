@@ -28,7 +28,7 @@ class _KycVerificationState extends State<KycVerification> {
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
     return Scaffold(
-      backgroundColor: backWhite,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -85,35 +85,40 @@ class _KycVerificationState extends State<KycVerification> {
                         color: black2121,
                       ),
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 70,
-                      decoration: BoxDecoration(),
-                      child: DropdownButton<String>(
-                        value: dropdownValue,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: black2121.withOpacity(0.9),
-                          fontFamily: 'Poppins',
-                        ),
-                        items: <String>[
-                          'National Identification Number',
-                          'Voters Card',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: MyText(value),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownValue = newValue!;
-                            data.identificationTextController.text =
-                                dropdownValue;
-                          });
-                        },
+                    DropdownButton<String>(
+                      value: dropdownValue,
+                      enableFeedback: true,
+                      hint: MyText(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                        color: black2121.withOpacity(0.4),
+                        'Choose',
                       ),
+                      dropdownColor: white,
+                      isExpanded: true,
+                      iconSize: 30,
+                      borderRadius: BorderRadius.circular(7),
+                      iconEnabledColor: black2121.withOpacity(0.9),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: black2121.withOpacity(0.9),
+                        fontFamily: 'Poppins',
+                      ),
+                      items: <String>[
+                        'National Identification Number',
+                        'Voters Card',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: MyText(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, bottom: 8),

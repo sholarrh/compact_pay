@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:compact_pay/widgets/bottom_nav.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class _RequestCompleteState extends State<RequestComplete> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 10, bottom: 128, right: 340),
+                    const EdgeInsets.only(top: 10, bottom: 128, right: 340),
                     child: IconButton(
                       icon: const Icon(Icons.close),
                       iconSize: 12,
@@ -94,16 +96,16 @@ class _RequestCompleteState extends State<RequestComplete> {
                       },
                       child: data.isLoading == false
                           ? MyText(
-                              'Send Again',
-                              color: white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                            )
+                        'Send Again',
+                        color: white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      )
                           : const Center(
-                              child: CircularProgressIndicator(
-                                color: white,
-                              ),
-                            ),
+                        child: CircularProgressIndicator(
+                          color: white,
+                        ),
+                      ),
                     ),
                   ),
                   InkWell(

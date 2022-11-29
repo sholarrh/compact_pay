@@ -171,10 +171,10 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.w700,
                         fontSize: 20,)
                           : const Center(
-                        child: CircularProgressIndicator(
-                          color: white,
-                        ),
-                      ),
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            ),
                     ),
                   ),
                   Padding(

@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:compact_pay/screens/add_money/request_money/request_complete.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -202,16 +204,16 @@ class _AddAmountState extends State<AddAmount> {
                         },
                         child: data.isLoading == false
                             ? MyText(
-                                'Continue',
-                                color: white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                              )
+                          'Continue',
+                          color: white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        )
                             : const Center(
-                                child: CircularProgressIndicator(
-                                  color: white,
-                                ),
-                              ),
+                          child: CircularProgressIndicator(
+                            color: white,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -224,14 +226,13 @@ class _AddAmountState extends State<AddAmount> {
     );
   }
 
-  Future<dynamic> requestMoneyBottomSheet(
-      BuildContext context, ProviderClass data) {
+  Future<dynamic> requestMoneyBottomSheet(BuildContext context, ProviderClass data) {
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10.0),
-          topRight: Radius.circular(10.0),
-        )),
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            )),
         enableDrag: false,
         isDismissible: true,
         context: context,
@@ -347,7 +348,7 @@ class _AddAmountState extends State<AddAmount> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const RequestComplete()));
+                                  const RequestComplete()));
                         } catch (e, s) {
                           if (kDebugMode) {
                             print(e);

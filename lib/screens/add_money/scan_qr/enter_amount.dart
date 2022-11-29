@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -137,16 +139,16 @@ class _EnterAmountState extends State<EnterAmount> {
                         },
                         child: data.isLoading == false
                             ? MyText(
-                                'Done',
-                                color: white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              )
+                          'Done',
+                          color: white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        )
                             : const Center(
-                                child: CircularProgressIndicator(
-                                  color: white,
-                                ),
-                              ),
+                          child: CircularProgressIndicator(
+                            color: white,
+                          ),
+                        ),
                       ),
                     ),
                   ],
