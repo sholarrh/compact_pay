@@ -21,6 +21,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  @override
+  void dispose() {
+    ProviderClass().emailTextController.dispose();
+    ProviderClass().passwordTextController.dispose();
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
@@ -148,8 +155,6 @@ class _LoginState extends State<Login> {
                           setState(() {});
                           data.delay(4);
                           try {
-                            data.passwordTextController.clear();
-                            data.emailTextController.clear();
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -171,10 +176,10 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.w700,
                         fontSize: 20,)
                           : const Center(
-                              child: CircularProgressIndicator(
-                                color: white,
-                              ),
-                            ),
+                        child: CircularProgressIndicator(
+                          color: white,
+                        ),
+                      ),
                     ),
                   ),
                   Padding(

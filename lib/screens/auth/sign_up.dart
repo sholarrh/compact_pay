@@ -25,6 +25,17 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  @override
+  void dispose() {
+    ProviderClass().emailTextController.dispose();
+    ProviderClass().passwordTextController.dispose();
+    ProviderClass().passwordTextController.dispose();
+    ProviderClass().passwordTextController.dispose();
+    ProviderClass().passwordTextController.dispose();
+    ProviderClass().passwordTextController.dispose();
+    super.dispose();
+  }
+
   bool isChecked = false;
   bool goToPasswordScreen = false;
   String dropdownValue = '+234';
@@ -233,8 +244,6 @@ class _SignUpState extends State<SignUp> {
                         try {
                           data.sendOtp();
                           if (await data.myAuth.sendOTP() == true) {
-                            data.passwordTextController.clear();
-                            data.emailTextController.clear();
                             const ShowSnackBar(
                               text: "OTP has been sent",
                               duration: 5,
@@ -269,19 +278,19 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: data.isLoading == false
                           ? Center(
-                              child: MyText(
-                                'Sign Up',
-                                color: white,
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            )
+                        child: MyText(
+                          'Sign Up',
+                          color: white,
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
                           : const Center(
-                              child: CircularProgressIndicator(
-                                color: white,
-                              ),
-                            ),
+                        child: CircularProgressIndicator(
+                          color: white,
+                        ),
+                      ),
                     ),
                   ),
                 ],
