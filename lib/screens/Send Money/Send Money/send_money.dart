@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_text.dart';
 
@@ -34,9 +33,7 @@ class _SendMoneyState extends State<SendMoney> {
                           Navigator.pop(context);
                         },
                       ),
-                      const SizedBox(
-                        width: 50,
-                      ),
+                      const SizedBox(width: 50,),
                       MyText(
                         'Send Money',
                         fontSize: 14,
@@ -61,30 +58,22 @@ class _SendMoneyState extends State<SendMoney> {
                     children: [
                       Row(
                         children: [
-                          const Icon(
-                            Icons.account_balance_outlined,
-                            color: mainBlue,
-                          ),
-                          const SizedBox(
-                            width: 9,
-                          ),
+                          const Icon(Icons.account_balance_outlined,
+                            color: mainBlue,),
+                          const SizedBox(width: 9,),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              MyText(
-                                'To Bank Account',
+                              MyText('To Bank Account',
                                 fontSize: 12,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w500 ,
                                 color: black2121,
                               ),
-                              const SizedBox(
-                                height: 2,
-                              ),
-                              MyText(
-                                'Transfer money to any bank for free',
+                              const SizedBox(height: 2,),
+                              MyText('Transfer money to any bank for free',
                                 fontSize: 9,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w500 ,
                                 color: const Color(0xff8A8D8F),
                               ),
                             ],
@@ -96,12 +85,12 @@ class _SendMoneyState extends State<SendMoney> {
                           // Navigator.push(context,
                           //     MaterialPageRoute(builder: (context) => const EditProfile()));
                         },
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_outlined,
+                        icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,
                           size: 14,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -122,28 +111,21 @@ class _SendMoneyState extends State<SendMoney> {
                           Image.asset(
                             'assets/images/Logo.png',
                             // const Icon(Icons.account_balance_outlined,
-                            color: mainBlue,
-                          ),
-                          const SizedBox(
-                            width: 9,
-                          ),
+                            color: mainBlue,),
+                          const SizedBox(width: 9,),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              MyText(
-                                'To CompactPay Account',
+                              MyText('To CompactPay Account',
                                 fontSize: 12,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w500 ,
                                 color: black2121,
                               ),
-                              const SizedBox(
-                                height: 2,
-                              ),
-                              MyText(
-                                'Transfer money to CompactPay accounts for free',
+                              const SizedBox(height: 2,),
+                              MyText('Transfer money to CompactPay accounts for free',
                                 fontSize: 9,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w500 ,
                                 color: const Color(0xff8A8D8F),
                               )
                             ],
@@ -155,12 +137,12 @@ class _SendMoneyState extends State<SendMoney> {
                           // Navigator.push(context,
                           //     MaterialPageRoute(builder: (context) => const EditProfile()));
                         },
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_outlined,
+                        icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,
                           size: 14,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -178,30 +160,22 @@ class _SendMoneyState extends State<SendMoney> {
                     children: [
                       Row(
                         children: [
-                          const Icon(
-                            Icons.qr_code_scanner_outlined,
-                            color: mainBlue,
-                          ),
-                          const SizedBox(
-                            width: 9,
-                          ),
+                          const Icon(Icons.qr_code_scanner_outlined,
+                            color: mainBlue,),
+                          const SizedBox(width: 9,),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              MyText(
-                                'Scan QR Code',
+                              MyText('Scan QR Code',
                                 fontSize: 12,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w500 ,
                                 color: black2121,
                               ),
-                              const SizedBox(
-                                height: 2,
-                              ),
-                              MyText(
-                                'Transfer to any CompactPay user via scan',
+                              const SizedBox(height: 2,),
+                              MyText('Transfer to any CompactPay user via scan',
                                 fontSize: 9,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w500 ,
                                 color: const Color(0xff8A8D8F),
                               ),
                             ],
@@ -213,12 +187,12 @@ class _SendMoneyState extends State<SendMoney> {
                           // Navigator.push(context,
                           //     MaterialPageRoute(builder: (context) => const EditProfile()));
                         },
-                        icon: const Icon(
-                          Icons.arrow_forward_ios_outlined,
+                        icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,
                           size: 14,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -327,11 +301,6 @@ class _SendMoneyState extends State<SendMoney> {
                 //             ),
                 //       ],
                 // ),),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+              ],),),),),);
   }
 }

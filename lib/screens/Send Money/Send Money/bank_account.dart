@@ -1,12 +1,20 @@
+import 'package:compact_pay/screens/Send%20Money/Send%20Money/select_bank.dart';
+import 'package:compact_pay/screens/add_money/ussd/select_bank.dart';
+import 'package:compact_pay/screens/auth/verification.dart';
 import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/utils/app_colors.dart';
+import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/provider.dart';
+import '../../../widgets/show_snackbar.dart';
 import '../../../widgets/validator.dart';
+import '../../add_money/request_money/add_amount.dart';
+
 
 class BankAccount extends StatefulWidget {
   const BankAccount({Key? key}) : super(key: key);
@@ -16,10 +24,12 @@ class BankAccount extends StatefulWidget {
 }
 
 class _BankAccountState extends State<BankAccount> {
+  final _formKey = GlobalKey<FormState>();
+
+  GlobalKey<FormState> get formKey => _formKey;
   bool isSwitched1 = false;
   bool isSwitched2 = false;
   bool isSwitched3 = false;
-
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -32,9 +42,7 @@ class _BankAccountState extends State<BankAccount> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                    top: 51,
-                  ),
+                  padding: const EdgeInsets.only(top: 51,),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -46,9 +54,7 @@ class _BankAccountState extends State<BankAccount> {
                           Navigator.pop(context);
                         },
                       ),
-                      const SizedBox(
-                        width: 30,
-                      ),
+                      const SizedBox(width: 30,),
                       MyText(
                         'To Bank Account',
                         fontSize: 16,
@@ -63,14 +69,11 @@ class _BankAccountState extends State<BankAccount> {
                   padding: const EdgeInsets.only(top: 20),
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.access_time,
-                        color: mainBlue,
-                      ),
-                      MyText(
-                        'Beneficiaries',
+                      const Icon(Icons.access_time,
+                        color: mainBlue,),
+                      MyText('Beneficiaries',
                         fontSize: 12,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w400 ,
                         color: black2121,
                       ),
                     ],
@@ -81,19 +84,16 @@ class _BankAccountState extends State<BankAccount> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Profile()));
+                            builder: (context) => const SelectBank()));
                   },
                   child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 15, right: 304, left: 31.83),
-                    child: Icon(Icons.account_circle_sharp,
-                        size: 50, color: mainBlue),
+                    padding: const EdgeInsets.only(top: 15, right: 304,left: 31.83),
+                    child: Icon(Icons.account_circle_sharp, size: 50, color: mainBlue),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 250.0, left: 21),
-                  child: MyText(
-                    'Choose\nBeneficiary',
+                  child: MyText('Choose\nBeneficiary',
                     fontSize: 11,
                     fontWeight: FontWeight.w400,
                     color: black,
@@ -112,79 +112,32 @@ class _BankAccountState extends State<BankAccount> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                InputField2(
-                  hintText: 'Select Bank',
-                  keyBoardType: TextInputType.phone,
-                  suffixIcon: DropdownButton<String>(
-                    elevation: 16,
-                    style: const TextStyle(color: black),
-                    items: <String>[
-                      '+234',
-                      '+218',
-                      '+235',
-                      '+385',
-                      '+30',
-                      '+221',
-                      '+227',
-                      '+44',
-                      '+93',
-                      '+27',
-                      '+33',
-                      '+233',
-                      '+1229',
-                      '+594',
-                      '+256',
-                      '+263',
-                      '+260'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: MyText(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        // dropdownValue = newValue!;
-                      });
+                TextFormField(
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(7),
+                      borderSide: BorderSide.none,
+                    ),
+                    hintText: 'Select Bank ',
+                    hintStyle: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: close,
+                    ),
+                    suffixIcon:  IconButton(
+                      icon: Icon(Icons.arrow_drop_down_circle), onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SelectBank2()));
                     },
+                    ),
+                    suffixIconColor: close,
                   ),
-                  inputController: data.phoneNumberTextController,
                 ),
-                //   prefixIcon: DropdownButton<String>(
-                //     elevation: 16,
-                //     style: const TextStyle(color: black),
-                //     items: <String>[
-                //       '+234',
-                //       '+218',
-                //       '+235',
-                //       '+385',
-                //       '+30',
-                //       '+221',
-                //       '+227',
-                //       '+44',
-                //       '+93',
-                //       '+27',
-                //       '+33',
-                //       '+233',
-                //       '+1229',
-                //       '+594',
-                //       '+256',
-                //       '+263',
-                //       '+260'
-                //     ].map<DropdownMenuItem<String>>((String value) {
-                //       return DropdownMenuItem<String>(
-                //         value: value,
-                //         child: MyText(value),
-                //       );
-                //     }).toList(),
-                //     onChanged: (String? newValue) {
-                //       setState(() {
-                //         // dropdownValue = newValue!;
-                //       });
-                //     },
-                //   ),
-                //   inputController: data.phoneNumberTextController,
-                // ),
 
                 const SizedBox(height: 18),
                 Padding(
@@ -237,8 +190,7 @@ class _BankAccountState extends State<BankAccount> {
                       color: black,
                       fontFamily: 'Poppins',
                     ),
-                    MyText(
-                      '(Optional)',
+                    MyText('(Optional)',
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
                       color: black,
@@ -279,8 +231,53 @@ class _BankAccountState extends State<BankAccount> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 9),
+                Padding(
+                  padding: const EdgeInsets.only(top: 180),
+                  child: MyButton(
+                    height: 50,
+                    width: double.infinity,
+                    color: mainBlue,
+                    onTap: () async {
+                      if (formKey.currentState!.validate()) {
+                        data.isLoading = true;
+                        setState(() {});
+                        data.delay(4);
+                        try {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AddAmount()));
+                        } catch (e, s) {
+                          if (kDebugMode) {
+                            print(e);
+                          }
+                          if (kDebugMode) {
+                            print(s);
+                          }
+                        }
+                      } else {
+                        const ShowSnackBar(
+                          text: "There is an error",
+                          duration: 5,
+                        );
+                      }
+                    },
+                    child: data.isLoading == false
+                        ? MyText(
+                      'Continue',
+                      color: white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                    )
+                        : const Center(
+                      child: CircularProgressIndicator(
+                        color: white,
+                      ),
+                    ),
+                  ),
+                ),
+
               ],
             ),
           ),
@@ -289,3 +286,6 @@ class _BankAccountState extends State<BankAccount> {
     );
   }
 }
+
+
+
