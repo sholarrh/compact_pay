@@ -42,3 +42,16 @@ String? validatePassword(String? formPassword) {
 
   return null;
 }
+
+String? validateAccountNumber(String? formAccountNumber) {
+  if (formAccountNumber == null || formAccountNumber.isEmpty)
+    return 'Account Number is required.';
+
+  return null;
+}
+
+String? validateAmount(String? formAmount) {
+  if (formAmount == null || formAmount.isEmpty) return 'Input Amount.';
+
+  return null;
+}

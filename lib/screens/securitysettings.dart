@@ -104,18 +104,9 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                         ListTile(
                           leading:
                               Image.asset('assets/images/finger-cricle.png'),
-                          trailing: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          BiometricVerification()));
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: mainBlue,
-                            ),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios,
+                            color: mainBlue,
                           ),
                           title: MyText(
                             'Biometric Verification',

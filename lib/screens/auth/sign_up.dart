@@ -22,6 +22,7 @@ class _SignUpState extends State<SignUp> {
   bool isLoading = false;
   String dropdownValue = '+234';
   TextEditingController _fullname = TextEditingController();
+  TextEditingController firstname = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _phonenumber = TextEditingController();
   TextEditingController _password = TextEditingController();
@@ -228,10 +229,10 @@ class _SignUpState extends State<SignUp> {
                           isLoading = false;
                           setState(() {});
                         });
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Verification()));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => Verification()));
                       }
                     },
                     child: Container(
