@@ -1,10 +1,17 @@
 import 'package:compact_pay/provider/provider.dart';
 import 'package:compact_pay/screens/Data/airtime_topup1.dart';
+import 'package:compact_pay/screens/Grids/wallet.dart';
+import 'package:compact_pay/screens/change_pin.dart';
+import 'package:compact_pay/screens/changepassword.dart';
 
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'screens/Send Money/Send Money/bank_account.dart';
+import 'screens/Send Money/Send Money/confirm.dart';
+import 'screens/Send Money/Send Money/wallet2.dart';
 
 
 
@@ -31,7 +38,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: const AirtimeTopUp1(),
+        home: const Wallet2(),
       ),);
   }
 }

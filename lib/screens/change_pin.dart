@@ -1,3 +1,4 @@
+import 'package:compact_pay/screens/passwordsettings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,12 @@ class ChangePin extends StatefulWidget {
 }
 
 class _ChangePinState extends State<ChangePin> {
+  bool isLoading = false;
+  TextEditingController _Oldpin = TextEditingController();
+  TextEditingController _Newpin = TextEditingController();
+  TextEditingController _Repeatpin = TextEditingController();
+
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -25,6 +32,8 @@ class _ChangePinState extends State<ChangePin> {
         body: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView(
+          child: Form(
+          key: formkey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -62,7 +71,7 @@ class _ChangePinState extends State<ChangePin> {
                   keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: true,
-                  inputController: data.oldTransactionPin,
+                  inputController: _Oldpin,
                 ),
                 const SizedBox(height: 25),
                 MyText('New Pin',
@@ -77,7 +86,7 @@ class _ChangePinState extends State<ChangePin> {
                   keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: true,
-                  inputController: data.newTransactionPin,
+                  inputController: _Newpin,
                 ),
                 const SizedBox(height: 25),
                 MyText('Repeat Pin',
@@ -92,24 +101,41 @@ class _ChangePinState extends State<ChangePin> {
                   keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: true,
-                  inputController: data.confirmTransactionPin,
+                  inputController: _Repeatpin,
                 ),
                 const SizedBox(height: 80),
-                MyButton(
-                  child: Container(
-                    height: 54,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: mainBlue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: MyText(
-                        'Done',
-                        color: white,
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context,
+                        MaterialPageRoute(builder: (context) => PasswordSettings()));
+                  },
+                  child: MyButton(
+                    onTap: () {
+                      if (formkey.currentState!.validate()) {
+                        isLoading = true;
+                        setState(() {});
+                        Future.delayed(Duration(seconds: 10))
+                            .then((value) async {
+                          isLoading = false;
+                          setState(() {});
+                        });
+                      }
+                    },
+                    child: Container(
+                      height: 54,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: mainBlue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: MyText(
+                          'Done',
+                          color: white,
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
@@ -119,8 +145,7 @@ class _ChangePinState extends State<ChangePin> {
           ),
         ),
       ),
-    );
+
+      ), );
   }
 }
-
-
