@@ -3,6 +3,7 @@ import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +28,9 @@ class _SignUpState extends State<SignUp> {
   bool isChecked = false;
   bool goToPasswordScreen = false;
   String dropdownValue = '+234';
-  final _formkey = GlobalKey<FormState>();
-  GlobalKey<FormState> get formkey => _formkey;
+  final _formKey = GlobalKey<FormState>();
+
+  GlobalKey<FormState> get formKey => _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Form(
-              key: formkey,
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -223,7 +225,7 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 5),
                   MyButton(
                     onTap: () async {
-                      if (formkey.currentState!.validate()) {
+                      if (formKey.currentState!.validate()) {
                         data.isLoading = true;
                         setState(() {});
                         data.delay(4);
@@ -244,8 +246,12 @@ class _SignUpState extends State<SignUp> {
                                         Verification(goToPasswordScreen)));
                           }
                         } catch (e, s) {
-                          print(e);
-                          print(s);
+                          if (kDebugMode) {
+                            print(e);
+                          }
+                          if (kDebugMode) {
+                            print(s);
+                          }
                         }
                       } else {
                         const ShowSnackBar(

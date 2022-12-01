@@ -44,6 +44,9 @@ class ProviderClass extends ChangeNotifier {
       TextEditingController();
   final TextEditingController _cardCvvTextController = TextEditingController();
 
+  final TextEditingController _smartCardNumberTextController =
+      TextEditingController();
+
   final List<String> _otpCodeList = [];
   final List<String> _pinList = [];
   final List<String> _confirmPinList = [];
@@ -116,6 +119,10 @@ class ProviderClass extends ChangeNotifier {
       _cardExpiryDateTextController;
 
   TextEditingController get cardCvvTextController => _cardCvvTextController;
+
+  //TV
+  TextEditingController get smartCardNumberTextController =>
+      _smartCardNumberTextController;
 
   String? bankName;
   String? bankLogo;

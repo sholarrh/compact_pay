@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +36,7 @@ class _KycVerificationState extends State<KycVerification> {
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 22),
                 child: IconButton(
