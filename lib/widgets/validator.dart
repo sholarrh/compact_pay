@@ -1,5 +1,4 @@
-
-
+// This The  Validator for the Textform Fields
 
 String? validateFullName(String? formFullName) {
   if (formFullName == null || formFullName.isEmpty) {
@@ -33,7 +32,6 @@ String? validatePassword(String? formPassword) {
   if (formPassword == null || formPassword.isEmpty) {
     return 'Password is required.';
   }
-
   String pattern =
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
   RegExp regex = RegExp(pattern);
@@ -47,6 +45,18 @@ String? validatePassword(String? formPassword) {
   return null;
 }
 
+String? validateAccountNumber(String? formAccountNumber) {
+  if (formAccountNumber == null || formAccountNumber.isEmpty)
+    return 'Account Number is required.';
+
+  return null;
+}
+
+String? validateAmount(String? formAmount) {
+  if (formAmount == null || formAmount.isEmpty) return 'Input Amount.';
+
+  return null;
+}
 String? validateTransactionPin(String? formTransactionPin) {
   if (formTransactionPin == null ||
       formTransactionPin.isEmpty && formTransactionPin.length == 4) {

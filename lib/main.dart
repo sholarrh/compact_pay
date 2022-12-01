@@ -1,15 +1,12 @@
 import 'package:compact_pay/provider/provider.dart';
-import 'package:compact_pay/screens/SplashScreen/splashscreen.dart';
-import 'package:compact_pay/screens/add_money/ussd/add_by_ussd.dart';
-import 'package:compact_pay/screens/add_money/ussd/select_bank.dart';
+import 'package:compact_pay/screens/Data/airtime_topup1.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/Send Money/Send Money/add_amount.dart';
-import 'screens/Send Money/Send Money/bank_account.dart';
-import 'screens/Send Money/Send Money/select_bank.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +31,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: const BankAccount(),
+        home: const AirtimeTopUp1(),
       ),);
   }
 }
