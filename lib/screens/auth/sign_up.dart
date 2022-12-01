@@ -176,7 +176,7 @@ class _SignUpState extends State<SignUp> {
                   //       });
                   //     },
                   //   ),
-                  //   // inputController: data.phoneNumberTextController,
+                  //  inputController: data.phoneNumberTextController,
                   // ),
                   const SizedBox(height: 25),
                   MyText(
