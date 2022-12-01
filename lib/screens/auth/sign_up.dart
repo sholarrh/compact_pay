@@ -1,9 +1,13 @@
-import 'package:compact_pay/screens/auth/login.dart';
+import 'package:compact_pay/screens/auth/verification.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/provider.dart';
+import '../../widgets/show_snackbar.dart';
 import '../../widgets/validator.dart';
 
 // This The Code for the Signup Page
@@ -11,7 +15,9 @@ import '../../widgets/validator.dart';
 // Compact Pay
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+  const SignUp({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -19,21 +25,17 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isChecked = false;
-  bool isLoading = false;
+  bool goToPasswordScreen = false;
   String dropdownValue = '+234';
-  TextEditingController _fullname = TextEditingController();
-  TextEditingController firstname = TextEditingController();
-  TextEditingController _email = TextEditingController();
-  TextEditingController _phonenumber = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _referralcode = TextEditingController();
-
-  final formkey = GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> get formkey => _formkey;
 
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
+        backgroundColor: white,
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
@@ -43,14 +45,13 @@ class _SignUpState extends State<SignUp> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.close),
-                    color: black,
+                    icon: const Icon(Icons.close),
                     iconSize: 17,
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   MyText(
                     'Create Account',
                     fontSize: 20,
@@ -58,24 +59,57 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                     color: black,
                   ),
-                  SizedBox(height: 38),
+                  const SizedBox(height: 20),
                   MyText(
-                    ' Full Name',
+                    'First Name',
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: black,
                     fontFamily: 'Poppins',
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   InputField(
-                    hintText: 'Enter Full Name',
-                    validator: validateFullName,
+                      hintText: 'Enter first name',
+                      validator: validateFirstName,
+                      keyBoardType: TextInputType.name,
+                      isPassword: false,
+                      hasSuffixIcon: false,
+                      inputController: data.firstNameTextController),
+                  const SizedBox(height: 25),
+                  MyText(
+                    'Middle Name (Optional)',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
+                  ),
+                  const SizedBox(height: 8),
+                  InputField(
+                    hintText: 'Enter middle name',
+                    validator: validateMiddleName,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: _fullname,
+                    inputController: data.middleNameTextController,
                   ),
                   SizedBox(height: 25),
+                  MyText(
+                    'Last Name',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
+                  ),
+                  const SizedBox(height: 8),
+                  InputField(
+                    hintText: 'Enter last name',
+                    validator: validateLastName,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.lastNameTextController,
+                  ),
+                  const SizedBox(height: 25),
                   MyText(
                     'Email Address',
                     fontSize: 13,
@@ -83,16 +117,16 @@ class _SignUpState extends State<SignUp> {
                     color: black,
                     fontFamily: 'Poppins',
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   InputField(
                     validator: validateEmail,
                     hintText: 'Email Address',
-                    keyBoardType: TextInputType.emailAddress,
+                    keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: _email,
+                    inputController: data.emailTextController,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   MyText(
                     'Phone Number',
                     fontSize: 13,
@@ -100,7 +134,7 @@ class _SignUpState extends State<SignUp> {
                     color: black,
                     fontFamily: 'Poppins',
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   InputField(
                     hintText: '',
                     validator: validatePhoneNumber,
@@ -141,9 +175,9 @@ class _SignUpState extends State<SignUp> {
                         });
                       },
                     ),
-                    inputController: _phonenumber,
+                    inputController: data.phoneNumberTextController,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   MyText(
                     'Password',
                     fontSize: 13,
@@ -151,16 +185,16 @@ class _SignUpState extends State<SignUp> {
                     color: black,
                     fontFamily: 'Poppins',
                   ),
-                  SizedBox(height: 9),
+                  const SizedBox(height: 9),
                   InputField(
                     hintText: 'Enter Password',
                     validator: validatePassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _password,
+                    inputController: data.passwordTextController,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   MyText(
                     'Referral Code (Optional)',
                     fontSize: 13,
@@ -168,15 +202,16 @@ class _SignUpState extends State<SignUp> {
                     color: black,
                     fontFamily: 'Poppins',
                   ),
-                  SizedBox(height: 9),
+                  const SizedBox(height: 9),
                   InputField(
                     hintText: 'Enter referral code',
+                    validator: validateFullName,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: _referralcode,
+                    inputController: data.referralCodeTextController,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     children: [
                       Checkbox(
@@ -218,31 +253,48 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   MyButton(
-                    onTap: () {
+                    onTap: () async {
                       if (formkey.currentState!.validate()) {
-                        isLoading = true;
+                        data.isLoading = true;
                         setState(() {});
-                        Future.delayed(Duration(seconds: 10))
-                            .then((value) async {
-                          isLoading = false;
-                          setState(() {});
-                        });
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => Verification()));
+                        data.delay(4);
+
+                        try {
+                          data.sendOtp();
+                          if (await data.myAuth.sendOTP() == true) {
+                            data.passwordTextController.clear();
+                            data.emailTextController.clear();
+                            const ShowSnackBar(
+                              text: "OTP has been sent",
+                              duration: 5,
+                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Verification(goToPasswordScreen)));
+                          }
+                        } catch (e, s) {
+                          print(e);
+                          print(s);
+                        }
+                      } else {
+                        const ShowSnackBar(
+                          text: "There is an error",
+                          duration: 5,
+                        );
                       }
                     },
                     child: Container(
                       height: 54,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: ashColor,
+                        color: mainBlue,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: isLoading == false
+                      child: data.isLoading == false
                           ? Center(
                               child: MyText(
                                 'Sign Up',
@@ -252,9 +304,9 @@ class _SignUpState extends State<SignUp> {
                                 fontWeight: FontWeight.w600,
                               ),
                             )
-                          : Center(
+                          : const Center(
                               child: CircularProgressIndicator(
-                                color: Colors.white,
+                                color: white,
                               ),
                             ),
                     ),
