@@ -1,9 +1,9 @@
-import 'package:compact_pay/screens/changepassword.dart';
 import 'package:compact_pay/screens/passwordsettings.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 import '../widgets/my_text.dart';
+import 'auth/Biometric Verification/enable_biometric.dart';
 
 // This The Code for the SecuritySettings Page
 // Juwon's Code
@@ -23,7 +23,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
         backgroundColor: deepBlue1,
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               children: [
                 Padding(
@@ -31,7 +31,7 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                         color: white,
                         iconSize: 17,
                         onPressed: () {
@@ -66,9 +66,10 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => PasswordSettings()));
+                                    builder: (context) =>
+                                        const PasswordSettings()));
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_forward_ios,
                             color: mainBlue,
                           ),
@@ -104,6 +105,18 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                         ListTile(
                           leading:
                               Image.asset('assets/images/finger-cricle.png'),
+                          trailing: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BiometricVerification()));
+                            },
+                            child: const Icon(
+                              Icons.arrow_forward_ios,
+                              color: mainBlue,
+                            ),
                           trailing: Icon(
                             Icons.arrow_forward_ios,
                             color: mainBlue,
