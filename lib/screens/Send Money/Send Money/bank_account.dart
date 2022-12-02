@@ -1,7 +1,5 @@
 import 'package:compact_pay/screens/Send%20Money/Send%20Money/select_bank.dart';
 import 'package:compact_pay/screens/add_money/ussd/select_bank.dart';
-import 'package:compact_pay/screens/auth/verification.dart';
-import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
@@ -157,7 +155,7 @@ class _BankAccountState extends State<BankAccount> {
                   keyBoardType: TextInputType.name,
                   isPassword: false,
                   hasSuffixIcon: false,
-                  inputController: data.fullNameTextController,
+                  inputController: data.firstNameTextController,
                 ),
                 const SizedBox(height: 25),
                 Padding(
@@ -205,7 +203,7 @@ class _BankAccountState extends State<BankAccount> {
                   keyBoardType: TextInputType.name,
                   isPassword: false,
                   hasSuffixIcon: false,
-                  inputController: data.fullNameTextController,
+                  inputController: data.firstNameTextController,
                 ),
                 const SizedBox(height: 25),
                 Row(

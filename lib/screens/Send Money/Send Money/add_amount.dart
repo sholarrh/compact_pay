@@ -1,13 +1,11 @@
-import 'package:compact_pay/screens/Send%20Money/Send%20Money/select_bank.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../provider/provider.dart';
 import '../../../utils/app_colors.dart';
-import '../../../widgets/my_button.dart';
 import '../../../widgets/bottom_nav.dart';
-
+import '../../../widgets/my_button.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/show_snackbar.dart';
 import '../../../widgets/text_form_field.dart';
@@ -174,7 +172,7 @@ class _AddAmountState extends State<AddAmount> {
                   keyBoardType: TextInputType.name,
                   isPassword: false,
                   hasSuffixIcon: false,
-                  inputController: data.fullNameTextController,
+                  inputController: data.firstNameTextController,
                 ),
                 const SizedBox(height: 25),
                 Padding(
@@ -222,7 +220,7 @@ class _AddAmountState extends State<AddAmount> {
                   keyBoardType: TextInputType.name,
                   isPassword: false,
                   hasSuffixIcon: false,
-                  inputController: data.fullNameTextController,
+                  inputController: data.firstNameTextController,
                 ),
                 const SizedBox(height: 25),
                 Row(

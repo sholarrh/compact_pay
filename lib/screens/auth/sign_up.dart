@@ -25,22 +25,10 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  @override
-  void dispose() {
-    ProviderClass().emailTextController.dispose();
-    ProviderClass().passwordTextController.dispose();
-    ProviderClass().passwordTextController.dispose();
-    ProviderClass().passwordTextController.dispose();
-    ProviderClass().passwordTextController.dispose();
-    ProviderClass().passwordTextController.dispose();
-    super.dispose();
-  }
-
   bool isChecked = false;
   bool goToPasswordScreen = false;
   String dropdownValue = '+234';
   final _formKey = GlobalKey<FormState>();
-
   GlobalKey<FormState> get formKey => _formKey;
 
   @override
@@ -72,9 +60,9 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                     color: black,
                   ),
-                  const SizedBox(height: 38),
+                  const SizedBox(height: 20),
                   MyText(
-                    ' Full Name',
+                    'First Name',
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: black,
@@ -82,12 +70,45 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 8),
                   InputField(
-                    hintText: 'Enter Full Name',
+                      hintText: 'Enter first name',
+                      validator: validateFullName,
+                      keyBoardType: TextInputType.name,
+                      isPassword: false,
+                      hasSuffixIcon: false,
+                      inputController: data.firstNameTextController),
+                  const SizedBox(height: 25),
+                  MyText(
+                    'Middle Name ',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
+                  ),
+                  const SizedBox(height: 8),
+                  InputField(
+                    hintText: 'Enter middle name',
                     validator: validateFullName,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: data.fullNameTextController,
+                    inputController: data.middleNameTextController,
+                  ),
+                  const SizedBox(height: 25),
+                  MyText(
+                    'Last Name',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
+                  ),
+                  const SizedBox(height: 8),
+                  InputField(
+                    hintText: 'Enter last name',
+                    validator: validateFullName,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.lastNameTextController,
                   ),
                   const SizedBox(height: 25),
                   MyText(
@@ -176,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 25),
                   MyText(
-                    'Referral Code (Optional)',
+                    'Confirm Password',
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: black,
@@ -184,12 +205,12 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 9),
                   InputField(
-                    hintText: 'Enter referral code',
-                    validator: validateFullName,
+                    hintText: 'Enter Password',
+                    validator: data.validateConfirmPassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
-                    hasSuffixIcon: false,
-                    inputController: data.referralCodeTextController,
+                    hasSuffixIcon: true,
+                    inputController: data.confirmPasswordTextController,
                   ),
                   const SizedBox(height: 15),
                   Row(
@@ -287,10 +308,10 @@ class _SignUpState extends State<SignUp> {
                         ),
                       )
                           : const Center(
-                        child: CircularProgressIndicator(
-                          color: white,
-                        ),
-                      ),
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            ),
                     ),
                   ),
                 ],
