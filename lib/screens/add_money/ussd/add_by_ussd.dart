@@ -386,7 +386,7 @@ class _AddByUssdState extends State<AddByUssd> {
         builder: (context) {
           return Wrap(children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Stack(children: [
                 Align(
                   alignment: Alignment.topRight,

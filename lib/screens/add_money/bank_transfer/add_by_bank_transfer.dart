@@ -98,7 +98,7 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                       ),
                     ),
                     TextFormField(
-                      controller: data.accountNumberTextController,
+                      controller: data.receiverAccountNumberTextController,
                       style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
@@ -175,7 +175,7 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                             data.delay(4);
                             try {
                               data.accountNameTextController.clear();
-                              data.accountNumberTextController.clear();
+                              data.receiverAccountNumberTextController.clear();
                               data.bankNameTextController.clear();
                               Navigator.push(
                                   context,
