@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_text.dart';
+import 'bank_account.dart';
 
 class SendMoney extends StatefulWidget {
   const SendMoney({Key? key}) : super(key: key);
@@ -82,8 +83,8 @@ class _SendMoneyState extends State<SendMoney> {
                       ),
                       IconButton(
                         onPressed: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => const BankAccount()));
                         },
                         icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,
