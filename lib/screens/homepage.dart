@@ -24,6 +24,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   ProviderClass().get();
+  // }
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -58,10 +65,14 @@ class _HomePageState extends State<HomePage> {
                             MaterialPageRoute(
                                 builder: (context) => const Profile()));
                       },
-                      child: data.profilePicture != null
+                      child: data.image != null
                           ? CircleAvatar(
                               radius: 20,
-                              backgroundImage: AssetImage(data.profilePicture!),
+                              //backgroundImage: AssetImage(data.profilePicture!),
+                              child: Image.file(
+                                data.image!,
+                                fit: BoxFit.contain,
+                              ),
                             )
                           : CircleAvatar(
                               radius: 20,
@@ -96,14 +107,23 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MyText('Hi, Tola Kelechi',
+                      data.firstName == null && data.lastName == null
+                          ? MyText(
+                              'Hi, Tola Kelechi',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: black2121,
+                            )
+                          : MyText(
+                              'Hi, ${data.firstName} ${data.firstName}',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: black2121,
+                            ),
+                      MyText(
+                        'Last Login: 1/11/2022',
                         fontSize: 14,
-                        fontWeight: FontWeight.w500 ,
-                        color: black2121,
-                      ),
-                      MyText('Last Login: 1/11/2022',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500 ,
+                        fontWeight: FontWeight.w500,
                         color: black2121,
                       ),
                     ],
@@ -126,9 +146,10 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MyText('Account Balance',
+                            MyText(
+                              data.accountNumber ?? 'Account Number',
                               fontSize: 10,
-                              fontWeight: FontWeight.w500 ,
+                              fontWeight: FontWeight.w500,
                               color: white,
                             ),
                             Row(

@@ -1,11 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:email_otp/email_otp.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timer_count_down/timer_controller.dart';
+
+import '../widgets/image_button.dart';
 
 class ProviderClass extends ChangeNotifier {
   //GlobalKey<FormState> get formKey => _formKey;
@@ -208,6 +214,52 @@ class ProviderClass extends ChangeNotifier {
     return null;
   }
 
+  // PICK IMAGE
+
+  File? image;
+
+  Future pickImage(ImageSource source) async {
+    final image = await ImagePicker().pickImage(source: source);
+    try {
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+
+      this.image = imageTemporary;
+    } on PlatformException catch (e) {
+      if (kDebugMode) {
+        print('Failed to pick image $e');
+      }
+    }
+    notifyListeners();
+  }
+
+  // IMAGE BOTTOM SHEET
+  Future<dynamic> showImageBottomSheet(
+      BuildContext context, ProviderClass data) {
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        )),
+        enableDrag: false,
+        isDismissible: true,
+        context: context,
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                ImageButton(),
+              ],
+            ),
+          );
+        });
+  }
+
 // SHARED PREFERENCES
   Future<void> sharedPreferences() async {
     final storage = await SharedPreferences.getInstance();
@@ -321,37 +373,35 @@ class ProviderClass extends ChangeNotifier {
   // GET USER DETAILS
 // run shared preference before any app that needs token
   var getResponse;
-// Future<PetModel> get() async {
-//   final storage = await SharedPreferences.getInstance();
-//   token = await storage.getString('token');
-//   notifyListeners();
-//   Map<String, String> requestHeaders = {
-//     'Content-type': 'application/json',
-//     'Accept': '*/*',
-//     'Authorization': 'Bearer $token'
-//   };
-//   var url =Uri.parse('https://compact-pay.herokuapp.com/api/users/$userEmail');
-//   getResponse = await http.get(url, headers: requestHeaders);
-//
-//   print('Response status: ${getResponse.statusCode}');
-//
-//
-//   if (getResponse.statusCode == 200){
-//     try{
-//       responsedata = getCLassModelFromJson(getResponse.body);
-//       print(responsedata.data!);
-//       _error = false;
-//     } catch(e){
-//       _error = true;
-//       _errorMessage = e.toString();
-//
-//     }
-//   }else{
-//     _error = true;
-//     _errorMessage = 'It could be your Internet Connection';
-//
-//   }
-//   notifyListeners();
-//   return responsedata;
-// }
+  String? accountNumber;
+  String? firstName;
+  String? lastName;
+
+  var responsedata;
+
+  bool _error = false;
+  String _errorMessage = '';
+
+  bool get error => _error;
+
+  String get errorMessage => _errorMessage;
+
+  Future get() async {
+    final storage = await SharedPreferences.getInstance();
+    token = await storage.getString('token');
+    notifyListeners();
+
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://compact-pay.herokuapp.com/api/users/olukini@gmail.com'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
 }
