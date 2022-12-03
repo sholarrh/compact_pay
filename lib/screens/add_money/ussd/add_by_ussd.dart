@@ -31,6 +31,8 @@ class _AddByUssdState extends State<AddByUssd> {
 
   final _formKey = GlobalKey<FormState>();
 
+  //bool addMoney = true;
+
   GlobalKey<FormState> get formKey => _formKey;
 
   @override
@@ -131,7 +133,9 @@ class _AddByUssdState extends State<AddByUssd> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const SelectBank()));
+                                                const SelectBank(
+                                                  addMoney: true,
+                                                )));
                                   },
                                   icon: const Icon(
                                     Icons.arrow_forward_ios_outlined,
@@ -198,7 +202,9 @@ class _AddByUssdState extends State<AddByUssd> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const SelectBank()));
+                                                    const SelectBank(
+                                                      addMoney: true,
+                                                    )));
                                       },
                                       icon: const Icon(
                                         Icons.arrow_forward_ios_outlined,

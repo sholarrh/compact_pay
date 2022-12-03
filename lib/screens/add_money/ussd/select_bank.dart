@@ -1,5 +1,6 @@
 //ADIGUN SOLAFUNMI
 
+import 'package:compact_pay/screens/Send%20Money/Send%20Money/bank_account.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +10,12 @@ import '../../../widgets/my_text.dart';
 import 'add_by_ussd.dart';
 
 class SelectBank extends StatefulWidget {
-  const SelectBank({Key? key}) : super(key: key);
+  final bool addMoney;
+
+  const SelectBank({Key? key, required this.addMoney})
+      : super(
+          key: key,
+        );
 
   @override
   State<SelectBank> createState() => _SelectBankState();
@@ -95,12 +101,14 @@ class _SelectBankState extends State<SelectBank> {
                   child: ListTile(
                     onTap: () {
                       data.bankName = displayList[index]['name'];
-                      data.bankLogo = displayList[index]['logo'];
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AddByUssd()));
-                    },
+                          data.bankLogo = displayList[index]['logo'];
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => widget.addMoney
+                                      ? const AddByUssd()
+                                      : const BankAccount()));
+                        },
                     dense: true,
                     tileColor: white,
                     enabled: true,
