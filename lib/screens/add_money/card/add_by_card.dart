@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -73,144 +75,144 @@ class _AddByCardState extends State<AddByCard> {
                       color: black2121,
                     ),
                     data.bankName == null &&
-                            data.cardNumberTextController.text.isEmpty
+                        data.cardNumberTextController.text.isEmpty
                         ? Container(
-                            margin: const EdgeInsets.only(top: 12, bottom: 30),
-                            padding: const EdgeInsets.only(
-                                top: 12, bottom: 12, left: 12),
-                            height: 60,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.wallet_sharp,
-                                      color: mainBlue,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        MyText(
-                                          'Add New Card',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: black2121,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const AddNewCard()));
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    color: mainBlue,
-                                    size: 12,
+                      margin: const EdgeInsets.only(top: 12, bottom: 30),
+                      padding: const EdgeInsets.only(
+                          top: 12, bottom: 12, left: 12),
+                      height: 60,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.wallet_sharp,
+                                color: mainBlue,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.center,
+                                children: [
+                                  MyText(
+                                    'Add New Card',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: black2121,
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Container(
-                            margin: const EdgeInsets.only(top: 12, bottom: 30),
-                            padding: const EdgeInsets.only(
-                                top: 12, bottom: 12, left: 12),
-                            height: 60,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 20,
-                                      backgroundColor: mainBlue,
-                                      backgroundImage:
-                                          NetworkImage(data.bankLogo!),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        MyText(
-                                          data.bankName!,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: black2121,
-                                        ),
-                                        const SizedBox(
-                                          height: 1,
-                                        ),
-                                        MyText(
-                                          '**** ${data.cardNumberTextController.text.substring(data.cardNumberTextController.text.length - 4)}',
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: 'Poppins',
-                                          color: black2121.withOpacity(0.5),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    MyText(
-                                      'Change',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: black2121,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const AddNewCard()));
-                                      },
-                                      icon: const Icon(
-                                        Icons.arrow_forward_ios_outlined,
-                                        color: mainBlue,
-                                        size: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                ],
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                      const AddNewCard()));
+                            },
+                            icon: const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: mainBlue,
+                              size: 12,
                             ),
                           ),
+                        ],
+                      ),
+                    )
+                        : Container(
+                      margin: const EdgeInsets.only(top: 12, bottom: 30),
+                      padding: const EdgeInsets.only(
+                          top: 12, bottom: 12, left: 12),
+                      height: 60,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.circular(7),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundColor: mainBlue,
+                                backgroundImage:
+                                NetworkImage(data.bankLogo!),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.center,
+                                children: [
+                                  MyText(
+                                    data.bankName!,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: black2121,
+                                  ),
+                                  const SizedBox(
+                                    height: 1,
+                                  ),
+                                  MyText(
+                                    '**** ${data.cardNumberTextController.text.substring(data.cardNumberTextController.text.length - 4)}',
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: 'Poppins',
+                                    color: black2121.withOpacity(0.5),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              MyText(
+                                'Change',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: black2121,
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const AddNewCard()));
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  color: mainBlue,
+                                  size: 12,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                     MyText(
                       'Select or enter amount',
                       fontSize: 12,
@@ -236,7 +238,7 @@ class _AddByCardState extends State<AddByCard> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 15, right: 15, bottom: 30),
+                      const EdgeInsets.only(top: 15, right: 15, bottom: 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
@@ -329,16 +331,16 @@ class _AddByCardState extends State<AddByCard> {
                               },
                               child: data.isLoading == false
                                   ? MyText(
-                                      'Fund',
-                                      color: white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                    )
+                                'Fund',
+                                color: white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                              )
                                   : const Center(
-                                      child: CircularProgressIndicator(
-                                        color: white,
-                                      ),
-                                    ),
+                                child: CircularProgressIndicator(
+                                  color: white,
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -356,9 +358,9 @@ class _AddByCardState extends State<AddByCard> {
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10.0),
-          topRight: Radius.circular(10.0),
-        )),
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            )),
         enableDrag: false,
         isDismissible: true,
         context: context,

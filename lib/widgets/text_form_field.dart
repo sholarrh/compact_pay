@@ -2,6 +2,7 @@
 
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputField extends StatefulWidget {
   final Widget? prefixIcon;
@@ -13,6 +14,7 @@ class InputField extends StatefulWidget {
   final Function? onSaved;
   final TextInputType keyBoardType;
   final TextInputAction? textInputAction;
+  final TextInputFormatter? inputFormatters;
 
   const InputField(
       {Key? key,
@@ -24,6 +26,7 @@ class InputField extends StatefulWidget {
       this.validator,
       this.onSaved,
       required this.keyBoardType,
+      this.inputFormatters,
       this.textInputAction})
       : super(key: key);
 
@@ -35,15 +38,8 @@ class _InputFieldState extends State<InputField> {
   bool _obscureText = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50,
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            offset: const Offset(12, 26),
-            blurRadius: 50,
-            spreadRadius: 0,
-            color: Colors.grey.withOpacity(.1)),
-      ]),
       child: TextFormField(
         validator: (value) => widget.validator!(value),
         controller: widget.inputController,
@@ -59,7 +55,7 @@ class _InputFieldState extends State<InputField> {
             fontSize: 16, color: Color(0xff212121), fontWeight: FontWeight.w400),
         showCursor: false,
         decoration: InputDecoration(
-          fillColor: cardColor,
+          fillColor: white,
           prefixIcon: widget.prefixIcon,
           filled: true,
           focusColor: Colors.red,
@@ -70,25 +66,30 @@ class _InputFieldState extends State<InputField> {
               fontWeight: FontWeight.bold),
           suffixIcon: widget.hasSuffixIcon == true
               ? GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-                child: _obscureText
-                    ? const Icon(
-                  Icons.remove_red_eye_outlined,
-                  color: Colors.grey,
+                  onTap: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                  child: _obscureText
+                      ? const Icon(
+                          Icons.remove_red_eye_outlined,
+                          color: Colors.grey,
+                          size: 20,
+                        )
+                      : const Icon(
+                          Icons.visibility_off_outlined,
+                          size: 20,
+                        ),
                 )
-                    : const Icon(Icons.visibility_off_outlined),
-              )
               : null,
           suffixIconColor: mainBlue,
 
           contentPadding:
               const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent, width: 0.7),
+          enabledBorder: OutlineInputBorder(
+            borderSide:
+                BorderSide(color: Colors.grey.withOpacity(0.4), width: 0.7),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           focusedBorder: const OutlineInputBorder(
@@ -292,3 +293,59 @@ class _InputField3 extends State<InputField3> {
     );
   }
 }
+
+// class InputField3 extends StatefulWidget {
+//   const InputField3({Key? key}) : super(key: key);
+//
+//   @override
+//   State<InputField3> createState() => _InputField3State();
+// }
+
+// class _InputField3State extends State<InputField3> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         height: 50,
+//         decoration: BoxDecoration(boxShadow: [
+//           BoxShadow(
+//               offset: const Offset(12, 26),
+//               blurRadius: 50,
+//               spreadRadius: 0,
+//               color: Colors.grey.withOpacity(.1)),
+//         ]));
+//   }
+//
+//
+//
+// child:FormField<String>(
+// builder: (FormFieldState<String> state)
+//     {
+//       return InputDecorator(
+//         decoration: InputDecoration(
+//             labelStyle: textStyle,
+//             errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+//             hintText: 'Please select expense',
+//             border: OutlineInputBorder(
+//                 borderRadius: BorderRadius.circular(5.0))),
+//         isEmpty: _currentSelectedValue == '',
+//         child: DropdownButtonHideUnderline(
+//           child: DropdownButton<String>(
+//             value: _currentSelectedValue,
+//             isDense: true,
+//             onChanged: (String newValue) {
+//               setState(() {
+//                 _currentSelectedValue = newValue;
+//                 state.didChange(newValue);
+//               });
+//             },
+//             items: _currencies.map((String value) {
+//               return DropdownMenuItem<String>(
+//                 value: value,
+//                 child: Text(value),
+//               );
+//             }).toList(),
+//           ),
+//         ),
+//       );
+//     }
+//   }

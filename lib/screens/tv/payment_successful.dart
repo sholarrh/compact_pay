@@ -1,29 +1,28 @@
-//ADIGUN SOLAFUNMI
+// ADIGUN SOLAFUNMI
 
-import 'package:compact_pay/widgets/bottom_nav.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../provider/provider.dart';
 import '../../../utils/app_colors.dart';
-import '../../../widgets/currency_box.dart';
-import '../../../widgets/my_button.dart';
+import '../../../widgets/bottom_nav.dart';
 import '../../../widgets/my_text.dart';
+import '../../provider/provider.dart';
+import '../../widgets/my_button.dart';
 
-class RequestComplete extends StatefulWidget {
-  const RequestComplete({Key? key}) : super(key: key);
+class PaymentSuccessful extends StatefulWidget {
+  const PaymentSuccessful({Key? key}) : super(key: key);
 
   @override
-  State<RequestComplete> createState() => _RequestCompleteState();
+  State<PaymentSuccessful> createState() => _PaymentSuccessfulState();
 }
 
-class _RequestCompleteState extends State<RequestComplete> {
+class _PaymentSuccessfulState extends State<PaymentSuccessful> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
     return Scaffold(
-      backgroundColor: backWhite,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -33,7 +32,7 @@ class _RequestCompleteState extends State<RequestComplete> {
                 children: [
                   Padding(
                     padding:
-                    const EdgeInsets.only(top: 10, bottom: 128, right: 340),
+                        const EdgeInsets.only(top: 10, bottom: 128, right: 340),
                     child: IconButton(
                       icon: const Icon(Icons.close),
                       iconSize: 12,
@@ -49,36 +48,28 @@ class _RequestCompleteState extends State<RequestComplete> {
                     backgroundImage: AssetImage('assets/images/confirm.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30.0, bottom: 19),
+                    padding: const EdgeInsets.only(top: 30.0, bottom: 46),
                     child: MyText(
-                      'Request Successful',
+                      'Payment Successful',
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: black2121,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 21.0),
-                    child: MyText(
-                      '${getCurrency()} ${data.amountToSendTextController.text}.00',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 24,
-                      fontFamily: 'poppins',
-                      color: black,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40, bottom: 24),
+                    padding: const EdgeInsets.only(top: 60, bottom: 24),
                     child: MyButton(
                       height: 50,
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {
-                        //if (formKey.currentState!.validate()) {
+                        // if (formKey.currentState!.validate()) {
                         data.isLoading = true;
                         setState(() {});
-                        data.delay(2);
-                        try {} catch (e, s) {
+                        data.delay(4);
+                        try {
+                          // cardBottomSheet(context, data);
+                        } catch (e, s) {
                           if (kDebugMode) {
                             print(e);
                           }
@@ -86,8 +77,7 @@ class _RequestCompleteState extends State<RequestComplete> {
                             print(s);
                           }
                         }
-                        //}
-                        // else{
+                        // } else {
                         //   const ShowSnackBar(
                         //     text: "There is an error",
                         //     duration: 5,
@@ -96,16 +86,16 @@ class _RequestCompleteState extends State<RequestComplete> {
                       },
                       child: data.isLoading == false
                           ? MyText(
-                        'Send Again',
-                        color: white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                      )
+                              'Fund',
+                              color: white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                            )
                           : const Center(
-                        child: CircularProgressIndicator(
-                          color: white,
-                        ),
-                      ),
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            ),
                     ),
                   ),
                   InkWell(

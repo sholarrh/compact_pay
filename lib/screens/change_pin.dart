@@ -48,55 +48,55 @@ class _ChangePinState extends State<ChangePin> {
                           icon: const Icon(Icons.close),
                           color: white,
                           iconSize: 17,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        MyText(
-                          'Change Pin',
-                          color: white,
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ],
-                    ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      MyText(
+                        'Change Pin',
+                        color: white,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ],
                   ),
-                  MyText('Old Pin',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13),
-                  const SizedBox(height: 8),
-                  InputField(
-                    hintText: '',
+                ),
+                MyText('Old Pin',
+                    color: white,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13),
+                const SizedBox(height: 8),
+                InputField(
+                  hintText: '',
                     validator: validateTransactionPin,
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: true,
                     inputController: _oldPin,
                   ),
-                  const SizedBox(height: 25),
-                  MyText('New Pin',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13),
-                  const SizedBox(height: 8),
-                  InputField(
-                    hintText: '',
+                const SizedBox(height: 25),
+                MyText('New Pin',
+                    color: white,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13),
+                const SizedBox(height: 8),
+                InputField(
+                  hintText: '',
                     validator: validateTransactionPin,
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: true,
                     inputController: _newPin,
                   ),
-                  const SizedBox(height: 25),
-                  MyText('Repeat Pin',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13),
+                const SizedBox(height: 25),
+                MyText('Repeat Pin',
+                    color: white,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13),
                   const SizedBox(height: 8),
                   InputField(
                     hintText: '',
@@ -119,7 +119,7 @@ class _ChangePinState extends State<ChangePin> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                const PasswordSettings()));
+                                    const PasswordSettings()));
                       }
                     },
                     child: MyText(
@@ -130,11 +130,11 @@ class _ChangePinState extends State<ChangePin> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                ],
-              ),
+              ],
             ),
           ),
         ),
+      ),
 
       ), );
   }

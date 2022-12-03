@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:compact_pay/screens/add_money/add_money.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -196,16 +198,16 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                         },
                         child: data.isLoading == false
                             ? MyText(
-                                'Share',
-                                color: white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                              )
+                          'Share',
+                          color: white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        )
                             : const Center(
-                                child: CircularProgressIndicator(
-                                  color: white,
-                                ),
-                              ),
+                          child: CircularProgressIndicator(
+                            color: white,
+                          ),
+                        ),
                       ),
                     ),
                   ],

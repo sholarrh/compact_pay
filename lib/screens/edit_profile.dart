@@ -75,7 +75,7 @@ class _EditProfileState extends State<EditProfile> {
                   height: 10,
                 ),
                 InputField2(
-                  inputController: data.fullNameTextController,
+                  inputController: data.firstNameTextController,
                   hintText: 'Babatunde Samson',
                   keyBoardType: TextInputType.emailAddress,
                   validator: validateEmail,

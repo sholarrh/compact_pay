@@ -3,6 +3,7 @@ import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +28,8 @@ class _SignUpState extends State<SignUp> {
   bool isChecked = false;
   bool goToPasswordScreen = false;
   String dropdownValue = '+234';
-  final _formkey = GlobalKey<FormState>();
-  GlobalKey<FormState> get formkey => _formkey;
+  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> get formKey => _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Form(
-              key: formkey,
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -59,9 +60,9 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                     color: black,
                   ),
-                  const SizedBox(height: 38),
+                  const SizedBox(height: 20),
                   MyText(
-                    ' Full Name',
+                    'First Name',
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: black,
@@ -69,12 +70,45 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 8),
                   InputField(
-                    hintText: 'Enter Full Name',
+                      hintText: 'Enter first name',
+                      validator: validateFullName,
+                      keyBoardType: TextInputType.name,
+                      isPassword: false,
+                      hasSuffixIcon: false,
+                      inputController: data.firstNameTextController),
+                  const SizedBox(height: 25),
+                  MyText(
+                    'Middle Name ',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
+                  ),
+                  const SizedBox(height: 8),
+                  InputField(
+                    hintText: 'Enter middle name',
                     validator: validateFullName,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: data.fullNameTextController,
+                    inputController: data.middleNameTextController,
+                  ),
+                  const SizedBox(height: 25),
+                  MyText(
+                    'Last Name',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: black,
+                    fontFamily: 'Poppins',
+                  ),
+                  const SizedBox(height: 8),
+                  InputField(
+                    hintText: 'Enter last name',
+                    validator: validateFullName,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.lastNameTextController,
                   ),
                   const SizedBox(height: 25),
                   MyText(
@@ -163,7 +197,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 25),
                   MyText(
-                    'Referral Code (Optional)',
+                    'Confirm Password',
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: black,
@@ -171,12 +205,12 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 9),
                   InputField(
-                    hintText: 'Enter referral code',
-                    validator: validateFullName,
+                    hintText: 'Enter Password',
+                    validator: data.validateConfirmPassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
-                    hasSuffixIcon: false,
-                    inputController: data.referralCodeTextController,
+                    hasSuffixIcon: true,
+                    inputController: data.confirmPasswordTextController,
                   ),
                   const SizedBox(height: 15),
                   Row(
@@ -223,7 +257,7 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 5),
                   MyButton(
                     onTap: () async {
-                      if (formkey.currentState!.validate()) {
+                      if (formKey.currentState!.validate()) {
                         data.isLoading = true;
                         setState(() {});
                         data.delay(4);
@@ -231,8 +265,6 @@ class _SignUpState extends State<SignUp> {
                         try {
                           data.sendOtp();
                           if (await data.myAuth.sendOTP() == true) {
-                            data.passwordTextController.clear();
-                            data.emailTextController.clear();
                             const ShowSnackBar(
                               text: "OTP has been sent",
                               duration: 5,
@@ -244,8 +276,12 @@ class _SignUpState extends State<SignUp> {
                                         Verification(goToPasswordScreen)));
                           }
                         } catch (e, s) {
-                          print(e);
-                          print(s);
+                          if (kDebugMode) {
+                            print(e);
+                          }
+                          if (kDebugMode) {
+                            print(s);
+                          }
                         }
                       } else {
                         const ShowSnackBar(
@@ -263,14 +299,14 @@ class _SignUpState extends State<SignUp> {
                       ),
                       child: data.isLoading == false
                           ? Center(
-                              child: MyText(
-                                'Sign Up',
-                                color: white,
-                                fontFamily: 'Poppins',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            )
+                        child: MyText(
+                          'Sign Up',
+                          color: white,
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
                           : const Center(
                               child: CircularProgressIndicator(
                                 color: white,

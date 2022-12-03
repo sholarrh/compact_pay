@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +120,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                 ),
                                 InputField(
                                   inputController:
-                                      data.cardExpiryDateTextController,
+                                  data.cardExpiryDateTextController,
                                   isPassword: false,
                                   hintText: '07/28',
                                   hasSuffixIcon: false,
@@ -198,16 +200,16 @@ class _AddNewCardState extends State<AddNewCard> {
                         },
                         child: data.isLoading == false
                             ? MyText(
-                                'Continue',
-                                color: white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                              )
+                          'Continue',
+                          color: white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        )
                             : const Center(
-                                child: CircularProgressIndicator(
-                                  color: white,
-                                ),
-                              ),
+                          child: CircularProgressIndicator(
+                            color: white,
+                          ),
+                        ),
                       ),
                     ),
                   ],

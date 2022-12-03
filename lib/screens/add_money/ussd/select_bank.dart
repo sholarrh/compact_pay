@@ -1,3 +1,6 @@
+//ADIGUN SOLAFUNMI
+
+import 'package:compact_pay/screens/Send%20Money/Send%20Money/bank_account.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,7 +10,12 @@ import '../../../widgets/my_text.dart';
 import 'add_by_ussd.dart';
 
 class SelectBank extends StatefulWidget {
-  const SelectBank({Key? key}) : super(key: key);
+  final bool addMoney;
+
+  const SelectBank({Key? key, required this.addMoney})
+      : super(
+          key: key,
+        );
 
   @override
   State<SelectBank> createState() => _SelectBankState();
@@ -18,7 +26,7 @@ class _SelectBankState extends State<SelectBank> {
     setState(() {
       displayList = nigerianBanks
           .where((element) =>
-              element['name']!.toLowerCase().contains(value.toLowerCase()))
+          element['name']!.toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -88,34 +96,36 @@ class _SelectBankState extends State<SelectBank> {
                 itemCount: displayList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => Card(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 1.0, vertical: 12.0),
-                      child: ListTile(
-                        onTap: () {
-                          data.bankName = displayList[index]['name'];
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 1.0, vertical: 12.0),
+                  child: ListTile(
+                    onTap: () {
+                      data.bankName = displayList[index]['name'];
                           data.bankLogo = displayList[index]['logo'];
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const AddByUssd()));
+                                  builder: (context) => widget.addMoney
+                                      ? const AddByUssd()
+                                      : const BankAccount()));
                         },
-                        dense: true,
-                        tileColor: white,
-                        enabled: true,
-                        leading: CircleAvatar(
-                            radius: 20,
-                            backgroundColor: Colors.grey,
-                            backgroundImage:
-                                NetworkImage(displayList[index]['logo']!)),
-                        title: MyText(
-                          displayList[index]['name']!,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: black2121,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    )),
+                    dense: true,
+                    tileColor: white,
+                    enabled: true,
+                    leading: CircleAvatar(
+                        radius: 20,
+                        backgroundColor: Colors.grey,
+                        backgroundImage:
+                        NetworkImage(displayList[index]['logo']!)),
+                    title: MyText(
+                      displayList[index]['name']!,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: black2121,
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
+                )),
           ]),
         ),
       ),

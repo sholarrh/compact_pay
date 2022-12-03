@@ -23,6 +23,26 @@ String? validateEmail(String? formEmail) {
 String? validatePhoneNumber(String? formPhoneNumber) {
   if (formPhoneNumber == null || formPhoneNumber.isEmpty) {
     return 'PhoneNumber is required.';
+  } else if (formPhoneNumber.length != 10) {
+    return 'PhoneNumber should not be more than ten digits.';
+  }
+
+  return null;
+}
+
+String? validateBvnNumber(String? formBvnNumber) {
+  if (formBvnNumber == null || formBvnNumber.isEmpty) {
+    return 'PhoneNumber is required.';
+  } else if (formBvnNumber.length != 11) {
+    return 'BVN should not be more than eleven(11) digits.';
+  }
+
+  return null;
+}
+
+String? validateNumber(String? formNumber) {
+  if (formNumber == null || formNumber.isEmpty) {
+    return 'Number is required.';
   }
 
   return null;
@@ -65,3 +85,12 @@ String? validateTransactionPin(String? formTransactionPin) {
 
   return null;
 }
+
+// CONFIRM PASSWORD
+// String? validateConfirmPassword(String? formConfirmPassword, {required String str}) {
+//   if (str != formConfirmPassword) {
+//     return 'Passwords do not match.';
+//   }
+//
+//   return null;
+// }
