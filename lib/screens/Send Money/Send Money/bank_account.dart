@@ -1,5 +1,7 @@
 import 'package:compact_pay/screens/Send%20Money/Send%20Money/select_bank.dart';
 import 'package:compact_pay/screens/add_money/ussd/select_bank.dart';
+import 'package:compact_pay/screens/auth/verification.dart';
+import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
@@ -22,12 +24,12 @@ class BankAccount extends StatefulWidget {
 }
 
 class _BankAccountState extends State<BankAccount> {
-  final _formKey = GlobalKey<FormState>();
-
-  GlobalKey<FormState> get formKey => _formKey;
   bool isSwitched1 = false;
-  bool isSwitched2 = false;
-  bool isSwitched3 = false;
+
+  TextEditingController _accountnumber = TextEditingController();
+  TextEditingController _amount = TextEditingController();
+  TextEditingController _description = TextEditingController();
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -40,7 +42,7 @@ class _BankAccountState extends State<BankAccount> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 51,),
+                  padding: const EdgeInsets.only(top: 70,),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -64,31 +66,33 @@ class _BankAccountState extends State<BankAccount> {
                 ),
                 SizedBox(height: 10),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(left: 5, right: 10),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(Icons.access_time,
-                        color: mainBlue,),
-                      MyText('Beneficiaries',
+                      Icon(
+                        Icons.watch_later_outlined,
+                        color: mainBlue,
+                        size: 17,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      MyText(
+                        'Beneficiaries',
+                        fontFamily: 'Poppins',
                         fontSize: 12,
-                        fontWeight: FontWeight.w400 ,
+                        fontWeight: FontWeight.w400,
                         color: black2121,
                       ),
                     ],
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SelectBank()));
-                  },
-                  child: Padding(
+                SizedBox(height: 16),
+                  Padding(
                     padding: const EdgeInsets.only(top: 15, right: 304,left: 31.83),
                     child: Icon(Icons.account_circle_sharp, size: 50, color: mainBlue),
                   ),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(right: 250.0, left: 21),
                   child: MyText('Choose\nBeneficiary',
@@ -110,6 +114,7 @@ class _BankAccountState extends State<BankAccount> {
                   ),
                 ),
                 const SizedBox(height: 18),
+
                 TextFormField(
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
@@ -137,75 +142,52 @@ class _BankAccountState extends State<BankAccount> {
                   ),
                 ),
 
-                const SizedBox(height: 18),
-                Padding(
-                  padding: const EdgeInsets.only(right: 250.0),
-                  child: MyText(
-                    ' Account Number',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: black,
-                    fontFamily: 'Poppins',
-                  ),
-                ),
+
                 const SizedBox(height: 8),
                 InputField(
                   hintText: '012345678',
-                  validator: validateFullName,
-                  keyBoardType: TextInputType.name,
+                  validator: validateAccountNumber,
+                  keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: false,
-                  inputController: data.firstNameTextController,
+                  inputController: _accountnumber,
                 ),
-                const SizedBox(height: 25),
-                Padding(
-                  padding: const EdgeInsets.only(right: 305.0),
-                  child: MyText(
-                    'Amount',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: black,
-                    fontFamily: 'Poppins',
-                  ),
+                SizedBox(height: 25),
+                MyText(
+                  'Amount',
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                  color: black2121,
+                  fontFamily: 'Poppins',
                 ),
                 const SizedBox(height: 8),
                 InputField(
-                  validator: validateEmail,
                   hintText: 'N0.00',
-                  keyBoardType: TextInputType.name,
+                  validator: validateAmount,
+                  keyBoardType: TextInputType.number,
                   isPassword: false,
                   hasSuffixIcon: false,
-                  inputController: data.emailTextController,
+                  inputController: _amount,
                 ),
 
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    MyText(
-                      'Description',
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: black,
-                      fontFamily: 'Poppins',
-                    ),
-                    MyText('(Optional)',
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      color: black,
-                      fontFamily: 'Poppins',
-                    )
-                  ],
+                SizedBox(height: 25),
+                MyText(
+                  'Description(Optional)',
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400,
+                  color: black2121,
+                  fontFamily: 'Poppins',
                 ),
-                const SizedBox(height: 9),
+                const SizedBox(height: 8),
                 InputField(
                   hintText: 'What’s this for?',
-                  validator: validateFullName,
+                  validator: null,
                   keyBoardType: TextInputType.name,
                   isPassword: false,
                   hasSuffixIcon: false,
-                  inputController: data.firstNameTextController,
+                  inputController: _description,
                 ),
-                const SizedBox(height: 25),
+                SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -213,7 +195,7 @@ class _BankAccountState extends State<BankAccount> {
                       'Save beneficiary',
                       color: black2121,
                       fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontSize: 10,
                       fontWeight: FontWeight.w400,
                     ),
                     Switch(
@@ -229,59 +211,30 @@ class _BankAccountState extends State<BankAccount> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 9),
-                Padding(
-                  padding: const EdgeInsets.only(top: 180),
-                  child: MyButton(
-                    height: 50,
+                SizedBox(height: 42),
+                MyButton(
+                  child: Container(
+                    height: 54,
                     width: double.infinity,
-                    color: mainBlue,
-                    onTap: () async {
-                      if (formKey.currentState!.validate()) {
-                        data.isLoading = true;
-                        setState(() {});
-                        data.delay(4);
-                        try {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const AddAmount()));
-                        } catch (e, s) {
-                          if (kDebugMode) {
-                            print(e);
-                          }
-                          if (kDebugMode) {
-                            print(s);
-                          }
-                        }
-                      } else {
-                        const ShowSnackBar(
-                          text: "There is an error",
-                          duration: 5,
-                        );
-                      }
-                    },
-                    child: data.isLoading == false
-                        ? MyText(
-                      'Continue',
-                      color: white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                    )
-                        : const Center(
-                      child: CircularProgressIndicator(
+                    decoration: BoxDecoration(
+                      color: mainBlue,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: MyText(
+                        'Continue',
                         color: white,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
                 ),
 
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+
+        ],
+            )))));
   }
 }
 
