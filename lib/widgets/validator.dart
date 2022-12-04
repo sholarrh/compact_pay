@@ -78,9 +78,9 @@ String? validateAmount(String? formAmount) {
   return null;
 }
 String? validateTransactionPin(String? formTransactionPin) {
-  if (formTransactionPin == null ||
-      formTransactionPin.isEmpty && formTransactionPin.length == 4) {
-    return 'Pin is required and must be four numbers.';
+  if (formTransactionPin == null || formTransactionPin.isEmpty)
+  {return 'Pin is required and must be four numbers.';}
+  else if(formTransactionPin.length == 4) {
   }
 
   return null;

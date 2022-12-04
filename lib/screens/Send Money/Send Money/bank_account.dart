@@ -1,3 +1,4 @@
+import 'package:compact_pay/screens/Send%20Money/Send%20Money/confirm.dart';
 import 'package:compact_pay/screens/add_money/ussd/select_bank.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
@@ -114,7 +115,6 @@ class _BankAccountState extends State<BankAccount> {
                                   fontFamily: 'Poppins',
                                 ),
                               ),
-
                               TextFormField(
                                 keyboardType: TextInputType.name,
                                 decoration: InputDecoration(
@@ -228,24 +228,34 @@ class _BankAccountState extends State<BankAccount> {
                               ),
                               SizedBox(height: 42),
                               MyButton(
-                                child: Container(
-                                  height: 54,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: mainBlue,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Center(
-                                    child: MyText(
-                                      'Continue',
-                                      color: white,
-                                      fontFamily: 'Poppins',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                height: 50,
+                                width: double.infinity,
+                                color: mainBlue,
+                                onTap: () {
+                                  // if (formkey.currentState!.validate()) {
+                                  //   data.bankName = true as String?;
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>Confirm2()));
+
+                                },
+                                // child: Container(
+                                //   height: 54,
+                                //   width: double.infinity,
+                                //   decoration: BoxDecoration(
+                                //     color: mainBlue,
+                                //     borderRadius: BorderRadius.circular(10),
+                                //   ),
+                                  child: MyText(
+                                    'Continue',
+                                    color: white,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                              ),
+
 
 
                             ],

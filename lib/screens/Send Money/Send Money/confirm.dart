@@ -133,8 +133,8 @@ class _Confirm2State extends State<Confirm2> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 100.0),
-                              child: Image.asset(
-                                'assets/images/gtblogo.jpg',
+                              child: Image.network(
+                                'data.bankLogo',
                                 height: 14.6,
                                 width: 14.6,
                               ),
