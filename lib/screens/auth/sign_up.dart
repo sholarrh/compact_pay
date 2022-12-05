@@ -1,13 +1,13 @@
-// import 'package:compact_pay/screens/auth/verification.dart';
+import 'package:compact_pay/screens/auth/verification.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../provider/provider.dart';
-// import '../../widgets/show_snackbar.dart';
+import '../../widgets/show_snackbar.dart';
 import '../../widgets/validator.dart';
 
 // This The Code for the Signup Page
@@ -32,7 +32,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    // var data = Provider.of<ProviderClass>(context);
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,
@@ -68,14 +68,14 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                   ),
                   const SizedBox(height: 8),
-                  // InputField(
-                  //   hintText: 'Enter first name',
-                  //   validator: validateFirstName,
-                  //   keyBoardType: TextInputType.name,
-                  //   isPassword: false,
-                  //   hasSuffixIcon: false,
-                  //   inputController: data.firstNameTextController,
-                  // ),
+                  InputField(
+                    hintText: 'Enter first name',
+                    validator: validateFirstName,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.firstNameTextController,
+                  ),
                   const SizedBox(height: 25),
                   MyText(
                     'Middle Name (Optional)',
@@ -85,14 +85,14 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                   ),
                   const SizedBox(height: 8),
-                  // InputField(
-                  //   hintText: 'Enter middle name',
-                  //   validator: validateMiddleName,
-                  //   keyBoardType: TextInputType.name,
-                  //   isPassword: false,
-                  //   hasSuffixIcon: false,
-                  //   inputController: data.middleNameTextController,
-                  // ),
+                  InputField(
+                    hintText: 'Enter middle name',
+                    validator: validateMiddleName,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.middleNameTextController,
+                  ),
                   SizedBox(height: 25),
                   MyText(
                     'Last Name',
@@ -102,14 +102,14 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                   ),
                   const SizedBox(height: 8),
-                  // InputField(
-                  //   hintText: 'Enter last name',
-                  //   validator: validateLastName,
-                  //   keyBoardType: TextInputType.name,
-                  //   isPassword: false,
-                  //   hasSuffixIcon: false,
-                  //   inputController: data.lastNameTextController,
-                  // ),
+                  InputField(
+                    hintText: 'Enter last name',
+                    validator: validateLastName,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.lastNameTextController,
+                  ),
                   const SizedBox(height: 25),
                   MyText(
                     'Email Address',
@@ -119,14 +119,14 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                   ),
                   const SizedBox(height: 8),
-                  // InputField(
-                  //   validator: validateEmail,
-                  //   hintText: 'Email Address',
-                  //   keyBoardType: TextInputType.name,
-                  //   isPassword: false,
-                  //   hasSuffixIcon: false,
-                  //   inputController: data.emailTextController,
-                  // ),
+                  InputField(
+                    validator: validateEmail,
+                    hintText: 'Email Address',
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.emailTextController,
+                  ),
                   const SizedBox(height: 25),
                   MyText(
                     'Phone Number',
@@ -136,48 +136,48 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                   ),
                   const SizedBox(height: 8),
-                  // InputField(
-                  //   hintText: '',
-                  //   validator: validatePhoneNumber,
-                  //   keyBoardType: TextInputType.phone,
-                  //   isPassword: false,
-                  //   hasSuffixIcon: false,
-                  //   prefixIcon: DropdownButton<String>(
-                  //     value: dropdownValue,
-                  //     elevation: 16,
-                  //     style: const TextStyle(color: black),
-                  //     items: <String>[
-                  //       '+234',
-                  //       '+218',
-                  //       '+235',
-                  //       '+385',
-                  //       '+30',
-                  //       '+221',
-                  //       '+227',
-                  //       '+44',
-                  //       '+93',
-                  //       '+27',
-                  //       '+33',
-                  //       '+233',
-                  //       '+1229',
-                  //       '+594',
-                  //       '+256',
-                  //       '+263',
-                  //       '+260'
-                  //     ].map<DropdownMenuItem<String>>((String value) {
-                  //       return DropdownMenuItem<String>(
-                  //         value: value,
-                  //         child: MyText(value),
-                  //       );
-                  //     }).toList(),
-                  //     onChanged: (String? newValue) {
-                  //       setState(() {
-                  //         dropdownValue = newValue!;
-                  //       });
-                  //     },
-                  //   ),
-                  //  inputController: data.phoneNumberTextController,
-                  // ),
+                  InputField(
+                    hintText: '',
+                    validator: validatePhoneNumber,
+                    keyBoardType: TextInputType.phone,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    prefixIcon: DropdownButton<String>(
+                      value: dropdownValue,
+                      elevation: 16,
+                      style: const TextStyle(color: black),
+                      items: <String>[
+                        '+234',
+                        '+218',
+                        '+235',
+                        '+385',
+                        '+30',
+                        '+221',
+                        '+227',
+                        '+44',
+                        '+93',
+                        '+27',
+                        '+33',
+                        '+233',
+                        '+1229',
+                        '+594',
+                        '+256',
+                        '+263',
+                        '+260'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: MyText(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                    ),
+                    inputController: data.phoneNumberTextController,
+                  ),
                   const SizedBox(height: 25),
                   MyText(
                     'Password',
@@ -187,14 +187,14 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                   ),
                   const SizedBox(height: 9),
-                  // InputField(
-                  //   hintText: 'Enter Password',
-                  //   validator: validatePassword,
-                  //   keyBoardType: TextInputType.name,
-                  //   isPassword: false,
-                  //   hasSuffixIcon: true,
-                  //   inputController: data.passwordTextController,
-                  // ),
+                  InputField(
+                    hintText: 'Enter Password',
+                    validator: validatePassword,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: true,
+                    inputController: data.passwordTextController,
+                  ),
                   const SizedBox(height: 25),
                   MyText(
                     'Referral Code (Optional)',
@@ -204,14 +204,14 @@ class _SignUpState extends State<SignUp> {
                     fontFamily: 'Poppins',
                   ),
                   const SizedBox(height: 9),
-                  // InputField(
-                  //   hintText: 'Enter referral code',
-                  //   validator: validateFullName,
-                  //   keyBoardType: TextInputType.name,
-                  //   isPassword: false,
-                  //   hasSuffixIcon: false,
-                  //   inputController: data.referralCodeTextController,
-                  // ),
+                  InputField(
+                    hintText: 'Enter referral code',
+                    validator: validateFullName,
+                    keyBoardType: TextInputType.name,
+                    isPassword: false,
+                    hasSuffixIcon: false,
+                    inputController: data.referralCodeTextController,
+                  ),
                   const SizedBox(height: 15),
                   Row(
                     children: [
@@ -255,63 +255,63 @@ class _SignUpState extends State<SignUp> {
                     ],
                   ),
                   const SizedBox(height: 5),
-                  // MyButton(
-                  //   onTap: () async {
-                  //     if (formkey.currentState!.validate()) {
-                  //       data.isLoading = true;
-                  //       setState(() {});
-                  //       data.delay(4);
-                  //
-                  //       try {
-                  //         data.sendOtp();
-                  //         if (await data.myAuth.sendOTP() == true) {
-                  //           data.passwordTextController.clear();
-                  //           data.emailTextController.clear();
-                  //           const ShowSnackBar(
-                  //             text: "OTP has been sent",
-                  //             duration: 5,
-                  //           );
-                  //           Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                   builder: (context) =>
-                  //                       Verification(goToPasswordScreen)));
-                  //         }
-                  //       } catch (e, s) {
-                  //         print(e);
-                  //         print(s);
-                  //       }
-                  //     } else {
-                  //       const ShowSnackBar(
-                  //         text: "There is an error",
-                  //         duration: 5,
-                  //       );
-                  //     }
-                  //   },
-                  //   child: Container(
-                  //     height: 54,
-                  //     width: double.infinity,
-                  //     decoration: BoxDecoration(
-                  //       color: mainBlue,
-                  //       borderRadius: BorderRadius.circular(10),
-                  //     ),
-                  //     child: data.isLoading == false
-                  //         ? Center(
-                  //             child: MyText(
-                  //               'Sign Up',
-                  //               color: white,
-                  //               fontFamily: 'Poppins',
-                  //               fontSize: 16,
-                  //               fontWeight: FontWeight.w600,
-                  //             ),
-                  //           )
-                  //         : const Center(
-                  //             child: CircularProgressIndicator(
-                  //               color: white,
-                  //             ),
-                  //           ),
-                  //   ),
-                  // ),
+                  MyButton(
+                    onTap: () async {
+                      if (formkey.currentState!.validate()) {
+                        data.isLoading = true;
+                        setState(() {});
+                        data.delay(4);
+
+                        try {
+                          data.sendOtp();
+                          if (await data.myAuth.sendOTP() == true) {
+                            data.passwordTextController.clear();
+                            data.emailTextController.clear();
+                            const ShowSnackBar(
+                              text: "OTP has been sent",
+                              duration: 5,
+                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Verification(goToPasswordScreen)));
+                          }
+                        } catch (e, s) {
+                          print(e);
+                          print(s);
+                        }
+                      } else {
+                        const ShowSnackBar(
+                          text: "There is an error",
+                          duration: 5,
+                        );
+                      }
+                    },
+                    child: Container(
+                      height: 54,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: mainBlue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: data.isLoading == false
+                          ? Center(
+                              child: MyText(
+                                'Sign Up',
+                                color: white,
+                                fontFamily: 'Poppins',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          : const Center(
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            ),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -12,6 +12,8 @@ class Confirm extends StatefulWidget {
 }
 
 class _ConfirmState extends State<Confirm> {
+  TextEditingController _pincodefield = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -172,6 +174,7 @@ class _ConfirmState extends State<Confirm> {
                               SizedBox(height: 25),
                               PinCodeTextField(
                                 appContext: context,
+                                controller: _pincodefield,
                                 length: 4,
                                 obscureText: true,
                                 autoFocus: true,

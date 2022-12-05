@@ -56,7 +56,9 @@ class _InputFieldState extends State<InputField> {
         textInputAction: widget.textInputAction ?? TextInputAction.next,
         onSaved: (value) => widget.onSaved!(value),
         style: const TextStyle(
-            fontSize: 16, color: Color(0xff212121), fontWeight: FontWeight.w400),
+            fontSize: 16,
+            color: Color(0xff212121),
+            fontWeight: FontWeight.w400),
         showCursor: false,
         decoration: InputDecoration(
           fillColor: cardColor,
@@ -70,18 +72,18 @@ class _InputFieldState extends State<InputField> {
               fontWeight: FontWeight.bold),
           suffixIcon: widget.hasSuffixIcon == true
               ? GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-                child: _obscureText
-                    ? const Icon(
-                  Icons.remove_red_eye_outlined,
-                  color: Colors.grey,
+                  onTap: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                  child: _obscureText
+                      ? const Icon(
+                          Icons.remove_red_eye_outlined,
+                          color: Colors.grey,
+                        )
+                      : const Icon(Icons.visibility_off_outlined),
                 )
-                    : const Icon(Icons.visibility_off_outlined),
-              )
               : null,
           suffixIconColor: mainBlue,
 

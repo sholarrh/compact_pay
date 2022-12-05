@@ -117,9 +117,6 @@ class _SecuritySettingsState extends State<SecuritySettings> {
                               Icons.arrow_forward_ios,
                               color: mainBlue,
                             ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios,
-                            color: mainBlue,
                           ),
                           title: MyText(
                             'Biometric Verification',

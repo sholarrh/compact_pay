@@ -6,6 +6,11 @@ import 'package:timer_count_down/timer_controller.dart';
 
 class ProviderClass extends ChangeNotifier {
   final TextEditingController _fullNameTextController = TextEditingController();
+  final TextEditingController _firstNameTextController =
+      TextEditingController();
+  final TextEditingController _lastNameTextController = TextEditingController();
+  final TextEditingController _middleNameTextController =
+      TextEditingController();
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _phoneNumberTextController =
@@ -49,6 +54,13 @@ class ProviderClass extends ChangeNotifier {
   //final _formKey = GlobalKey<FormState>();
 
   TextEditingController get fullNameTextController => _fullNameTextController;
+
+  TextEditingController get firstNameTextController => _firstNameTextController;
+
+  TextEditingController get middleNameTextController =>
+      _middleNameTextController;
+
+  TextEditingController get lastNameTextController => _lastNameTextController;
 
   TextEditingController get passwordTextController => _passwordTextController;
 

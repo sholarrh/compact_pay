@@ -1,9 +1,30 @@
-
-
-
 String? validateFullName(String? formFullName) {
   if (formFullName == null || formFullName.isEmpty) {
     return 'Full Name is required.';
+  }
+
+  return null;
+}
+
+String? validateFirstName(String? formFirstName) {
+  if (formFirstName == null || formFirstName.isEmpty) {
+    return 'First Name is required.';
+  }
+
+  return null;
+}
+
+String? validateMiddleName(String? formMiddleName) {
+  if (formMiddleName == null || formMiddleName.isEmpty) {
+    return 'Middle Name is required.';
+  }
+
+  return null;
+}
+
+String? validateLastName(String? formLastName) {
+  if (formLastName == null || formLastName.isEmpty) {
+    return 'Last Name is required.';
   }
 
   return null;
@@ -52,6 +73,19 @@ String? validateTransactionPin(String? formTransactionPin) {
       formTransactionPin.isEmpty && formTransactionPin.length == 4) {
     return 'Pin is required and must be four numbers.';
   }
+
+  return null;
+}
+
+String? validateAccountNumber(String? formAccountNumber) {
+  if (formAccountNumber == null || formAccountNumber.isEmpty)
+    return 'Account Number is required.';
+
+  return null;
+}
+
+String? validateAmount(String? formAmount) {
+  if (formAmount == null || formAmount.isEmpty) return 'Input Amount.';
 
   return null;
 }

@@ -19,6 +19,9 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
   TextEditingController _startDate = TextEditingController();
   TextEditingController _endDate = TextEditingController();
   bool isSwitched1 = false;
+  String selected = "first";
+  String select = "first";
+  String pick = 'first';
 
   final formkey = GlobalKey<FormState>();
 
@@ -87,29 +90,84 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                   SizedBox(height: 9),
                   Row(
                     children: [
-                      Container(
-                        height: 70,
-                        width: 75,
-                        child: Image.asset('assets/images/Rectangle 3359.png'),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selected = 'first';
+                          });
+                        },
+                        child: Container(
+                          height: 70,
+                          width: 75,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: selected == 'first' ? black : white,
+                            ),
+                          ),
+                          child:
+                              Image.asset('assets/images/Rectangle 3359.png'),
+                        ),
                       ),
                       SizedBox(width: 15),
-                      Container(
-                        height: 70,
-                        width: 75,
-                        child: Image.asset('assets/images/Rectangle 3360.png'),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selected = 'second';
+                          });
+                        },
+                        child: Container(
+                          height: 70,
+                          width: 75,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: selected == 'second' ? black : white,
+                            ),
+                          ),
+                          child:
+                              Image.asset('assets/images/Rectangle 3360.png'),
+                        ),
                       ),
                       SizedBox(width: 15),
-                      Container(
-                        height: 70,
-                        width: 75,
-                        child:
-                            Image.asset('assets/images/Rectangle 3361 (3).png'),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selected = 'third';
+                          });
+                        },
+                        child: Container(
+                          height: 70,
+                          width: 75,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: selected == 'third' ? black : white,
+                            ),
+                          ),
+                          child: Image.asset(
+                              'assets/images/Rectangle 3361 (3).png'),
+                        ),
                       ),
                       SizedBox(width: 15),
-                      Container(
-                        height: 70,
-                        width: 75,
-                        child: Image.asset('assets/images/Rectangle 3362.png'),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selected = 'fourth';
+                          });
+                        },
+                        child: Container(
+                          height: 70,
+                          width: 75,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: selected == 'fourth' ? black : white,
+                            ),
+                          ),
+                          child:
+                              Image.asset('assets/images/Rectangle 3362.png'),
+                        ),
                       ),
                     ],
                   ),
@@ -125,7 +183,11 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                   Row(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            select = 'first';
+                          });
+                        },
                         child: Container(
                           width: 102,
                           height: 50,
@@ -133,7 +195,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                             borderRadius: BorderRadius.circular(7),
                             border: Border.all(
                               width: 2,
-                              color: ash2,
+                              color: select == 'first' ? lightBlue : ash2,
                             ),
                           ),
                           child: Center(
@@ -149,7 +211,11 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ),
                       SizedBox(width: 18),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            select = 'second';
+                          });
+                        },
                         child: Container(
                           width: 102,
                           height: 50,
@@ -157,7 +223,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                             borderRadius: BorderRadius.circular(7),
                             border: Border.all(
                               width: 2,
-                              color: ash2,
+                              color: select == 'second' ? lightBlue : ash2,
                             ),
                           ),
                           child: Center(
@@ -173,7 +239,11 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ),
                       SizedBox(width: 18),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            select = 'third';
+                          });
+                        },
                         child: Container(
                           width: 102,
                           height: 50,
@@ -181,7 +251,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                             borderRadius: BorderRadius.circular(7),
                             border: Border.all(
                               width: 2,
-                              color: ash2,
+                              color: select == 'third' ? lightBlue : ash2,
                             ),
                           ),
                           child: Center(
@@ -201,7 +271,11 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                   Row(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            select = 'fourth';
+                          });
+                        },
                         child: Container(
                           width: 102,
                           height: 50,
@@ -209,7 +283,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                             borderRadius: BorderRadius.circular(7),
                             border: Border.all(
                               width: 2,
-                              color: ash2,
+                              color: select == 'fourth' ? lightBlue : ash2,
                             ),
                           ),
                           child: Center(
@@ -225,7 +299,11 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ),
                       SizedBox(width: 18),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            select = 'fifth';
+                          });
+                        },
                         child: Container(
                           width: 102,
                           height: 50,
@@ -233,7 +311,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                             borderRadius: BorderRadius.circular(7),
                             border: Border.all(
                               width: 2,
-                              color: ash2,
+                              color: select == 'fifth' ? lightBlue : ash2,
                             ),
                           ),
                           child: Center(
@@ -249,7 +327,11 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ),
                       SizedBox(width: 18),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            select = 'sixth';
+                          });
+                        },
                         child: Container(
                           width: 102,
                           height: 50,
@@ -257,7 +339,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                             borderRadius: BorderRadius.circular(7),
                             border: Border.all(
                               width: 2,
-                              color: ash2,
+                              color: select == 'sixth' ? lightBlue : ash2,
                             ),
                           ),
                           child: Center(
@@ -392,87 +474,127 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                 SizedBox(height: 5),
                                 Row(
                                   children: [
-                                    Container(
-                                      alignment: Alignment.bottomLeft,
-                                      padding: EdgeInsets.only(left: 5),
-                                      width: 75,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(
-                                          width: 2,
-                                          color: mainBlue,
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          pick = 'first';
+                                        });
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.bottomLeft,
+                                        padding: EdgeInsets.only(left: 5),
+                                        width: 75,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border: Border.all(
+                                            width: 2,
+                                            color: pick == 'first'
+                                                ? mainBlue
+                                                : ash2,
+                                          ),
                                         ),
-                                      ),
-                                      child: MyText(
-                                        'Weekly',
-                                        color: mainBlue,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
+                                        child: MyText(
+                                          'Weekly',
+                                          color: mainBlue,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                     SizedBox(width: 15),
-                                    Container(
-                                      alignment: Alignment.bottomLeft,
-                                      padding: EdgeInsets.only(left: 5),
-                                      width: 75,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(
-                                          width: 2,
-                                          color: mainBlue,
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          pick = 'second';
+                                        });
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.bottomLeft,
+                                        padding: EdgeInsets.only(left: 5),
+                                        width: 75,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border: Border.all(
+                                            width: 2,
+                                            color: pick == 'second'
+                                                ? mainBlue
+                                                : ash2,
+                                          ),
                                         ),
-                                      ),
-                                      child: MyText(
-                                        'Monthly',
-                                        color: mainBlue,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
+                                        child: MyText(
+                                          'Monthly',
+                                          color: mainBlue,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                     SizedBox(width: 15),
-                                    Container(
-                                      alignment: Alignment.bottomLeft,
-                                      padding: EdgeInsets.only(left: 5),
-                                      width: 75,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(
-                                          width: 2,
-                                          color: mainBlue,
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          pick = 'third';
+                                        });
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.bottomLeft,
+                                        padding: EdgeInsets.only(left: 5),
+                                        width: 75,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border: Border.all(
+                                            width: 2,
+                                            color: pick == 'third'
+                                                ? mainBlue
+                                                : ash2,
+                                          ),
                                         ),
-                                      ),
-                                      child: MyText(
-                                        'Quartely',
-                                        color: mainBlue,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
+                                        child: MyText(
+                                          'Quartely',
+                                          color: mainBlue,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                     SizedBox(width: 15),
-                                    Container(
-                                      alignment: Alignment.bottomLeft,
-                                      padding: EdgeInsets.only(left: 5),
-                                      width: 75,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(
-                                          width: 2,
-                                          color: mainBlue,
+                                    InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          pick = 'fourth';
+                                        });
+                                      },
+                                      child: Container(
+                                        alignment: Alignment.bottomLeft,
+                                        padding: EdgeInsets.only(left: 5),
+                                        width: 75,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border: Border.all(
+                                            width: 2,
+                                            color: pick == 'fourth'
+                                                ? mainBlue
+                                                : ash2,
+                                          ),
                                         ),
-                                      ),
-                                      child: MyText(
-                                        'Annually',
-                                        color: mainBlue,
-                                        fontFamily: 'Poppins',
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w500,
+                                        child: MyText(
+                                          'Annually',
+                                          color: mainBlue,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                   ],
