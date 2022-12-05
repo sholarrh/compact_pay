@@ -165,6 +165,12 @@ class ProviderClass extends ChangeNotifier {
   final TextEditingController _tvPhoneNumberTextController =
       TextEditingController();
 
+  final TextEditingController _tvStartDateTextController =
+      TextEditingController();
+
+  final TextEditingController _tvEndDateTextController =
+      TextEditingController();
+
   TextEditingController get billerTextController => _billerTextController;
 
   TextEditingController get packageTextController => _packageTextController;
@@ -174,6 +180,11 @@ class ProviderClass extends ChangeNotifier {
 
   TextEditingController get tvPhoneNumberTextController =>
       _tvPhoneNumberTextController;
+
+  TextEditingController get tvStartDateTextController =>
+      _tvStartDateTextController;
+
+  TextEditingController get tvEndDateTextController => _tvEndDateTextController;
 
   // COUNTDOWN TIMER
 

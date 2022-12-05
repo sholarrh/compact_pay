@@ -291,27 +291,47 @@ class _AddByUssdState extends State<AddByUssd> {
                                     BorderRadius.all(Radius.circular(10.0)),
                               ),
                               fillColor: white,
-                              prefixIcon: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    getCurrency(),
-                                    style: const TextStyle(
-                                      color: black2121,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'poppins',
+                              prefixIcon: SizedBox(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      getCurrency(),
+                                      style: const TextStyle(
+                                        color: black2121,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: 'poppins',
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Container(
-                                    width: 10,
-                                    color: black2121,
-                                  ),
-                                ],
+                                    // const SizedBox(
+                                    //   width: 8,
+                                    // ),
+
+                                    // SizedBox(
+                                    //   width: 1,
+                                    //   child: Center(
+                                    //     child: Container(
+                                    //       width: 1,
+                                    //       margin: const EdgeInsets.only(top: 2, bottom: 2),
+                                    //       decoration: BoxDecoration(
+                                    //         border: Border(
+                                    //           left: Divider.createBorderSide(context, color: black2121, width: 1),
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    // const VerticalDivider(
+                                    //   indent: 2,
+                                    //   endIndent: 2,
+                                    //   width: 1,
+                                    //   thickness: 2,
+                                    //   color: black2121,
+                                    // ),
+                                  ],
+                                ),
                               ),
                               filled: true,
                               focusColor: Colors.red,

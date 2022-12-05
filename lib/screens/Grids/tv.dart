@@ -1,4 +1,5 @@
 import 'package:compact_pay/screens/tv/payment_successful.dart';
+import 'package:compact_pay/widgets/currency_box.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -310,7 +311,7 @@ class _TvState extends State<Tv> {
                                                   color: black2121,
                                                 ),
                                                 MyText(
-                                                  package[index]['Amount']!,
+                                                  '${getCurrency()} ${package[index]['Amount']!}',
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w400,
                                                   color: black2121,
@@ -378,7 +379,7 @@ class _TvState extends State<Tv> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MyText(
-                            'Save beneficiary',
+                            'Schedule Bill Payment',
                             color: black2121,
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
@@ -389,6 +390,289 @@ class _TvState extends State<Tv> {
                               setState(() {
                                 schedulePaymentSwitch = value;
                               });
+                              showModalBottomSheet(
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10.0),
+                                      topRight: Radius.circular(10.0),
+                                    ),
+                                  ),
+                                  enableDrag: false,
+                                  isDismissible: true,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              MyText(
+                                                'Schedule Top up',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                                color: black2121,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Icon(
+                                                  Icons.close,
+                                                  color: close,
+                                                  size: 17,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 12.0, bottom: 16),
+                                            child: Divider(
+                                              height: 1,
+                                              thickness: 1,
+                                              color: black2121,
+                                            ),
+                                          ),
+                                          MyText(
+                                            'Select Period',
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: black2121,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 5.0, bottom: 16),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  width: 75,
+                                                  height: 70,
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: white,
+                                                      border: Border.all(
+                                                          color: mainBlue)),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      MyText(
+                                                        'Weekly',
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: mainBlue,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: 75,
+                                                  height: 70,
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: white,
+                                                      border: Border.all(
+                                                          color: mainBlue)),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      MyText(
+                                                        'Monthly',
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: mainBlue,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: 75,
+                                                  height: 70,
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: white,
+                                                      border: Border.all(
+                                                          color: mainBlue)),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      MyText(
+                                                        'Quarterly',
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: mainBlue,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: 75,
+                                                  height: 70,
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      color: white,
+                                                      border: Border.all(
+                                                          color: mainBlue)),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      MyText(
+                                                        'Annually',
+                                                        fontSize: 10,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: mainBlue,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          MyText(
+                                            'Start Date',
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: black2121,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 5.0, bottom: 12),
+                                            child: TvInputField(
+                                              inputController: data
+                                                  .tvStartDateTextController,
+                                              hintText: 'Choose date',
+                                              keyBoardType:
+                                                  TextInputType.number,
+                                              suffixIcon: IconButton(
+                                                icon: const Icon(
+                                                  Icons.calendar_month,
+                                                  size: 20,
+                                                  color: black2121,
+                                                ),
+                                                onPressed: () {},
+                                              ),
+                                            ),
+                                          ),
+                                          MyText(
+                                            'End Date',
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: black2121,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 5.0, bottom: 12),
+                                            child: TvInputField(
+                                              inputController: data
+                                                  .tvStartDateTextController,
+                                              hintText: 'Choose date',
+                                              keyBoardType:
+                                                  TextInputType.number,
+                                              suffixIcon: IconButton(
+                                                icon: const Icon(
+                                                  Icons.calendar_month,
+                                                  size: 20,
+                                                  color: black2121,
+                                                ),
+                                                onPressed: () {},
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 18, bottom: 45),
+                                            child: MyButton(
+                                              height: 50,
+                                              width: double.infinity,
+                                              color: mainBlue,
+                                              onTap: () async {
+                                                // if (formKey.currentState!.validate()) {
+                                                // data.isLoading = true;
+                                                setState(() {});
+                                                data.delay(4);
+                                                try {} catch (e, s) {
+                                                  if (kDebugMode) {
+                                                    print(e);
+                                                  }
+                                                  if (kDebugMode) {
+                                                    print(s);
+                                                  }
+                                                }
+                                                // } else {
+                                                //   const ShowSnackBar(
+                                                //     text: "There is an error",
+                                                //     duration: 5,
+                                                //   );
+                                                // }
+                                              },
+                                              child: data.isLoading == false
+                                                  ? MyText(
+                                                      'Continue',
+                                                      color: white,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 20,
+                                                    )
+                                                  : const Center(
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color: white,
+                                                      ),
+                                                    ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
                             },
                             activeColor: lightGreen,
                             inactiveTrackColor: lightGrey2,
@@ -451,9 +735,9 @@ class _TvState extends State<Tv> {
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.circular(10.0),
-            )),
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        )),
         enableDrag: false,
         isDismissible: true,
         context: context,
