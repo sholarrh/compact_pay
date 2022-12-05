@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-//import '../../../provider/provider.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/bottom_nav.dart';
 import '../../../widgets/my_text.dart';
@@ -55,10 +54,10 @@ class _PaymentSuccessfulState extends State<PaymentSuccessful> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
+                      Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                              builder: (context) => const BottomNav()));
+                              builder: (context) => const BottomNav()),
+                          (route) => false);
                     },
                     child: MyText(
                       'Go to Homepage',

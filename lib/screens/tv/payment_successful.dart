@@ -67,9 +67,7 @@ class _PaymentSuccessfulState extends State<PaymentSuccessful> {
                         data.isLoading = true;
                         setState(() {});
                         data.delay(4);
-                        try {
-                          // cardBottomSheet(context, data);
-                        } catch (e, s) {
+                        try {} catch (e, s) {
                           if (kDebugMode) {
                             print(e);
                           }
@@ -86,7 +84,7 @@ class _PaymentSuccessfulState extends State<PaymentSuccessful> {
                       },
                       child: data.isLoading == false
                           ? MyText(
-                              'Fund',
+                              'View Receipt',
                               color: white,
                               fontWeight: FontWeight.w700,
                               fontSize: 20,
@@ -100,10 +98,10 @@ class _PaymentSuccessfulState extends State<PaymentSuccessful> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
+                      Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                              builder: (context) => const BottomNav()));
+                              builder: (context) => const BottomNav()),
+                          (route) => false);
                     },
                     child: MyText(
                       'Go to Homepage',

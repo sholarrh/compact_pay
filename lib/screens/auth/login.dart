@@ -165,13 +165,18 @@ class _LoginState extends State<Login> {
                                 if (data.postLoginResponse.statusCode == 202) {
                                   data.passwordTextController.clear();
                                   data.emailTextController.clear();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              data.pinList.isEmpty
-                                                  ? const SetTransactionPin()
-                                                  : const BottomNav()));
+                                  data.pinList.isEmpty
+                                      ? Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SetTransactionPin()))
+                                      : Navigator.of(context)
+                                          .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const BottomNav()),
+                                              (route) => false);
                                 }
                               });
                             } catch (e, s) {

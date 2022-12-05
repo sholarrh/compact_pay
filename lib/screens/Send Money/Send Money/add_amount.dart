@@ -134,9 +134,8 @@ class _AddAmountState extends State<AddAmount> {
                           fillColor: cardColor,
                           prefixIcon: Row(
                             mainAxisSize: MainAxisSize.min,
-                            children: [
-
-                              const SizedBox(
+                            children: const [
+                              SizedBox(
                                 width: 2,
                               ),
                             ],
@@ -187,7 +186,7 @@ class _AddAmountState extends State<AddAmount> {
                 ),
                 const SizedBox(height: 8),
                 InputField(
-                  // validator: validateEmail,
+                  //validator: validatePhoneNumber,
                   hintText: 'N0.00',
                   keyBoardType: TextInputType.name,
                   isPassword: false,

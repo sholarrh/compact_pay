@@ -158,8 +158,22 @@ class ProviderClass extends ChangeNotifier {
   final TextEditingController _smartCardNumberTextController =
       TextEditingController();
 
+  final TextEditingController _billerTextController = TextEditingController();
+
+  final TextEditingController _packageTextController = TextEditingController();
+
+  final TextEditingController _tvPhoneNumberTextController =
+      TextEditingController();
+
+  TextEditingController get billerTextController => _billerTextController;
+
+  TextEditingController get packageTextController => _packageTextController;
+
   TextEditingController get smartCardNumberTextController =>
       _smartCardNumberTextController;
+
+  TextEditingController get tvPhoneNumberTextController =>
+      _tvPhoneNumberTextController;
 
   // COUNTDOWN TIMER
 
@@ -318,8 +332,12 @@ class ProviderClass extends ChangeNotifier {
     try {
       postLoginResponse = await http.post(url,
           headers: requestHeaders, body: jsonEncode(payload));
-      print('Response status: ${postLoginResponse.statusCode}');
-      print('Response body: ${postLoginResponse.body}');
+      if (kDebugMode) {
+        print('Response status: ${postLoginResponse.statusCode}');
+      }
+      if (kDebugMode) {
+        print('Response body: ${postLoginResponse.body}');
+      }
       notifyListeners();
       var responseData = jsonDecode(postLoginResponse.body);
 

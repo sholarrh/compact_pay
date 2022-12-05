@@ -1,6 +1,7 @@
 // Adigun solafunmi
 
 import 'package:compact_pay/screens/profile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +9,6 @@ import '../provider/provider.dart';
 import '../utils/app_colors.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_text.dart';
-import '../widgets/show_snackbar.dart';
 import '../widgets/text_form_field.dart';
 import '../widgets/validator.dart';
 
@@ -20,7 +20,18 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  String dropdownValue = 'Male';
+  static const List<String> genderList = <String>[
+    'Male',
+    'Female',
+  ];
+
+  // static const List<String> genderList = <String>['Male', 'Female',];
+
+  String dropdownValue = genderList.first;
+
+  // String dropdownValue1 = 'National Identification Number';
+  //
+  // String dropdownValue2 = 'National Identification Number';
 
   final _formKey = GlobalKey<FormState>();
 
@@ -65,20 +76,62 @@ class _EditProfileState extends State<EditProfile> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: MyText(
-                    'Full Name',
+                    'First Name',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: white,
+                    color: editProfile.withOpacity(0.9),
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
                 InputField2(
                   inputController: data.firstNameTextController,
-                  hintText: 'Babatunde Samson',
+                  hintText: 'Tola',
                   keyBoardType: TextInputType.emailAddress,
-                  validator: validateEmail,
+                  validator: validateFullName,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: MyText(
+                    'Middle Name (Optional)',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    color: editProfile.withOpacity(0.9),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                InputField2(
+                  inputController: data.middleNameTextController,
+                  hintText: 'Babatunde',
+                  keyBoardType: TextInputType.emailAddress,
+                  validator: validateFullName,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: MyText(
+                    'Last Name',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    color: editProfile.withOpacity(0.9),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                InputField2(
+                  inputController: data.lastNameTextController,
+                  hintText: 'Kelechi',
+                  keyBoardType: TextInputType.emailAddress,
+                  validator: validateFullName,
                 ),
                 const SizedBox(
                   height: 25,
@@ -89,7 +142,7 @@ class _EditProfileState extends State<EditProfile> {
                     'Email Address',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: white,
+                    color: editProfile.withOpacity(0.9),
                   ),
                 ),
                 const SizedBox(
@@ -107,10 +160,52 @@ class _EditProfileState extends State<EditProfile> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: MyText(
+                    'Phone Number',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    color: editProfile.withOpacity(0.9),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                InputField2(
+                  inputController: data.phoneNumberTextController,
+                  hintText: '+2348123456789',
+                  keyBoardType: TextInputType.emailAddress,
+                  validator: validatePhoneNumber,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: MyText(
+                    'Address',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    color: editProfile.withOpacity(0.9),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                InputField2(
+                  inputController: data.addressTextController,
+                  hintText: '2, Obantoko Rd.  Abeokuta',
+                  keyBoardType: TextInputType.name,
+                  validator: validateFullName,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: MyText(
                     'Date of Birth',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: white,
+                    color: editProfile.withOpacity(0.9),
                   ),
                 ),
                 const SizedBox(
@@ -119,8 +214,8 @@ class _EditProfileState extends State<EditProfile> {
                 InputField2(
                   inputController: data.ageTextController,
                   hintText: 'dd/mm/yy',
-                  keyBoardType: TextInputType.emailAddress,
-                  validator: validateEmail,
+                  keyBoardType: TextInputType.name,
+                  validator: validateFullName,
                 ),
                 const SizedBox(
                   height: 25,
@@ -131,7 +226,7 @@ class _EditProfileState extends State<EditProfile> {
                     'Gender',
                     fontWeight: FontWeight.w400,
                     fontSize: 13,
-                    color: white,
+                    color: editProfile.withOpacity(0.9),
                   ),
                 ),
                 const SizedBox(
@@ -141,26 +236,32 @@ class _EditProfileState extends State<EditProfile> {
                   inputController: data.genderTextController,
                   hintText: 'Male',
                   keyBoardType: TextInputType.name,
-                  validator: validateEmail,
-                  suffixIcon: DropdownButton<String>(
-                    value: dropdownValue,
-                    elevation: 16,
-                    style: const TextStyle(color: white),
-                    items: <String>[
-                      'Male',
-                      'Female',
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: MyText(value),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                  ),
+                  validator: validateFullName,
+                  // suffixIcon: DropdownButton<String>(
+                  //   value: dropdownValue,
+                  //   enableFeedback: true,
+                  //   dropdownColor: white,
+                  //   isExpanded: true,
+                  //   iconSize: 30,
+                  //   borderRadius: BorderRadius.circular(7),
+                  //   iconEnabledColor: black2121.withOpacity(0.9),
+                  //   style: TextStyle(
+                  //     fontSize: 16,
+                  //     fontWeight: FontWeight.w400,
+                  //     color: black2121.withOpacity(0.9),
+                  //   ),
+                  //   items: genderList.map<DropdownMenuItem<String>>((String value) {
+                  //     return DropdownMenuItem<String>(
+                  //       value: value,
+                  //       child: MyText(value),
+                  //     );
+                  //   }).toList(),
+                  //   onChanged: (String? newValue) {
+                  //     setState(() {
+                  //       dropdownValue = newValue!;
+                  //     });
+                  //   },
+                  // ),
                 ),
                 const SizedBox(
                   height: 25,
@@ -184,7 +285,7 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validateEmail,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 100),
+                  padding: const EdgeInsets.only(top: 100, bottom: 100),
                   child: MyButton(
                     height: 50,
                     width: double.infinity,
@@ -195,28 +296,21 @@ class _EditProfileState extends State<EditProfile> {
                         setState(() {});
                         data.delay(4);
                         try {
-                          //if (await data.myAuth.sendOTP() == true) {
-                          const ShowSnackBar(
-                            text: "OTP has been sent",
-                            duration: 5,
-                          );
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const Profile()));
                         }
                         //}
-                        catch(e,s){
-                          print(e);
-                          print(s);
+                        catch (e, s) {
+                          if (kDebugMode) {
+                            print(e);
+                          }
+                          if (kDebugMode) {
+                            print(s);
+                          }
                         }
                       }
-                      // else{
-                      //   const ShowSnackBar(
-                      //     text: "There is an error",
-                      //     duration: 5,
-                      //   );
-                      // }
                     },
                     child: data.isLoading == false ? MyText(
                       'Done',
@@ -224,10 +318,10 @@ class _EditProfileState extends State<EditProfile> {
                       fontWeight: FontWeight.w700,
                       fontSize: 20,)
                         : const Center(
-                      child: CircularProgressIndicator(
-                        color: mainBlue,
-                      ),
-                    ),
+                            child: CircularProgressIndicator(
+                              color: mainBlue,
+                            ),
+                          ),
                   ),
                 ),
 

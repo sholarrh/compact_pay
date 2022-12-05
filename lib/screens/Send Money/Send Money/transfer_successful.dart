@@ -24,20 +24,20 @@ class TransferSuccessful extends StatelessWidget {
                           top: 51,
                         ),
                         child: Center(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  IconButton(
-                                    icon: const Icon(Icons.close),
-                                    iconSize: 17,
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  const SizedBox(height: 57.9),
-                                  Center(
-                                    child: Column(
-                                      children: [
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.close),
+                                iconSize: 17,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              const SizedBox(height: 57.9),
+                              Center(
+                                child: Column(
+                                  children: [
                                     Image.asset(
                                       'assets/images/marklogo.png',
                                       height: 100,
@@ -84,9 +84,9 @@ class TransferSuccessful extends StatelessWidget {
                                         child: InkWell(
                                           // // onTap: () {
                                           // //   // Navigator.push(
-                                              // //   //   context,
-                                              // //   //   MaterialPageRoute(
-                                              // //   //       builder: (context) => const Login()),
+                                          // //   //   context,
+                                          // //   //   MaterialPageRoute(
+                                          // //   //       builder: (context) => const Login()),
                                           // //   );
                                           // },
                                           child: MyText(
@@ -102,12 +102,12 @@ class TransferSuccessful extends StatelessWidget {
                                     InkWell(
                                       onTap: () {
                                         data.amountToSendTextController.clear();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const BottomNav()),
-                                        );
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const BottomNav()),
+                                                (route) => false);
                                       },
                                       child: MyText(
                                         'Go to Homepage',
@@ -117,12 +117,12 @@ class TransferSuccessful extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-
-                          )])))));
+                            ],
+                          ),
+                        ),
+                      )
+                    ])))));
   }
 }

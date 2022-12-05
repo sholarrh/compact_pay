@@ -269,6 +269,9 @@ class _AddByUssdState extends State<AddByUssd> {
                             fontWeight: FontWeight.w500,
                             color: black2121,
                           ),
+                          const SizedBox(
+                            height: 7,
+                          ),
                           TextFormField(
                             style: const TextStyle(
                               color: black2121,

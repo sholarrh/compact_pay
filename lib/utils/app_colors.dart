@@ -15,6 +15,7 @@ const tintBlue = Color(0xff182E50);
 const black2121 = Color(0xff212121);
 const darkFont = Color(0xFF151940);
 const lightGreen = Color(0xff1AAE9F);
+const editProfile = Color(0xffBDBDBD);
 const lightGrey2 = Color(0xffE0E0E0);
 const close = Color(0xff292D32);
 const orange = Color(0xFFFF897E);

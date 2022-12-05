@@ -93,14 +93,15 @@ class _SelectBankState extends State<SelectBank> {
               height: 20,
             ),
             ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: displayList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => Card(
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 1.0, vertical: 12.0),
-                  child: ListTile(
-                    onTap: () {
-                      data.bankName = displayList[index]['name'];
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 1.0, vertical: 12.0),
+                      child: ListTile(
+                        onTap: () {
+                          data.bankName = displayList[index]['name'];
                           data.bankLogo = displayList[index]['logo'];
                           Navigator.push(
                               context,
@@ -109,23 +110,23 @@ class _SelectBankState extends State<SelectBank> {
                                       ? const AddByUssd()
                                       : const BankAccount()));
                         },
-                    dense: true,
-                    tileColor: white,
-                    enabled: true,
-                    leading: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.grey,
-                        backgroundImage:
-                        NetworkImage(displayList[index]['logo']!)),
-                    title: MyText(
-                      displayList[index]['name']!,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: black2121,
-                      fontFamily: 'Poppins',
-                    ),
-                  ),
-                )),
+                        dense: true,
+                        tileColor: white,
+                        enabled: true,
+                        leading: CircleAvatar(
+                            radius: 20,
+                            backgroundColor: Colors.grey,
+                            backgroundImage:
+                            NetworkImage(displayList[index]['logo']!)),
+                        title: MyText(
+                          displayList[index]['name']!,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: black2121,
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                    )),
           ]),
         ),
       ),

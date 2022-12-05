@@ -303,18 +303,13 @@ class _Confirm2State extends State<Confirm2> {
                   child: Container(
                     height: 54,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: mainBlue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: MyText(
-                        'Confirm',
-                        color: white,
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: mainBlue,
+                    child: MyText(
+                      'Confirm',
+                      color: white,
+                      fontFamily: 'Poppins',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
