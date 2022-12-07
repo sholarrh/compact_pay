@@ -1,3 +1,4 @@
+import 'package:compact_pay/screens/add_money/scan_qr/qr_code.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_text.dart';
@@ -185,8 +186,10 @@ class _SendMoneyState extends State<SendMoney> {
                       ),
                       IconButton(
                         onPressed: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const QrCode()));
                         },
                         icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,
@@ -197,111 +200,6 @@ class _SendMoneyState extends State<SendMoney> {
                     ],
                   ),
                 ),
-                //             Container(
-                //               margin: const EdgeInsets.symmetric(vertical: 4),
-                //               padding: const EdgeInsets.only(top: 20, left: 20),
-                //               height: 58,
-                //               // width: double.infinity,
-                //               decoration: BoxDecoration(
-                //                 color: Colors.black,
-                //                 borderRadius: BorderRadius.circular(7),
-                //               ),
-                //               child: Row(
-                //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //                 children: [
-                //                   Row(
-                //                     children: [
-                //               Image.asset(
-                //                 'assets/images/Logo.png',
-                //                 width: 5,
-                //                 height: 5,
-                //                 fit: BoxFit.cover,),
-                //                 // color: mainBlue,),
-                //
-                //
-                //                       // const SizedBox(width: 9,),
-                //                       Column(
-                //                         mainAxisAlignment: MainAxisAlignment.start,
-                //                         crossAxisAlignment: CrossAxisAlignment.start,
-                //                         children: [
-                //                           MyText('To CompactPay Account',
-                //                             fontSize: 12,
-                //                             fontWeight: FontWeight.w500 ,
-                //                             color: black2121,
-                //                           ),
-                //                           const SizedBox(height: 2,),
-                //                           MyText('Transfer money to CompactPay accounts for free',
-                //                             fontSize: 9,
-                //                             fontWeight: FontWeight.w500 ,
-                //                             color: const Color(0xff8A8D8F),
-                //                           ),
-                //                         ],
-                //                       ),
-                //                     ],
-                //                   ),
-                //                   IconButton(
-                //                     onPressed: () {
-                //                       // Navigator.push(context,
-                //                       //     MaterialPageRoute(builder: (context) => const EditProfile()));
-                //                     },
-                //                     icon: const Icon(Icons.arrow_forward_ios_outlined,
-                //                       color: mainBlue,
-                //                       size: 14,
-                //                     ),
-                //                   ),
-                //
-                //             Container(
-                //               margin: const EdgeInsets.symmetric(vertical: 4),
-                //               padding: const EdgeInsets.only(top: 10, left: 20),
-                //               height: 58,
-                //               // width: double.infinity,
-                //               decoration: BoxDecoration(
-                //                 color: white,
-                //                 borderRadius: BorderRadius.circular(7),
-                //               ),
-                //               child: Row(
-                //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //                 children: [
-                //                   Row(
-                //                     children: [
-                //                       const Icon(Icons.qr_code_scanner_outlined,
-                //                         color: mainBlue,),
-                //                       const SizedBox(width: 9,),
-                //                       Column(
-                //                         mainAxisAlignment: MainAxisAlignment.start,
-                //                         crossAxisAlignment: CrossAxisAlignment.start,
-                //                         children: [
-                //                           MyText('Scan QR Code',
-                //                             fontSize: 12,
-                //                             fontWeight: FontWeight.w500 ,
-                //                             color: black2121,
-                //                           ),
-                //                           const SizedBox(height: 2,),
-                //                           MyText('Transfer to any CompactPay user via\nscan',
-                //                             fontSize: 9,
-                //                             fontWeight: FontWeight.w500 ,
-                //                             color: black,
-                //                           ),
-                //                         ],
-                //                       ),
-                //                     ],
-                //                   ),
-                //                   IconButton(
-                //                     onPressed: () {
-                //                       // Navigator.push(context,
-                //                       //     MaterialPageRoute(builder: (context) => const EditProfile()));
-                //                     },
-                //                     icon: const Icon(Icons.arrow_forward_ios_outlined,
-                //                       color: mainBlue,
-                //                       size: 14,
-                //                     ),
-                //                   ),
-                //
-                //                 ],
-                //               ),
-                //             ),
-                //       ],
-                // ),),
               ],),),),),);
   }
 }

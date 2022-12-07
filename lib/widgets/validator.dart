@@ -66,8 +66,11 @@ String? validatePassword(String? formPassword) {
 }
 
 String? validateAccountNumber(String? formAccountNumber) {
-  if (formAccountNumber == null || formAccountNumber.isEmpty)
+  if (formAccountNumber == null || formAccountNumber.isEmpty) {
     return 'Account Number is required.';
+  } else if (formAccountNumber.length != 10) {
+    return 'Account Number should not be more than ten(10) digits.';
+  }
 
   return null;
 }
@@ -78,9 +81,10 @@ String? validateAmount(String? formAmount) {
   return null;
 }
 String? validateTransactionPin(String? formTransactionPin) {
-  if (formTransactionPin == null || formTransactionPin.isEmpty)
-  {return 'Pin is required and must be four numbers.';}
-  else if(formTransactionPin.length == 4) {
+  if (formTransactionPin == null || formTransactionPin.isEmpty) {
+    return 'Pin must not be empty.';
+  } else if (formTransactionPin.length != 4) {
+    return 'Pin required and must be four numbers.';
   }
 
   return null;

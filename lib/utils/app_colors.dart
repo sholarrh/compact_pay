@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const mainBlue = Color(0xFF2488B0);
 const lightMainBlue = Color(0xFF314BCE);
+const lightBlue = Color.fromRGBO(36, 136, 176, 0.3);
 const white = Color(0xFFFFFFFF);
 const darkBlue = Color(0xFF193b6c);
 const cardColor = Color(0xFFF5F6FA);

@@ -1,8 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:compact_pay/screens/Send%20Money/Send%20Money/transfer_successful.dart';
 import 'package:compact_pay/utils/app_colors.dart';
+import 'package:compact_pay/widgets/currency_box.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
+
+import '../../../provider/provider.dart';
 
 class Confirm2 extends StatefulWidget {
   const Confirm2({Key? key}) : super(key: key);
@@ -14,6 +20,7 @@ class Confirm2 extends StatefulWidget {
 class _Confirm2State extends State<Confirm2> {
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -50,7 +57,7 @@ class _Confirm2State extends State<Confirm2> {
                     ),
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 MyText(
                   'To',
                   fontFamily: 'Poppins',
@@ -58,7 +65,7 @@ class _Confirm2State extends State<Confirm2> {
                   fontWeight: FontWeight.w400,
                   color: black2121,
                 ),
-                SizedBox(height: 19),
+                const SizedBox(height: 19),
                 MyText(
                   'TUNDE FEMI MARK',
                   fontFamily: 'Poppins',
@@ -66,15 +73,15 @@ class _Confirm2State extends State<Confirm2> {
                   fontWeight: FontWeight.w500,
                   color: black2121,
                 ),
-                SizedBox(height: 19),
+                const SizedBox(height: 19),
                 MyText(
-                  'N 1,000',
+                  '${getCurrency()} ${data.amountToSendTextController.text}',
                   fontFamily: 'Poppins',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: black2121,
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Container(
@@ -102,7 +109,7 @@ class _Confirm2State extends State<Confirm2> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 MyText(
-                                  '0122342133',
+                                  data.receiverAccountNumberTextController.text,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: black2121,
@@ -134,20 +141,20 @@ class _Confirm2State extends State<Confirm2> {
                             Padding(
                               padding: const EdgeInsets.only(left: 100.0),
                               child: Image.network(
-                                'data.bankLogo',
+                                data.bankLogo!,
                                 height: 14.6,
                                 width: 14.6,
                               ),
                             ),
                             MyText(
-                              'Guaranty Trust Bank',
+                              data.bankName!,
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               color: Colors.black87,
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
@@ -165,7 +172,7 @@ class _Confirm2State extends State<Confirm2> {
                               ],
                             ),
                             MyText(
-                              'Shoe',
+                              data.transferDescriptionTextController.text,
                               fontSize: 10,
                               fontWeight: FontWeight.w700,
                               color: Colors.black87,
@@ -176,78 +183,119 @@ class _Confirm2State extends State<Confirm2> {
                     ),
                   ),
                 ),
-                SizedBox(height: 300),
+                const SizedBox(height: 300),
                 MyButton(
                   onTap: () {
                     showModalBottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10.0),
+                          topRight: Radius.circular(10.0),
+                        ),
+                      ),
+                      enableDrag: false,
+                      isDismissible: true,
                       context: context,
-                      builder: (context) => Container(
-                        color: ash3,
-                        child: Container(
-                          padding:
-                              EdgeInsets.only(left: 20, top: 30, right: 20),
-                          decoration: BoxDecoration(
-                            color: white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
+                      builder: (context) => Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 123),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  MyText(
+                                    'Input PIN',
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: black2121,
+                                  ),
+                                  const SizedBox(width: 100),
+                                  IconButton(
+                                    icon: const Icon(Icons.close),
+                                    iconSize: 17,
+                                    color: close,
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 123),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    MyText(
-                                      'Input PIN',
-                                      fontFamily: 'Poppins',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: black2121,
-                                    ),
-                                    SizedBox(width: 100),
-                                    IconButton(
-                                      icon: const Icon(Icons.close),
-                                      iconSize: 17,
-                                      color: close,
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 25),
-                              PinCodeTextField(
-                                appContext: context,
-                                length: 4,
-                                obscureText: true,
-                                autoFocus: true,
-                                keyboardType: TextInputType.number,
-                                onChanged: (value) {
+                            const SizedBox(height: 25),
+                            PinCodeTextField(
+                              appContext: context,
+                              length: 4,
+                              obscureText: true,
+                              autoFocus: true,
+                              keyboardType: TextInputType.number,
+                              onChanged: (value) {
+                                if (kDebugMode) {
                                   print(value);
+                                }
+                              },
+                              pinTheme: PinTheme(
+                                shape: PinCodeFieldShape.box,
+                                borderRadius: BorderRadius.circular(10),
+                                fieldHeight: 54,
+                                fieldWidth: 54,
+                                inactiveColor: ash2,
+                                activeColor: mainBlue,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            MyText(
+                              'Forgot PIN?',
+                              fontFamily: 'Poppins',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: mainBlue,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 30, bottom: 20),
+                              child: MyButton(
+                                height: 50,
+                                width: double.infinity,
+                                color: mainBlue,
+                                onTap: () async {
+                                  //if (formKey.currentState!.validate()) {
+                                  data.isLoading = true;
+                                  setState(() {});
+                                  data.delay(4);
+                                  try {
+                                    data.accountNameTextController.clear();
+                                    data.transferDescriptionTextController
+                                        .clear();
+                                    data.receiverAccountNumberTextController
+                                        .clear();
+
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const TransferSuccessful()));
+                                  } catch (e, s) {
+                                    if (kDebugMode) {
+                                      print(e);
+                                    }
+                                    if (kDebugMode) {
+                                      print(s);
+                                    }
+                                  }
                                 },
-                                pinTheme: PinTheme(
-                                  shape: PinCodeFieldShape.box,
-                                  borderRadius: BorderRadius.circular(10),
-                                  fieldHeight: 54,
-                                  fieldWidth: 54,
-                                  inactiveColor: ash2,
-                                  activeColor: mainBlue,
+                                child: MyText(
+                                  'Send',
+                                  color: white,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
                                 ),
                               ),
-                              SizedBox(height: 10),
-                              MyText(
-                                'Forgot PIN?',
-                                fontFamily: 'Poppins',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: mainBlue,
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     );
