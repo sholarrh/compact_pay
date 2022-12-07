@@ -1,5 +1,5 @@
 import 'package:compact_pay/provider/provider.dart';
-import 'package:compact_pay/screens/add_money/ussd/add_by_ussd.dart';
+import 'package:compact_pay/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins',
         ),
-        home: const AddByUssd(),
+        home: const HomePage(),
       ),);
   }
 }
