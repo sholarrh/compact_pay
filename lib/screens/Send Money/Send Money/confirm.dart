@@ -18,6 +18,8 @@ class Confirm2 extends StatefulWidget {
 }
 
 class _Confirm2State extends State<Confirm2> {
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -185,7 +187,20 @@ class _Confirm2State extends State<Confirm2> {
                 ),
                 const SizedBox(height: 300),
                 MyButton(
+                  height: 54,
+                  width: double.infinity,
+                  color: mainBlue,
                   onTap: () {
+                    _isLoading = true;
+                    setState(() {});
+
+                    Duration waitTime = const Duration(seconds: 4);
+                    Future.delayed(waitTime, () {
+                      _isLoading = false;
+                      if (mounted) {
+                        setState(() {});
+                      }
+                    });
                     showModalBottomSheet(
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
@@ -256,7 +271,7 @@ class _Confirm2State extends State<Confirm2> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(top: 30, bottom: 20),
+                              const EdgeInsets.only(top: 30, bottom: 20),
                               child: MyButton(
                                 height: 50,
                                 width: double.infinity,
@@ -277,7 +292,7 @@ class _Confirm2State extends State<Confirm2> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const TransferSuccessful()));
+                                            const TransferSuccessful()));
                                   } catch (e, s) {
                                     if (kDebugMode) {
                                       print(e);
@@ -297,21 +312,22 @@ class _Confirm2State extends State<Confirm2> {
                             ),
                           ],
                         ),
-                          ),
+                      ),
                     );
                   },
-                  child: Container(
-                    height: 54,
-                    width: double.infinity,
-                    color: mainBlue,
-                    child: MyText(
-                      'Confirm',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  child: _isLoading
+                      ? MyText(
+                          'Confirm',
+                          color: white,
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        )
+                      : const Center(
+                          child: CircularProgressIndicator(
+                            color: white,
+                          ),
+                        ),
                 ),
               ],
             ),

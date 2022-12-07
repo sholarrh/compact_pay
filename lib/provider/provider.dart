@@ -32,6 +32,8 @@ class ProviderClass extends ChangeNotifier {
   final TextEditingController _confirmPasswordTextController =
       TextEditingController();
 
+  final TextEditingController _oldPassword = TextEditingController();
+
   TextEditingController get firstNameTextController => _firstNameTextController;
 
   TextEditingController get middleNameTextController =>
@@ -40,6 +42,8 @@ class ProviderClass extends ChangeNotifier {
   TextEditingController get lastNameTextController => _lastNameTextController;
 
   TextEditingController get passwordTextController => _passwordTextController;
+
+  TextEditingController get oldPassword => _oldPassword;
 
   TextEditingController get emailTextController => _emailTextController;
 

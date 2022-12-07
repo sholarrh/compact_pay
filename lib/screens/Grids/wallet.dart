@@ -55,7 +55,7 @@ class _WalletState extends State<Wallet> {
                 icon: Icons.wallet_sharp,
               ),
               const ContainerWidget(
-                title: 'Add Money',
+                title: 'Send Money',
                 subtitle: 'Send money from your CompactPay account to others',
                 screen: SendMoney(),
                 icon: Icons.wallet_sharp,

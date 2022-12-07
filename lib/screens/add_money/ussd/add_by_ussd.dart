@@ -12,6 +12,7 @@ import '../../../widgets/currency_box.dart';
 import '../../../widgets/my_button.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/show_snackbar.dart';
+import '../../../widgets/text_form_field.dart';
 import '../../../widgets/validator.dart';
 
 class AddByUssd extends StatefulWidget {
@@ -130,12 +131,13 @@ class _AddByUssdState extends State<AddByUssd> {
                                 IconButton(
                                   onPressed: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SelectBank(
-                                                  addMoney: true,
-                                                )));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const SelectBank(
+                                          addMoney: 'Add by ussd',
+                                        ),
+                                      ),
+                                    );
                                   },
                                   icon: const Icon(
                                     Icons.arrow_forward_ios_outlined,
@@ -203,7 +205,7 @@ class _AddByUssdState extends State<AddByUssd> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     const SelectBank(
-                                                      addMoney: true,
+                                                      addMoney: 'Add by ussd',
                                                     )));
                                       },
                                       icon: const Icon(
@@ -270,38 +272,23 @@ class _AddByUssdState extends State<AddByUssd> {
                             color: black2121,
                           ),
                           const SizedBox(
-                            height: 7,
+                            height: 10,
                           ),
-                          TextFormField(
-                            style: const TextStyle(
-                              color: black2121,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'poppins',
-                            ),
-                            showCursor: true,
-                            validator: validatePhoneNumber,
-                            controller: data.amountToSendTextController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              border: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.transparent, width: 0.7),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                              ),
-                              fillColor: white,
-                              prefixIcon: SizedBox(
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      getCurrency(),
-                                      style: const TextStyle(
-                                        color: black2121,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w400,
+                          TvInputField(
+                            validator: validateAmount,
+                            inputController: data.amountToSendTextController,
+                            keyBoardType: TextInputType.number,
+                            prefixIcon: SizedBox(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    getCurrency(),
+                                    style: const TextStyle(
+                                      color: black2121,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
                                         fontFamily: 'poppins',
                                       ),
                                     ),
@@ -324,24 +311,16 @@ class _AddByUssdState extends State<AddByUssd> {
                                     //   ),
                                     // ),
                                     // const VerticalDivider(
-                                    //   indent: 2,
-                                    //   endIndent: 2,
-                                    //   width: 1,
-                                    //   thickness: 2,
-                                    //   color: black2121,
-                                    // ),
-                                  ],
-                                ),
+                                  //   indent: 2,
+                                  //   endIndent: 2,
+                                  //   width: 1,
+                                  //   thickness: 2,
+                                  //   color: black2121,
+                                  // ),
+                                ],
                               ),
-                              filled: true,
-                              focusColor: Colors.red,
-                              hintText: 'Enter 100 ~ 99,999,999',
-                              hintStyle: TextStyle(
-                                  color: black2121.withOpacity(0.4),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'poppins'),
                             ),
+                            hintText: 'Enter 100 ~ 99,999,999',
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 80),
@@ -459,7 +438,7 @@ class _AddByUssdState extends State<AddByUssd> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 21.0),
                       child: MyText(
-                        '${getCurrency()} ${data.amountToSendTextController.text}',
+                        '${getCurrency()} ${data.amountToSendTextController.text}.00',
                         fontWeight: FontWeight.w600,
                         fontSize: 24,
                         fontFamily: 'poppins',

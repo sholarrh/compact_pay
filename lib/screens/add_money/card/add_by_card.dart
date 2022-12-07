@@ -1,5 +1,6 @@
 //ADIGUN SOLAFUNMI
 
+import 'package:compact_pay/screens/add_money/card/payment_successful.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ import '../../../widgets/my_button.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/otp_box.dart';
 import '../../../widgets/show_snackbar.dart';
+import '../../../widgets/text_form_field.dart';
 import '../../../widgets/validator.dart';
 import 'add_new_card.dart';
 
@@ -25,6 +27,8 @@ class _AddByCardState extends State<AddByCard> {
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
+
+  bool _sheetIsLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -264,42 +268,53 @@ class _AddByCardState extends State<AddByCard> {
                       key: formKey,
                       child: Column(
                         children: [
-                          TextFormField(
-                            validator: validatePhoneNumber,
-                            controller: data.amountToSendTextController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              fillColor: cardColor,
-                              prefixIcon: Row(
+                          TvInputField(
+                            validator: validateAmount,
+                            inputController: data.amountToSendTextController,
+                            keyBoardType: TextInputType.number,
+                            prefixIcon: SizedBox(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     getCurrency(),
                                     style: const TextStyle(
                                       color: black2121,
-                                      fontSize: 24,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.w400,
                                       fontFamily: 'poppins',
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  const VerticalDivider(
-                                    width: 2,
-                                    color: black2121,
-                                  ),
+                                  // const SizedBox(
+                                  //   width: 8,
+                                  // ),
+
+                                  // SizedBox(
+                                  //   width: 1,
+                                  //   child: Center(
+                                  //     child: Container(
+                                  //       width: 1,
+                                  //       margin: const EdgeInsets.only(top: 2, bottom: 2),
+                                  //       decoration: BoxDecoration(
+                                  //         border: Border(
+                                  //           left: Divider.createBorderSide(context, color: black2121, width: 1),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const VerticalDivider(
+                                  //   indent: 2,
+                                  //   endIndent: 2,
+                                  //   width: 1,
+                                  //   thickness: 2,
+                                  //   color: black2121,
+                                  // ),
                                 ],
                               ),
-                              filled: true,
-                              focusColor: Colors.red,
-                              hintText: 'Enter 100 ~ 99,999,999',
-                              hintStyle: TextStyle(
-                                  color: black2121.withOpacity(0.4),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'poppins'),
                             ),
+                            hintText: 'Enter 100 ~ 99,999,999',
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 80),
@@ -370,7 +385,7 @@ class _AddByCardState extends State<AddByCard> {
             child: Stack(children: [
               IconButton(
                 icon: const Icon(Icons.close),
-                iconSize: 12,
+                iconSize: 17,
                 color: close,
                 onPressed: () {
                   Navigator.pop(context);
@@ -426,7 +441,7 @@ class _AddByCardState extends State<AddByCard> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 214.0),
+                    padding: const EdgeInsets.only(top: 20, bottom: 21.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -438,6 +453,59 @@ class _AddByCardState extends State<AddByCard> {
                           color: mainBlue,
                         ),
                       ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 78, bottom: 44),
+                    child: MyButton(
+                      height: 50,
+                      width: double.infinity,
+                      color: mainBlue,
+                      onTap: () async {
+                        // if (formKey.currentState!.validate()) {
+                        _sheetIsLoading = true;
+                        setState(() {});
+                        Duration waitTime = const Duration(seconds: 4);
+                        Future.delayed(waitTime, () {
+                          _sheetIsLoading = false;
+                          if (mounted) {
+                            setState(() {});
+                          }
+                        });
+
+                        try {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PaymentSuccessful()));
+                        } catch (e, s) {
+                          if (kDebugMode) {
+                            print(e);
+                          }
+                          if (kDebugMode) {
+                            print(s);
+                          }
+                        }
+                        // } else {
+                        //   const ShowSnackBar(
+                        //     text: "There is an error",
+                        //     duration: 5,
+                        //   );
+                        // }
+                      },
+                      child: _sheetIsLoading == false
+                          ? MyText(
+                              'Continue',
+                              color: white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                            )
+                          : const Center(
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            ),
                     ),
                   ),
                 ],

@@ -32,6 +32,8 @@ class _NewPasswordState extends State<NewPassword> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
+  bool _newIsLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -139,7 +141,13 @@ class _NewPasswordState extends State<NewPassword> {
                             data.isLoading = true;
                             setState(() {});
 
-                            data.delay(4);
+                            Duration waitTime = const Duration(seconds: 4);
+                            Future.delayed(waitTime, () {
+                              _newIsLoading = false;
+                              if (mounted) {
+                                setState(() {});
+                              }
+                            });
 
                             try {
                               data.sendOtp();
@@ -172,7 +180,7 @@ class _NewPasswordState extends State<NewPassword> {
                             );
                           }
                         },
-                        child: data.isLoading == false
+                        child: _newIsLoading == false
                             ? MyText(
                                 'Continue',
                                 color: white,

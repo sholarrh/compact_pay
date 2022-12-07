@@ -7,13 +7,16 @@ import 'package:provider/provider.dart';
 import '../../../provider/provider.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_text.dart';
+import '../card/add_by_card.dart';
 import 'add_by_ussd.dart';
 
 class SelectBank extends StatefulWidget {
-  final bool addMoney;
+  final String addMoney;
 
-  const SelectBank({Key? key, required this.addMoney})
-      : super(
+  const SelectBank({
+    Key? key,
+    required this.addMoney,
+  }) : super(
           key: key,
         );
 
@@ -101,14 +104,32 @@ class _SelectBankState extends State<SelectBank> {
                           horizontal: 1.0, vertical: 12.0),
                       child: ListTile(
                         onTap: () {
+                          print('addmoney is ${widget.addMoney}');
                           data.bankName = displayList[index]['name'];
                           data.bankLogo = displayList[index]['logo'];
-                          Navigator.push(
+
+                          if (widget.addMoney == 'Add by ussd') {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => widget.addMoney
-                                      ? const AddByUssd()
-                                      : const BankAccount()));
+                                builder: (context) => const AddByUssd(),
+                              ),
+                            );
+                          } else if (widget.addMoney == 'Bank Account') {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const BankAccount(),
+                              ),
+                            );
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AddByCard(),
+                              ),
+                            );
+                          }
                         },
                         dense: true,
                         tileColor: white,

@@ -80,11 +80,42 @@ String? validateAmount(String? formAmount) {
 
   return null;
 }
+
 String? validateTransactionPin(String? formTransactionPin) {
   if (formTransactionPin == null || formTransactionPin.isEmpty) {
     return 'Pin must not be empty.';
   } else if (formTransactionPin.length != 4) {
     return 'Pin required and must be four numbers.';
+  }
+
+  return null;
+}
+
+String? validateCardNumber(String? formCardNumber) {
+  if (formCardNumber == null || formCardNumber.isEmpty) {
+    return 'PhoneNumber is required.';
+  } else if (formCardNumber.length != 16) {
+    return 'Card number should be sixteen(16) digits.';
+  }
+
+  return null;
+}
+
+String? validateCardExpiryDateNumber(String? formCardExpiryDateNumber) {
+  if (formCardExpiryDateNumber == null || formCardExpiryDateNumber.isEmpty) {
+    return 'PhoneNumber is required.';
+  } else if (formCardExpiryDateNumber.length != 4) {
+    return 'Card Expiry Date should be four(4) digits.';
+  }
+
+  return null;
+}
+
+String? validateCardCvvNumber(String? formCardCvvNumber) {
+  if (formCardCvvNumber == null || formCardCvvNumber.isEmpty) {
+    return 'PhoneNumber is required.';
+  } else if (formCardCvvNumber.length != 3) {
+    return 'Card Cvv number should be three(3) digits.';
   }
 
   return null;

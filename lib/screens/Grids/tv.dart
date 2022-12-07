@@ -64,6 +64,8 @@ class _TvState extends State<Tv> {
 
   var color = white;
 
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -744,9 +746,18 @@ class _TvState extends State<Tv> {
                                                 color: mainBlue,
                                                 onTap: () async {
                                                   // if (formKey.currentState!.validate()) {
-                                                  // data.isLoading = true;
+                                                  _isLoading = true;
                                                   setState(() {});
-                                                  data.delay(4);
+
+                                                  Duration waitTime =
+                                                      const Duration(
+                                                          seconds: 4);
+                                                  Future.delayed(waitTime, () {
+                                                    _isLoading = false;
+                                                    if (mounted) {
+                                                      setState(() {});
+                                                    }
+                                                  });
                                                   try {} catch (e, s) {
                                                     if (kDebugMode) {
                                                       print(e);

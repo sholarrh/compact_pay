@@ -1,6 +1,8 @@
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/provider.dart';
 import '../utils/app_colors.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_text.dart';
@@ -18,14 +20,13 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  bool isLoading = false;
-  TextEditingController _Oldpassword = TextEditingController();
-  TextEditingController _Newpassword = TextEditingController();
-  TextEditingController _Repeatpassword = TextEditingController();
+  bool _isLoading = false;
 
   final formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: deepBlue1,
@@ -42,7 +43,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                     child: Row(
                       children: [
                         IconButton(
-                          icon: Icon(Icons.close),
+                          icon: const Icon(Icons.close),
                           color: white,
                           iconSize: 17,
                           onPressed: () {
@@ -64,84 +65,85 @@ class _ChangePasswordState extends State<ChangePassword> {
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
                       fontSize: 13),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   InputField(
                     hintText: '',
                     validator: validatePassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _Oldpassword,
+                    inputController: data.oldPassword,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   MyText('New Password',
                       color: white,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
                       fontSize: 13),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   InputField(
                     hintText: '',
                     validator: validatePassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _Newpassword,
+                    inputController: data.passwordTextController,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   MyText('Repeat Password',
                       color: white,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
                       fontSize: 13),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   InputField(
                     hintText: '',
-                    validator: validatePassword,
+                    validator: data.validateConfirmPassword,
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _Repeatpassword,
+                    inputController: data.confirmPasswordTextController,
                   ),
-                  SizedBox(height: 80),
+                  const SizedBox(height: 80),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pop(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Login()));
-                    },
-                    child: MyButton(
                       onTap: () {
-                        if (formkey.currentState!.validate()) {
-                          isLoading = true;
-                          setState(() {});
-                          Future.delayed(Duration(seconds: 10))
-                              .then((value) async {
-                            isLoading = false;
-                            setState(() {});
-                          });
-                        }
+                        Navigator.pop(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Login()));
                       },
-                      child: Container(
+                      child: MyButton(
                         height: 54,
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: mainBlue,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: MyText(
-                            'Done',
-                            color: white,
-                            fontFamily: 'Poppins',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
+                        color: mainBlue,
+                        onTap: () {
+                          if (formkey.currentState!.validate()) {
+                            _isLoading = true;
+                            setState(() {});
+
+                            Duration waitTime = const Duration(seconds: 4);
+                            Future.delayed(waitTime, () {
+                              _isLoading = false;
+                              if (mounted) {
+                                setState(() {});
+                              }
+                            });
+                          }
+                        },
+                        child: _isLoading
+                            ? MyText(
+                                'Done',
+                                color: white,
+                                fontFamily: 'Poppins',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              )
+                            : const Center(
+                                child: CircularProgressIndicator(
+                                  color: white,
+                                ),
+                              ),
+                      )),
                 ],
               ),
             ),

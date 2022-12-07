@@ -1,5 +1,6 @@
 //Adigun solafunmi
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
+
+  bool _forgotIsLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +109,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             data.isLoading = true;
                             setState(() {});
 
-                            data.delay(4);
+                            Duration waitTime = const Duration(seconds: 4);
+                            Future.delayed(waitTime, () {
+                              _forgotIsLoading = false;
+                              if (mounted) {
+                                setState(() {});
+                              }
+                            });
 
                             try {
                               data.sendOtp();
@@ -123,8 +132,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                             Verification(goToPasswordScreen)));
                               }
                             } catch (e, s) {
-                              print(e);
-                              print(s);
+                              if (kDebugMode) {
+                                print(e);
+                              }
+                              if (kDebugMode) {
+                                print(s);
+                              }
                             }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -135,7 +148,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             );
                           }
                         },
-                        child: data.isLoading == false
+                        child: _forgotIsLoading == false
                             ? MyText(
                                 'Continue',
                                 color: white,

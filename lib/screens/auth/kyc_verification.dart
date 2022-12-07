@@ -28,6 +28,8 @@ class _KycVerificationState extends State<KycVerification> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
+  bool _kycIsLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -203,7 +205,16 @@ class _KycVerificationState extends State<KycVerification> {
                                 if (formKey.currentState!.validate()) {
                                   data.isLoading = true;
                                   setState(() {});
-                                  data.delay(4);
+
+                                  Duration waitTime =
+                                      const Duration(seconds: 4);
+                                  Future.delayed(waitTime, () {
+                                    _kycIsLoading = false;
+                                    if (mounted) {
+                                      setState(() {});
+                                    }
+                                  });
+
                                   try {
                                     data.addressTextController.clear();
                                     data.passwordTextController.clear();
@@ -230,7 +241,7 @@ class _KycVerificationState extends State<KycVerification> {
                                   );
                                 }
                               },
-                              child: data.isLoading == false
+                              child: _kycIsLoading == false
                                   ? MyText(
                                       'Continue',
                                       color: white,

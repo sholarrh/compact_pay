@@ -21,7 +21,7 @@ class BankAccount extends StatefulWidget {
 }
 
 class _BankAccountState extends State<BankAccount> {
-  // bool addMoney = false;
+   bool _isLoading = false;
   bool isSwitched1 = false;
 
   final formKey = GlobalKey<FormState>();
@@ -147,7 +147,7 @@ class _BankAccountState extends State<BankAccount> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const SelectBank(
-                                          addMoney: false,
+                                      addMoney: 'Bank Account',
                                         )));
                           },
                         ),
@@ -241,9 +241,16 @@ class _BankAccountState extends State<BankAccount> {
                       color: mainBlue,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          data.isLoading = true;
+                          _isLoading = true;
                           setState(() {});
-                          data.delay(4);
+
+                          Duration waitTime = const Duration(seconds: 4);
+                          Future.delayed(waitTime, () {
+                            _isLoading = false;
+                            if (mounted) {
+                              setState(() {});
+                            }
+                          });
                           try {
                             Navigator.push(
                                 context,

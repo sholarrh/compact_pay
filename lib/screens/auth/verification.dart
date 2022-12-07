@@ -32,6 +32,8 @@ class _VerificationState extends State<Verification> {
     // ProviderClass().setCountDown();
   }
 
+  bool _verificationIsLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -152,9 +154,17 @@ class _VerificationState extends State<Verification> {
                         if (await data.myAuth
                                 .verifyOTP(otp: data.otpCodeList.join("")) ==
                             true) {
-                          data.isLoading = true;
+                          _verificationIsLoading = true;
                           setState(() {});
-                          data.delay(4);
+
+                          Duration waitTime = const Duration(seconds: 4);
+                          Future.delayed(waitTime, () {
+                            _verificationIsLoading = false;
+                            if (mounted) {
+                              setState(() {});
+                            }
+                          });
+
                           try {
                             await data.postRegister().then((value) {
                               if (data.signUpResponse.statusCode == 200 ||
@@ -190,7 +200,7 @@ class _VerificationState extends State<Verification> {
                           );
                         }
                       },
-                      child: data.isLoading == false
+                      child: _verificationIsLoading == false
                           ? MyText(
                               'Continue',
                               color: white,

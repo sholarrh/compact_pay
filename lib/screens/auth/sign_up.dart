@@ -26,14 +26,27 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isChecked = false;
+  bool _signUpIsLoading = false;
   bool goToPasswordScreen = false;
   String dropdownValue = '+234';
   final _formKey = GlobalKey<FormState>();
+
   GlobalKey<FormState> get formKey => _formKey;
+
+  bool _areFormFieldsFilled = false;
+
+  // void _updateFormFieldsFilled() {
+  //   FormState form = Form.of(context);
+  //   form.save();
+  //   setState(() {
+  //     _areFormFieldsFilled = form.validate();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,
@@ -41,6 +54,13 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Form(
+              onChanged: () {
+                FormState? form = Form.of(context);
+                form!.save();
+                setState(() {
+                  _areFormFieldsFilled = form.validate();
+                });
+              },
               key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,6 +91,9 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 8),
                   InputField(
                       hintText: 'Enter first name',
+                      onChanged: (value) {
+                        //  _updateFormFieldsFilled();
+                      },
                       validator: validateFullName,
                       keyBoardType: TextInputType.name,
                       isPassword: false,
@@ -92,6 +115,9 @@ class _SignUpState extends State<SignUp> {
                     isPassword: false,
                     hasSuffixIcon: false,
                     inputController: data.middleNameTextController,
+                    onChanged: (value) {
+                      //_updateFormFieldsFilled();
+                    },
                   ),
                   const SizedBox(height: 25),
                   MyText(
@@ -109,6 +135,9 @@ class _SignUpState extends State<SignUp> {
                     isPassword: false,
                     hasSuffixIcon: false,
                     inputController: data.lastNameTextController,
+                    onChanged: (value) {
+                      //_updateFormFieldsFilled();
+                    },
                   ),
                   const SizedBox(height: 25),
                   MyText(
@@ -126,6 +155,9 @@ class _SignUpState extends State<SignUp> {
                     isPassword: false,
                     hasSuffixIcon: false,
                     inputController: data.emailTextController,
+                    onChanged: (value) {
+                      //_updateFormFieldsFilled();
+                    },
                   ),
                   const SizedBox(height: 25),
                   MyText(
@@ -142,6 +174,9 @@ class _SignUpState extends State<SignUp> {
                     keyBoardType: TextInputType.phone,
                     isPassword: false,
                     hasSuffixIcon: false,
+                    onChanged: (value) {
+                      //_updateFormFieldsFilled();
+                    },
                     prefixIcon: DropdownButton<String>(
                       value: dropdownValue,
                       elevation: 16,
@@ -194,6 +229,9 @@ class _SignUpState extends State<SignUp> {
                     isPassword: false,
                     hasSuffixIcon: true,
                     inputController: data.passwordTextController,
+                    onChanged: (value) {
+                      //_updateFormFieldsFilled();
+                    },
                   ),
                   const SizedBox(height: 25),
                   MyText(
@@ -211,6 +249,9 @@ class _SignUpState extends State<SignUp> {
                     isPassword: false,
                     hasSuffixIcon: true,
                     inputController: data.confirmPasswordTextController,
+                    onChanged: (value) {
+                      //_updateFormFieldsFilled();
+                    },
                   ),
                   const SizedBox(height: 15),
                   Row(
@@ -220,6 +261,7 @@ class _SignUpState extends State<SignUp> {
                         value: isChecked,
                         onChanged: (bool? value) {
                           setState(() {
+                            // _updateFormFieldsFilled();
                             isChecked = value!;
                           });
                         },
@@ -256,11 +298,21 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 5),
                   MyButton(
+                    height: 54,
+                    width: double.infinity,
+                    color: _areFormFieldsFilled ? mainBlue : unValidated,
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        data.isLoading = true;
+                        _signUpIsLoading = true;
                         setState(() {});
-                        data.delay(4);
+
+                        Duration waitTime = const Duration(seconds: 4);
+                        Future.delayed(waitTime, () {
+                          _signUpIsLoading = false;
+                          if (mounted) {
+                            setState(() {});
+                          }
+                        });
 
                         try {
                           data.sendOtp();
@@ -290,29 +342,18 @@ class _SignUpState extends State<SignUp> {
                         );
                       }
                     },
-                    child: Container(
-                      height: 54,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: mainBlue,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: data.isLoading == false
-                          ? Center(
-                        child: MyText(
-                          'Sign Up',
-                          color: white,
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                          : const Center(
-                              child: CircularProgressIndicator(
-                                color: white,
-                              ),
+                    child: _signUpIsLoading == false
+                        ? MyText(
+                            'Sign Up',
+                            color: white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(
+                              color: white,
                             ),
-                    ),
+                          ),
                   ),
                 ],
               ),

@@ -30,6 +30,7 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
+  bool _loginIsLoading = false;
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
@@ -157,9 +158,17 @@ class _LoginState extends State<Login> {
                         color: mainBlue,
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            data.isLoading = true;
+                            _loginIsLoading = true;
                             setState(() {});
-                            data.delay(4);
+
+                            Duration waitTime = const Duration(seconds: 4);
+                            Future.delayed(waitTime, () {
+                              _loginIsLoading = false;
+                              if (mounted) {
+                                setState(() {});
+                              }
+                            });
+
                             try {
                               await data.postLogin().then((value) {
                                 if (data.postLoginResponse.statusCode == 202) {
@@ -194,7 +203,7 @@ class _LoginState extends State<Login> {
                             );
                           }
                         },
-                        child: data.isLoading == false
+                        child: _loginIsLoading == false
                             ? MyText(
                                 'Log In',
                                 color: white,

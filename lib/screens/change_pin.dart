@@ -17,10 +17,7 @@ class ChangePin extends StatefulWidget {
 }
 
 class _ChangePinState extends State<ChangePin> {
-  bool isLoading = false;
-  final TextEditingController _oldPin = TextEditingController();
-  final TextEditingController _newPin = TextEditingController();
-  final TextEditingController _repeatPin = TextEditingController();
+  bool _isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -74,7 +71,7 @@ class _ChangePinState extends State<ChangePin> {
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _oldPin,
+                    inputController: data.oldTransactionPin,
                   ),
                 const SizedBox(height: 25),
                 MyText('New Pin',
@@ -89,7 +86,7 @@ class _ChangePinState extends State<ChangePin> {
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _newPin,
+                    inputController: data.newTransactionPin,
                   ),
                 const SizedBox(height: 25),
                 MyText('Repeat Pin',
@@ -104,7 +101,7 @@ class _ChangePinState extends State<ChangePin> {
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: true,
-                    inputController: _repeatPin,
+                    inputController: data.confirmTransactionPin,
                   ),
                   const SizedBox(height: 80),
                   MyButton(
@@ -113,7 +110,15 @@ class _ChangePinState extends State<ChangePin> {
                     color: mainBlue,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                        data.isLoading = true;
+                        _isLoading = true;
+
+                        Duration waitTime = const Duration(seconds: 4);
+                        Future.delayed(waitTime, () {
+                          _isLoading = false;
+                          if (mounted) {
+                            setState(() {});
+                          }
+                        });
 
                         Navigator.push(
                             context,

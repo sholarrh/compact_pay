@@ -20,6 +20,8 @@ class SetTransactionPin extends StatefulWidget {
 }
 
 class _SetTransactionPinState extends State<SetTransactionPin> {
+  bool _setIsLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -151,14 +153,14 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                         if (data.pinList.join("") ==
                             data.confirmPinList.join("")) {
                           data.isLoading = true;
-
                           setState(() {});
+
                           Duration waitTime = const Duration(seconds: 4);
                           Future.delayed(waitTime, () {
+                            _setIsLoading = false;
                             if (mounted) {
-                              data.isLoading = false;
+                              setState(() {});
                             }
-                            setState(() {});
                           });
 
                           try {
@@ -181,7 +183,7 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                           );
                         }
                       },
-                      child: data.isLoading == false
+                      child: _setIsLoading == false
                           ? MyText(
                               'Continue',
                               color: white,

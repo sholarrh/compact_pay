@@ -12,6 +12,7 @@ class InputField extends StatefulWidget {
   final bool isPassword;
   final Function? validator;
   final Function? onSaved;
+  final Function? onChanged;
   final TextInputType keyBoardType;
   final TextInputAction? textInputAction;
   final TextInputFormatter? inputFormatters;
@@ -25,6 +26,7 @@ class InputField extends StatefulWidget {
       required this.hasSuffixIcon,
       this.validator,
       this.onSaved,
+      this.onChanged,
       required this.keyBoardType,
       this.inputFormatters,
       this.textInputAction})
@@ -43,16 +45,16 @@ class _InputFieldState extends State<InputField> {
       child: TextFormField(
         validator: (value) => widget.validator!(value),
         controller: widget.inputController,
-        onChanged: (value) {
-          //Do something wi
-        },
+        onChanged: (value) => widget.onChanged!(value),
         keyboardType: widget.keyBoardType,
         autocorrect: true,
         textCapitalization: TextCapitalization.words,
         textInputAction: widget.textInputAction ?? TextInputAction.next,
         onSaved: (value) => widget.onSaved!(value),
         style: const TextStyle(
-            fontSize: 16, color: Color(0xff212121), fontWeight: FontWeight.w400),
+            fontSize: 16,
+            color: Color(0xff212121),
+            fontWeight: FontWeight.w400),
         showCursor: false,
         decoration: InputDecoration(
           fillColor: white,
@@ -147,7 +149,6 @@ class _InputField2State extends State<InputField2> {
         validator: (value) => widget.validator!(value),
         controller: widget.inputController,
         onChanged: (value) {
-          //Do something wi
         },
         keyboardType: widget.keyBoardType,
         autocorrect: true,
@@ -366,3 +367,83 @@ class _TvInputFieldState extends State<TvInputField> {
     );
   }
 }
+
+// class BankTransferInputField extends StatefulWidget {
+//   final Widget? prefixIcon;
+//   final String hintText;
+//   final Widget? suffixIcon;
+//   final TextEditingController inputController;
+//
+//   final Function? validator;
+//   final Function? onSaved;
+//   final TextInputType keyBoardType;
+//   final TextInputAction? textInputAction;
+//
+//   const BankTransferInputField(
+//       {Key? key,
+//         required this.inputController,
+//         this.prefixIcon,
+//         required this.hintText,
+//         this.suffixIcon,
+//         this.validator,
+//         this.onSaved,
+//         required this.keyBoardType,
+//         this.textInputAction})
+//       : super(key: key);
+//
+//   @override
+//   State<BankTransferInputField> createState() => _BankTransferInputFieldState();
+// }
+//
+// class _BankTransferInputFieldState extends State<BankTransferInputField> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       height: 54,
+//       child: TextFormField(
+//         validator: (value) => widget.validator!(value),
+//         controller: widget.inputController,
+//         onChanged: (value) {},
+//         keyboardType: widget.keyBoardType,
+//         autocorrect: true,
+//         textCapitalization: TextCapitalization.words,
+//         textInputAction: widget.textInputAction ?? TextInputAction.next,
+//         onSaved: (value) => widget.onSaved!(value),
+//         style: const TextStyle(
+//             fontSize: 16, color: black2121, fontWeight: FontWeight.w500),
+//         showCursor: true,
+//         decoration: InputDecoration(
+//           prefixIcon: widget.prefixIcon,
+//           suffixIcon: widget.suffixIcon,
+//           focusColor: Colors.red,
+//           hintText: widget.hintText,
+//           filled: true,
+//           fillColor: const Color(0xffF6F6F6),
+//           hintStyle: TextStyle(
+//               color: black2121.withOpacity(0.4),
+//               fontSize: 10,
+//               fontWeight: FontWeight.w400),
+//           contentPadding:
+//           const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+//           enabledBorder: OutlineInputBorder(
+//             borderSide:
+//             BorderSide(color: Colors.grey.withOpacity(0.4), width: 0.7),
+//             borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+//           ),
+//           focusedBorder: const OutlineInputBorder(
+//             borderSide: BorderSide(color: mainBlue, width: 1.0),
+//             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+//           ),
+//           errorBorder: const OutlineInputBorder(
+//             borderSide: BorderSide(color: Colors.red, width: 1.0),
+//             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+//           ),
+//           // enabledBorder: const OutlineInputBorder(
+//           //   borderSide: BorderSide(color: Color(0xFF333333), width: 0.7),
+//           //   borderRadius: BorderRadius.all(Radius.circular(15.0)),
+//           // ),
+//         ),
+//       ),
+//     );
+//   }
+// }
