@@ -101,6 +101,27 @@ class ProviderClass extends ChangeNotifier {
   TextEditingController get transferDescriptionTextController =>
       _transferDescriptionTextController;
 
+  // Pincode controllers
+  final TextEditingController _pincodeField = TextEditingController();
+  TextEditingController get pincodeField => _pincodeField;
+  final TextEditingController _pinCode = TextEditingController();
+  TextEditingController get pinCode => _pinCode;
+
+  // airtime controllers
+
+  final TextEditingController _startDate = TextEditingController();
+  TextEditingController get startDate => _startDate;
+  final TextEditingController _endDate = TextEditingController();
+  TextEditingController get endDate => _endDate;
+
+  // Electricity controllers
+  final TextEditingController _chooseProvider = TextEditingController();
+  TextEditingController get chooseProvider => _chooseProvider;
+  final TextEditingController _meterNumber = TextEditingController();
+  TextEditingController get meterNumber => _meterNumber;
+  TextEditingController _amount = TextEditingController();
+  TextEditingController get amount => _amount;
+
   // CARD DETAILS
 
   TextEditingController get cardNameTextController => _cardNameTextController;

@@ -1,10 +1,13 @@
 import 'package:compact_pay/widgets/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../utils/app_colors.dart';
-import '../widgets/my_button.dart';
-import '../widgets/my_text.dart';
-import '../widgets/text_form_field.dart';
+import '../../provider/provider.dart';
+import '../../utils/app_colors.dart';
+import '../../widgets/currency_box.dart';
+import '../../widgets/my_button.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/text_form_field.dart';
 
 class CompactPayAccount extends StatefulWidget {
   const CompactPayAccount({Key? key}) : super(key: key);
@@ -16,13 +19,11 @@ class CompactPayAccount extends StatefulWidget {
 class _CompactPayAccountState extends State<CompactPayAccount> {
   bool isSwitched1 = false;
 
-  TextEditingController _accountnumber = TextEditingController();
-  TextEditingController _amount = TextEditingController();
-  TextEditingController _description = TextEditingController();
   final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -107,7 +108,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: _accountnumber,
+                    inputController: data.accountNumberTextController,
                   ),
                   SizedBox(height: 25),
                   MyText(
@@ -119,12 +120,12 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                   ),
                   const SizedBox(height: 8),
                   InputField(
-                    hintText: 'N0.00',
+                    hintText: '${getCurrency()} 0.00',
                     validator: validateAmount,
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: _amount,
+                    inputController: data.amountToSendTextController,
                   ),
                   SizedBox(height: 25),
                   MyText(
@@ -141,7 +142,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                     keyBoardType: TextInputType.name,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: _amount,
+                    inputController: data.transferDescriptionTextController,
                   ),
                   SizedBox(height: 15),
                   Row(

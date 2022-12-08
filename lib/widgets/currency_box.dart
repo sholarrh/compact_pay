@@ -26,7 +26,7 @@ class _CurrencyBoxState extends State<CurrencyBox> {
       onTap: () {
         print('The money sent is ${widget.amount}');
         setState(() {
-          data.amountToSendTextController.text == widget.amount;
+          data.amountToSendTextController.text = widget.amount;
         });
       },
       child: Container(

@@ -3,8 +3,10 @@ import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/my_button.dart';
+import '../../provider/provider.dart';
+import '../../widgets/my_button.dart';
 
 class ElectricityPage extends StatefulWidget {
   const ElectricityPage({Key? key}) : super(key: key);
@@ -14,14 +16,22 @@ class ElectricityPage extends StatefulWidget {
 }
 
 class _ElectricityPageState extends State<ElectricityPage> {
-  TextEditingController _chooseprovider = TextEditingController();
-  TextEditingController _meternumber = TextEditingController();
-  TextEditingController _amount = TextEditingController();
-  String dropdownValue = '+234';
   String selected = "first";
+  String _selected = '';
+
+  final networkProviders = [
+    'Ibadan Electricty Distribution',
+    'Ikeja Electricity Distribution',
+    'Lagos Electricity Distribution',
+    'Ogun Electricity Distribution',
+    'Kano Electricity Distribution',
+    'Port harcourt Electricity Distribution'
+  ];
 
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
+
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -42,7 +52,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
                           Navigator.pop(context);
                         },
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       MyText(
                         'Electricity',
                         fontFamily: 'Poppins',
@@ -53,7 +63,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 MyText(
                   'Meter Type',
                   fontFamily: 'Poppins',
@@ -61,7 +71,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
                   fontWeight: FontWeight.w400,
                   color: black2121,
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Row(
                   children: [
                     GestureDetector(
@@ -88,7 +98,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -104,10 +114,10 @@ class _ElectricityPageState extends State<ElectricityPage> {
                         ),
                         child: Center(
                           child: MyText(
-                            'Prepaid',
+                            'Postpaid',
                             fontFamily: 'Poppins',
                             fontSize: 10,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                             color: black2121,
                           ),
                         ),
@@ -115,54 +125,89 @@ class _ElectricityPageState extends State<ElectricityPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 MyText(
-                  'Servcie Provider',
+                  'Service Provider',
                   fontFamily: 'Poppins',
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
                   color: black2121,
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 InputField3(
-                  inputController: _chooseprovider,
+                  inputController: data.chooseProvider,
                   hintText: 'Choose Provider',
-                  suffixIcon: DropdownButton<String>(
-                    value: dropdownValue,
-                    elevation: 16,
-                    style: const TextStyle(color: black),
-                    items: <String>[
-                      '+234',
-                      '+218',
-                      '+235',
-                      '+385',
-                      '+30',
-                      '+221',
-                      '+227',
-                      '+44',
-                      '+93',
-                      '+27',
-                      '+33',
-                      '+233',
-                      '+1229',
-                      '+594',
-                      '+256',
-                      '+263',
-                      '+260'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: MyText(value),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => Container(
+                          color: ash3,
+                          child: Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, top: 30, right: 20),
+                              decoration: const BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      MyText(
+                                        'Choose Provider',
+                                        fontFamily: 'Poppins',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: black2121,
+                                      ),
+                                      IconButton(
+                                        icon: const Icon(Icons.close),
+                                        iconSize: 17,
+                                        color: black_13,
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    height: 2,
+                                    thickness: 2,
+                                    color: ashColor,
+                                  ),
+                                  Expanded(
+                                    child: ListView.separated(
+                                      itemCount: networkProviders.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          leading: const CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                'assets/images/Ellipse 195.png'),
+                                          ),
+                                          title: Text(networkProviders[index]),
+                                        );
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return const Divider();
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ),
                       );
-                    }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
                     },
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 MyText(
                   'Meter Number',
                   fontFamily: 'Poppins',
@@ -171,10 +216,11 @@ class _ElectricityPageState extends State<ElectricityPage> {
                   color: black2121,
                 ),
                 InputField3(
-                  inputController: _meternumber,
+                  inputController: data.meterNumber,
                   hintText: 'Enter Meter Number',
+                  keyBoardType: TextInputType.name,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 MyText(
                   'Amount',
                   fontFamily: 'Poppins',
@@ -182,13 +228,13 @@ class _ElectricityPageState extends State<ElectricityPage> {
                   fontWeight: FontWeight.w400,
                   color: black2121,
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 InputField3(
-                  inputController: _amount,
+                  inputController: data.amount,
                   hintText: 'Enter Amount',
                   keyBoardType: TextInputType.number,
                 ),
-                SizedBox(height: 70),
+                const SizedBox(height: 70),
                 MyButton(
                   onTap: () {
                     showModalBottomSheet(
@@ -196,9 +242,9 @@ class _ElectricityPageState extends State<ElectricityPage> {
                       builder: (context) => Container(
                         color: ash3,
                         child: Container(
-                          padding:
-                              EdgeInsets.only(left: 20, top: 30, right: 20),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 30, right: 20),
+                          decoration: const BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
@@ -219,7 +265,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
                                       fontWeight: FontWeight.w500,
                                       color: black2121,
                                     ),
-                                    SizedBox(width: 100),
+                                    const SizedBox(width: 100),
                                     IconButton(
                                       icon: const Icon(Icons.close),
                                       iconSize: 17,
@@ -231,7 +277,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 25),
+                              const SizedBox(height: 25),
                               PinCodeTextField(
                                 appContext: context,
                                 length: 4,
@@ -250,7 +296,7 @@ class _ElectricityPageState extends State<ElectricityPage> {
                                   activeColor: mainBlue,
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               MyText(
                                 'Forgot PIN?',
                                 fontFamily: 'Poppins',

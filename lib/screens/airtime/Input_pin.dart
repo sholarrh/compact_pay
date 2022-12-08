@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
-import '../utils/app_colors.dart';
-import '../widgets/my_button.dart';
-import '../widgets/my_text.dart';
+import '../../provider/provider.dart';
+import '../../utils/app_colors.dart';
+import '../../widgets/currency_box.dart';
+import '../../widgets/my_button.dart';
+import '../../widgets/my_text.dart';
 
 class InputPin extends StatefulWidget {
   const InputPin({Key? key}) : super(key: key);
@@ -13,10 +16,9 @@ class InputPin extends StatefulWidget {
 }
 
 class _InputPinState extends State<InputPin> {
-  TextEditingController _pincode = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -76,7 +78,7 @@ class _InputPinState extends State<InputPin> {
                 ),
                 SizedBox(height: 5),
                 MyText(
-                  'N50',
+                  '${getCurrency()}50',
                   fontFamily: 'Poppins',
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
@@ -149,7 +151,7 @@ class _InputPinState extends State<InputPin> {
                             color: black2121,
                           ),
                           MyText(
-                            'N0.00',
+                            '${getCurrency()}0.00',
                             fontFamily: 'Poppins',
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
@@ -206,7 +208,7 @@ class _InputPinState extends State<InputPin> {
                               SizedBox(height: 25),
                               PinCodeTextField(
                                 appContext: context,
-                                controller: _pincode,
+                                controller: data.pinCode,
                                 length: 4,
                                 obscureText: true,
                                 autoFocus: true,

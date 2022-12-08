@@ -1,10 +1,13 @@
+import 'package:compact_pay/provider/provider.dart';
 import 'package:compact_pay/utils/app_colors.dart';
+import 'package:compact_pay/widgets/currency_box.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:compact_pay/widgets/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class AirtimeTopUp extends StatefulWidget {
   const AirtimeTopUp({Key? key}) : super(key: key);
@@ -14,25 +17,21 @@ class AirtimeTopUp extends StatefulWidget {
 }
 
 class _AirtimeTopUpState extends State<AirtimeTopUp> {
-  TextEditingController _phonenumber = TextEditingController();
-  TextEditingController _amount = TextEditingController();
-  TextEditingController _startDate = TextEditingController();
-  TextEditingController _endDate = TextEditingController();
   bool isSwitched1 = false;
   String selected = "first";
-  String select = "first";
   String pick = 'first';
 
-  final formkey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.only(left: 15, right: 15),
           child: Form(
-            key: formkey,
+            key: formKey,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +59,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                           fontWeight: FontWeight.w500,
                           color: black2121,
                         ),
-                        SizedBox(width: 110),
+                        const SizedBox(width: 110),
                         IconButton(
                           icon: const Icon(Icons.watch_later_outlined),
                           iconSize: 17,
@@ -79,7 +78,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   MyText(
                     'Select Network Provider',
                     fontFamily: 'Poppins',
@@ -87,7 +86,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                     fontWeight: FontWeight.w500,
                     color: black2121,
                   ),
-                  SizedBox(height: 9),
+                  const SizedBox(height: 9),
                   Row(
                     children: [
                       GestureDetector(
@@ -109,7 +108,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                               Image.asset('assets/images/Rectangle 3359.png'),
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -129,7 +128,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                               Image.asset('assets/images/Rectangle 3360.png'),
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -149,7 +148,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                               'assets/images/Rectangle 3361 (3).png'),
                         ),
                       ),
-                      SizedBox(width: 15),
+                      const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -171,7 +170,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   MyText(
                     'Select Amount',
                     fontFamily: 'Poppins',
@@ -179,183 +178,27 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                     fontWeight: FontWeight.w400,
                     color: black2121,
                   ),
-                  SizedBox(height: 7),
+                  const SizedBox(height: 7),
                   Row(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            select = 'first';
-                          });
-                        },
-                        child: Container(
-                          width: 102,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                              width: 2,
-                              color: select == 'first' ? lightBlue : ash2,
-                            ),
-                          ),
-                          child: Center(
-                            child: MyText(
-                              'N50',
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: black_14,
-                            ),
-                          ),
-                        ),
-                      ),
+                    children: const [
+                      CurrencyBox(amount: '50'),
                       SizedBox(width: 18),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            select = 'second';
-                          });
-                        },
-                        child: Container(
-                          width: 102,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                              width: 2,
-                              color: select == 'second' ? lightBlue : ash2,
-                            ),
-                          ),
-                          child: Center(
-                            child: MyText(
-                              'N100',
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: black_14,
-                            ),
-                          ),
-                        ),
-                      ),
+                      CurrencyBox(amount: '100'),
                       SizedBox(width: 18),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            select = 'third';
-                          });
-                        },
-                        child: Container(
-                          width: 102,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                              width: 2,
-                              color: select == 'third' ? lightBlue : ash2,
-                            ),
-                          ),
-                          child: Center(
-                            child: MyText(
-                              'N200',
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: black_14,
-                            ),
-                          ),
-                        ),
-                      ),
+                      CurrencyBox(amount: '200'),
                     ],
                   ),
-                  SizedBox(height: 18),
+                  const SizedBox(height: 18),
                   Row(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            select = 'fourth';
-                          });
-                        },
-                        child: Container(
-                          width: 102,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                              width: 2,
-                              color: select == 'fourth' ? lightBlue : ash2,
-                            ),
-                          ),
-                          child: Center(
-                            child: MyText(
-                              'N500',
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: black_14,
-                            ),
-                          ),
-                        ),
-                      ),
+                    children: const [
+                      CurrencyBox(amount: '500'),
                       SizedBox(width: 18),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            select = 'fifth';
-                          });
-                        },
-                        child: Container(
-                          width: 102,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                              width: 2,
-                              color: select == 'fifth' ? lightBlue : ash2,
-                            ),
-                          ),
-                          child: Center(
-                            child: MyText(
-                              'N1000',
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: black_14,
-                            ),
-                          ),
-                        ),
-                      ),
+                      CurrencyBox(amount: '1000'),
                       SizedBox(width: 18),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            select = 'sixth';
-                          });
-                        },
-                        child: Container(
-                          width: 102,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                              width: 2,
-                              color: select == 'sixth' ? lightBlue : ash2,
-                            ),
-                          ),
-                          child: Center(
-                            child: MyText(
-                              'N2,000',
-                              fontFamily: 'Poppins',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: black_14,
-                            ),
-                          ),
-                        ),
-                      ),
+                      CurrencyBox(amount: '2000'),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   MyText(
                     'Phone Number',
                     fontFamily: 'Poppins',
@@ -363,11 +206,11 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                     fontWeight: FontWeight.w400,
                     color: black2121,
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Padding(
                     padding: const EdgeInsets.only(right: 22),
                     child: InputField3(
-                      inputController: _phonenumber,
+                      inputController: data.phoneNumberTextController,
                       hintText: 'Enter phone number',
                       keyBoardType: TextInputType.number,
                       suffixIcon: Icon(
@@ -376,7 +219,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   MyText(
                     'Amount',
                     fontFamily: 'Poppins',
@@ -384,12 +227,12 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                     fontWeight: FontWeight.w400,
                     color: black2121,
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Padding(
                     padding: const EdgeInsets.only(right: 22),
                     child: InputField3(
-                      inputController: _amount,
-                      hintText: 'N0.00',
+                      inputController: data.amountToSendTextController,
+                      hintText: '${getCurrency()}0.00',
                       keyBoardType: TextInputType.number,
                       suffixIcon: null,
                     ),
@@ -417,7 +260,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 45),
+                  const SizedBox(height: 45),
                   MyButton(
                     onTap: () {
                       showModalBottomSheet(
@@ -425,9 +268,9 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                         builder: (context) => Container(
                           color: ash3,
                           child: Container(
-                            padding:
-                                EdgeInsets.only(left: 20, top: 20, right: 20),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.only(
+                                left: 20, top: 20, right: 20),
+                            decoration: const BoxDecoration(
                               color: white,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -458,12 +301,12 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                     ),
                                   ],
                                 ),
-                                Divider(
+                                const Divider(
                                   height: 2,
                                   thickness: 2,
                                   color: ashColor,
                                 ),
-                                SizedBox(height: 15),
+                                const SizedBox(height: 15),
                                 MyText(
                                   'Select Period',
                                   fontFamily: 'Poppins',
@@ -471,7 +314,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Row(
                                   children: [
                                     InkWell(
@@ -482,7 +325,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                       },
                                       child: Container(
                                         alignment: Alignment.bottomLeft,
-                                        padding: EdgeInsets.only(left: 5),
+                                        padding: const EdgeInsets.only(left: 5),
                                         width: 75,
                                         height: 70,
                                         decoration: BoxDecoration(
@@ -504,7 +347,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 15),
+                                    const SizedBox(width: 15),
                                     InkWell(
                                       onTap: () {
                                         setState(() {
@@ -513,7 +356,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                       },
                                       child: Container(
                                         alignment: Alignment.bottomLeft,
-                                        padding: EdgeInsets.only(left: 5),
+                                        padding: const EdgeInsets.only(left: 5),
                                         width: 75,
                                         height: 70,
                                         decoration: BoxDecoration(
@@ -535,7 +378,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 15),
+                                    const SizedBox(width: 15),
                                     InkWell(
                                       onTap: () {
                                         setState(() {
@@ -544,7 +387,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                       },
                                       child: Container(
                                         alignment: Alignment.bottomLeft,
-                                        padding: EdgeInsets.only(left: 5),
+                                        padding: const EdgeInsets.only(left: 5),
                                         width: 75,
                                         height: 70,
                                         decoration: BoxDecoration(
@@ -566,7 +409,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 15),
+                                    const SizedBox(width: 15),
                                     InkWell(
                                       onTap: () {
                                         setState(() {
@@ -575,7 +418,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                       },
                                       child: Container(
                                         alignment: Alignment.bottomLeft,
-                                        padding: EdgeInsets.only(left: 5),
+                                        padding: const EdgeInsets.only(left: 5),
                                         width: 75,
                                         height: 70,
                                         decoration: BoxDecoration(
@@ -599,7 +442,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 MyText(
                                   'Start Date',
                                   color: black2121,
@@ -607,14 +450,14 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                   fontSize: 10,
                                   fontWeight: FontWeight.w500,
                                 ),
-                                SizedBox(height: 8),
+                                const SizedBox(height: 8),
                                 TextFormField(
-                                  controller: _startDate,
+                                  controller: data.startDate,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(7),
                                     ),
-                                    suffixIcon: Icon(
+                                    suffixIcon: const Icon(
                                       Icons.calendar_month_outlined,
                                       color: mainBlue,
                                     ),
@@ -640,7 +483,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
 //you can implement different kind of Date Format here according to your requirement
 
                                       setState(() {
-                                        _startDate.text =
+                                        data.startDate.text =
                                             formattedDate; //set output date to TextField value.
                                       });
                                     } else {
@@ -648,7 +491,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                     }
                                   },
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 MyText(
                                   'End Date',
                                   color: black2121,
@@ -657,7 +500,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                   fontWeight: FontWeight.w500,
                                 ),
                                 TextFormField(
-                                  controller: _endDate,
+                                  controller: data.endDate,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(7),
@@ -688,7 +531,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
 //you can implement different kind of Date Format here according to your requirement
 
                                       setState(() {
-                                        _endDate.text =
+                                        data.endDate.text =
                                             formattedDate; //set output date to TextField value.
                                       });
                                     } else {
@@ -696,7 +539,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                                     }
                                   },
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 MyButton(
                                   onTap: () {},
                                   child: Container(

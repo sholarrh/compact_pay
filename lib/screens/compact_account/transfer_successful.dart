@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-import '../utils/app_colors.dart';
-import '../widgets/my_button.dart';
-import '../widgets/my_text.dart';
+import '../../utils/app_colors.dart';
+import '../../widgets/currency_box.dart';
+import '../../widgets/my_button.dart';
+import '../../widgets/my_text.dart';
 
-class PaymentsSuccessful extends StatefulWidget {
-  const PaymentsSuccessful({Key? key}) : super(key: key);
+class TransferSuccessful extends StatefulWidget {
+  const TransferSuccessful({Key? key}) : super(key: key);
 
   @override
-  State<PaymentsSuccessful> createState() => _PaymentsSuccessfulState();
+  State<TransferSuccessful> createState() => _TransferSuccessfulState();
 }
 
-class _PaymentsSuccessfulState extends State<PaymentsSuccessful> {
+class _TransferSuccessfulState extends State<TransferSuccessful> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,17 +33,25 @@ class _PaymentsSuccessfulState extends State<PaymentsSuccessful> {
                   ),
                 ],
               ),
-              SizedBox(height: 57),
+              const SizedBox(height: 57),
               Image.asset('assets/images/Ellipse 191.png'),
-              SizedBox(height: 30),
+              const SizedBox(height: 130),
               MyText(
-                'Payment Successful',
+                'Transfer Successful',
                 fontFamily: 'Poppins',
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 color: black2121,
               ),
-              SizedBox(height: 60),
+              SizedBox(height: 20),
+              MyText(
+                '${getCurrency()} 1,000.00',
+                fontFamily: 'Poppins',
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                color: black2121,
+              ),
+              const SizedBox(height: 60),
               MyButton(
                 child: Container(
                   height: 54,
@@ -62,7 +71,7 @@ class _PaymentsSuccessfulState extends State<PaymentsSuccessful> {
                   ),
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               MyText(
                 'Go to Homepage',
                 color: mainBlue,

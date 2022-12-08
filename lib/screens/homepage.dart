@@ -3,7 +3,10 @@ import 'package:compact_pay/screens/Grids/airtime.dart';
 import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/provider.dart';
 import '../utils/app_colors.dart';
 import '../widgets/homepage_grid.dart';
 import 'Grids/cable_network.dart';
@@ -24,6 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -34,7 +38,9 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10,),
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                  ),
                   child: IconButton(
                     icon: const Icon(Icons.close),
                     iconSize: 17,
@@ -44,7 +50,6 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -73,38 +78,60 @@ class _HomePageState extends State<HomePage> {
                         ),
                         GestureDetector(
                             onTap: () {},
-                            child: Image.asset('assets/images/notification.png')),
+                            child:
+                                Image.asset('assets/images/notification.png')),
                       ],
                     ),
                   ],
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MyText('Hi, Tola Kelechi',
-                      fontSize: 14,
-                        fontWeight: FontWeight.w500 ,
+                      MyText(
+                        'Hi, Tola Kelechi',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                         color: black2121,
                       ),
-                      MyText('Last Login: 1/11/2022',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500 ,
-                        color: black2121,
+                      InkWell(
+                        onTap: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(
+                                  2000), //DateTime.now() - not to allow to choose before today.
+                              lastDate: DateTime(2101));
+                          if (pickedDate != null) {
+                            print(pickedDate);
+                            String formattedDate =
+                                DateFormat('yyyy-MM-dd').format(pickedDate);
+                            setState(() {
+                              data.startDate.text = formattedDate;
+                            });
+                          } else {
+                            print("Date is not selected");
+                          }
+                        },
+                        child: MyText(
+                          'Last Login: 1/11/2022',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: black2121,
+                        ),
                       ),
                     ],
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Container(
-                    padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
+                    padding: const EdgeInsets.only(
+                        top: 12, bottom: 12, left: 16, right: 16),
                     width: double.infinity,
                     height: 100,
-                    decoration:  BoxDecoration(
+                    decoration: BoxDecoration(
                       color: mainBlue,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -114,60 +141,70 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MyText('Account Balance',
+                            MyText(
+                              'Account Balance',
                               fontSize: 10,
-                              fontWeight: FontWeight.w500 ,
+                              fontWeight: FontWeight.w500,
                               color: white,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                MyText('Transaction History',
+                                MyText(
+                                  'Transaction History',
                                   fontSize: 10,
-                                  fontWeight: FontWeight.w500 ,
+                                  fontWeight: FontWeight.w500,
                                   color: white,
                                 ),
-                                const SizedBox(width: 4.4,),
+                                const SizedBox(
+                                  width: 4.4,
+                                ),
                                 GestureDetector(
-                                  onTap: (){},
-                                  child: const Icon(Icons.arrow_forward_ios,
-                                  size: 8,
-                                  color: white,),
+                                  onTap: () {},
+                                  child: const Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 8,
+                                    color: white,
+                                  ),
                                 )
                               ],
                             ),
                           ],
                         ),
-                        const SizedBox(height: 7,),
+                        const SizedBox(
+                          height: 7,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                MyText('N',
+                                MyText(
+                                  'N',
                                   fontSize: 36,
-                                  fontWeight: FontWeight.w700 ,
+                                  fontWeight: FontWeight.w700,
                                   color: white,
                                 ),
-                                MyText('45,560.00',
+                                MyText(
+                                  '45,560.00',
                                   fontSize: 36,
-                                  fontWeight: FontWeight.w700 ,
+                                  fontWeight: FontWeight.w700,
                                   color: white,
                                 ),
                               ],
                             ),
-                             Icon(Icons.remove_red_eye_outlined,
-                            size: 20,
-                            color: white.withOpacity(0.7),
-                             ),
+                            Icon(
+                              Icons.remove_red_eye_outlined,
+                              size: 20,
+                              color: white.withOpacity(0.7),
+                            ),
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 30),
                   child: GridView.count(
@@ -220,18 +257,16 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                
                 Image.asset('assets/images/referral.png'),
-
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
-                  child: MyText('Recent Transactions',
+                  child: MyText(
+                    'Recent Transactions',
                     fontSize: 16,
-                    fontWeight: FontWeight.w500 ,
+                    fontWeight: FontWeight.w500,
                     color: black2121,
                   ),
                 ),
-
                 Container(
                   padding: const EdgeInsets.all(12),
                   width: double.infinity,
@@ -246,7 +281,7 @@ class _HomePageState extends State<HomePage> {
                       MyText(
                         '01 Nov 2022',
                         fontSize: 8,
-                        fontWeight: FontWeight.w400 ,
+                        fontWeight: FontWeight.w400,
                         color: white,
                       ),
                       Row(
@@ -268,8 +303,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                               MyText(
                                 '12:05 AM',
-                                fontSize:8,
-                                fontWeight: FontWeight.w400 ,
+                                fontSize: 8,
+                                fontWeight: FontWeight.w400,
                                 color: white,
                               ),
                             ],
@@ -278,7 +313,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-
                 ),
               ],
             ),

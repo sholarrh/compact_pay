@@ -3,6 +3,10 @@ import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/provider.dart';
+import '../../widgets/currency_box.dart';
 
 class Confirm extends StatefulWidget {
   const Confirm({Key? key}) : super(key: key);
@@ -12,10 +16,9 @@ class Confirm extends StatefulWidget {
 }
 
 class _ConfirmState extends State<Confirm> {
-  TextEditingController _pincodefield = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -52,7 +55,7 @@ class _ConfirmState extends State<Confirm> {
                     ),
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 MyText(
                   'To',
                   fontFamily: 'Poppins',
@@ -60,7 +63,7 @@ class _ConfirmState extends State<Confirm> {
                   fontWeight: FontWeight.w400,
                   color: black2121,
                 ),
-                SizedBox(height: 19),
+                const SizedBox(height: 19),
                 MyText(
                   'TUNDE FEMI MARK',
                   fontFamily: 'Poppins',
@@ -68,20 +71,20 @@ class _ConfirmState extends State<Confirm> {
                   fontWeight: FontWeight.w500,
                   color: black2121,
                 ),
-                SizedBox(height: 19),
+                const SizedBox(height: 19),
                 MyText(
-                  'N 1,000',
+                  '${getCurrency()}1,000',
                   fontFamily: 'Poppins',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
                   color: black2121,
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Container(
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 13),
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 13),
                   width: double.infinity,
                   height: 81,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: ashColor,
                   ),
                   child: Column(
@@ -105,7 +108,7 @@ class _ConfirmState extends State<Confirm> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -128,7 +131,7 @@ class _ConfirmState extends State<Confirm> {
                     ],
                   ),
                 ),
-                SizedBox(height: 300),
+                const SizedBox(height: 300),
                 MyButton(
                   onTap: () {
                     showModalBottomSheet(
@@ -136,9 +139,9 @@ class _ConfirmState extends State<Confirm> {
                       builder: (context) => Container(
                         color: ash3,
                         child: Container(
-                          padding:
-                              EdgeInsets.only(left: 20, top: 30, right: 20),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 30, right: 20),
+                          decoration: const BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
@@ -159,7 +162,7 @@ class _ConfirmState extends State<Confirm> {
                                       fontWeight: FontWeight.w500,
                                       color: black2121,
                                     ),
-                                    SizedBox(width: 100),
+                                    const SizedBox(width: 100),
                                     IconButton(
                                       icon: const Icon(Icons.close),
                                       iconSize: 17,
@@ -171,10 +174,10 @@ class _ConfirmState extends State<Confirm> {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 25),
+                              const SizedBox(height: 25),
                               PinCodeTextField(
                                 appContext: context,
-                                controller: _pincodefield,
+                                controller: data.pincodeField,
                                 length: 4,
                                 obscureText: true,
                                 autoFocus: true,
@@ -191,7 +194,7 @@ class _ConfirmState extends State<Confirm> {
                                   activeColor: mainBlue,
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               MyText(
                                 'Forgot PIN?',
                                 fontFamily: 'Poppins',
