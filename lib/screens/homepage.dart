@@ -24,16 +24,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   ProviderClass().get();
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ProviderClass().get();
+
+    ProviderClass().sharedPreferences();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var data = Provider.of<ProviderClass>(context);
+    var data = Provider.of<ProviderClass>(context, listen: true);
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -107,19 +109,27 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      data.firstName == null && data.lastName == null
-                          ? MyText(
-                              'Hi, Tola Kelechi',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: black2121,
-                            )
-                          : MyText(
-                              'Hi, ${data.firstName} ${data.firstName}',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: black2121,
-                            ),
+                      // data.firstName == null && data.lastName == null
+                      //     ? MyText(
+                      //         'Hi, Tola Kelechi',
+                      //         fontSize: 14,
+                      //         fontWeight: FontWeight.w500,
+                      //         color: black2121,
+                      //       )
+                      //     :
+                      Consumer<ProviderClass>(
+                        builder: (context, providerStatus, _) {
+                          print('firstname ${providerStatus.firstNamess.text}');
+                          print('firstname ${providerStatus.lastNamess.text}');
+                          return MyText(
+                            'Hi, ${providerStatus.firstNamess.text} ${providerStatus.lastNamess.text}',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: black2121,
+                          );
+                        },
+                      ),
+
                       MyText(
                         'Last Login: 1/11/2022',
                         fontSize: 14,

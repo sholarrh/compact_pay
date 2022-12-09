@@ -1,10 +1,11 @@
-import 'package:compact_pay/screens/auth/kyc_verification.dart';
+// Adigun solafunmi
+
+import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/screens/auth/new_password.dart';
 import 'package:compact_pay/widgets/otp_box.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../provider/provider.dart';
@@ -12,8 +13,6 @@ import '../../utils/app_colors.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/show_snackbar.dart';
-
-// Adigun solafunmi
 
 class Verification extends StatefulWidget {
   final bool goToPasswordScreen;
@@ -182,7 +181,7 @@ class _VerificationState extends State<Verification> {
                                         builder: (context) =>
                                             widget.goToPasswordScreen
                                                 ? const NewPassword()
-                                                : const KycVerification()));
+                                                : const Login()));
                               }
                             });
                           } catch (e, s) {
@@ -209,7 +208,7 @@ class _VerificationState extends State<Verification> {
                             )
                           : const Center(
                               child: CircularProgressIndicator(
-                                color: mainBlue,
+                                color: white,
                               ),
                             ),
                     ),

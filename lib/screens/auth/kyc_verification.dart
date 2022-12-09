@@ -1,6 +1,5 @@
 //ADIGUN SOLAFUNMI
 
-import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/widgets/validator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +12,7 @@ import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/show_snackbar.dart';
 import '../../widgets/text_form_field.dart';
+import '../set_transaction_pin.dart';
 
 class KycVerification extends StatefulWidget {
   const KycVerification({Key? key}) : super(key: key);
@@ -87,6 +87,9 @@ class _KycVerificationState extends State<KycVerification> {
                             hasSuffixIcon: false,
                             keyBoardType: TextInputType.name,
                             validator: validateFullName,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 0);
+                            },
                           ),
                           Padding(
                             padding:
@@ -102,12 +105,6 @@ class _KycVerificationState extends State<KycVerification> {
                           DropdownButton<String>(
                             value: dropdownValue,
                             enableFeedback: true,
-                            hint: MyText(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: black2121.withOpacity(0.4),
-                              'Choose',
-                            ),
                             dropdownColor: white,
                             isExpanded: true,
                             iconSize: 30,
@@ -131,6 +128,8 @@ class _KycVerificationState extends State<KycVerification> {
                             onChanged: (String? newValue) {
                               setState(() {
                                 dropdownValue = newValue!;
+                                data.identificationTextController.text =
+                                    dropdownValue;
                               });
                             },
                           ),
@@ -152,6 +151,9 @@ class _KycVerificationState extends State<KycVerification> {
                             hasSuffixIcon: false,
                             keyBoardType: TextInputType.number,
                             validator: validateNumber,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 1);
+                            },
                             inputFormatters: FilteringTextInputFormatter.allow(
                               RegExp("[0-9]"),
                             ),
@@ -173,6 +175,9 @@ class _KycVerificationState extends State<KycVerification> {
                             hasSuffixIcon: false,
                             keyBoardType: TextInputType.number,
                             validator: validateBvnNumber,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 2);
+                            },
                             inputFormatters: FilteringTextInputFormatter.allow(
                               RegExp("[0-9]"),
                             ),
@@ -194,13 +199,18 @@ class _KycVerificationState extends State<KycVerification> {
                             hasSuffixIcon: true,
                             keyBoardType: TextInputType.name,
                             validator: validatePassword,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 3);
+                            },
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: MyButton(
                               height: 50,
                               width: double.infinity,
-                              color: mainBlue,
+                              color: data.validate.contains(false)
+                                  ? unValidated
+                                  : mainBlue,
                               onTap: () async {
                                 if (formKey.currentState!.validate()) {
                                   data.isLoading = true;
@@ -216,16 +226,23 @@ class _KycVerificationState extends State<KycVerification> {
                                   });
 
                                   try {
-                                    data.addressTextController.clear();
-                                    data.passwordTextController.clear();
-                                    data.bvnTextController.clear();
-                                    data.identificationNumberTextController
-                                        .clear();
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const Login()));
+                                    await data.putKycUpdate().then((value) {
+                                      if (data.putKycResponse.statusCode ==
+                                              200 ||
+                                          data.putKycResponse.statusCode ==
+                                              201) {
+                                        data.addressTextController.clear();
+                                        data.passwordTextController.clear();
+                                        data.bvnTextController.clear();
+                                        data.identificationNumberTextController
+                                            .clear();
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SetTransactionPin()));
+                                      }
+                                    });
                                   } catch (e, s) {
                                     if (kDebugMode) {
                                       print(e);

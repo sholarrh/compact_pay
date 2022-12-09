@@ -33,16 +33,6 @@ class _SignUpState extends State<SignUp> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
-  bool _areFormFieldsFilled = false;
-
-  // void _updateFormFieldsFilled() {
-  //   FormState form = Form.of(context);
-  //   form.save();
-  //   setState(() {
-  //     _areFormFieldsFilled = form.validate();
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -54,13 +44,6 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Form(
-              onChanged: () {
-                FormState? form = Form.of(context);
-                form!.save();
-                setState(() {
-                  _areFormFieldsFilled = form.validate();
-                });
-              },
               key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +75,7 @@ class _SignUpState extends State<SignUp> {
                   InputField(
                       hintText: 'Enter first name',
                       onChanged: (value) {
-                        //  _updateFormFieldsFilled();
+                        data.updateFormFieldsFilled(value, 0);
                       },
                       validator: validateFullName,
                       keyBoardType: TextInputType.name,
@@ -116,7 +99,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: false,
                     inputController: data.middleNameTextController,
                     onChanged: (value) {
-                      //_updateFormFieldsFilled();
+                      data.updateFormFieldsFilled(value, 1);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -136,7 +119,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: false,
                     inputController: data.lastNameTextController,
                     onChanged: (value) {
-                      //_updateFormFieldsFilled();
+                      data.updateFormFieldsFilled(value, 2);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -156,7 +139,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: false,
                     inputController: data.emailTextController,
                     onChanged: (value) {
-                      //_updateFormFieldsFilled();
+                      data.updateFormFieldsFilled(value, 3);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -175,7 +158,7 @@ class _SignUpState extends State<SignUp> {
                     isPassword: false,
                     hasSuffixIcon: false,
                     onChanged: (value) {
-                      //_updateFormFieldsFilled();
+                      data.updateFormFieldsFilled(value, 4);
                     },
                     prefixIcon: DropdownButton<String>(
                       value: dropdownValue,
@@ -230,7 +213,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: true,
                     inputController: data.passwordTextController,
                     onChanged: (value) {
-                      //_updateFormFieldsFilled();
+                      data.updateFormFieldsFilled(value, 5);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -250,7 +233,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: true,
                     inputController: data.confirmPasswordTextController,
                     onChanged: (value) {
-                      //_updateFormFieldsFilled();
+                      data.updateFormFieldsFilled(value, 6);
                     },
                   ),
                   const SizedBox(height: 15),
@@ -300,7 +283,8 @@ class _SignUpState extends State<SignUp> {
                   MyButton(
                     height: 54,
                     width: double.infinity,
-                    color: _areFormFieldsFilled ? mainBlue : unValidated,
+                    color:
+                        data.validate.contains(false) ? unValidated : mainBlue,
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
                         _signUpIsLoading = true;

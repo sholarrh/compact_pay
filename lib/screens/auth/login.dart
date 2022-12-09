@@ -1,4 +1,5 @@
 // Adigun solafunmi
+import 'package:compact_pay/screens/auth/kyc_verification.dart';
 import 'package:compact_pay/screens/auth/sign_up.dart';
 import 'package:compact_pay/screens/forgot_password.dart';
 import 'package:compact_pay/utils/app_colors.dart';
@@ -13,7 +14,6 @@ import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/text_form_field.dart';
 import '../../widgets/validator.dart';
-import '../set_transaction_pin.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -23,17 +23,26 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // @override
+  // void dispose() {
+  //   ProviderClass().emailTextController.dispose();
+  //   ProviderClass().passwordTextController.dispose();
+  //   super.dispose();
+  // }
+
   @override
-  void dispose() {
-    ProviderClass().emailTextController.dispose();
-    ProviderClass().passwordTextController.dispose();
-    super.dispose();
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //_updateFormFieldsFilled();
   }
 
   bool _loginIsLoading = false;
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
+
+  // bool _areFormFieldsFilled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +90,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     Form(
+                      // autovalidateMode: AutovalidateMode.always,
                       key: formKey,
                       child: Column(
                         children: [
@@ -103,6 +113,9 @@ class _LoginState extends State<Login> {
                             hasSuffixIcon: false,
                             keyBoardType: TextInputType.emailAddress,
                             validator: validateEmail,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 0);
+                            },
                           ),
                           const SizedBox(
                             height: 20,
@@ -126,6 +139,9 @@ class _LoginState extends State<Login> {
                             hasSuffixIcon: true,
                             keyBoardType: TextInputType.text,
                             validator: validatePassword,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 1);
+                            },
                           ),
                         ],
                       ),
@@ -155,8 +171,11 @@ class _LoginState extends State<Login> {
                       child: MyButton(
                         height: 50,
                         width: double.infinity,
-                        color: mainBlue,
+                        color: data.validate.contains(false)
+                            ? unValidated
+                            : mainBlue,
                         onTap: () async {
+                          print(data.validate);
                           if (formKey.currentState!.validate()) {
                             _loginIsLoading = true;
                             setState(() {});
@@ -179,13 +198,13 @@ class _LoginState extends State<Login> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const SetTransactionPin()))
+                                                  const KycVerification()))
                                       : Navigator.of(context)
-                                          .pushAndRemoveUntil(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const BottomNav()),
-                                              (route) => false);
+                                      .pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const BottomNav()),
+                                          (route) => false);
                                 }
                               });
                             } catch (e, s) {

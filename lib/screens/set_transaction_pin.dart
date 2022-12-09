@@ -152,7 +152,7 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                         // print(data.confirmPinList.join(""));
                         if (data.pinList.join("") ==
                             data.confirmPinList.join("")) {
-                          data.isLoading = true;
+                          _setIsLoading = true;
                           setState(() {});
 
                           Duration waitTime = const Duration(seconds: 4);
@@ -164,10 +164,22 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                           });
 
                           try {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const BottomNav()));
+                            await data.putTransactionPin().then((value) {
+                              if (data.putTransactionPinResponse.statusCode ==
+                                      200 ||
+                                  data.putTransactionPinResponse.statusCode ==
+                                      201) {
+                                data.pinList.clear();
+                                data.confirmPinList.clear();
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const BottomNav(),
+                                  ),
+                                );
+                              }
+                            });
                           } catch (e, s) {
                             if (kDebugMode) {
                               print(e);

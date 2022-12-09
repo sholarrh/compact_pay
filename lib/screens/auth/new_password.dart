@@ -103,6 +103,9 @@ class _NewPasswordState extends State<NewPassword> {
                             hasSuffixIcon: false,
                             keyBoardType: TextInputType.emailAddress,
                             validator: validateEmail,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 0);
+                            },
                           ),
                           const SizedBox(
                             height: 20,
@@ -126,6 +129,9 @@ class _NewPasswordState extends State<NewPassword> {
                             hasSuffixIcon: true,
                             keyBoardType: TextInputType.text,
                             validator: validatePassword,
+                            onChanged: (value) {
+                              data.updateFormFieldsFilled(value, 1);
+                            },
                           ),
                         ],
                       ),
@@ -135,7 +141,9 @@ class _NewPasswordState extends State<NewPassword> {
                       child: MyButton(
                         height: 50,
                         width: double.infinity,
-                        color: mainBlue,
+                        color: data.validate.contains(false)
+                            ? unValidated
+                            : mainBlue,
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
                             data.isLoading = true;

@@ -243,6 +243,26 @@ class ProviderClass extends ChangeNotifier {
     return null;
   }
 
+  // CHANGE CONTAINER COLOR
+  List<bool> validate = [false, false];
+
+  void _updateFormFieldsFilled(String val, int index) {
+    if (val.isEmpty) {
+      validate.isNotEmpty ? validate.removeAt(index) : null;
+      validate.insert(index, false);
+      //_areFormFieldsFilled = false;
+      // setState(() {});
+    } else {
+      //if (validate[index])
+      validate.isNotEmpty ? validate.removeAt(index) : null;
+      validate.insert(index, true);
+      // setState(() {});
+    }
+    notifyListeners();
+  }
+
+  get updateFormFieldsFilled => _updateFormFieldsFilled;
+
   // PICK IMAGE
 
   File? image;
@@ -292,19 +312,23 @@ class ProviderClass extends ChangeNotifier {
 // SHARED PREFERENCES
   Future<void> sharedPreferences() async {
     final storage = await SharedPreferences.getInstance();
-    token = await storage.getString('token');
-    userEmail = await storage.getString('email');
+    userId = storage.getString('userId');
+    userEmail = storage.getString('email');
+    firstName = storage.getString('firstName');
+    lastName = storage.getString('lastName');
+    print('shared preference: $firstName');
     notifyListeners();
   }
 
   String? token;
+  String? userId = '6391f4d522cf9e066f35f250';
   String? userEmail;
 
   // sign up api
-  var signUpResponse;
+  late http.Response signUpResponse;
 
   Future<void> postRegister() async {
-    var url = Uri.parse('https://compact-pay.herokuapp.com/api/users/signup');
+    var url = Uri.parse('https://compactpay.onrender.com/api/users/signup');
     Map<String, String> requestHeaders = {
       'Content-type': 'application/json',
       'Accept': '*/*',
@@ -321,20 +345,40 @@ class ProviderClass extends ChangeNotifier {
     try {
       signUpResponse = await http.post(url,
           headers: requestHeaders, body: jsonEncode(payload));
-      print('Response status: ${signUpResponse.statusCode}');
-      print('Response body: ${signUpResponse.body}');
+      if (kDebugMode) {
+        print('Response status: ${signUpResponse.statusCode}');
+      }
+      if (kDebugMode) {
+        print('Response body: ${signUpResponse.body}');
+      }
     } catch (e, s) {
-      print(e);
-      print(s);
+      if (kDebugMode) {
+        print(e);
+      }
+      if (kDebugMode) {
+        print(s);
+      }
     }
+
+    var signUpResponseDecoded = jsonDecode(signUpResponse.body);
+    if (kDebugMode) {
+      print('Response body 2: $signUpResponseDecoded');
+    }
+    if (kDebugMode) {
+      print('Response body 2: ${signUpResponseDecoded['user']['_id']}');
+    }
+
+    final storage = await SharedPreferences.getInstance();
+    storage.setString('userId', signUpResponseDecoded['user']['_id']);
+    storage.setString('email', emailTextController.text);
     notifyListeners();
   }
 
   // Login Api
-  var postLoginResponse;
+  late http.Response postLoginResponse;
 
   Future<void> postLogin() async {
-    var url = Uri.parse('https://compact-pay.herokuapp.com/api/users/login');
+    var url = Uri.parse('https://compactpay.onrender.com/api/users/login');
     Map<String, String> requestHeaders = {
       'Content-type': 'application/json',
       'Accept': '*/*',
@@ -353,64 +397,127 @@ class ProviderClass extends ChangeNotifier {
       if (kDebugMode) {
         print('Response body: ${postLoginResponse.body}');
       }
-      notifyListeners();
-      var responseData = jsonDecode(postLoginResponse.body);
+      var postLoginResponseData = jsonDecode(postLoginResponse.body);
 
-      final storage = await SharedPreferences.getInstance();
-      storage.setString('token', responseData['token']);
-      storage.setString('email', emailTextController.text);
+      // final storage = await SharedPreferences.getInstance();
+      // storage.setString('token', postLoginResponseData['token']);
+      // storage.setString('email', emailTextController.text);
 
-      print(responseData);
+      if (kDebugMode) {
+        print(postLoginResponseData);
+      }
       notifyListeners();
     } catch (e, s) {
-      print(e);
-      print(s);
+      if (kDebugMode) {
+        print(e);
+      }
+      if (kDebugMode) {
+        print(s);
+      }
     }
   }
 
   //UPDATE KYC API
-  var putKycResponse;
+
+  late http.Response putKycResponse;
 
   Future<void> putKycUpdate() async {
-    final storage = await SharedPreferences.getInstance();
-    token = await storage.getString('token');
-    notifyListeners();
+    // final storage = await SharedPreferences.getInstance();
+    // userId = await storage.getString('userId');
+    // notifyListeners();
 
     Map<String, String> requestHeaders = {
       'Content-type': 'application/json',
-      'Authorization': 'Bearer $token'
+      //'Authorization': 'Bearer $token'
     };
+
     var payload = {
       "address": addressTextController.text,
       "validMeansOfIdentification": identificationTextController.text,
+      "number": identificationNumberTextController.text,
       "bvn": bvnTextController.text,
-      // "isAvailable": isAvailableTextController.text,
+      "transactionPin": "3264",
+      "confirmTransactionPin": "3264"
     };
-    notifyListeners();
 
     var url = Uri.parse(
-        'https://compact-pay.herokuapp.com/api/users/update?id=$token');
+        'https://compactpay.onrender.com/api/users/update?id=6391f4d522cf9e066f35f250');
 
     try {
       putKycResponse = await http.put(url,
           headers: requestHeaders, body: json.encode(payload));
-      print(url);
-      print('Response status: ${putKycResponse.statusCode}');
+
+      if (kDebugMode) {
+        print('Response status: ${putKycResponse.statusCode}');
+      }
+      if (kDebugMode) {
+        print('Response status: ${jsonDecode(putKycResponse.body)}');
+      }
       notifyListeners();
     } catch (e, s) {
-      print(e);
-      print(s);
+      if (kDebugMode) {
+        print(e);
+      }
+      if (kDebugMode) {
+        print(s);
+      }
+    }
+  }
+
+  late http.Response putTransactionPinResponse;
+
+  Future<void> putTransactionPin() async {
+    // final storage = await SharedPreferences.getInstance();
+    // userId = await storage.getString('userId');
+    // notifyListeners();
+
+    Map<String, String> requestHeaders = {
+      'Content-type': 'application/json',
+      //'Authorization': 'Bearer $token'
+    };
+
+    var payload = {
+      "transactionPin": pinList.join(""),
+      "confirmTransactionPin": confirmPinList.join(""),
+    };
+
+    var url = Uri.parse(
+        'https://compactpay.onrender.com/api/users/transpin?id=6391f4d522cf9e066f35f250');
+
+    try {
+      putTransactionPinResponse = await http.put(url,
+          headers: requestHeaders, body: json.encode(payload));
+
+      if (kDebugMode) {
+        print('Response status: ${putTransactionPinResponse.statusCode}');
+      }
+      if (kDebugMode) {
+        print('Response status: ${jsonDecode(putTransactionPinResponse.body)}');
+      }
+      notifyListeners();
+    } catch (e, s) {
+      if (kDebugMode) {
+        print(e);
+      }
+      if (kDebugMode) {
+        print(s);
+      }
     }
   }
 
   // GET USER DETAILS
 // run shared preference before any app that needs token
-  var getResponse;
+
   String? accountNumber;
   String? firstName;
   String? lastName;
 
-  var responsedata;
+  final TextEditingController _firstNamess = TextEditingController();
+  final TextEditingController _lastNamess = TextEditingController();
+
+  TextEditingController get firstNamess => _firstNamess;
+
+  TextEditingController get lastNamess => _lastNamess;
 
   bool _error = false;
   String _errorMessage = '';
@@ -419,22 +526,70 @@ class ProviderClass extends ChangeNotifier {
 
   String get errorMessage => _errorMessage;
 
+  var responsedata;
+  late http.Response getResponse;
+
   Future get() async {
-    final storage = await SharedPreferences.getInstance();
-    token = await storage.getString('token');
-    notifyListeners();
+    // final storage = await SharedPreferences.getInstance();
+    // token = await storage.getString('token');
+    // print(firstName);
+    // print(lastName);
 
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://compact-pay.herokuapp.com/api/users/olukini@gmail.com'));
+    var url = Uri.parse(
+        'https://compactpay.onrender.com/api/users/adigun.solafunmi@gmail.com');
+    getResponse = await http.get(
+      url,
+    );
 
-    http.StreamedResponse response = await request.send();
+    // if (kDebugMode) {
+    //   print('Response status: ${getResponse.statusCode}');
+    //}
+    if (getResponse.statusCode == 200) {
+      final storage = await SharedPreferences.getInstance();
+      try {
+        responsedata = jsonDecode(getResponse.body);
+        _firstNamess.text = responsedata['data']![0]['firstName'];
+        _lastNamess.text = responsedata['data']![0]['lastName'];
+        notifyListeners();
+        print('firstnamePrivate ${_firstNamess.text}');
+        print('firstnamePrivate ${_lastNamess.text}');
 
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+        storage.setString('firstName', firstName!);
+        storage.setString('lastName', lastName!);
+        notifyListeners();
+
+        // if (kDebugMode) {
+        //   print(firstName);
+        //   print(lastName);
+        // }
+        _error = false;
+      } catch (e) {
+        _error = true;
+        _errorMessage = e.toString();
+      }
     } else {
-      print(response.reasonPhrase);
+      _error = true;
+      _errorMessage = 'It could be your Internet Connection';
     }
+    notifyListeners();
+    return responsedata;
+
+    // var request = http.Request(
+    //     'GET',
+    //     Uri.parse(
+    //         'https://compact-pay.herokuapp.com/api/users/$emailTextController'));
+    //
+    // http.StreamedResponse getResponse = await request.send();
+
+    // if (getResponse.statusCode == 200) {
+    //   if (kDebugMode) {
+    //     print(jsonDecode(getResponse.body));
+    //     print(await getResponse.stream.bytesToString());
+    //   }
+    // } else {
+    //   if (kDebugMode) {
+    //     print(getResponse.reasonPhrase);
+    //   }
+    // }
   }
 }

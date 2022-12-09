@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-UserDetails getCLassModelFromJson(String str) =>
+UserDetails getUserDetailsFromJson(String str) =>
     UserDetails.fromJson(json.decode(str));
 
 class UserDetails {
@@ -12,13 +12,13 @@ class UserDetails {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -34,6 +34,7 @@ class Data {
   String? phoneNumber;
   String? email;
   String? password;
+  String? otp;
   String? createdAt;
   String? updatedAt;
   int? iV;
@@ -46,6 +47,7 @@ class Data {
       this.phoneNumber,
       this.email,
       this.password,
+      this.otp,
       this.createdAt,
       this.updatedAt,
       this.iV});
@@ -58,13 +60,14 @@ class Data {
     phoneNumber = json['phoneNumber'];
     email = json['email'];
     password = json['password'];
+    otp = json['otp'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
     data['firstName'] = this.firstName;
     data['middleName'] = this.middleName;
@@ -72,9 +75,11 @@ class Data {
     data['phoneNumber'] = this.phoneNumber;
     data['email'] = this.email;
     data['password'] = this.password;
+    data['otp'] = this.otp;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
     return data;
   }
 }
+

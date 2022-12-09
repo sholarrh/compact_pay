@@ -177,7 +177,7 @@ class OtpBox2 extends StatefulWidget {
 
 class _OtpBox2State extends State<OtpBox2> {
 
-  bool _obscureText = false;
+  final bool _obscureText = false;
 
   @override
   Widget build(BuildContext context) {

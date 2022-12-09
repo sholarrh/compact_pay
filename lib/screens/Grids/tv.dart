@@ -21,6 +21,7 @@ class Tv extends StatefulWidget {
 }
 
 class _TvState extends State<Tv> {
+  bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
@@ -64,7 +65,6 @@ class _TvState extends State<Tv> {
 
   var color = white;
 
-  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -167,11 +167,11 @@ class _TvState extends State<Tv> {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             MyText(
                                               'Choose a Biller',
@@ -197,23 +197,23 @@ class _TvState extends State<Tv> {
                                           itemCount: tvBiller.length,
                                           itemBuilder: (context, index) =>
                                               ListTile(
-                                            onTap: () {
-                                              data.billerTextController.text =
+                                                onTap: () {
+                                                  data.billerTextController.text =
                                                   tvBiller[index];
-                                              Navigator.pop(context);
-                                            },
-                                            leading: const CircleAvatar(
-                                              radius: 17,
-                                              backgroundColor:
+                                                  Navigator.pop(context);
+                                                },
+                                                leading: const CircleAvatar(
+                                                  radius: 17,
+                                                  backgroundColor:
                                                   Color(0xffBCB8B8),
-                                            ),
-                                            title: MyText(
-                                              tvBiller[index],
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              color: black2121,
-                                            ),
-                                          ),
+                                                ),
+                                                title: MyText(
+                                                  tvBiller[index],
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: black2121,
+                                                ),
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -272,11 +272,11 @@ class _TvState extends State<Tv> {
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                           children: [
                                             MyText(
                                               'Choose a Package',
@@ -302,36 +302,36 @@ class _TvState extends State<Tv> {
                                           itemCount: package.length,
                                           itemBuilder: (context, index) =>
                                               ListTile(
-                                            onTap: () {
-                                              data.packageTextController.text =
+                                                onTap: () {
+                                                  data.packageTextController.text =
                                                   package[index]['Name']!;
-                                              Navigator.pop(context);
-                                            },
-                                            trailing: const CircleAvatar(
-                                              radius: 8,
-                                              backgroundColor:
+                                                  Navigator.pop(context);
+                                                },
+                                                trailing: const CircleAvatar(
+                                                  radius: 8,
+                                                  backgroundColor:
                                                   Color(0xffBCB8B8),
-                                            ),
-                                            title: Row(
-                                              mainAxisAlignment:
+                                                ),
+                                                title: Row(
+                                                  mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
-                                              children: [
-                                                MyText(
-                                                  package[index]['Name']!,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: black2121,
+                                                  children: [
+                                                    MyText(
+                                                      package[index]['Name']!,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w400,
+                                                      color: black2121,
+                                                    ),
+                                                    MyText(
+                                                      '${getCurrency()} ${package[index]['Amount']!}',
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w400,
+                                                      color: black2121,
+                                                    ),
+                                                  ],
                                                 ),
-                                                MyText(
-                                                  '${getCurrency()} ${package[index]['Amount']!}',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: black2121,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -417,19 +417,19 @@ class _TvState extends State<Tv> {
                                   builder: (BuildContext context) {
                                     return SizedBox(
                                       height:
-                                          MediaQuery.of(context).size.height *
-                                              0.75,
+                                      MediaQuery.of(context).size.height *
+                                          0.75,
                                       child: Padding(
                                         padding: const EdgeInsets.all(20.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              MainAxisAlignment
+                                                  .spaceBetween,
                                               children: [
                                                 MyText(
                                                   'Schedule Top up',
@@ -601,34 +601,34 @@ class _TvState extends State<Tv> {
                                                   top: 5.0, bottom: 16),
                                               child: GridView.builder(
                                                   gridDelegate:
-                                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                                     crossAxisCount: 4,
                                                   ),
                                                   itemCount:
-                                                      topUpContainers.length,
+                                                  topUpContainers.length,
                                                   shrinkWrap: true,
                                                   itemBuilder:
                                                       (BuildContext context,
-                                                          int index) {
+                                                      int index) {
                                                     return Row(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                       children: [
                                                         InkWell(
                                                           highlightColor:
-                                                              const Color(
-                                                                      0xff126687)
-                                                                  .withOpacity(
-                                                                      0.12),
+                                                          const Color(
+                                                              0xff126687)
+                                                              .withOpacity(
+                                                              0.12),
                                                           onTap: () {
                                                             setState(() {
                                                               if (selectedIndex
                                                                   .contains(
-                                                                      index)) {
+                                                                  index)) {
                                                                 selectedIndex
                                                                     .remove(
-                                                                        index);
+                                                                    index);
                                                               } else {
                                                                 selectedIndex
                                                                     .add(index);
@@ -639,44 +639,44 @@ class _TvState extends State<Tv> {
                                                             width: 77,
                                                             height: 70,
                                                             padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 8),
+                                                            const EdgeInsets
+                                                                .only(
+                                                                left: 8),
                                                             decoration:
-                                                                BoxDecoration(
+                                                            BoxDecoration(
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
+                                                              BorderRadius
+                                                                  .circular(
+                                                                  5),
                                                               color: selectedIndex
-                                                                      .contains(
-                                                                          index)
+                                                                  .contains(
+                                                                  index)
                                                                   ? const Color(
-                                                                      0xffa1d0e6)
+                                                                  0xffa1d0e6)
                                                                   : Colors
-                                                                      .white,
+                                                                  .white,
                                                               border:
-                                                                  Border.all(
+                                                              Border.all(
                                                                 color: mainBlue,
                                                               ),
                                                             ),
                                                             child: Column(
                                                               mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .end,
+                                                              MainAxisAlignment
+                                                                  .end,
                                                               crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                               children: [
                                                                 MyText(
                                                                   topUpContainers[
-                                                                      index],
+                                                                  index],
                                                                   fontSize: 10,
                                                                   fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
+                                                                  FontWeight
+                                                                      .w500,
                                                                   color:
-                                                                      mainBlue,
+                                                                  mainBlue,
                                                                 ),
                                                               ],
                                                             ),
@@ -701,7 +701,7 @@ class _TvState extends State<Tv> {
                                                     .tvStartDateTextController,
                                                 hintText: 'Choose date',
                                                 keyBoardType:
-                                                    TextInputType.number,
+                                                TextInputType.number,
                                                 suffixIcon: IconButton(
                                                   icon: const Icon(
                                                     Icons.calendar_month,
@@ -726,7 +726,7 @@ class _TvState extends State<Tv> {
                                                     .tvStartDateTextController,
                                                 hintText: 'Choose date',
                                                 keyBoardType:
-                                                    TextInputType.number,
+                                                TextInputType.number,
                                                 suffixIcon: IconButton(
                                                   icon: const Icon(
                                                     Icons.calendar_month,
@@ -750,8 +750,8 @@ class _TvState extends State<Tv> {
                                                   setState(() {});
 
                                                   Duration waitTime =
-                                                      const Duration(
-                                                          seconds: 4);
+                                                  const Duration(
+                                                      seconds: 4);
                                                   Future.delayed(waitTime, () {
                                                     _isLoading = false;
                                                     if (mounted) {
@@ -775,18 +775,18 @@ class _TvState extends State<Tv> {
                                                 },
                                                 child: data.isLoading == false
                                                     ? MyText(
-                                                        'Continue',
-                                                        color: white,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        fontSize: 20,
-                                                      )
+                                                  'Continue',
+                                                  color: white,
+                                                  fontWeight:
+                                                  FontWeight.w700,
+                                                  fontSize: 20,
+                                                )
                                                     : const Center(
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          color: white,
-                                                        ),
-                                                      ),
+                                                  child:
+                                                  CircularProgressIndicator(
+                                                    color: white,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -809,9 +809,16 @@ class _TvState extends State<Tv> {
                           color: mainBlue,
                           onTap: () async {
                             if (formKey.currentState!.validate()) {
-                              data.isLoading = true;
+                              _isLoading = true;
                               setState(() {});
-                              data.delay(4);
+                              Duration waitTime = const Duration(seconds: 4);
+                              Future.delayed(waitTime, () {
+                                _isLoading = false;
+                                if (mounted) {
+                                  setState(() {});
+                                }
+                              });
+
                               try {
                                 cardBottomSheet(context, data);
                               } catch (e, s) {
@@ -829,7 +836,7 @@ class _TvState extends State<Tv> {
                               );
                             }
                           },
-                          child: data.isLoading == false
+                          child: _isLoading == false
                               ? MyText(
                                   'Continue',
                                   color: white,
@@ -856,9 +863,9 @@ class _TvState extends State<Tv> {
     return showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10.0),
-          topRight: Radius.circular(10.0),
-        )),
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            )),
         enableDrag: false,
         isDismissible: true,
         context: context,
@@ -950,9 +957,17 @@ class _TvState extends State<Tv> {
                       color: mainBlue,
                       onTap: () async {
                         //if (formKey.currentState!.validate()) {
-                        data.isLoading = true;
+                        _isLoading = true;
                         setState(() {});
-                        data.delay(4);
+
+                        Duration waitTime = const Duration(seconds: 4);
+                        Future.delayed(waitTime, () {
+                          _isLoading = false;
+                          if (mounted) {
+                            setState(() {});
+                          }
+                        });
+
                         try {
                           data.billerTextController.clear();
                           data.smartCardNumberTextController.clear();
@@ -963,7 +978,7 @@ class _TvState extends State<Tv> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const PaymentSuccessful()));
+                                  const PaymentSuccessful()));
                         } catch (e, s) {
                           if (kDebugMode) {
                             print(e);
