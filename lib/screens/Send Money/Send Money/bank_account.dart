@@ -273,17 +273,17 @@ class _BankAccountState extends State<BankAccount> {
                       },
                       child: data.isLoading == false
                           ? MyText(
-                              'Continue',
-                              color: white,
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            )
+                        'Continue',
+                        color: white,
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      )
                           : const Center(
-                              child: CircularProgressIndicator(
-                                color: white,
-                              ),
-                            ),
+                        child: CircularProgressIndicator(
+                          color: white,
+                        ),
+                      ),
                     ),
                   ],
                 ),

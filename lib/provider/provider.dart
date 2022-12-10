@@ -95,7 +95,7 @@ class ProviderClass extends ChangeNotifier {
   final TextEditingController _receiverAccountNumberTextController =
       TextEditingController();
   final TextEditingController _accountNameTextController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController _transferDescriptionTextController =
       TextEditingController();
   final TextEditingController _cardNameTextController = TextEditingController();
@@ -109,6 +109,7 @@ class ProviderClass extends ChangeNotifier {
 
   TextEditingController get fullNameTextController => _fullNameTextController;
 
+  TextEditingController();
 
   TextEditingController get amountToSendTextController =>
       _amountToSendTextController;
