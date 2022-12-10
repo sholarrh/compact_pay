@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const mainBlue = Color(0xFF2488B0);
 const lightMainBlue = Color(0xFF314BCE);
+const lightBlue = Color.fromRGBO(36, 136, 176, 0.3);
 const white = Color(0xFFFFFFFF);
 const darkBlue = Color(0xFF193b6c);
 const cardColor = Color(0xFFF5F6FA);
@@ -67,6 +68,7 @@ const black_10 = Color(0xff121212);
 const black_11 = Color(0xff0C0C0C);
 const black_12 = Color(0xff070707);
 
+
 const white_grey_01 = Color(0xffFFFFFF);
 const white_grey_02 = Color(0xffFFFFFF);
 const white_grey_03 = Color(0xffFFFFFF);
@@ -103,5 +105,6 @@ const error_90 = Color(0xff9B0000);
 const error_100 = Color(0xff750000);
 const error_110 = Color(0xff4E0000);
 const error_120 = Color(0xff2F0000);
+
 
 const unValidated = Color(0xffE0E0E0);

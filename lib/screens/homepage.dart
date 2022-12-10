@@ -3,9 +3,7 @@ import 'package:compact_pay/screens/Grids/airtime.dart';
 import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../provider/provider.dart';
 import '../utils/app_colors.dart';
 import '../widgets/homepage_grid.dart';
 import 'Grids/cable_network.dart';
@@ -25,17 +23,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    ProviderClass().get();
-
-    ProviderClass().sharedPreferences();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    var data = Provider.of<ProviderClass>(context, listen: true);
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -67,24 +55,11 @@ class _HomePageState extends State<HomePage> {
                             MaterialPageRoute(
                                 builder: (context) => const Profile()));
                       },
-                      child: data.image != null
-                          ? CircleAvatar(
-                              radius: 20,
-                              //backgroundImage: AssetImage(data.profilePicture!),
-                              child: Image.file(
-                                data.image!,
-                                fit: BoxFit.contain,
-                              ),
-                            )
-                          : CircleAvatar(
-                              radius: 20,
-                              backgroundColor: mainBlue.withOpacity(0.4),
-                              child: const Icon(
-                                Icons.person,
-                                color: mainBlue,
-                                size: 34,
-                              ),
-                            ),
+                      child: const CircleAvatar(
+                        radius: 20,
+                        backgroundImage:
+                            AssetImage('assets/images/profileImage.png'),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -129,12 +104,31 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                       ),
-
-                      MyText(
-                        'Last Login: 1/11/2022',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: black2121,
+                      InkWell(
+                        onTap: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(
+                                  2000), //DateTime.now() - not to allow to choose before today.
+                              lastDate: DateTime(2101));
+                          if (pickedDate != null) {
+                            print(pickedDate);
+                            String formattedDate =
+                                DateFormat('yyyy-MM-dd').format(pickedDate);
+                            setState(() {
+                              data.startDate.text = formattedDate;
+                            });
+                          } else {
+                            print("Date is not selected");
+                          }
+                        },
+                        child: MyText(
+                          'Last Login: 1/11/2022',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: black2121,
+                        ),
                       ),
                     ],
                   ),
@@ -156,10 +150,9 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MyText(
-                              data.accountNumber ?? 'Account Number',
+                            MyText('Account Balance',
                               fontSize: 10,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w500 ,
                               color: white,
                             ),
                             Row(
@@ -174,8 +167,8 @@ class _HomePageState extends State<HomePage> {
                                 GestureDetector(
                                   onTap: (){},
                                   child: const Icon(Icons.arrow_forward_ios,
-                                    size: 8,
-                                    color: white,),
+                                  size: 8,
+                                  color: white,),
                                 )
                               ],
                             ),
@@ -188,31 +181,22 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                MyText(
-                                  'N',
+                                MyText('N',
                                   fontSize: 36,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w700 ,
                                   color: white,
                                 ),
-                                data.accountBalance == null
-                                    ? MyText(
-                                        '0.00',
-                                        fontSize: 36,
-                                        fontWeight: FontWeight.w700,
-                                        color: white,
-                                      )
-                                    : MyText(
-                                        data.accountBalance.toString(),
-                                        fontSize: 36,
-                                        fontWeight: FontWeight.w700,
-                                        color: white,
-                                      ),
+                                MyText('45,560.00',
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.w700 ,
+                                  color: white,
+                                ),
                               ],
                             ),
-                            Icon(Icons.remove_red_eye_outlined,
-                              size: 20,
-                              color: white.withOpacity(0.7),
-                            ),
+                             Icon(Icons.remove_red_eye_outlined,
+                            size: 20,
+                            color: white.withOpacity(0.7),
+                             ),
                           ],
                         ),
                       ],
@@ -272,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-
+                
                 Image.asset('assets/images/referral.png'),
 
                 Padding(

@@ -8,6 +8,30 @@ String? validateFullName(String? formFullName) {
   return null;
 }
 
+String? validateFirstName(String? formFirstName) {
+  if (formFirstName == null || formFirstName.isEmpty) {
+    return 'First Name is required.';
+  }
+
+  return null;
+}
+
+String? validateMiddleName(String? formMiddleName) {
+  if (formMiddleName == null || formMiddleName.isEmpty) {
+    return 'Middle Name is required.';
+  }
+
+  return null;
+}
+
+String? validateLastName(String? formLastName) {
+  if (formLastName == null || formLastName.isEmpty) {
+    return 'Last Name is required.';
+  }
+
+  return null;
+}
+
 String? validateEmail(String? formEmail) {
   if (formEmail == null || formEmail.isEmpty) {
     return 'E-mail address is required.';
