@@ -36,7 +36,6 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,

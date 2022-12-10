@@ -14,7 +14,6 @@ import 'package:timer_count_down/timer_controller.dart';
 import '../widgets/image_button.dart';
 
 class ProviderClass extends ChangeNotifier {
-  //GlobalKey<FormState> get formKey => _formKey;
   bool isLoading = false;
 
   bool submitValid = false;
@@ -25,20 +24,13 @@ class ProviderClass extends ChangeNotifier {
   final TextEditingController _middleNameTextController =
       TextEditingController();
   final TextEditingController _lastNameTextController = TextEditingController();
-  final TextEditingController _fullNameTextController = TextEditingController();
-  final TextEditingController _firstNameTextController =
-      TextEditingController();
-  final TextEditingController _lastNameTextController = TextEditingController();
-  final TextEditingController _middleNameTextController =
-      TextEditingController();
+
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _phoneNumberTextController =
       TextEditingController();
   final TextEditingController _confirmPasswordTextController =
       TextEditingController();
-
-  final TextEditingController _oldPassword = TextEditingController();
 
   TextEditingController get firstNameTextController => _firstNameTextController;
 
@@ -49,8 +41,6 @@ class ProviderClass extends ChangeNotifier {
 
   TextEditingController get passwordTextController => _passwordTextController;
 
-  TextEditingController get oldPassword => _oldPassword;
-
   TextEditingController get emailTextController => _emailTextController;
 
   TextEditingController get phoneNumberTextController =>
@@ -58,6 +48,11 @@ class ProviderClass extends ChangeNotifier {
 
   TextEditingController get confirmPasswordTextController =>
       _confirmPasswordTextController;
+
+  final TextEditingController _fullNameTextController = TextEditingController();
+  final TextEditingController _oldPassword = TextEditingController();
+
+  TextEditingController get oldPassword => _oldPassword;
 
   // KYC VERIFICATION
   final TextEditingController _addressTextController = TextEditingController();
@@ -110,51 +105,10 @@ class ProviderClass extends ChangeNotifier {
       TextEditingController();
   final TextEditingController _cardCvvTextController = TextEditingController();
 
-  final List<String> _otpCodeList = [];
-  final List<String> _pinList = [];
-  final List<String> _confirmPinList = [];
-
-  List<String> get pinList => _pinList;
-
-  List<String> get otpCodeList => _otpCodeList;
-
-  List<String> get confirmPinList => _confirmPinList;
-
   //final _formKey = GlobalKey<FormState>();
 
   TextEditingController get fullNameTextController => _fullNameTextController;
 
-  TextEditingController get firstNameTextController => _firstNameTextController;
-
-  TextEditingController get middleNameTextController =>
-      _middleNameTextController;
-
-  TextEditingController get lastNameTextController => _lastNameTextController;
-
-  TextEditingController get passwordTextController => _passwordTextController;
-
-  TextEditingController get emailTextController => _emailTextController;
-
-  TextEditingController get phoneNumberTextController =>
-      _phoneNumberTextController;
-
-  TextEditingController get confirmPasswordTextController =>
-      _confirmPasswordTextController;
-
-  TextEditingController get bvnTextController => _bvnTextController;
-
-  TextEditingController get genderTextController => _genderTextController;
-
-  TextEditingController get ageTextController => _ageTextController;
-
-  TextEditingController get referralCodeTextController =>
-      _referralCodeTextController;
-
-  TextEditingController get oldTransactionPin => _oldTransactionPin;
-
-  TextEditingController get newTransactionPin => _newTransactionPin;
-
-  TextEditingController get confirmTransactionPin => _confirmTransactionPin;
 
   TextEditingController get amountToSendTextController =>
       _amountToSendTextController;
@@ -179,25 +133,30 @@ class ProviderClass extends ChangeNotifier {
   // airtime controllers
 
   final TextEditingController _startDate = TextEditingController();
+
   TextEditingController get startDate => _startDate;
   final TextEditingController _endDate = TextEditingController();
+
   TextEditingController get endDate => _endDate;
 
   // Electricity controllers
   final TextEditingController _chooseProvider = TextEditingController();
+
   TextEditingController get chooseProvider => _chooseProvider;
   final TextEditingController _meterNumber = TextEditingController();
+
   TextEditingController get meterNumber => _meterNumber;
-  TextEditingController _amount = TextEditingController();
+  final TextEditingController _amount = TextEditingController();
+
   TextEditingController get amount => _amount;
 
   // CARD DETAILS
-  final TextEditingController _cardNameTextController = TextEditingController();
-  final TextEditingController _cardNumberTextController =
-      TextEditingController();
-  final TextEditingController _cardExpiryDateTextController =
-      TextEditingController();
-  final TextEditingController _cardCvvTextController = TextEditingController();
+  // final TextEditingController _cardNameTextController = TextEditingController();
+  // final TextEditingController _cardNumberTextController =
+  //     TextEditingController();
+  // final TextEditingController _cardExpiryDateTextController =
+  //     TextEditingController();
+  // final TextEditingController _cardCvvTextController = TextEditingController();
 
   TextEditingController get cardNameTextController => _cardNameTextController;
 
@@ -234,8 +193,6 @@ class ProviderClass extends ChangeNotifier {
   List<String> get otpCodeList => _otpCodeList;
 
   List<String> get confirmPinList => _confirmPinList;
-
-  //final _formKey = GlobalKey<FormState>();
 
   //TV
   final TextEditingController _smartCardNumberTextController =

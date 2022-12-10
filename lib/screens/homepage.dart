@@ -3,7 +3,10 @@ import 'package:compact_pay/screens/Grids/airtime.dart';
 import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/provider.dart';
 import '../utils/app_colors.dart';
 import '../widgets/homepage_grid.dart';
 import 'Grids/cable_network.dart';
@@ -24,6 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -58,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                       child: const CircleAvatar(
                         radius: 20,
                         backgroundImage:
-                            AssetImage('assets/images/profileImage.png'),
+                        AssetImage('assets/images/profileImage.png'),
                       ),
                     ),
                     Row(
@@ -115,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                           if (pickedDate != null) {
                             print(pickedDate);
                             String formattedDate =
-                                DateFormat('yyyy-MM-dd').format(pickedDate);
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
                             setState(() {
                               data.startDate.text = formattedDate;
                             });
@@ -167,8 +171,8 @@ class _HomePageState extends State<HomePage> {
                                 GestureDetector(
                                   onTap: (){},
                                   child: const Icon(Icons.arrow_forward_ios,
-                                  size: 8,
-                                  color: white,),
+                                    size: 8,
+                                    color: white,),
                                 )
                               ],
                             ),
@@ -193,10 +197,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
-                             Icon(Icons.remove_red_eye_outlined,
-                            size: 20,
-                            color: white.withOpacity(0.7),
-                             ),
+                            Icon(Icons.remove_red_eye_outlined,
+                              size: 20,
+                              color: white.withOpacity(0.7),
+                            ),
                           ],
                         ),
                       ],
@@ -256,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                
+
                 Image.asset('assets/images/referral.png'),
 
                 Padding(
