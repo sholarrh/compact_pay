@@ -95,7 +95,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                   ),
                   const SizedBox(height: 36),
                   MyText(
-                    ' Account Number',
+                    ' CompactPay Account',
                     fontSize: 10,
                     fontWeight: FontWeight.w400,
                     color: black2121,

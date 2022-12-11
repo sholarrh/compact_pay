@@ -2,6 +2,7 @@ import 'package:compact_pay/screens/add_money/scan_qr/qr_code.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_text.dart';
+import '../../compact_account/compactpay_account.dart';
 import 'bank_account.dart';
 
 class SendMoney extends StatefulWidget {
@@ -136,8 +137,11 @@ class _SendMoneyState extends State<SendMoney> {
                       ),
                       IconButton(
                         onPressed: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CompactPayAccount()));
                         },
                         icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,

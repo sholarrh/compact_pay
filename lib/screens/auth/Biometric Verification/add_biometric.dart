@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../../widgets/my_text.dart';
+import '../../securitysettings.dart';
 
 class AddBiometric extends StatefulWidget {
   const AddBiometric({Key? key}) : super(key: key);
@@ -83,8 +84,11 @@ class _AddBiometricState extends State<AddBiometric> {
                       ),
                       IconButton(
                         onPressed: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => const EditProfile()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SecuritySettings()));
                         },
                         icon: const Icon(Icons.arrow_forward_ios_outlined,
                           color: mainBlue,

@@ -1,7 +1,10 @@
 import 'package:compact_pay/provider/provider.dart';
-import 'package:compact_pay/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'screens/SplashScreen/splashscreen.dart';
+import 'screens/homepage.dart';
+import 'widgets/bottom_nav.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins',
         ),
-        home: const Login(),
+        home: const BottomNav(),
       ),);
   }
 }
