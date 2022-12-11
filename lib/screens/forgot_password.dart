@@ -28,6 +28,21 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   bool _forgotIsLoading = false;
 
+  final List<bool> _validate = [false, false];
+
+  void _updateFormFieldsFilled(String val, int index) {
+    if (val.isEmpty) {
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, false);
+      setState(() {});
+    } else {
+      //if (validate[index])
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, true);
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -94,6 +109,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             hasSuffixIcon: false,
                             keyBoardType: TextInputType.emailAddress,
                             validator: validateEmail,
+                            onChanged: (value) {
+                              _updateFormFieldsFilled(value, 0);
+                            },
                           ),
                         ],
                       ),
@@ -103,10 +121,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       child: MyButton(
                         height: 50,
                         width: double.infinity,
-                        color: mainBlue,
+                        color:
+                            _validate.contains(false) ? unValidated : mainBlue,
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            data.isLoading = true;
+                            _forgotIsLoading = true;
                             setState(() {});
 
                             Duration waitTime = const Duration(seconds: 4);

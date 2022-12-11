@@ -34,7 +34,6 @@ class _LoginState extends State<Login> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //_updateFormFieldsFilled();
   }
 
   bool _loginIsLoading = false;
@@ -42,7 +41,20 @@ class _LoginState extends State<Login> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
-  // bool _areFormFieldsFilled = false;
+  final List<bool> _validate = [false, false];
+
+  void _updateFormFieldsFilled(String val, int index) {
+    if (val.isEmpty) {
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, false);
+      setState(() {});
+    } else {
+      //if (validate[index])
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, true);
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +126,7 @@ class _LoginState extends State<Login> {
                             keyBoardType: TextInputType.emailAddress,
                             validator: validateEmail,
                             onChanged: (value) {
-                              data.updateFormFieldsFilled(value, 0);
+                              _updateFormFieldsFilled(value, 0);
                             },
                           ),
                           const SizedBox(
@@ -140,7 +152,7 @@ class _LoginState extends State<Login> {
                             keyBoardType: TextInputType.text,
                             validator: validatePassword,
                             onChanged: (value) {
-                              data.updateFormFieldsFilled(value, 1);
+                              _updateFormFieldsFilled(value, 1);
                             },
                           ),
                         ],
@@ -171,11 +183,9 @@ class _LoginState extends State<Login> {
                       child: MyButton(
                         height: 50,
                         width: double.infinity,
-                        color: data.validate.contains(false)
-                            ? unValidated
-                            : mainBlue,
+                        color:
+                            _validate.contains(false) ? unValidated : mainBlue,
                         onTap: () async {
-                          print(data.validate);
                           if (formKey.currentState!.validate()) {
                             _loginIsLoading = true;
                             setState(() {});

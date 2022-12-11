@@ -36,6 +36,8 @@ class _AddByUssdState extends State<AddByUssd> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -330,9 +332,18 @@ class _AddByUssdState extends State<AddByUssd> {
                               color: mainBlue,
                               onTap: () async {
                                 if (formKey.currentState!.validate()) {
-                                  data.isLoading = true;
+                                  _isLoading = true;
                                   setState(() {});
-                                  data.delay(4);
+
+                                  Duration waitTime =
+                                      const Duration(seconds: 4);
+                                  Future.delayed(waitTime, () {
+                                    _isLoading = false;
+                                    if (mounted) {
+                                      setState(() {});
+                                    }
+                                  });
+
                                   try {
                                     ussdBottomSheet(context, data);
                                   } catch (e, s) {
@@ -350,7 +361,7 @@ class _AddByUssdState extends State<AddByUssd> {
                                   );
                                 }
                               },
-                              child: data.isLoading == false
+                              child: _isLoading == false
                                   ? MyText(
                                       'Continue',
                                       color: white,

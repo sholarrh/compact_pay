@@ -33,6 +33,21 @@ class _SignUpState extends State<SignUp> {
 
   GlobalKey<FormState> get formKey => _formKey;
 
+  final List<bool> _validate = [false, false];
+
+  void _updateFormFieldsFilled(String val, int index) {
+    if (val.isEmpty) {
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, false);
+      setState(() {});
+    } else {
+      //if (validate[index])
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, true);
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -74,7 +89,7 @@ class _SignUpState extends State<SignUp> {
                   InputField(
                       hintText: 'Enter first name',
                       onChanged: (value) {
-                        data.updateFormFieldsFilled(value, 0);
+                        _updateFormFieldsFilled(value, 0);
                       },
                       validator: validateFullName,
                       keyBoardType: TextInputType.name,
@@ -98,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: false,
                     inputController: data.middleNameTextController,
                     onChanged: (value) {
-                      data.updateFormFieldsFilled(value, 1);
+                      _updateFormFieldsFilled(value, 1);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -118,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: false,
                     inputController: data.lastNameTextController,
                     onChanged: (value) {
-                      data.updateFormFieldsFilled(value, 2);
+                      _updateFormFieldsFilled(value, 2);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -138,7 +153,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: false,
                     inputController: data.emailTextController,
                     onChanged: (value) {
-                      data.updateFormFieldsFilled(value, 3);
+                      _updateFormFieldsFilled(value, 3);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -157,7 +172,7 @@ class _SignUpState extends State<SignUp> {
                     isPassword: false,
                     hasSuffixIcon: false,
                     onChanged: (value) {
-                      data.updateFormFieldsFilled(value, 4);
+                      _updateFormFieldsFilled(value, 4);
                     },
                     prefixIcon: DropdownButton<String>(
                       value: dropdownValue,
@@ -212,7 +227,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: true,
                     inputController: data.passwordTextController,
                     onChanged: (value) {
-                      data.updateFormFieldsFilled(value, 5);
+                      _updateFormFieldsFilled(value, 5);
                     },
                   ),
                   const SizedBox(height: 25),
@@ -232,7 +247,7 @@ class _SignUpState extends State<SignUp> {
                     hasSuffixIcon: true,
                     inputController: data.confirmPasswordTextController,
                     onChanged: (value) {
-                      data.updateFormFieldsFilled(value, 6);
+                      _updateFormFieldsFilled(value, 6);
                     },
                   ),
                   const SizedBox(height: 15),
@@ -282,8 +297,7 @@ class _SignUpState extends State<SignUp> {
                   MyButton(
                     height: 54,
                     width: double.infinity,
-                    color:
-                        data.validate.contains(false) ? unValidated : mainBlue,
+                    color: _validate.contains(false) ? unValidated : mainBlue,
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
                         _signUpIsLoading = true;

@@ -59,10 +59,21 @@ class _HomePageState extends State<HomePage> {
                             MaterialPageRoute(
                                 builder: (context) => const Profile()));
                       },
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         radius: 20,
-                        backgroundImage:
-                        AssetImage('assets/images/profileImage.png'),
+                        backgroundColor: const Color(0xffD9D9D9),
+                        child: data.image == null
+                            ? Icon(
+                                Icons.camera_alt_outlined,
+                                color: const Color(0xff292D32).withOpacity(0.4),
+                                size: 40,
+                              )
+                            : Image.file(
+                                data.image!,
+                                fit: BoxFit.fill,
+                                height: 40,
+                                width: 40,
+                              ),
                       ),
                     ),
                     Row(

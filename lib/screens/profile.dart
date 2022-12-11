@@ -55,18 +55,23 @@ class _ProfileState extends State<Profile> {
                   //
                   // :
                   CircleAvatar(
-                      radius: 40,
-                      backgroundColor: const Color(0xffD9D9D9),
-                      child: data.image == null
-                          ? Icon(
-                              Icons.camera_alt_outlined,
-                              color: const Color(0xff292D32).withOpacity(0.4),
-                              size: 40,
-                            )
-                          : Image.file(
+                    radius: 35,
+                    backgroundColor: const Color(0xffD9D9D9),
+                    child: data.image == null
+                        ? Icon(
+                            Icons.camera_alt_outlined,
+                            color: const Color(0xff292D32).withOpacity(0.4),
+                            size: 40,
+                          )
+                        : ClipOval(
+                            child: Image.file(
                               data.image!,
-                              fit: BoxFit.contain,
-                            )),
+                              fit: BoxFit.fill,
+                              height: 70,
+                              width: 70,
+                            ),
+                          ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 16),
                     child: MyText(

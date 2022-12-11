@@ -2,7 +2,6 @@
 
 import 'package:compact_pay/screens/add_money/bank_transfer/add_by_bank_transfer.dart';
 import 'package:compact_pay/screens/add_money/card/add_by_card.dart';
-import 'package:compact_pay/screens/add_money/request_money/add_by_request.dart';
 import 'package:compact_pay/screens/add_money/scan_qr/qr_code.dart';
 import 'package:compact_pay/screens/add_money/ussd/add_by_ussd.dart';
 import 'package:flutter/material.dart';
@@ -78,12 +77,12 @@ class _AddMoneyState extends State<AddMoney> {
                 screen: AddByCashDeposit(),
                 icon: Icons.account_balance_wallet,
               ),
-              const ContainerWidget(
-                title: 'Request Money',
-                subtitle: 'Send a request to any CompactPay user',
-                screen: AddByRequest(),
-                icon: Icons.account_balance_wallet_outlined,
-              ),
+              // const ContainerWidget(
+              //   title: 'Request Money',
+              //   subtitle: 'Send a request to any CompactPay user',
+              //   screen: AddByRequest(),
+              //   icon: Icons.account_balance_wallet_outlined,
+              // ),
               const ContainerWidget(
                 title: 'Scan my QR Code',
                 subtitle: 'Show QR code to any CompactPay user',

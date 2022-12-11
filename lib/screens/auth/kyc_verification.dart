@@ -30,6 +30,21 @@ class _KycVerificationState extends State<KycVerification> {
 
   bool _kycIsLoading = false;
 
+  final List<bool> _validate = [false, false];
+
+  void _updateFormFieldsFilled(String val, int index) {
+    if (val.isEmpty) {
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, false);
+      setState(() {});
+    } else {
+      //if (validate[index])
+      _validate.isNotEmpty ? _validate.removeAt(index) : null;
+      _validate.insert(index, true);
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -88,7 +103,7 @@ class _KycVerificationState extends State<KycVerification> {
                             keyBoardType: TextInputType.name,
                             validator: validateFullName,
                             onChanged: (value) {
-                              data.updateFormFieldsFilled(value, 0);
+                              _updateFormFieldsFilled(value, 0);
                             },
                           ),
                           Padding(
@@ -152,7 +167,7 @@ class _KycVerificationState extends State<KycVerification> {
                             keyBoardType: TextInputType.number,
                             validator: validateNumber,
                             onChanged: (value) {
-                              data.updateFormFieldsFilled(value, 1);
+                              _updateFormFieldsFilled(value, 1);
                             },
                             inputFormatters: FilteringTextInputFormatter.allow(
                               RegExp("[0-9]"),
@@ -176,7 +191,7 @@ class _KycVerificationState extends State<KycVerification> {
                             keyBoardType: TextInputType.number,
                             validator: validateBvnNumber,
                             onChanged: (value) {
-                              data.updateFormFieldsFilled(value, 2);
+                              _updateFormFieldsFilled(value, 2);
                             },
                             inputFormatters: FilteringTextInputFormatter.allow(
                               RegExp("[0-9]"),
@@ -200,7 +215,7 @@ class _KycVerificationState extends State<KycVerification> {
                             keyBoardType: TextInputType.name,
                             validator: validatePassword,
                             onChanged: (value) {
-                              data.updateFormFieldsFilled(value, 3);
+                              _updateFormFieldsFilled(value, 3);
                             },
                           ),
                           Padding(
@@ -208,12 +223,12 @@ class _KycVerificationState extends State<KycVerification> {
                             child: MyButton(
                               height: 50,
                               width: double.infinity,
-                              color: data.validate.contains(false)
+                              color: _validate.contains(false)
                                   ? unValidated
                                   : mainBlue,
                               onTap: () async {
                                 if (formKey.currentState!.validate()) {
-                                  data.isLoading = true;
+                                  _kycIsLoading = true;
                                   setState(() {});
 
                                   Duration waitTime =

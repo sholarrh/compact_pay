@@ -50,6 +50,8 @@ class ProviderClass extends ChangeNotifier {
       _confirmPasswordTextController;
 
   final TextEditingController _fullNameTextController = TextEditingController();
+
+  TextEditingController get fullNameTextController => _fullNameTextController;
   final TextEditingController _oldPassword = TextEditingController();
 
   TextEditingController get oldPassword => _oldPassword;
@@ -87,6 +89,7 @@ class ProviderClass extends ChangeNotifier {
   // BANK DETAILS
   String? bankName;
   String? bankLogo;
+  String? userAccountNumber;
   double? accountBalance;
 
   final TextEditingController _amountToSendTextController =
@@ -95,21 +98,9 @@ class ProviderClass extends ChangeNotifier {
   final TextEditingController _receiverAccountNumberTextController =
       TextEditingController();
   final TextEditingController _accountNameTextController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController _transferDescriptionTextController =
       TextEditingController();
-  final TextEditingController _cardNameTextController = TextEditingController();
-  final TextEditingController _cardNumberTextController =
-      TextEditingController();
-  final TextEditingController _cardExpiryDateTextController =
-      TextEditingController();
-  final TextEditingController _cardCvvTextController = TextEditingController();
-
-  //final _formKey = GlobalKey<FormState>();
-
-  TextEditingController get fullNameTextController => _fullNameTextController;
-
-  TextEditingController();
 
   TextEditingController get amountToSendTextController =>
       _amountToSendTextController;
@@ -126,9 +117,12 @@ class ProviderClass extends ChangeNotifier {
       _transferDescriptionTextController;
 
   // Pincode controllers
-  final TextEditingController _pincodeField = TextEditingController();
-  TextEditingController get pincodeField => _pincodeField;
+  final TextEditingController _pinCodeField = TextEditingController();
+
+  TextEditingController get pinCodeField => _pinCodeField;
+
   final TextEditingController _pinCode = TextEditingController();
+
   TextEditingController get pinCode => _pinCode;
 
   // airtime controllers
@@ -152,12 +146,12 @@ class ProviderClass extends ChangeNotifier {
   TextEditingController get amount => _amount;
 
   // CARD DETAILS
-  // final TextEditingController _cardNameTextController = TextEditingController();
-  // final TextEditingController _cardNumberTextController =
-  //     TextEditingController();
-  // final TextEditingController _cardExpiryDateTextController =
-  //     TextEditingController();
-  // final TextEditingController _cardCvvTextController = TextEditingController();
+  final TextEditingController _cardNameTextController = TextEditingController();
+  final TextEditingController _cardNumberTextController =
+      TextEditingController();
+  final TextEditingController _cardExpiryDateTextController =
+      TextEditingController();
+  final TextEditingController _cardCvvTextController = TextEditingController();
 
   TextEditingController get cardNameTextController => _cardNameTextController;
 
@@ -281,24 +275,24 @@ class ProviderClass extends ChangeNotifier {
   }
 
   // CHANGE CONTAINER COLOR
-  List<bool> validate = [false, false];
+  // List<bool> validate = [false, false];
+  //
+  // void _updateFormFieldsFilled(String val, int index) {
+  //   if (val.isEmpty) {
+  //     validate.isNotEmpty ? validate.removeAt(index) : null;
+  //     validate.insert(index, false);
+  //     //_areFormFieldsFilled = false;
+  //     // setState(() {});
+  //   } else {
+  //     //if (validate[index])
+  //     validate.isNotEmpty ? validate.removeAt(index) : null;
+  //     validate.insert(index, true);
+  //     // setState(() {});
+  //   }
+  //   notifyListeners();
+  // }
 
-  void _updateFormFieldsFilled(String val, int index) {
-    if (val.isEmpty) {
-      validate.isNotEmpty ? validate.removeAt(index) : null;
-      validate.insert(index, false);
-      //_areFormFieldsFilled = false;
-      // setState(() {});
-    } else {
-      //if (validate[index])
-      validate.isNotEmpty ? validate.removeAt(index) : null;
-      validate.insert(index, true);
-      // setState(() {});
-    }
-    notifyListeners();
-  }
-
-  get updateFormFieldsFilled => _updateFormFieldsFilled;
+  //get updateFormFieldsFilled => _updateFormFieldsFilled;
 
   // PICK IMAGE
 
@@ -542,6 +536,89 @@ class ProviderClass extends ChangeNotifier {
     }
   }
 
+  // USER FORGOT PASSWORD
+  late http.Response putForgotPasswordResponse;
+
+  Future<void> putForgotPassword() async {
+    // final storage = await SharedPreferences.getInstance();
+    // userId = await storage.getString('userId');
+    // notifyListeners();
+
+    Map<String, String> requestHeaders = {
+      'Content-type': 'application/json',
+    };
+
+    var payload = {
+      "email": emailTextController.text,
+    };
+
+    var url =
+        Uri.parse('https://compactpay.onrender.com/api/users/forgotpassword');
+
+    try {
+      putForgotPasswordResponse = await http.put(url,
+          headers: requestHeaders, body: json.encode(payload));
+
+      if (kDebugMode) {
+        print('Response status: ${putForgotPasswordResponse.statusCode}');
+      }
+      if (kDebugMode) {
+        print('Response status: ${jsonDecode(putForgotPasswordResponse.body)}');
+      }
+      notifyListeners();
+    } catch (e, s) {
+      if (kDebugMode) {
+        print(e);
+      }
+      if (kDebugMode) {
+        print(s);
+      }
+    }
+  }
+
+  // USER RESET PASSWORD
+  late http.Response putResetPasswordResponse;
+
+  Future<void> putResetPassword() async {
+    // final storage = await SharedPreferences.getInstance();
+    // userId = await storage.getString('userId');
+    // notifyListeners();
+
+    Map<String, String> requestHeaders = {
+      'Content-type': 'application/json',
+    };
+
+    var payload = {
+      "newPassword": passwordTextController.text,
+      "confirmPassword": confirmPasswordTextController.text,
+      "email": "adigun.solafunmi@gmail.com",
+      "otp": "503q99"
+    };
+
+    var url =
+        Uri.parse('https://compactpay.onrender.com/api/users/resetpassword');
+
+    try {
+      putResetPasswordResponse = await http.put(url,
+          headers: requestHeaders, body: json.encode(payload));
+
+      if (kDebugMode) {
+        print('Response status: ${putResetPasswordResponse.statusCode}');
+      }
+      if (kDebugMode) {
+        print('Response status: ${jsonDecode(putResetPasswordResponse.body)}');
+      }
+      notifyListeners();
+    } catch (e, s) {
+      if (kDebugMode) {
+        print(e);
+      }
+      if (kDebugMode) {
+        print(s);
+      }
+    }
+  }
+
   // GET USER DETAILS
 // run shared preference before any app that needs token
 
@@ -610,23 +687,5 @@ class ProviderClass extends ChangeNotifier {
     }
     notifyListeners();
     return responsedata;
-
-    // var request = http.Request(
-    //     'GET',
-    //     Uri.parse(
-    //         'https://compact-pay.herokuapp.com/api/users/$emailTextController'));
-    //
-    // http.StreamedResponse getResponse = await request.send();
-
-    // if (getResponse.statusCode == 200) {
-    //   if (kDebugMode) {
-    //     print(jsonDecode(getResponse.body));
-    //     print(await getResponse.stream.bytesToString());
-    //   }
-    // } else {
-    //   if (kDebugMode) {
-    //     print(getResponse.reasonPhrase);
-    //   }
-    // }
   }
 }
