@@ -1,5 +1,6 @@
 // Adigun solafunmi
 import 'package:compact_pay/screens/Grids/airtime.dart';
+import 'package:compact_pay/screens/add_money/scan_qr/qr_code.dart';
 import 'package:compact_pay/screens/profile.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,12 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const QrCode()));
+                          },
                           child: Image.asset('assets/images/scanner.png'),
                         ),
                         const SizedBox(
