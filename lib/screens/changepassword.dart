@@ -130,7 +130,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                             });
                           }
                         },
-                        child: _isLoading
+                        child: _isLoading == false
                             ? MyText(
                                 'Done',
                                 color: white,

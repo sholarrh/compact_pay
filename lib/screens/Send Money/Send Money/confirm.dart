@@ -315,7 +315,7 @@ class _Confirm2State extends State<Confirm2> {
                       ),
                     );
                   },
-                  child: _isLoading
+                  child: _isLoading == false
                       ? MyText(
                           'Confirm',
                           color: white,

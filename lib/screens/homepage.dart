@@ -1,9 +1,9 @@
 // Adigun solafunmi
 import 'package:compact_pay/screens/Grids/airtime.dart';
 import 'package:compact_pay/screens/profile.dart';
+import 'package:compact_pay/widgets/currency_box.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/provider.dart';
@@ -26,8 +26,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ProviderClass().get();
+  }
+
+  bool hideMoney = false;
+
+  @override
   Widget build(BuildContext context) {
-    var data = Provider.of<ProviderClass>(context);
+    var data = Provider.of<ProviderClass>(context, listen: true);
+    // data.get();
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
@@ -64,16 +74,16 @@ class _HomePageState extends State<HomePage> {
                         backgroundColor: const Color(0xffD9D9D9),
                         child: data.image == null
                             ? Icon(
-                                Icons.camera_alt_outlined,
+                          Icons.camera_alt_outlined,
                                 color: const Color(0xff292D32).withOpacity(0.4),
-                                size: 40,
+                                size: 20,
                               )
                             : Image.file(
-                                data.image!,
-                                fit: BoxFit.fill,
-                                height: 40,
-                                width: 40,
-                              ),
+                          data.image!,
+                          fit: BoxFit.fill,
+                          height: 40,
+                          width: 40,
+                        ),
                       ),
                     ),
                     Row(
@@ -96,56 +106,26 @@ class _HomePageState extends State<HomePage> {
 
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // data.firstName == null && data.lastName == null
-                      //     ? MyText(
-                      //         'Hi, Tola Kelechi',
-                      //         fontSize: 14,
-                      //         fontWeight: FontWeight.w500,
-                      //         color: black2121,
-                      //       )
-                      //     :
-                      Consumer<ProviderClass>(
-                        builder: (context, providerStatus, _) {
-                          print('firstname ${providerStatus.firstNamess.text}');
-                          print('firstname ${providerStatus.lastNamess.text}');
-                          return MyText(
-                            'Hi, ${providerStatus.firstNamess.text} ${providerStatus.lastNamess.text}',
+                  child: Consumer<ProviderClass>(
+                    builder: (context, providerStatus, _) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          MyText(
+                            'Hi, ${providerStatus.firstName} ${providerStatus.lastName}',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: black2121,
-                          );
-                        },
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          DateTime? pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(
-                                  2000), //DateTime.now() - not to allow to choose before today.
-                              lastDate: DateTime(2101));
-                          if (pickedDate != null) {
-                            print(pickedDate);
-                            String formattedDate =
-                            DateFormat('yyyy-MM-dd').format(pickedDate);
-                            setState(() {
-                              data.startDate.text = formattedDate;
-                            });
-                          } else {
-                            print("Date is not selected");
-                          }
-                        },
-                        child: MyText(
-                          'Last Login: 1/11/2022',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: black2121,
-                        ),
-                      ),
-                    ],
+                          ),
+                          MyText(
+                            'Last Login: ${providerStatus.lastLogin}',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: black2121,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
 
@@ -165,9 +145,10 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MyText('Account Balance',
+                            MyText(
+                              'Account Number',
                               fontSize: 10,
-                              fontWeight: FontWeight.w500 ,
+                              fontWeight: FontWeight.w500,
                               color: white,
                             ),
                             Row(
@@ -196,21 +177,27 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                MyText('N',
+                                MyText(
+                                  hideMoney
+                                      ? '*******'
+                                      : '${getCurrency()}3,320,000.00',
                                   fontSize: 36,
-                                  fontWeight: FontWeight.w700 ,
-                                  color: white,
-                                ),
-                                MyText('45,560.00',
-                                  fontSize: 36,
-                                  fontWeight: FontWeight.w700 ,
+                                  fontWeight: FontWeight.w700,
                                   color: white,
                                 ),
                               ],
                             ),
-                            Icon(Icons.remove_red_eye_outlined,
-                              size: 20,
-                              color: white.withOpacity(0.7),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  hideMoney = !hideMoney;
+                                });
+                              },
+                              child: Icon(
+                                Icons.remove_red_eye_outlined,
+                                size: 20,
+                                color: white.withOpacity(0.7),
+                              ),
                             ),
                           ],
                         ),

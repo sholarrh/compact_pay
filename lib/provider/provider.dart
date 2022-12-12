@@ -625,13 +625,7 @@ class ProviderClass extends ChangeNotifier {
   String? accountNumber;
   String? firstName;
   String? lastName;
-
-  final TextEditingController _firstNamess = TextEditingController();
-  final TextEditingController _lastNamess = TextEditingController();
-
-  TextEditingController get firstNamess => _firstNamess;
-
-  TextEditingController get lastNamess => _lastNamess;
+  String? lastLogin;
 
   bool _error = false;
   String _errorMessage = '';
@@ -640,42 +634,37 @@ class ProviderClass extends ChangeNotifier {
 
   String get errorMessage => _errorMessage;
 
-  var responsedata;
   late http.Response getResponse;
+  var responseData;
 
   Future get() async {
-    // final storage = await SharedPreferences.getInstance();
-    // token = await storage.getString('token');
-    // print(firstName);
-    // print(lastName);
-
     var url = Uri.parse(
         'https://compactpay.onrender.com/api/users/adigun.solafunmi@gmail.com');
     getResponse = await http.get(
       url,
     );
-
-    // if (kDebugMode) {
-    //   print('Response status: ${getResponse.statusCode}');
-    //}
+    if (kDebugMode) {
+      print('Response status: ${getResponse.statusCode}');
+      print('Response body: ${getResponse.body}');
+    }
     if (getResponse.statusCode == 200) {
       final storage = await SharedPreferences.getInstance();
       try {
-        responsedata = jsonDecode(getResponse.body);
-        _firstNamess.text = responsedata['data']![0]['firstName'];
-        _lastNamess.text = responsedata['data']![0]['lastName'];
+        responseData = jsonDecode(getResponse.body);
+        firstName = responseData['data']![0]['firstName'];
+        lastName = responseData['data']![0]['lastName'];
+        lastLogin =
+            responseData['data']![0]['updatedAt'].toString().substring(0, 10);
         notifyListeners();
-        print('firstnamePrivate ${_firstNamess.text}');
-        print('firstnamePrivate ${_lastNamess.text}');
+        print('${responseData['data']![0]['firstName']}');
+        print('${responseData['data']![0]['lastName']}');
+        print(
+            'last login: ${responseData['data']![0]['updatedAt'].toString().substring(0, 10)}');
 
         storage.setString('firstName', firstName!);
         storage.setString('lastName', lastName!);
         notifyListeners();
 
-        // if (kDebugMode) {
-        //   print(firstName);
-        //   print(lastName);
-        // }
         _error = false;
       } catch (e) {
         _error = true;
@@ -686,6 +675,6 @@ class ProviderClass extends ChangeNotifier {
       _errorMessage = 'It could be your Internet Connection';
     }
     notifyListeners();
-    return responsedata;
+    //return responseData;
   }
 }

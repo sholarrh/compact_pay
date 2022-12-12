@@ -507,16 +507,18 @@ class _AddByUssdState extends State<AddByUssd> {
                         width: double.infinity,
                         color: mainBlue,
                         onTap: () async {
-                          //if (formKey.currentState!.validate()) {
                           data.isLoading = true;
                           setState(() {});
                           data.delay(4);
+
                           try {
+                            // launchUrl('tel:${8888888888}');
+
                             data.amountToSendTextController.clear();
-                            Navigator.push(
-                                context,
+                            Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => const BottomNav()));
+                                    builder: (context) => const BottomNav()),
+                                (route) => false);
                           } catch (e, s) {
                             if (kDebugMode) {
                               print(e);
@@ -526,12 +528,18 @@ class _AddByUssdState extends State<AddByUssd> {
                             }
                           }
                         },
-                        child: MyText(
-                          'Tap to call',
-                          color: white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                        ),
+                        child: data.isLoading == false
+                            ? MyText(
+                                'Tap to call',
+                                color: white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                              )
+                            : const Center(
+                                child: CircularProgressIndicator(
+                                  color: white,
+                                ),
+                              ),
                       ),
                     ),
                   ],

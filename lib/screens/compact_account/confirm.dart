@@ -133,6 +133,9 @@ class _ConfirmState extends State<Confirm> {
                 ),
                 const SizedBox(height: 300),
                 MyButton(
+                  height: 54,
+                  width: double.infinity,
+                  color: mainBlue,
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
@@ -144,60 +147,60 @@ class _ConfirmState extends State<Confirm> {
                           decoration: const BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 123),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    MyText(
-                                      'Input PIN',
-                                      fontFamily: 'Poppins',
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: black2121,
-                                    ),
-                                    const SizedBox(width: 100),
-                                    IconButton(
-                                      icon: const Icon(Icons.close),
-                                      iconSize: 17,
-                                      color: black_13,
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
                                 ),
                               ),
-                              const SizedBox(height: 25),
-                              PinCodeTextField(
-                                appContext: context,
-                                controller: data.pinCodeField,
-                                length: 4,
-                                obscureText: true,
-                                autoFocus: true,
-                                keyboardType: TextInputType.number,
-                                onChanged: (value) {
-                                  print(value);
-                                },
-                                pinTheme: PinTheme(
-                                  shape: PinCodeFieldShape.box,
-                                  borderRadius: BorderRadius.circular(10),
-                                  fieldHeight: 54,
-                                  fieldWidth: 54,
-                                  inactiveColor: ash2,
-                                  activeColor: mainBlue,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              MyText(
-                                'Forgot PIN?',
-                                fontFamily: 'Poppins',
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 123),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        MyText(
+                                          'Input PIN',
+                                          fontFamily: 'Poppins',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: black2121,
+                                        ),
+                                        const SizedBox(width: 100),
+                                        IconButton(
+                                          icon: const Icon(Icons.close),
+                                          iconSize: 17,
+                                          color: black_13,
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 25),
+                                  PinCodeTextField(
+                                    appContext: context,
+                                    controller: data.pinCodeField,
+                                    length: 4,
+                                    obscureText: true,
+                                    autoFocus: true,
+                                    keyboardType: TextInputType.number,
+                                    onChanged: (value) {
+                                      print(value);
+                                    },
+                                    pinTheme: PinTheme(
+                                      shape: PinCodeFieldShape.box,
+                                      borderRadius: BorderRadius.circular(10),
+                                      fieldHeight: 54,
+                                      fieldWidth: 54,
+                                      inactiveColor: ash2,
+                                      activeColor: mainBlue,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  MyText(
+                                    'Forgot PIN?',
+                                    fontFamily: 'Poppins',
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: mainBlue,
@@ -208,22 +211,12 @@ class _ConfirmState extends State<Confirm> {
                       ),
                     );
                   },
-                  child: Container(
-                    height: 54,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: mainBlue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: MyText(
-                        'Confirm',
-                        color: white,
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                  child: MyText(
+                    'Confirm',
+                    color: white,
+                    fontFamily: 'Poppins',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],

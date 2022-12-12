@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../provider/provider.dart';
 import '../widgets/container_widget.dart';
 import '../widgets/my_text.dart';
+import 'auth/login.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -46,14 +47,6 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-                  // data.image != null
-                  // ? Image.file(data.image!,
-                  //     width: 70,
-                  //     height: 70,
-                  //     fit: BoxFit.contain,
-                  //   )
-                  //
-                  // :
                   CircleAvatar(
                     radius: 35,
                     backgroundColor: const Color(0xffD9D9D9),
@@ -74,12 +67,15 @@ class _ProfileState extends State<Profile> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10, bottom: 16),
-                    child: MyText(
-                      'Tola Kelechi',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: white,
-                      fontFamily: 'Poppins',
+                    child: Consumer<ProviderClass>(
+                      builder: (context, providerStatus, _) {
+                        return MyText(
+                          '${providerStatus.firstName} ${providerStatus.lastName}',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: white,
+                        );
+                      },
                     ),
                   ),
                   InkWell(
@@ -126,17 +122,26 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.only(top: 70),
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const Login()),
+                            (route) => false);
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
                             Icons.logout_outlined,
-                            color: white,),
-                          const SizedBox(width: 10,),
-                          MyText('Log out',
+                            color: white,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          MyText(
+                            'Log out',
                             fontSize: 16,
-                            fontWeight: FontWeight.w400 ,
+                            fontWeight: FontWeight.w400,
                             color: white,
                           ),
                         ],
