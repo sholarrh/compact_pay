@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/text_form_field.dart';
+import '../airtime/Input_pin.dart';
 
 class Data extends StatefulWidget {
   const Data({Key? key}) : super(key: key);
@@ -766,6 +767,33 @@ class _DataState extends State<Data> {
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const InputPin()));
+                              },
+                              child: Container(
+                                height: 54,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: mainBlue,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                  child: MyText(
+                                    'Confirm',
+                                    color: white,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ),
                             ),
                           ]),
