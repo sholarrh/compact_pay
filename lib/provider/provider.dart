@@ -352,7 +352,7 @@ class ProviderClass extends ChangeNotifier {
   }
 
   String? token;
-  String? userId = '6391f4d522cf9e066f35f250';
+  String? userId;
   String? userEmail;
 
   // sign up api
@@ -453,13 +453,12 @@ class ProviderClass extends ChangeNotifier {
   late http.Response putKycResponse;
 
   Future<void> putKycUpdate() async {
-    // final storage = await SharedPreferences.getInstance();
-    // userId = await storage.getString('userId');
-    // notifyListeners();
+    final storage = await SharedPreferences.getInstance();
+    userId = await storage.getString('userId');
+    notifyListeners();
 
     Map<String, String> requestHeaders = {
       'Content-type': 'application/json',
-      //'Authorization': 'Bearer $token'
     };
 
     var payload = {
@@ -467,12 +466,10 @@ class ProviderClass extends ChangeNotifier {
       "validMeansOfIdentification": identificationTextController.text,
       "number": identificationNumberTextController.text,
       "bvn": bvnTextController.text,
-      "transactionPin": "3264",
-      "confirmTransactionPin": "3264"
     };
 
     var url = Uri.parse(
-        'https://compactpay.onrender.com/api/users/update?id=6391f4d522cf9e066f35f250');
+        'https://compactpay.onrender.com/api/users/update?id=$userId');
 
     try {
       putKycResponse = await http.put(url,
@@ -504,7 +501,6 @@ class ProviderClass extends ChangeNotifier {
 
     Map<String, String> requestHeaders = {
       'Content-type': 'application/json',
-      //'Authorization': 'Bearer $token'
     };
 
     var payload = {
@@ -513,8 +509,7 @@ class ProviderClass extends ChangeNotifier {
     };
 
     var url = Uri.parse(
-        'https://compactpay.onrender.com/api/users/transpin?id=6391f4d522cf9e066f35f250');
-
+        'https://compactpay.onrender.com/api/users/transpin?id=$userId');
     try {
       putTransactionPinResponse = await http.put(url,
           headers: requestHeaders, body: json.encode(payload));
