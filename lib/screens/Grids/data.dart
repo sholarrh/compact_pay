@@ -1,3 +1,4 @@
+import 'package:compact_pay/screens/Data/check_out.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
@@ -118,7 +119,7 @@ class _DataState extends State<Data> {
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
                                         color:
-                                            selected == 'first' ? black : white,
+                                        selected == 'first' ? black : white,
                                       ),
                                     ),
                                     child: Image.asset(
@@ -718,7 +719,7 @@ class _DataState extends State<Data> {
                               ),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -732,9 +733,9 @@ class _DataState extends State<Data> {
                                       ),
                                       Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           MyText(
                                             'USSD Enquiry',
@@ -776,7 +777,7 @@ class _DataState extends State<Data> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const InputPin()));
+                                            const Checkout()));
                               },
                               child: Container(
                                 height: 54,
