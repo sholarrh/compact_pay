@@ -3,6 +3,7 @@ import 'package:compact_pay/screens/Data/check_out.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/Help/help.dart';
 import 'screens/SplashScreen/splashscreen.dart';
 import 'screens/homepage.dart';
 import 'widgets/bottom_nav.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins',
         ),
-        home: const Checkout(),
+        home: const Help(),
       ),);
   }
 }
