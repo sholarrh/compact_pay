@@ -14,9 +14,6 @@ class BiometricVerification extends StatefulWidget {
 
 class _BiometricVerificationState extends State<BiometricVerification> {
   @override
-
-
-
   bool isSwitched1 = false;
   bool isSwitched2 = false;
   bool isSwitched3 = false;
@@ -85,8 +82,11 @@ class _BiometricVerificationState extends State<BiometricVerification> {
                   ),
                   child: Center(
                     child: GestureDetector(onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AddBiometric()));
-                    },
+                      Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AddBiometric()));
+                      },
                       child: MyText(
                         'Add Biometric',
                         color: white,

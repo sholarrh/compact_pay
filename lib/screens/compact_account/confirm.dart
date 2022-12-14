@@ -177,7 +177,7 @@ class _ConfirmState extends State<Confirm> {
                               const SizedBox(height: 25),
                               PinCodeTextField(
                                 appContext: context,
-                                controller: data.pincodeField,
+                                controller: data.pinCodeField,
                                 length: 4,
                                 obscureText: true,
                                 autoFocus: true,

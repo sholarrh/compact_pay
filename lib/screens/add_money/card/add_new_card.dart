@@ -1,4 +1,7 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:compact_pay/widgets/text_form_field.dart';
+import 'package:compact_pay/widgets/validator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +11,7 @@ import '../../../utils/app_colors.dart';
 import '../../../widgets/my_button.dart';
 import '../../../widgets/my_text.dart';
 import '../../../widgets/show_snackbar.dart';
-import 'add_by_card.dart';
+import '../ussd/select_bank.dart';
 
 class AddNewCard extends StatefulWidget {
   const AddNewCard({Key? key}) : super(key: key);
@@ -21,6 +24,8 @@ class _AddNewCardState extends State<AddNewCard> {
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
+
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +83,7 @@ class _AddNewCardState extends State<AddNewCard> {
                       hintText: 'Tola Kelechi',
                       hasSuffixIcon: false,
                       keyBoardType: TextInputType.name,
+                      validator: validateFullName,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12, bottom: 8.0),
@@ -95,6 +101,7 @@ class _AddNewCardState extends State<AddNewCard> {
                       hintText: '4633 2021 2211 3003',
                       hasSuffixIcon: false,
                       keyBoardType: TextInputType.number,
+                      validator: validateCardNumber,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12, bottom: 16),
@@ -123,6 +130,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                   hintText: '07/28',
                                   hasSuffixIcon: false,
                                   keyBoardType: TextInputType.number,
+                                  validator: validateCardExpiryDateNumber,
                                 ),
                               ],
                             ),
@@ -148,6 +156,7 @@ class _AddNewCardState extends State<AddNewCard> {
                                   hintText: '123',
                                   hasSuffixIcon: false,
                                   keyBoardType: TextInputType.number,
+                                  validator: validateCardCvvNumber,
                                 ),
                               ],
                             ),
@@ -173,14 +182,24 @@ class _AddNewCardState extends State<AddNewCard> {
                         color: mainBlue,
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            data.isLoading = true;
+                            _isLoading = true;
                             setState(() {});
-                            data.delay(4);
+                            Duration waitTime = const Duration(seconds: 4);
+                            Future.delayed(waitTime, () {
+                              _isLoading = false;
+                              if (mounted) {
+                                setState(() {});
+                              }
+                            });
                             try {
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const AddByCard()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SelectBank(
+                                    addMoney: 'Add new card',
+                                  ),
+                                ),
+                              );
                             } catch (e, s) {
                               if (kDebugMode) {
                                 print(e);
@@ -198,11 +217,11 @@ class _AddNewCardState extends State<AddNewCard> {
                         },
                         child: data.isLoading == false
                             ? MyText(
-                                'Continue',
-                                color: white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                              )
+                          'Continue',
+                          color: white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        )
                             : const Center(
                                 child: CircularProgressIndicator(
                                   color: white,

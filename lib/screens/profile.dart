@@ -4,7 +4,10 @@ import 'package:compact_pay/screens/edit_profile.dart';
 import 'package:compact_pay/screens/settings.dart';
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/provider.dart';
+import '../widgets/container_widget.dart';
 import '../widgets/my_text.dart';
 
 class Profile extends StatefulWidget {
@@ -17,6 +20,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return Scaffold(
       backgroundColor: darkBlue,
       body: SingleChildScrollView(
@@ -42,184 +46,92 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
-
-                  const CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('assets/images/profileImage.png'),
+                  // data.image != null
+                  // ? Image.file(data.image!,
+                  //     width: 70,
+                  //     height: 70,
+                  //     fit: BoxFit.contain,
+                  //   )
+                  //
+                  // :
+                  CircleAvatar(
+                    radius: 35,
+                    backgroundColor: const Color(0xffD9D9D9),
+                    child: data.image == null
+                        ? Icon(
+                            Icons.camera_alt_outlined,
+                            color: const Color(0xff292D32).withOpacity(0.4),
+                            size: 40,
+                          )
+                        : ClipOval(
+                            child: Image.file(
+                              data.image!,
+                              fit: BoxFit.fill,
+                              height: 70,
+                              width: 70,
+                            ),
+                          ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10,bottom: 16),
-                    child: MyText('Tola Kelechi',
+                    padding: const EdgeInsets.only(top: 10, bottom: 16),
+                    child: MyText(
+                      'Tola Kelechi',
                       fontSize: 20,
-                      fontWeight: FontWeight.w500 ,
+                      fontWeight: FontWeight.w500,
                       color: white,
+                      fontFamily: 'Poppins',
                     ),
                   ),
-
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 12.0),
-                    height: 60,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: white,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:  [
-                        Row(
-                          children: [
-                            const Icon(Icons.person,
-                            color: mainBlue,),
-                            const SizedBox(width: 9,),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                MyText('Profile',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500 ,
-                                  color: black2121,
-                                ),
-                                const SizedBox(height: 2,),
-                                MyText('View and edit your profile',
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w500 ,
-                                  color: const Color(0xff8A8D8F),
-                                ),
-                              ],
-                            ),
-                          ],
+                  InkWell(
+                    onTap: () {
+                      data.showImageBottomSheet(context, data);
+                    },
+                    child: Container(
+                      width: 88,
+                      height: 30,
+                      margin: const EdgeInsets.only(bottom: 36),
+                      decoration: BoxDecoration(
+                        color: mainBlue,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: MyText(
+                          'Edit picture',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: white,
+                          fontFamily: 'Poppins',
                         ),
-                        IconButton(
-                          onPressed: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const EditProfile()));
-                          },
-                          icon: const Icon(Icons.arrow_forward_ios_outlined,
-                            color: mainBlue,
-                          size: 14,
-                          ),
-                        ),
-
-                      ],
+                      ),
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 12.0),
-                    height: 60,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: white,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:  [
-                        Row(
-                          children: [
-                            const Icon(Icons.settings,
-                              color: mainBlue,),
-                            const SizedBox(width: 9,),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                MyText('Setings',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500 ,
-                                  color: black2121,
-                                ),
-                                const SizedBox(height: 2,),
-                                MyText(
-                                  'security settings and notification settings',
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w500,
-                                  color: const Color(0xff8A8D8F),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        IconButton(
-                          onPressed: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Settings()));
-                          },
-                          icon: const Icon(Icons.arrow_forward_ios_outlined,
-                            color: mainBlue,
-                            size: 14,
-                          ),
-                        ),
-
-                      ],
-                    ),
+                  const ContainerWidget(
+                    title: 'Profile',
+                    subtitle: 'View and edit your profile',
+                    screen: EditProfile(),
+                    icon: Icons.person,
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 12.0),
-                    height: 60,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: white,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:  [
-                        Row(
-                          children: [
-                            const Icon(Icons.help,
-                              color: mainBlue,),
-                            const SizedBox(width: 9,),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                MyText('Help',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500 ,
-                                  color: black2121,
-                                ),
-                                const SizedBox(height: 2,),
-                                MyText('Customare care and FAQs',
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w500 ,
-                                  color: Color(0xff8A8D8F),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        IconButton(
-                          onPressed: (){
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const EditProfile()));
-                          },
-                          icon: const Icon(Icons.arrow_forward_ios_outlined,
-                            color: mainBlue,
-                            size: 14,
-                          ),
-                        ),
-
-                      ],
-                    ),
+                  const ContainerWidget(
+                    title: 'Settings',
+                    subtitle: 'Security settings and notification settings',
+                    screen: Settings(),
+                    icon: Icons.settings,
                   ),
-
+                  const ContainerWidget(
+                    title: 'Help',
+                    subtitle: 'Customer care and FAQs',
+                    screen: EditProfile(),
+                    icon: Icons.help,
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 70),
                     child: GestureDetector(
-                      onTap: (){},
+                      onTap: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           const Icon(Icons.logout_outlined,
+                          const Icon(
+                            Icons.logout_outlined,
                             color: white,),
                           const SizedBox(width: 10,),
                           MyText('Log out',

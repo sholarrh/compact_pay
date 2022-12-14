@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:flutter/material.dart';
 
 import '../../../utils/app_colors.dart';
@@ -28,7 +30,7 @@ class _QrCodeState extends State<QrCode> {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.close),
-                      iconSize: 14,
+                      iconSize: 17,
                       color: white,
                       onPressed: () {
                         Navigator.pop(context);

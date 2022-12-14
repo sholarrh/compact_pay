@@ -51,7 +51,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                           width: 30,
                         ),
                         MyText(
-                          'To CompactPay Acccount',
+                          'To CompactPay Account',
                           fontFamily: 'Poppins',
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -65,7 +65,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.watch_later_outlined,
                           color: mainBlue,
                           size: 17,
@@ -83,9 +83,9 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Image.asset('assets/images/profile-circle.png'),
-                  SizedBox(height: 9),
+                  const SizedBox(height: 9),
                   MyText(
                     '  Choose\nBeneficiary',
                     fontFamily: 'Poppins',
@@ -93,7 +93,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                     fontWeight: FontWeight.w400,
                     color: black2121,
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   MyText(
                     ' Account Number',
                     fontSize: 10,
@@ -108,9 +108,9 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                     keyBoardType: TextInputType.number,
                     isPassword: false,
                     hasSuffixIcon: false,
-                    inputController: data.accountNumberTextController,
+                    inputController: data.receiverAccountNumberTextController,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   MyText(
                     'Amount',
                     fontSize: 10,
@@ -127,7 +127,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                     hasSuffixIcon: false,
                     inputController: data.amountToSendTextController,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   MyText(
                     'Description(Optional)',
                     fontSize: 10,
@@ -144,7 +144,7 @@ class _CompactPayAccountState extends State<CompactPayAccount> {
                     hasSuffixIcon: false,
                     inputController: data.transferDescriptionTextController,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

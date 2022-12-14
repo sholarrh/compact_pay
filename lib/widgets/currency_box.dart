@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:compact_pay/widgets/my_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,9 @@ class _CurrencyBoxState extends State<CurrencyBox> {
     var data = Provider.of<ProviderClass>(context);
     return InkWell(
       onTap: () {
-        print('The money sent is ${widget.amount}');
+        if (kDebugMode) {
+          print('The money sent is ${widget.amount}');
+        }
         setState(() {
           data.amountToSendTextController.text = widget.amount;
         });

@@ -1,3 +1,6 @@
+//ADIGUN SOLAFUNMI
+
+import 'package:compact_pay/widgets/text_form_field.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +43,7 @@ class _EnterAmountState extends State<EnterAmount> {
                     IconButton(
                       icon: const Icon(Icons.close),
                       alignment: Alignment.centerLeft,
-                      iconSize: 12,
+                      iconSize: 17,
                       color: close,
                       onPressed: () {
                         Navigator.pop(context);
@@ -72,41 +75,31 @@ class _EnterAmountState extends State<EnterAmount> {
                         color: black2121,
                       ),
                     ),
-                    TextFormField(
+                    TvInputField(
                       validator: validatePhoneNumber,
-                      controller: data.amountToSendTextController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        fillColor: cardColor,
-                        prefixIcon: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              getCurrency(),
-                              style: const TextStyle(
-                                color: black2121,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'poppins',
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 2,
-                            ),
-                            const VerticalDivider(
-                              width: 2,
+                      inputController: data.amountToSendTextController,
+                      keyBoardType: TextInputType.number,
+                      hintText: 'Enter 100 ~ 99,999,999',
+                      prefixIcon: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            getCurrency(),
+                            style: const TextStyle(
                               color: black2121,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'poppins',
                             ),
-                          ],
-                        ),
-                        filled: true,
-                        focusColor: Colors.red,
-                        hintText: 'Enter 100 ~ 99,999,999',
-                        hintStyle: TextStyle(
-                            color: black2121.withOpacity(0.4),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'poppins'),
+                          ),
+                          const SizedBox(
+                            width: 2,
+                          ),
+                          const VerticalDivider(
+                            width: 2,
+                            color: black2121,
+                          ),
+                        ],
                       ),
                     ),
                     Padding(
@@ -137,16 +130,16 @@ class _EnterAmountState extends State<EnterAmount> {
                         },
                         child: data.isLoading == false
                             ? MyText(
-                                'Done',
-                                color: white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              )
+                          'Done',
+                          color: white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        )
                             : const Center(
-                                child: CircularProgressIndicator(
-                                  color: white,
-                                ),
-                              ),
+                          child: CircularProgressIndicator(
+                            color: white,
+                          ),
+                        ),
                       ),
                     ),
                   ],

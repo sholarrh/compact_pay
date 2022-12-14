@@ -1,3 +1,4 @@
+import 'package:compact_pay/screens/passwordsettings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,12 @@ class ChangePin extends StatefulWidget {
 }
 
 class _ChangePinState extends State<ChangePin> {
+  bool _isLoading = false;
+
+  final _formKey = GlobalKey<FormState>();
+
+  GlobalKey<FormState> get formKey => _formKey;
+
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
@@ -25,17 +32,19 @@ class _ChangePinState extends State<ChangePin> {
         body: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 20),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.close),
-                        color: white,
-                        iconSize: 17,
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 20),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          color: white,
+                          iconSize: 17,
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -58,12 +67,12 @@ class _ChangePinState extends State<ChangePin> {
                 const SizedBox(height: 8),
                 InputField(
                   hintText: '',
-                  validator: validateTransactionPin,
-                  keyBoardType: TextInputType.number,
-                  isPassword: false,
-                  hasSuffixIcon: true,
-                  inputController: data.oldTransactionPin,
-                ),
+                    validator: validateTransactionPin,
+                    keyBoardType: TextInputType.number,
+                    isPassword: false,
+                    hasSuffixIcon: true,
+                    inputController: data.oldTransactionPin,
+                  ),
                 const SizedBox(height: 25),
                 MyText('New Pin',
                     color: white,
@@ -73,54 +82,65 @@ class _ChangePinState extends State<ChangePin> {
                 const SizedBox(height: 8),
                 InputField(
                   hintText: '',
-                  validator: validateTransactionPin,
-                  keyBoardType: TextInputType.number,
-                  isPassword: false,
-                  hasSuffixIcon: true,
-                  inputController: data.newTransactionPin,
-                ),
+                    validator: validateTransactionPin,
+                    keyBoardType: TextInputType.number,
+                    isPassword: false,
+                    hasSuffixIcon: true,
+                    inputController: data.newTransactionPin,
+                  ),
                 const SizedBox(height: 25),
                 MyText('Repeat Pin',
                     color: white,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w400,
                     fontSize: 13),
-                const SizedBox(height: 8),
-                InputField(
-                  hintText: '',
-                  validator: validateTransactionPin,
-                  keyBoardType: TextInputType.number,
-                  isPassword: false,
-                  hasSuffixIcon: true,
-                  inputController: data.confirmTransactionPin,
-                ),
-                const SizedBox(height: 80),
-                MyButton(
-                  child: Container(
-                    height: 54,
+                  const SizedBox(height: 8),
+                  InputField(
+                    hintText: '',
+                    validator: validateTransactionPin,
+                    keyBoardType: TextInputType.number,
+                    isPassword: false,
+                    hasSuffixIcon: true,
+                    inputController: data.confirmTransactionPin,
+                  ),
+                  const SizedBox(height: 80),
+                  MyButton(
+                    height: 50,
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: mainBlue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: MyText(
-                        'Done',
-                        color: white,
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    color: mainBlue,
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        _isLoading = true;
+
+                        Duration waitTime = const Duration(seconds: 4);
+                        Future.delayed(waitTime, () {
+                          _isLoading = false;
+                          if (mounted) {
+                            setState(() {});
+                          }
+                        });
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const PasswordSettings()));
+                      }
+                    },
+                    child: MyText(
+                      'Done',
+                      color: white,
+                      fontFamily: 'Poppins',
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                )
               ],
             ),
           ),
         ),
       ),
-    );
+
+      ), );
   }
 }
-
-

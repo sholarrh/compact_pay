@@ -19,6 +19,9 @@ class _NotificationSettingsState extends State<NotificationSettings> {
   bool isSwitched1 = false;
   bool isSwitched2 = false;
   bool isSwitched3 = false;
+
+  // bool _pushIsLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

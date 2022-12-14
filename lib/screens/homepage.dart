@@ -38,9 +38,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                  ),
+                  padding: const EdgeInsets.only(top: 10,),
                   child: IconButton(
                     icon: const Icon(Icons.close),
                     iconSize: 17,
@@ -50,6 +48,7 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -60,10 +59,21 @@ class _HomePageState extends State<HomePage> {
                             MaterialPageRoute(
                                 builder: (context) => const Profile()));
                       },
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         radius: 20,
-                        backgroundImage:
-                            AssetImage('assets/images/profileImage.png'),
+                        backgroundColor: const Color(0xffD9D9D9),
+                        child: data.image == null
+                            ? Icon(
+                                Icons.camera_alt_outlined,
+                                color: const Color(0xff292D32).withOpacity(0.4),
+                                size: 40,
+                              )
+                            : Image.file(
+                                data.image!,
+                                fit: BoxFit.fill,
+                                height: 40,
+                                width: 40,
+                              ),
                       ),
                     ),
                     Row(
@@ -78,22 +88,36 @@ class _HomePageState extends State<HomePage> {
                         ),
                         GestureDetector(
                             onTap: () {},
-                            child:
-                                Image.asset('assets/images/notification.png')),
+                            child: Image.asset('assets/images/notification.png')),
                       ],
                     ),
                   ],
                 ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MyText(
-                        'Hi, Tola Kelechi',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: black2121,
+                      // data.firstName == null && data.lastName == null
+                      //     ? MyText(
+                      //         'Hi, Tola Kelechi',
+                      //         fontSize: 14,
+                      //         fontWeight: FontWeight.w500,
+                      //         color: black2121,
+                      //       )
+                      //     :
+                      Consumer<ProviderClass>(
+                        builder: (context, providerStatus, _) {
+                          print('firstname ${providerStatus.firstNamess.text}');
+                          print('firstname ${providerStatus.lastNamess.text}');
+                          return MyText(
+                            'Hi, ${providerStatus.firstNamess.text} ${providerStatus.lastNamess.text}',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: black2121,
+                          );
+                        },
                       ),
                       InkWell(
                         onTap: () async {
@@ -106,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                           if (pickedDate != null) {
                             print(pickedDate);
                             String formattedDate =
-                                DateFormat('yyyy-MM-dd').format(pickedDate);
+                            DateFormat('yyyy-MM-dd').format(pickedDate);
                             setState(() {
                               data.startDate.text = formattedDate;
                             });
@@ -124,14 +148,14 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 12, bottom: 12, left: 16, right: 16),
+                    padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
                     width: double.infinity,
                     height: 100,
-                    decoration: BoxDecoration(
+                    decoration:  BoxDecoration(
                       color: mainBlue,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -141,61 +165,50 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            MyText(
-                              'Account Balance',
+                            MyText('Account Balance',
                               fontSize: 10,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w500 ,
                               color: white,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                MyText(
-                                  'Transaction History',
+                                MyText('Transaction History',
                                   fontSize: 10,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w500 ,
                                   color: white,
                                 ),
-                                const SizedBox(
-                                  width: 4.4,
-                                ),
+                                const SizedBox(width: 4.4,),
                                 GestureDetector(
-                                  onTap: () {},
-                                  child: const Icon(
-                                    Icons.arrow_forward_ios,
+                                  onTap: (){},
+                                  child: const Icon(Icons.arrow_forward_ios,
                                     size: 8,
-                                    color: white,
-                                  ),
+                                    color: white,),
                                 )
                               ],
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 7,
-                        ),
+                        const SizedBox(height: 7,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                MyText(
-                                  'N',
+                                MyText('N',
                                   fontSize: 36,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w700 ,
                                   color: white,
                                 ),
-                                MyText(
-                                  '45,560.00',
+                                MyText('45,560.00',
                                   fontSize: 36,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w700 ,
                                   color: white,
                                 ),
                               ],
                             ),
-                            Icon(
-                              Icons.remove_red_eye_outlined,
+                            Icon(Icons.remove_red_eye_outlined,
                               size: 20,
                               color: white.withOpacity(0.7),
                             ),
@@ -205,6 +218,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 30),
                   child: GridView.count(
@@ -257,16 +271,18 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+
                 Image.asset('assets/images/referral.png'),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
-                  child: MyText(
-                    'Recent Transactions',
+                  child: MyText('Recent Transactions',
                     fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w500 ,
                     color: black2121,
                   ),
                 ),
+
                 Container(
                   padding: const EdgeInsets.all(12),
                   width: double.infinity,
@@ -281,7 +297,7 @@ class _HomePageState extends State<HomePage> {
                       MyText(
                         '01 Nov 2022',
                         fontSize: 8,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w400 ,
                         color: white,
                       ),
                       Row(
@@ -303,8 +319,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                               MyText(
                                 '12:05 AM',
-                                fontSize: 8,
-                                fontWeight: FontWeight.w400,
+                                fontSize:8,
+                                fontWeight: FontWeight.w400 ,
                                 color: white,
                               ),
                             ],
@@ -313,6 +329,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+
                 ),
               ],
             ),

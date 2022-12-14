@@ -24,7 +24,7 @@ class _AddByRequestState extends State<AddByRequest> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 22),
+                padding: const EdgeInsets.only(top: 10, bottom: 6),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -72,7 +72,7 @@ class _AddByRequestState extends State<AddByRequest> {
                 fontSize: 10,
                 fontWeight: FontWeight.w500,
                 color: black2121,
-              )
+              ),
             ]),
           ),
         ),

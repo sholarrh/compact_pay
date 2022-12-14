@@ -1,3 +1,5 @@
+//ADIGUN SOLAFUNMI
+
 import 'package:compact_pay/screens/add_money/add_money.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
     return Scaffold(
-      backgroundColor: backWhite,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -78,11 +80,9 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                         color: black2121,
                       ),
                     ),
-                    InputField(
+                    TvInputField(
                       inputController: data.bankNameTextController,
-                      isPassword: false,
                       hintText: 'CompactPay Digital Services Limited',
-                      hasSuffixIcon: false,
                       keyBoardType: TextInputType.name,
                     ),
                     Padding(
@@ -95,32 +95,23 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                         fontFamily: 'Poppins',
                       ),
                     ),
-                    TextFormField(
-                      controller: data.accountNumberTextController,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: black2121,
-                        fontFamily: 'Poppins',
-                      ),
+                    TvInputField(
+                      keyBoardType: TextInputType.number,
+                      inputController: data.receiverAccountNumberTextController,
                       validator: validatePhoneNumber,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        fillColor: const Color(0xffF6F6F6),
-                        filled: true,
-                        hintText: '2103109448',
-                        suffixIcon: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            margin: const EdgeInsets.all(10),
-                            width: 70,
-                            height: 15,
-                            decoration: BoxDecoration(
-                              color: mainBlue.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                      hintText: '2103109448',
+                      suffixIcon: InkWell(
+                        onTap: () {},
+                        child: Container(
+                          margin: const EdgeInsets.all(10),
+                          width: 70,
+                          height: 15,
+                          decoration: BoxDecoration(
+                            color: mainBlue.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 MyText(
@@ -142,7 +133,6 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                             ),
                           ),
                         ),
-                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0, bottom: 8),
@@ -153,11 +143,9 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                         'Account Name',
                       ),
                     ),
-                    InputField(
+                    TvInputField(
                       inputController: data.accountNameTextController,
-                      isPassword: false,
                       hintText: 'Tola S. Kelechi',
-                      hasSuffixIcon: false,
                       keyBoardType: TextInputType.number,
                     ),
                     Padding(
@@ -173,7 +161,7 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                             data.delay(4);
                             try {
                               data.accountNameTextController.clear();
-                              data.accountNumberTextController.clear();
+                              data.receiverAccountNumberTextController.clear();
                               data.bankNameTextController.clear();
                               Navigator.push(
                                   context,
@@ -196,16 +184,16 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                         },
                         child: data.isLoading == false
                             ? MyText(
-                                'Share',
-                                color: white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                              )
+                          'Share',
+                          color: white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        )
                             : const Center(
-                                child: CircularProgressIndicator(
-                                  color: white,
-                                ),
-                              ),
+                          child: CircularProgressIndicator(
+                            color: white,
+                          ),
+                        ),
                       ),
                     ),
                   ],

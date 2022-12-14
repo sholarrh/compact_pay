@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/container_widget.dart';
 import '../../widgets/my_text.dart';
+import '../Send Money/Send Money/send_money.dart';
 import '../add_money/add_money.dart';
-import '../send_money/send_money.dart';
 
 class Wallet extends StatefulWidget {
   const Wallet({Key? key}) : super(key: key);
@@ -55,7 +55,7 @@ class _WalletState extends State<Wallet> {
                 icon: Icons.wallet_sharp,
               ),
               const ContainerWidget(
-                title: 'Add Money',
+                title: 'Send Money',
                 subtitle: 'Send money from your CompactPay account to others',
                 screen: SendMoney(),
                 icon: Icons.wallet_sharp,
