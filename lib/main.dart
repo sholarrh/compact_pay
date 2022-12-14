@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               Theme.of(context).textTheme,
             ),
           ),
-          home: const ElectricityPage()),
+          home: const AirtimeTopUp()),
     );
   }
 }
