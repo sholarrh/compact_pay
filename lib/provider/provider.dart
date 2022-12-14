@@ -125,6 +125,10 @@ class ProviderClass extends ChangeNotifier {
 
   TextEditingController get pinCode => _pinCode;
 
+  // LiveChat Controllers
+  final TextEditingController _message = TextEditingController();
+  TextEditingController get message => _message;
+
   // airtime controllers
 
   final TextEditingController _startDate = TextEditingController();

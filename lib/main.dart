@@ -1,5 +1,9 @@
 import 'package:compact_pay/provider/provider.dart';
 import 'package:compact_pay/screens/auth/login.dart';
+import 'package:compact_pay/screens/customer_care.dart';
+import 'package:compact_pay/screens/help.dart';
+import 'package:compact_pay/screens/live_chat.dart';
+import 'package:compact_pay/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,9 +28,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins',
         ),
-        home: const Login(),
-      ),);
+        home: const LiveChat(),
+      ),
+    );
   }
 }
-
-

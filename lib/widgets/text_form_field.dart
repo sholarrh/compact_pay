@@ -148,8 +148,7 @@ class _InputField2State extends State<InputField2> {
       child: TextFormField(
         validator: (value) => widget.validator!(value),
         controller: widget.inputController,
-        onChanged: (value) {
-        },
+        onChanged: (value) {},
         keyboardType: widget.keyBoardType,
         autocorrect: true,
         textCapitalization: TextCapitalization.words,
@@ -193,7 +192,6 @@ class _InputField2State extends State<InputField2> {
   }
 }
 
-
 class InputField3 extends StatefulWidget {
   final Widget? prefixIcon;
   final String hintText;
@@ -207,6 +205,7 @@ class InputField3 extends StatefulWidget {
   final Function? onTap;
   final TextInputType? keyBoardType;
   final TextInputAction? textInputAction;
+  final InputBorder? border;
 
   const InputField3({
     Key? key,
@@ -220,6 +219,7 @@ class InputField3 extends StatefulWidget {
     this.suffixIcon,
     this.onTap,
     this.readOnly,
+    this.border,
   }) : super(key: key);
 
   @override
@@ -264,10 +264,10 @@ class _InputField3 extends State<InputField3> {
               fontSize: 10,
               fontWeight: FontWeight.w400),
           contentPadding:
-          const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+              const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
           enabledBorder: OutlineInputBorder(
             borderSide:
-            BorderSide(color: Colors.white.withOpacity(.90), width: 0.7),
+                BorderSide(color: Colors.white.withOpacity(.90), width: 0.7),
             borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           ),
           focusedBorder: const OutlineInputBorder(
