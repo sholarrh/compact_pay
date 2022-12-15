@@ -203,18 +203,19 @@ class _LoginState extends State<Login> {
                                 if (data.postLoginResponse.statusCode == 202) {
                                   data.passwordTextController.clear();
                                   data.emailTextController.clear();
-                                  data.pinList.isEmpty
+                                  data.get();
+                                  data.hasSetTransactionPin == false
                                       ? Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   const KycVerification()))
                                       : Navigator.of(context)
-                                      .pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                          const BottomNav()),
-                                          (route) => false);
+                                          .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const BottomNav()),
+                                              (route) => false);
                                 }
                               });
                             } catch (e, s) {

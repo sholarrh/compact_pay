@@ -428,15 +428,12 @@ class ProviderClass extends ChangeNotifier {
       if (kDebugMode) {
         print('Response body: ${postLoginResponse.body}');
       }
-      var postLoginResponseData = jsonDecode(postLoginResponse.body);
+      // var postLoginResponseData = jsonDecode(postLoginResponse.body);
 
-      // final storage = await SharedPreferences.getInstance();
-      // storage.setString('token', postLoginResponseData['token']);
-      // storage.setString('email', emailTextController.text);
-
-      if (kDebugMode) {
-        print(postLoginResponseData);
-      }
+      final storage = await SharedPreferences.getInstance();
+      storage.setInt('initScreen', 1);
+      storage.setString('email', emailTextController.text);
+      hasSetTransactionPin = storage.getBool('hasSetTransactionPin');
       notifyListeners();
     } catch (e, s) {
       if (kDebugMode) {
@@ -454,7 +451,7 @@ class ProviderClass extends ChangeNotifier {
 
   Future<void> putKycUpdate() async {
     final storage = await SharedPreferences.getInstance();
-    userId = await storage.getString('userId');
+    userId = storage.getString('userId');
     notifyListeners();
 
     Map<String, String> requestHeaders = {
@@ -466,6 +463,7 @@ class ProviderClass extends ChangeNotifier {
       "validMeansOfIdentification": identificationTextController.text,
       "number": identificationNumberTextController.text,
       "bvn": bvnTextController.text,
+      "password": passwordTextController.text,
     };
 
     var url = Uri.parse(
@@ -493,11 +491,12 @@ class ProviderClass extends ChangeNotifier {
   }
 
   late http.Response putTransactionPinResponse;
+  bool? hasSetTransactionPin;
 
   Future<void> putTransactionPin() async {
-    // final storage = await SharedPreferences.getInstance();
-    // userId = await storage.getString('userId');
-    // notifyListeners();
+    final storage = await SharedPreferences.getInstance();
+    userId = storage.getString('userId');
+    notifyListeners();
 
     Map<String, String> requestHeaders = {
       'Content-type': 'application/json',
@@ -520,6 +519,8 @@ class ProviderClass extends ChangeNotifier {
       if (kDebugMode) {
         print('Response status: ${jsonDecode(putTransactionPinResponse.body)}');
       }
+      final storage = await SharedPreferences.getInstance();
+      storage.setBool('hasSetTransactionPin', true);
       notifyListeners();
     } catch (e, s) {
       if (kDebugMode) {
@@ -633,8 +634,11 @@ class ProviderClass extends ChangeNotifier {
   var responseData;
 
   Future get() async {
-    var url = Uri.parse(
-        'https://compactpay.onrender.com/api/users/adigun.solafunmi@gmail.com');
+    final storage = await SharedPreferences.getInstance();
+    userEmail = storage.getString('email');
+    notifyListeners();
+
+    var url = Uri.parse('https://compactpay.onrender.com/api/users/$userEmail');
     getResponse = await http.get(
       url,
     );

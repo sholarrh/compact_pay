@@ -171,6 +171,7 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                                       201) {
                                 data.pinList.clear();
                                 data.confirmPinList.clear();
+                                data.hasSetTransactionPin = true;
 
                                 Navigator.push(
                                   context,

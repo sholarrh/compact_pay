@@ -36,7 +36,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var data = Provider.of<ProviderClass>(context, listen: true);
+    var data = Provider.of<ProviderClass>(
+      context,
+    );
     // data.get();
     return Scaffold(
       backgroundColor: white,
