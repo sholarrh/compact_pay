@@ -41,18 +41,30 @@ class _LiveChatState extends State<LiveChat> {
                       const SizedBox(
                         width: 30,
                       ),
-                      MyText(
-                        'Live chat with bot',
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: black2121,
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MyText(
+                                'Live chat with bot',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: black2121,
+                              ),
+                              MyText(
+                                'Active now',
+                                fontSize: 9,
+                                fontWeight: FontWeight.w400,
+                                color: ash4,
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      MyText(
-                        'Active now',
-                        textAlign: TextAlign.center,
-                        fontSize: 9,
-                        fontWeight: FontWeight.w400,
-                        color: ash4,
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 18),
+                        child: Image.asset('assets/images/Ellipse 195 (2).png'),
                       ),
                     ],
                   ),
@@ -60,25 +72,14 @@ class _LiveChatState extends State<LiveChat> {
                 const SizedBox(height: 20),
                 MyText(
                   '12 DEC 2022 AT 11:59',
-                  textAlign: TextAlign.center,
                   fontSize: 10,
                   fontWeight: FontWeight.w500,
                   color: ash4,
                 ),
-                const SizedBox(height: 17),
+                const SizedBox(height: 25),
                 Row(
                   children: [
-                    Container(
-                      width: 9.47,
-                      height: 2.3,
-                      decoration: const BoxDecoration(
-                        color: mainBlue,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/Group 6260.png'),
-                        ),
-                      ),
-                    ),
+                    Image.asset('assets/images/Group 6260.png'),
                     const SizedBox(width: 4),
                     Container(
                       width: 137,
@@ -111,7 +112,7 @@ class _LiveChatState extends State<LiveChat> {
                   ),
                   prefixIcon: Container(
                     margin: EdgeInsets.symmetric(
-                      vertical: 6,
+                      vertical: 18,
                       horizontal: 6,
                     ),
                     decoration: BoxDecoration(
