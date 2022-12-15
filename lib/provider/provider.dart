@@ -359,6 +359,7 @@ class ProviderClass extends ChangeNotifier {
   String? token;
   String? userId;
   String? userEmail;
+  String? userAddress;
 
   // sign up api
   late http.Response signUpResponse;
@@ -372,7 +373,7 @@ class ProviderClass extends ChangeNotifier {
     var payload = {
       "firstName": firstNameTextController.text,
       "middleName": middleNameTextController.text,
-      "lastName": firstNameTextController.text,
+      "lastName": lastNameTextController.text,
       "email": emailTextController.text,
       "phoneNumber": phoneNumberTextController.text,
       "password": passwordTextController.text,
@@ -406,8 +407,6 @@ class ProviderClass extends ChangeNotifier {
 
     final storage = await SharedPreferences.getInstance();
     storage.setString('userId', signUpResponseDecoded['user']['_id']);
-    storage.setString('email', emailTextController.text);
-    notifyListeners();
   }
 
   // Login Api
@@ -433,12 +432,23 @@ class ProviderClass extends ChangeNotifier {
       if (kDebugMode) {
         print('Response body: ${postLoginResponse.body}');
       }
-      // var postLoginResponseData = jsonDecode(postLoginResponse.body);
+      var postLoginResponseData = jsonDecode(postLoginResponse.body);
 
       final storage = await SharedPreferences.getInstance();
       storage.setInt('initScreen', 1);
       storage.setString('email', emailTextController.text);
-      hasSetTransactionPin = storage.getBool('hasSetTransactionPin');
+      storage.setString('userId', postLoginResponseData['user']['_id']);
+
+      postLoginResponseData['user']['address'] != null
+          ? storage.setString(
+              'userAddress', postLoginResponseData['user']['address'])
+          : storage.setString('userAddress', 'None');
+
+      //hasSetTransactionPin = storage.getBool('hasSetTransactionPin');
+      userId = storage.getString('userId');
+      userAddress = storage.getString('userAddress');
+      print('User id = $userId');
+      print('userAddress = $userAddress');
       notifyListeners();
     } catch (e, s) {
       if (kDebugMode) {
@@ -497,6 +507,7 @@ class ProviderClass extends ChangeNotifier {
 
   late http.Response putTransactionPinResponse;
   bool? hasSetTransactionPin;
+  late String sola;
 
   Future<void> putTransactionPin() async {
     final storage = await SharedPreferences.getInstance();

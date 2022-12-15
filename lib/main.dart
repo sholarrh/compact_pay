@@ -1,5 +1,6 @@
 import 'package:compact_pay/provider/provider.dart';
 import 'package:compact_pay/screens/SplashScreen/splashscreen.dart';
+import 'package:compact_pay/widgets/custom_error.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins',
         ),
+        builder: (BuildContext context, Widget? widget) {
+          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            return CustomError(errorDetails: errorDetails);
+          };
+          return widget!;
+        },
         home: const SplashScreen(),
       ),);
   }

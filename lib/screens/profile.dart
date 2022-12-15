@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../provider/provider.dart';
 import '../widgets/container_widget.dart';
 import '../widgets/my_text.dart';
+import 'Help/help.dart';
 import 'auth/login.dart';
 
 class Profile extends StatefulWidget {
@@ -116,7 +117,7 @@ class _ProfileState extends State<Profile> {
                   const ContainerWidget(
                     title: 'Help',
                     subtitle: 'Customer care and FAQs',
-                    screen: EditProfile(),
+                    screen: Help(),
                     icon: Icons.help,
                   ),
                   Padding(

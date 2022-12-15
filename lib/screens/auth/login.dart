@@ -203,8 +203,9 @@ class _LoginState extends State<Login> {
                                 if (data.postLoginResponse.statusCode == 202) {
                                   data.passwordTextController.clear();
                                   data.emailTextController.clear();
+                                 // data.passwordTextController.text = data.sola ;
                                   data.get();
-                                  data.hasSetTransactionPin == false
+                                  data.userAddress == 'None'
                                       ? Navigator.push(
                                           context,
                                           MaterialPageRoute(

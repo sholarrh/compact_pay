@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../provider/provider.dart';
 import '../widgets/container_widget.dart';
-import 'Help/help.dart';
 import 'cards.dart';
 
 class More extends StatefulWidget {
@@ -58,30 +57,37 @@ class _MoreState extends State<More> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    data.profilePicture != null
-                        ? CircleAvatar(
-                            radius: 25,
-                            backgroundImage: AssetImage(data.profilePicture!),
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: const Color(0xffD9D9D9),
+                    child: data.image == null
+                        ? Icon(
+                            Icons.camera_alt_outlined,
+                            color: const Color(0xff292D32).withOpacity(0.4),
+                            size: 20,
                           )
-                        : CircleAvatar(
-                            radius: 25,
-                            backgroundColor: const Color(0xffD9D9D9),
-                            child: Icon(
-                              Icons.camera_alt_outlined,
-                              color: const Color(0xff292D32).withOpacity(0.4),
-                              size: 40,
+                        : ClipOval(
+                            child: Image.file(
+                              data.image!,
+                              fit: BoxFit.fill,
+                              height: 50,
+                              width: 50,
                             ),
                           ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: MyText(
-                        'Tola Kelechi',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: white,
-                        fontFamily: 'Poppins',
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4.0),
+                    child: Consumer<ProviderClass>(
+                      builder: (context, providerStatus, _) {
+                        return MyText(
+                          '${providerStatus.firstName} ${providerStatus.lastName}',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: white,
+                        );
+                      },
                     ),
+                  ),
                   ],
                 ),
               ),
