@@ -1,4 +1,5 @@
 import 'package:compact_pay/provider/provider.dart';
+import 'package:compact_pay/screens/airtime/airtime_top_up.dart';
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/screens/customer_care.dart';
 import 'package:compact_pay/screens/help.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins',
         ),
-        home: const LiveChat(),
+        home: const AirtimeTopUp(),
       ),
     );
   }
