@@ -1,12 +1,9 @@
 import 'package:compact_pay/provider/provider.dart';
-import 'package:compact_pay/screens/Data/check_out.dart';
+import 'package:compact_pay/screens/Help/customer_care.dart';
+import 'package:compact_pay/screens/auth/login.dart';
+import 'package:compact_pay/widgets/bottom_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'screens/Help/help.dart';
-import 'screens/SplashScreen/splashscreen.dart';
-import 'screens/homepage.dart';
-import 'widgets/bottom_nav.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +26,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily: 'Poppins',
         ),
-        home: const Help(),
+        home: const BottomNav(),
       ),);
   }
 }

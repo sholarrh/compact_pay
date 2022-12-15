@@ -46,14 +46,16 @@ class _CustomerCareState extends State<CustomerCare> {
                         ),
                       ),
                       Container(
-                        width: 170,
-                        height: 170,
+                        width: 120,
+                        height: 120,
                         decoration: BoxDecoration(
+                          color: ash5,
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/young man in headset using computer.png'),
-                              fit: BoxFit.fill),
+                            image: AssetImage(
+                                'assets/images/young man in headset using computer.png'),
+                            // fit: BoxFit.fill
+                          ),
                         ),
                       ),
                       SizedBox(height: 65),
@@ -68,9 +70,10 @@ class _CustomerCareState extends State<CustomerCare> {
                             ),
                             SizedBox(height: 10),
                             MyText(
-                              'You can reach out to us by sending a mail.\nWe would reply as soon as\n'
+                              'You can reach out to us by sending a mail.We would reply as soon as\n'
                               'we receive your complaints. ',
-                              fontSize: 14,
+                              textAlign: TextAlign.center,
+                              fontSize: 10,
                               fontWeight: FontWeight.w500,
                               color: black2121,
                             ),
