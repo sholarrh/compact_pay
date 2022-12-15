@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../provider/provider.dart';
 import '../widgets/container_widget.dart';
+import 'Help/help.dart';
 import 'cards.dart';
 
 class More extends StatefulWidget {
@@ -104,26 +105,23 @@ class _MoreState extends State<More> {
               ),
               const ContainerWidget(
                 title: 'Rate Us',
-                subtitle: 'Rate our app',
-                screen: Cards(),
-                icon: Icons.info_outlined,
-              ),
-              const ContainerWidget(
-                title: 'Report Scam',
-                subtitle: 'Report a fraud',
-                screen: Cards(),
-                icon: Icons.info_outlined,
-              ),
-              const ContainerWidget(
-                title: 'Help',
-                subtitle: 'Customer care and FAQs',
-                screen: Cards(),
-                icon: Icons.info_outlined,
-              ),
-            ]),
-          ),
-        ),
-      ),
-    );
+              subtitle: 'Rate our app',
+              screen: Cards(),
+              icon: Icons.info_outlined,
+            ),
+            const ContainerWidget(
+              title: 'Report Scam',
+              subtitle: 'Report a fraud',
+              screen: Cards(),
+              icon: Icons.info_outlined,
+            ),
+            const ContainerWidget2(
+              title: 'Help',
+              subtitle: 'Customer care and FAQs',
+              screen: Cards(),
+              icon: Icons.info_outlined,
+            ),
+          ]),
+        ))));
   }
 }

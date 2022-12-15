@@ -146,7 +146,7 @@ class _AddByBankTransferState extends State<AddByBankTransfer> {
                     TvInputField(
                       inputController: data.accountNameTextController,
                       hintText: 'Tola S. Kelechi',
-                      keyBoardType: TextInputType.number,
+                      keyBoardType: TextInputType.text,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 60),
