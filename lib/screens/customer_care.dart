@@ -38,7 +38,7 @@ class _CustomerCareState extends State<CustomerCare> {
                         width: 30,
                       ),
                       MyText(
-                        'Customare care',
+                        'Customer care',
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: black2121,
