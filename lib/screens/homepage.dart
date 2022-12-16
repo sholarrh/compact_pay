@@ -46,21 +46,21 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10,),
-                  child: IconButton(
-                    icon: const Icon(Icons.close),
-                    iconSize: 17,
-                    color: Colors.black,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 10,),
+                //   child: IconButton(
+                //     icon: const Icon(Icons.close),
+                //     iconSize: 17,
+                //     color: Colors.black,
+                //     onPressed: () {
+                //       Navigator.pop(context);
+                //     },
+                //   ),
+                // ),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
