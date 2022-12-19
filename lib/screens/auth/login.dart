@@ -203,7 +203,7 @@ class _LoginState extends State<Login> {
                                 if (data.postLoginResponse.statusCode == 202) {
                                   data.passwordTextController.clear();
                                   data.emailTextController.clear();
-                                 // data.passwordTextController.text = data.sola ;
+
                                   data.get();
                                   data.userAddress == 'None'
                                       ? Navigator.push(
@@ -217,20 +217,26 @@ class _LoginState extends State<Login> {
                                                   builder: (context) =>
                                                       const BottomNav()),
                                               (route) => false);
-                                }
+                                } else {}
                               });
                             } catch (e, s) {
                               if (kDebugMode) {
-                                print(e);
+                                print('e: $e');
+                                SnackBar(
+                                  content: MyText(data.errorMessage),
+                                );
                               }
                               if (kDebugMode) {
-                                print(s);
+                                print('s: $s');
+                                ShowSnackBar(
+                                  text: "$s",
+                                  duration: 5,
+                                );
                               }
                             }
                           } else {
-                            const ShowSnackBar(
-                              text: "There is an error",
-                              duration: 5,
+                            SnackBar(
+                              content: MyText(data.errorMessage),
                             );
                           }
                         },

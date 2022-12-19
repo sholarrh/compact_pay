@@ -38,68 +38,68 @@ class _ChangePinState extends State<ChangePin> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 20),
+                    padding: const EdgeInsets.only(top: 31, bottom: 45),
                     child: Row(
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.close),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.close,
+                            size: 17,
+                            color: white,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 32,
+                        ),
+                        MyText(
+                          'Change Pin',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                           color: white,
-                          iconSize: 17,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      MyText(
-                        'Change Pin',
-                        color: white,
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                MyText('Old Pin',
-                    color: white,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 13),
-                const SizedBox(height: 8),
-                InputField(
-                  hintText: '',
-                    validator: validateTransactionPin,
-                    keyBoardType: TextInputType.number,
-                    isPassword: false,
-                    hasSuffixIcon: true,
-                    inputController: data.oldTransactionPin,
-                  ),
-                const SizedBox(height: 25),
-                MyText('New Pin',
-                    color: white,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 13),
-                const SizedBox(height: 8),
-                InputField(
-                  hintText: '',
-                    validator: validateTransactionPin,
-                    keyBoardType: TextInputType.number,
-                    isPassword: false,
-                    hasSuffixIcon: true,
-                    inputController: data.newTransactionPin,
-                  ),
-                const SizedBox(height: 25),
-                MyText('Repeat Pin',
-                    color: white,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 13),
-                  const SizedBox(height: 8),
-                  InputField(
+                  MyText('Old Pin',
+                      color: white, fontWeight: FontWeight.w400, fontSize: 13),
+                  const SizedBox(height: 10),
+                  InputField2(
                     hintText: '',
                     validator: validateTransactionPin,
                     keyBoardType: TextInputType.number,
-                    isPassword: false,
+                    hasSuffixIcon: true,
+                    inputController: data.oldTransactionPin,
+                  ),
+                  const SizedBox(height: 25),
+                  MyText(
+                    'New Pin',
+                    color: white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                  ),
+                  const SizedBox(height: 10),
+                  InputField2(
+                    hintText: '',
+                    validator: validateTransactionPin,
+                    keyBoardType: TextInputType.number,
+                    hasSuffixIcon: true,
+                    inputController: data.newTransactionPin,
+                  ),
+                  const SizedBox(height: 25),
+                  MyText(
+                    'Repeat Pin',
+                    color: white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                  ),
+                  const SizedBox(height: 10),
+                  InputField2(
+                    hintText: '',
+                    validator: validateTransactionPin,
+                    keyBoardType: TextInputType.number,
                     hasSuffixIcon: true,
                     inputController: data.confirmTransactionPin,
                   ),
@@ -127,13 +127,19 @@ class _ChangePinState extends State<ChangePin> {
                                     const PasswordSettings()));
                       }
                     },
-                    child: MyText(
-                      'Done',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    child: _isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: white,
+                            ),
+                          )
+                        : MyText(
+                            'Done',
+                            color: white,
+                            fontFamily: 'Poppins',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                   ),
               ],
             ),

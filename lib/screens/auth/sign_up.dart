@@ -148,7 +148,7 @@ class _SignUpState extends State<SignUp> {
                   InputField(
                     validator: validateEmail,
                     hintText: 'Email Address',
-                    keyBoardType: TextInputType.name,
+                    keyBoardType: TextInputType.emailAddress,
                     isPassword: false,
                     hasSuffixIcon: false,
                     inputController: data.emailTextController,

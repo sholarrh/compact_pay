@@ -22,8 +22,6 @@ class OtpBox extends StatefulWidget {
    })
        : super(key: key);
 
-
-
   @override
   State<OtpBox> createState() => _OtpBoxState();
 }

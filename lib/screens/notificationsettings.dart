@@ -32,22 +32,27 @@ class _NotificationSettingsState extends State<NotificationSettings> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 20),
+                padding: const EdgeInsets.only(top: 31, bottom: 45),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      color: white,
-                      iconSize: 17,
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         Navigator.pop(context);
                       },
+                      child: const Icon(
+                        Icons.close,
+                        size: 17,
+                        color: white,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 32,
                     ),
                     MyText(
                       'Notification Settings',
                       color: white,
                       fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                     ),
                   ],
@@ -59,7 +64,6 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   MyText(
                     'Push Notification',
                     color: white,
-                    fontFamily: 'Poppins',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
@@ -68,11 +72,11 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     onChanged: (value) {
                       setState(() {
                         isSwitched1 = value;
-                        print(isSwitched1);
                       });
                     },
                     activeColor: lightGreen,
                     inactiveTrackColor: lightGrey2,
+                    thumbColor: MaterialStateProperty.all(white),
                   ),
                 ],
               ),
@@ -82,7 +86,6 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   MyText(
                     'SMS Notification',
                     color: white,
-                    fontFamily: 'Poppins',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
@@ -91,11 +94,11 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     onChanged: (value) {
                       setState(() {
                         isSwitched2 = value;
-                        print(isSwitched2);
                       });
                     },
                     activeColor: lightGreen,
                     inactiveTrackColor: lightGrey2,
+                    thumbColor: MaterialStateProperty.all(white),
                   ),
                 ],
               ),
@@ -105,7 +108,6 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   MyText(
                     'Email Notification',
                     color: white,
-                    fontFamily: 'Poppins',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
@@ -114,13 +116,11 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                     onChanged: (value) {
                       setState(() {
                         isSwitched3 = value;
-                        if (kDebugMode) {
-                          print(isSwitched3);
-                        }
                       });
                     },
                     activeColor: lightGreen,
                     inactiveTrackColor: lightGrey2,
+                    thumbColor: MaterialStateProperty.all(white),
                   ),
                 ],
               ),

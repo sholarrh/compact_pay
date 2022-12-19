@@ -32,27 +32,27 @@ class _MoreState extends State<More> {
                 padding: const EdgeInsets.only(top: 10, bottom: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      iconSize: 20,
-                      color: white,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    MyText(
-                      'More',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: white,
-                      fontFamily: 'Poppins',
-                    ),
-                  ],
-                ),
+                children: [
+                  // IconButton(
+                  //   icon: const Icon(Icons.close),
+                  //   iconSize: 20,
+                  //   color: white,
+                  //   onPressed: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  // ),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  MyText(
+                    'More',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: white,
+                    fontFamily: 'Poppins',
+                  ),
+                ],
+              ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 26.0),

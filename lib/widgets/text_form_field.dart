@@ -38,6 +38,7 @@ class InputField extends StatefulWidget {
 
 class _InputFieldState extends State<InputField> {
   bool _obscureText = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -55,7 +56,7 @@ class _InputFieldState extends State<InputField> {
             fontSize: 16,
             color: Color(0xff212121),
             fontWeight: FontWeight.w400),
-        showCursor: false,
+        showCursor: true,
         decoration: InputDecoration(
           fillColor: white,
           prefixIcon: widget.prefixIcon,
@@ -113,12 +114,12 @@ class _InputFieldState extends State<InputField> {
   }
 }
 
+// input field 2
 class InputField2 extends StatefulWidget {
   final Widget? prefixIcon;
   final String hintText;
-  final Widget? suffixIcon;
+  final bool hasSuffixIcon;
   final TextEditingController inputController;
-
   final Function? validator;
   final Function? onSaved;
   final TextInputType keyBoardType;
@@ -129,7 +130,7 @@ class InputField2 extends StatefulWidget {
       required this.inputController,
       this.prefixIcon,
       required this.hintText,
-      this.suffixIcon,
+      required this.hasSuffixIcon,
       this.validator,
       this.onSaved,
       required this.keyBoardType,
@@ -141,6 +142,8 @@ class InputField2 extends StatefulWidget {
 }
 
 class _InputField2State extends State<InputField2> {
+  bool _obscureText = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -159,6 +162,7 @@ class _InputField2State extends State<InputField2> {
             color: Colors.white.withOpacity(.90),
             fontWeight: FontWeight.w400),
         showCursor: true,
+        obscureText: _obscureText,
         decoration: InputDecoration(
           prefixIcon: widget.prefixIcon,
           focusColor: Colors.red,
@@ -171,7 +175,7 @@ class _InputField2State extends State<InputField2> {
               const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
           enabledBorder: OutlineInputBorder(
             borderSide:
-                BorderSide(color: Colors.grey.withOpacity(0.4), width: 0.7),
+                BorderSide(color: Colors.grey.withOpacity(0.7), width: 0.7),
             borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           ),
           focusedBorder: const OutlineInputBorder(
@@ -182,10 +186,26 @@ class _InputField2State extends State<InputField2> {
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
-          // enabledBorder: const OutlineInputBorder(
-          //   borderSide: BorderSide(color: Color(0xFF333333), width: 0.7),
-          //   borderRadius: BorderRadius.all(Radius.circular(15.0)),
-          // ),
+          suffixIcon: widget.hasSuffixIcon == true
+              ? GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                  child: _obscureText
+                      ? const Icon(
+                          Icons.remove_red_eye_outlined,
+                          color: white,
+                          size: 20,
+                        )
+                      : const Icon(
+                          Icons.visibility_off_outlined,
+                          color: white,
+                          size: 20,
+                        ),
+                )
+              : null,
         ),
       ),
     );

@@ -197,27 +197,27 @@ class _KycVerificationState extends State<KycVerification> {
                               RegExp("[0-9]"),
                             ),
                           ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, bottom: 8),
-                            child: MyText(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                              color: black2121,
-                              'Password',
-                            ),
-                          ),
-                          InputField(
-                            inputController: data.passwordTextController,
-                            isPassword: true,
-                            hintText: 'Enter Password',
-                            hasSuffixIcon: true,
-                            keyBoardType: TextInputType.name,
-                            validator: validatePassword,
-                            onChanged: (value) {
-                              _updateFormFieldsFilled(value, 3);
-                            },
-                          ),
+                          // Padding(
+                          //   padding:
+                          //       const EdgeInsets.only(top: 20.0, bottom: 8),
+                          //   child: MyText(
+                          //     fontSize: 13,
+                          //     fontWeight: FontWeight.w400,
+                          //     color: black2121,
+                          //     'Password',
+                          //   ),
+                          // ),
+                          // InputField(
+                          //   inputController: data.passwordTextController,
+                          //   isPassword: true,
+                          //   hintText: 'Enter Password',
+                          //   hasSuffixIcon: true,
+                          //   keyBoardType: TextInputType.name,
+                          //   validator: validatePassword,
+                          //   onChanged: (value) {
+                          //     _updateFormFieldsFilled(value, 3);
+                          //   },
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: MyButton(

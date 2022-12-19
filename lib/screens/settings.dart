@@ -29,24 +29,25 @@ class _SettingsState extends State<Settings> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 40),
+                  padding: const EdgeInsets.only(top: 31, bottom: 45),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.close),
-                        iconSize: 17,
-                        color: white,
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Navigator.pop(context);
                         },
+                        child: const Icon(
+                          Icons.close,
+                          size: 17,
+                          color: white,
+                        ),
                       ),
                       const SizedBox(
-                        width: 30,
+                        width: 32,
                       ),
                       MyText(
                         'Settings',
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: white,
                       ),
@@ -58,7 +59,7 @@ class _SettingsState extends State<Settings> {
                   subtitle:
                       'Push notification, sms notification and email notification',
                   screen: NotificationSettings(),
-                  icon: Icons.notifications,
+                  icon: Icons.notifications_none,
                 ),
                 const ContainerWidget(
                   title: 'Security Settings',

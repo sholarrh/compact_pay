@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                                 MyText(
                                   hideMoney
                                       ? '*******'
-                                      : '${getCurrency()}3,320,000.00',
+                                      : '${getCurrency()}0.00',
                                   fontSize: 36,
                                   fontWeight: FontWeight.w700,
                                   color: white,
@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 30),
+                  padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: GridView.count(
                     padding: const EdgeInsets.all(20),
                     crossAxisCount: 4,
@@ -267,13 +267,19 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
-                Image.asset('assets/images/referral.png'),
+                SizedBox(
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/images/referral.png',
+                  ),
+                ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: MyText('Recent Transactions',
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: MyText(
+                    'Recent Transactions',
                     fontSize: 16,
-                    fontWeight: FontWeight.w500 ,
+                    fontWeight: FontWeight.w500,
                     color: black2121,
                   ),
                 ),

@@ -17,7 +17,7 @@ class Electricity extends StatefulWidget {
 
 class _ElectricityState extends State<Electricity> {
   String selected = "first";
-  String _selected = '';
+  //String _selected = '';
 
   final networkProviders = [
     'Ibadan Electricty Distribution',
@@ -31,7 +31,6 @@ class _ElectricityState extends State<Electricity> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
-
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -73,6 +72,7 @@ class _ElectricityState extends State<Electricity> {
                 ),
                 const SizedBox(height: 8),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -186,12 +186,22 @@ class _ElectricityState extends State<Electricity> {
                                     child: ListView.separated(
                                       itemCount: networkProviders.length,
                                       itemBuilder: (context, index) {
-                                        return ListTile(
-                                          leading: const CircleAvatar(
-                                            backgroundImage: AssetImage(
-                                                'assets/images/Ellipse 195.png'),
+                                        return InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              data.chooseProvider.text =
+                                                  networkProviders[index];
+                                              Navigator.pop(context);
+                                            });
+                                          },
+                                          child: ListTile(
+                                            leading: const CircleAvatar(
+                                              backgroundImage: AssetImage(
+                                                  'assets/images/Ellipse 195.png'),
+                                            ),
+                                            title:
+                                                Text(networkProviders[index]),
                                           ),
-                                          title: Text(networkProviders[index]),
                                         );
                                       },
                                       separatorBuilder:

@@ -13,10 +13,10 @@ class BiometricVerification extends StatefulWidget {
 }
 
 class _BiometricVerificationState extends State<BiometricVerification> {
-  @override
   bool isSwitched1 = false;
   bool isSwitched2 = false;
   bool isSwitched3 = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,23 +27,27 @@ class _BiometricVerificationState extends State<BiometricVerification> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 20),
+                padding: const EdgeInsets.only(top: 31, bottom: 45),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.close),
-                      color: white,
-                      iconSize: 17,
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         Navigator.pop(context);
                       },
+                      child: const Icon(
+                        Icons.close,
+                        size: 17,
+                        color: white,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 32,
                     ),
                     MyText(
                       'Biometric Verification',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
+                      color: white,
                     ),
                   ],
                 ),
@@ -54,7 +58,6 @@ class _BiometricVerificationState extends State<BiometricVerification> {
                   MyText(
                     'Enable Biometric',
                     color: white,
-                    fontFamily: 'Poppins',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
@@ -63,38 +66,31 @@ class _BiometricVerificationState extends State<BiometricVerification> {
                     onChanged: (value) {
                       setState(() {
                         isSwitched1 = value;
-                        print(isSwitched1);
                       });
                     },
                     activeColor: lightGreen,
                     inactiveTrackColor: lightGrey2,
+                    thumbColor: MaterialStateProperty.all(white),
                   ),
                 ],
               ),
-              SizedBox(height: 400),
-              MyButton(
-                child: Container(
+              Padding(
+                padding: const EdgeInsets.only(top: 500.0),
+                child: MyButton(
                   height: 54,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: mainBlue,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: GestureDetector(onTap: () {
-                      Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const AddBiometric()));
-                      },
-                      child: MyText(
-                        'Add Biometric',
-                        color: white,
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                  color: mainBlue,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddBiometric()));
+                  },
+                  child: MyText(
+                    'Add Biometric',
+                    color: white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               )

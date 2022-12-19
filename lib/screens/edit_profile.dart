@@ -90,6 +90,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: 'Tola',
                   keyBoardType: TextInputType.emailAddress,
                   validator: validateFullName,
+                  hasSuffixIcon: false,
                 ),
                 const SizedBox(
                   height: 25,
@@ -111,6 +112,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: 'Babatunde',
                   keyBoardType: TextInputType.emailAddress,
                   validator: validateFullName,
+                  hasSuffixIcon: false,
                 ),
                 const SizedBox(
                   height: 25,
@@ -132,6 +134,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: 'Kelechi',
                   keyBoardType: TextInputType.emailAddress,
                   validator: validateFullName,
+                  hasSuffixIcon: false,
                 ),
                 const SizedBox(
                   height: 25,
@@ -153,6 +156,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: 'babatundesamson@gmail.com',
                   keyBoardType: TextInputType.emailAddress,
                   validator: validateEmail,
+                  hasSuffixIcon: false,
                 ),
                 const SizedBox(
                   height: 25,
@@ -174,6 +178,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: '+2348123456789',
                   keyBoardType: TextInputType.emailAddress,
                   validator: validatePhoneNumber,
+                  hasSuffixIcon: false,
                 ),
                 const SizedBox(
                   height: 25,
@@ -195,6 +200,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: '2, Obantoko Rd.  Abeokuta',
                   keyBoardType: TextInputType.name,
                   validator: validateFullName,
+                  hasSuffixIcon: false,
                 ),
                 const SizedBox(
                   height: 25,
@@ -216,6 +222,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: 'dd/mm/yy',
                   keyBoardType: TextInputType.name,
                   validator: validateFullName,
+                  hasSuffixIcon: false,
                 ),
                 const SizedBox(
                   height: 25,
@@ -237,6 +244,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: 'Male',
                   keyBoardType: TextInputType.name,
                   validator: validateFullName,
+                  hasSuffixIcon: false,
                   // suffixIcon: DropdownButton<String>(
                   //   value: dropdownValue,
                   //   enableFeedback: true,
@@ -283,6 +291,7 @@ class _EditProfileState extends State<EditProfile> {
                   hintText: '22123333333',
                   keyBoardType: TextInputType.emailAddress,
                   validator: validateEmail,
+                  hasSuffixIcon: false,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 100, bottom: 100),

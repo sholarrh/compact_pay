@@ -4,7 +4,6 @@ import 'package:compact_pay/widgets/currency_box.dart';
 import 'package:compact_pay/widgets/my_button.dart';
 import 'package:compact_pay/widgets/my_text.dart';
 import 'package:compact_pay/widgets/text_form_field.dart';
-import 'package:compact_pay/widgets/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -213,7 +212,7 @@ class _AirtimeTopUpState extends State<AirtimeTopUp> {
                       inputController: data.phoneNumberTextController,
                       hintText: 'Enter phone number',
                       keyBoardType: TextInputType.number,
-                      suffixIcon: Icon(
+                      suffixIcon: const Icon(
                         Icons.person_pin_outlined,
                         color: mainBlue,
                       ),

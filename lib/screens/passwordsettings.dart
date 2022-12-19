@@ -2,6 +2,7 @@ import 'package:compact_pay/screens/changepassword.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
+import '../widgets/container_widget.dart';
 import '../widgets/my_text.dart';
 import 'change_pin.dart';
 
@@ -27,113 +28,43 @@ class _PasswordSettingsState extends State<PasswordSettings> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  padding: const EdgeInsets.only(top: 31, bottom: 45),
                   child: Row(
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.close),
-                        color: white,
-                        iconSize: 17,
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Navigator.pop(context);
                         },
+                        child: const Icon(
+                          Icons.close,
+                          size: 17,
+                          color: white,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 32,
                       ),
                       MyText(
                         'Password Settings',
-                        color: white,
                         fontFamily: 'Poppins',
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500,
+                        color: white,
                       ),
                     ],
                   ),
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  color: white,
-                  margin: const EdgeInsets.symmetric(vertical: 12),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Padding(
-                          padding: const EdgeInsets.all(14),
-                          child: Image.asset('assets/images/key.png'),
-                        ),
-                        trailing: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ChangePassword()));
-                          },
-                          child: const Icon(
-                            Icons.arrow_forward_ios,
-                            color: mainBlue,
-                          ),
-                        ),
-                        title: MyText(
-                          'Change Password',
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: black2121,
-                        ),
-                        subtitle: MyText(
-                          'View and edit your password',
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: ash2,
-                        ),
-                      ),
-                    ],
-                  ),
+                const ContainerWidget(
+                  title: 'Change Password',
+                  subtitle: 'View and edit your password',
+                  screen: ChangePassword(),
+                  icon: Icons.key,
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  color: white,
-                  margin: const EdgeInsets.symmetric(vertical: 12),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Padding(
-                          padding: const EdgeInsets.all(14),
-                          child: Image.asset('assets/images/key.png'),
-                        ),
-                        trailing: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const ChangePin()));
-                          },
-                          child: const Icon(
-                            Icons.arrow_forward_ios,
-                            color: mainBlue,
-                          ),
-                        ),
-                        title: MyText(
-                          'Change Pin',
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: black2121,
-                        ),
-                        subtitle: MyText(
-                          'View and edit your pin',
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: ash2,
-                        ),
-                      ),
-                    ],
-                  ),
+                const ContainerWidget(
+                  title: 'Change Pin',
+                  subtitle: 'View and edit your pin',
+                  screen: ChangePin(),
+                  icon: Icons.key,
                 ),
               ],
             ),

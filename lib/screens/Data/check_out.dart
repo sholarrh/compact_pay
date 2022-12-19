@@ -48,7 +48,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ]),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               MyText(
                 'To',
                 fontFamily: 'Poppins',
@@ -56,7 +56,7 @@ class _CheckoutState extends State<Checkout> {
                 fontWeight: FontWeight.w400,
                 color: black2121,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               MyText(
                 '08153456789',
                 fontFamily: 'Poppins',
@@ -64,7 +64,7 @@ class _CheckoutState extends State<Checkout> {
                 fontWeight: FontWeight.w500,
                 color: black2121,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               MyText(
                 'Amount',
                 fontFamily: 'Poppins',
@@ -72,20 +72,20 @@ class _CheckoutState extends State<Checkout> {
                 fontWeight: FontWeight.w400,
                 color: black2121,
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               MyText(
-                '${getCurrency()}50',
+                '${getCurrency()} ${data.amountToSendTextController.text}',
                 fontFamily: 'Poppins',
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
                 color: black2121,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Container(
-                padding: EdgeInsets.only(left: 15, right: 15, top: 13),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 13),
                 width: double.infinity,
                 height: 121,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: ashColor,
                 ),
                 child: Column(
@@ -160,14 +160,18 @@ class _CheckoutState extends State<Checkout> {
               ),
               SizedBox(height: 300),
               MyButton(
+                height: 54,
+                width: double.infinity,
+                color: mainBlue,
                 onTap: () {
                   showModalBottomSheet(
                     context: context,
                     builder: (context) => Container(
                       color: ash3,
                       child: Container(
-                        padding: EdgeInsets.only(left: 20, top: 30, right: 20),
-                        decoration: BoxDecoration(
+                        padding:
+                            const EdgeInsets.only(left: 20, top: 30, right: 20),
+                        decoration: const BoxDecoration(
                           color: white,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30),
@@ -179,8 +183,8 @@ class _CheckoutState extends State<Checkout> {
                             Padding(
                               padding: const EdgeInsets.only(left: 123),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
                                   MyText(
                                     'Input PIN',
                                     fontFamily: 'Poppins',
@@ -188,7 +192,7 @@ class _CheckoutState extends State<Checkout> {
                                     fontWeight: FontWeight.w500,
                                     color: black2121,
                                   ),
-                                  SizedBox(width: 100),
+                                  const SizedBox(width: 100),
                                   IconButton(
                                     icon: const Icon(Icons.close),
                                     iconSize: 17,
@@ -200,7 +204,7 @@ class _CheckoutState extends State<Checkout> {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 25),
+                            const SizedBox(height: 25),
                             PinCodeTextField(
                               appContext: context,
                               controller: data.pinCode,
@@ -212,18 +216,18 @@ class _CheckoutState extends State<Checkout> {
                                 print(value);
                               },
                               pinTheme: PinTheme(
-                                shape: PinCodeFieldShape.box,
-                                borderRadius: BorderRadius.circular(10),
-                                fieldHeight: 54,
-                                fieldWidth: 54,
-                                inactiveColor: ash2,
-                                activeColor: mainBlue,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            MyText(
-                              'Forgot PIN?',
-                              fontFamily: 'Poppins',
+                                    shape: PinCodeFieldShape.box,
+                                    borderRadius: BorderRadius.circular(10),
+                                    fieldHeight: 54,
+                                    fieldWidth: 54,
+                                    inactiveColor: ash2,
+                                    activeColor: mainBlue,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                MyText(
+                                  'Forgot PIN?',
+                                  fontFamily: 'Poppins',
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: mainBlue,
@@ -234,22 +238,12 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   );
                 },
-                child: Container(
-                  height: 54,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: mainBlue,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: MyText(
-                      'Confirm',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                child: MyText(
+                  'Confirm',
+                  color: white,
+                  fontFamily: 'Poppins',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ]),

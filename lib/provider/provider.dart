@@ -431,6 +431,7 @@ class ProviderClass extends ChangeNotifier {
       }
       if (kDebugMode) {
         print('Response body: ${postLoginResponse.body}');
+        _errorMessage = ' ${postLoginResponse.body}';
       }
       var postLoginResponseData = jsonDecode(postLoginResponse.body);
 
@@ -507,7 +508,6 @@ class ProviderClass extends ChangeNotifier {
 
   late http.Response putTransactionPinResponse;
   bool? hasSetTransactionPin;
-  late String sola;
 
   Future<void> putTransactionPin() async {
     final storage = await SharedPreferences.getInstance();

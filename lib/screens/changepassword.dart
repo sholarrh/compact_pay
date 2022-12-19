@@ -22,7 +22,7 @@ class ChangePassword extends StatefulWidget {
 class _ChangePasswordState extends State<ChangePassword> {
   bool _isLoading = false;
 
-  final formkey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,43 +34,47 @@ class _ChangePasswordState extends State<ChangePassword> {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: SingleChildScrollView(
             child: Form(
-              key: formkey,
+              key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 20),
+                    padding: const EdgeInsets.only(top: 31, bottom: 45),
                     child: Row(
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.close),
-                          color: white,
-                          iconSize: 17,
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             Navigator.pop(context);
                           },
+                          child: const Icon(
+                            Icons.close,
+                            size: 17,
+                            color: white,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 32,
                         ),
                         MyText(
                           'Change Password',
-                          color: white,
-                          fontFamily: 'Poppins',
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w500,
+                          color: white,
                         ),
                       ],
                     ),
                   ),
-                  MyText('Old Password',
-                      color: white,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13),
-                  const SizedBox(height: 8),
-                  InputField(
+                  MyText(
+                    'Old Password',
+                    color: white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                  ),
+                  const SizedBox(height: 10),
+                  InputField2(
                     hintText: '',
                     validator: validatePassword,
                     keyBoardType: TextInputType.name,
-                    isPassword: false,
                     hasSuffixIcon: true,
                     inputController: data.oldPassword,
                   ),
@@ -80,12 +84,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
                       fontSize: 13),
-                  const SizedBox(height: 8),
-                  InputField(
+                  const SizedBox(height: 10),
+                  InputField2(
                     hintText: '',
                     validator: validatePassword,
                     keyBoardType: TextInputType.name,
-                    isPassword: false,
                     hasSuffixIcon: true,
                     inputController: data.passwordTextController,
                   ),
@@ -95,12 +98,11 @@ class _ChangePasswordState extends State<ChangePassword> {
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w400,
                       fontSize: 13),
-                  const SizedBox(height: 8),
-                  InputField(
+                  const SizedBox(height: 10),
+                  InputField2(
                     hintText: '',
                     validator: data.validateConfirmPassword,
                     keyBoardType: TextInputType.name,
-                    isPassword: false,
                     hasSuffixIcon: true,
                     inputController: data.confirmPasswordTextController,
                   ),
@@ -117,7 +119,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                         width: double.infinity,
                         color: mainBlue,
                         onTap: () {
-                          if (formkey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             _isLoading = true;
                             setState(() {});
 
