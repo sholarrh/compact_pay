@@ -36,6 +36,8 @@ class _VerificationState extends State<Verification> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     //final seconds = data.strDigits(data.myDuration.inSeconds.remainder(60));
     return Scaffold(
       backgroundColor: white,
@@ -43,62 +45,50 @@ class _VerificationState extends State<Verification> {
         child: SafeArea(
           child: Stack(children: [
             Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  iconSize: 17,
-                  color: close,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+              padding: EdgeInsets.only(
+                top: height * 0.02799,
+                left: width * 0.0533,
+              ),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.close,
+                  color: black2121,
+                  size: 17,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                right: 20,
+              padding: EdgeInsets.only(
+                left: width * 0.0533,
+                right: width * 0.0533,
+                top: height * 0.05788,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 61.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: MyText(
-                        'OTP Verification',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: black,
-                      ),
-                    ),
+                  MyText(
+                    'OTP Verification',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    color: black,
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 74, left: 20, right: 20),
+                    padding: EdgeInsets.only(
+                        top: height * 0.0677, left: 20, right: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
                         OtpBox(
                           obscureText: false,
                         ),
-                        SizedBox(
-                          width: 25,
-                        ),
                         OtpBox(
                           obscureText: false,
                         ),
-                        SizedBox(
-                          width: 25,
-                        ),
                         OtpBox(
                           obscureText: false,
-                        ),
-                        SizedBox(
-                          width: 25,
                         ),
                         OtpBox(
                           obscureText: false,
@@ -107,7 +97,7 @@ class _VerificationState extends State<Verification> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 56),
+                    padding: EdgeInsets.only(top: height * 0.0887),
                     child: SizedBox(
                       width: double.infinity,
                       child: MyText(
@@ -120,7 +110,7 @@ class _VerificationState extends State<Verification> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25),
+                    padding: EdgeInsets.only(top: height * 0.03079),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -143,9 +133,9 @@ class _VerificationState extends State<Verification> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 50),
+                    padding: EdgeInsets.only(top: height * 0.061576),
                     child: MyButton(
-                      height: 50,
+                      height: 54,
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {

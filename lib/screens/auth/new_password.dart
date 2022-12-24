@@ -52,6 +52,8 @@ class _NewPasswordState extends State<NewPassword> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: white,
@@ -59,57 +61,58 @@ class _NewPasswordState extends State<NewPassword> {
         child: SafeArea(
           child: Stack(children: [
             Padding(
-              padding: const EdgeInsets.only(top: 22.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  iconSize: 17,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+              padding: EdgeInsets.only(
+                top: height * 0.02799,
+                left: width * 0.0533,
+              ),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.close,
+                  color: black2121,
+                  size: 17,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                right: 18,
+              padding: EdgeInsets.only(
+                left: width * 0.0533,
+                right: width * 0.0533,
+                top: height * 0.05788,
               ),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 64.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: MyText(
-                          'Create New Password',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: black,
-                        ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: MyText(
+                        'Create New Password',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: black,
                       ),
                     ),
                     Form(
                       key: formKey,
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 40,
+                          SizedBox(
+                            height: height * 0.03448,
                           ),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: MyText(
                               'New Password',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
                               color: black,
                             ),
                           ),
                           const SizedBox(
-                            height: 21,
+                            height: 8,
                           ),
                           InputField(
                             inputController: data.passwordTextController,
@@ -122,20 +125,20 @@ class _NewPasswordState extends State<NewPassword> {
                               _updateFormFieldsFilled(value, 0);
                             },
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: height * 0.030788,
                           ),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: MyText(
                               'Confirm Password',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
                               color: black,
                             ),
                           ),
                           const SizedBox(
-                            height: 22,
+                            height: 8,
                           ),
                           InputField(
                             inputController: data.confirmPasswordTextController,
@@ -152,9 +155,9 @@ class _NewPasswordState extends State<NewPassword> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 80),
+                      padding: EdgeInsets.only(top: height * 0.0985),
                       child: MyButton(
-                        height: 50,
+                        height: 54,
                         width: double.infinity,
                         color:
                             _validate.contains(false) ? unValidated : mainBlue,

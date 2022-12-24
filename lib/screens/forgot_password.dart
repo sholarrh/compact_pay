@@ -46,6 +46,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: white,
@@ -53,29 +55,33 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         child: SafeArea(
           child: Stack(children: [
             Padding(
-              padding: const EdgeInsets.only(top: 22.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  iconSize: 17,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+              padding: EdgeInsets.only(
+                top: height * 0.02799,
+                left: width * 0.0533,
+              ),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.close,
+                  color: black2121,
+                  size: 17,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                right: 18,
+              padding: EdgeInsets.only(
+                left: width * 0.0533,
+                right: width * 0.0533,
+                top: height * 0.05788,
               ),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 61.0, bottom: 29),
+                      padding: EdgeInsets.only(bottom: height * 0.0369),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: MyText(
@@ -117,9 +123,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 80),
+                      padding: EdgeInsets.only(top: height * 0.0985),
                       child: MyButton(
-                        height: 50,
+                        height: 54,
                         width: double.infinity,
                         color:
                             _validate.contains(false) ? unValidated : mainBlue,
@@ -182,8 +188,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                        top: 20,
+                      padding: EdgeInsets.only(
+                        top: height * 0.0246,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
