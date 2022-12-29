@@ -25,42 +25,46 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Stack(children: [
             Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
+              padding: EdgeInsets.only(
+                top: height * 0.02799,
+                left: width * 0.0533,
               ),
-              child: IconButton(
-                icon: const Icon(Icons.close),
-                iconSize: 17,
-                onPressed: () {
+              child: InkWell(
+                onTap: () {
                   Navigator.pop(context);
                 },
+                child: const Icon(
+                  Icons.close,
+                  color: black2121,
+                  size: 17,
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(
+                left: width * 0.0533,
+                right: width * 0.0533,
+                top: height * 0.05788,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 61),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: MyText(
-                        'Set Transaction Pin',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: black,
-                      ),
-                    ),
+                  MyText(
+                    'Set Transaction Pin',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                    color: black,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 47),
+                    padding: EdgeInsets.only(top: height * 0.03325),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: MyText(
@@ -79,20 +83,11 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                         OtpBox1(
                           obscureText: true,
                         ),
-                        SizedBox(
-                          width: 25,
-                        ),
                         OtpBox1(
                           obscureText: true,
                         ),
-                        SizedBox(
-                          width: 25,
-                        ),
                         OtpBox1(
                           obscureText: true,
-                        ),
-                        SizedBox(
-                          width: 25,
                         ),
                         OtpBox1(
                           obscureText: true,
@@ -101,7 +96,7 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30),
+                    padding: EdgeInsets.only(top: height * 0.0369),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: MyText(
@@ -120,20 +115,11 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                         OtpBox2(
                           obscureText: true,
                         ),
-                        SizedBox(
-                          width: 25,
-                        ),
                         OtpBox2(
                           obscureText: true,
                         ),
-                        SizedBox(
-                          width: 25,
-                        ),
                         OtpBox2(
                           obscureText: true,
-                        ),
-                        SizedBox(
-                          width: 25,
                         ),
                         OtpBox2(
                           obscureText: true,
@@ -142,9 +128,9 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 50),
+                    padding: EdgeInsets.only(top: height * 0.061576),
                     child: MyButton(
-                      height: 50,
+                      height: 54,
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {

@@ -48,29 +48,38 @@ class _KycVerificationState extends State<KycVerification> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+    data.identificationTextController.text = dropdownValue;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Stack(children: [
             Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  iconSize: 17,
-                  color: close,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+              padding: EdgeInsets.only(
+                top: height * 0.02799,
+                left: width * 0.0533,
+              ),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.close,
+                  color: black2121,
+                  size: 17,
                 ),
               ),
             ),
             Form(
               key: formKey,
               child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 50),
+                padding: EdgeInsets.only(
+                  left: width * 0.0533,
+                  right: width * 0.0533,
+                  top: height * 0.05788,
+                ),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -79,14 +88,14 @@ class _KycVerificationState extends State<KycVerification> {
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: black2121,
-                        fontFamily: 'Poppins',
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 27.0, bottom: 8),
+                            padding: EdgeInsets.only(
+                                top: height * 0.03448,
+                                bottom: height * 0.00985),
                             child: MyText(
                               'Address',
                               fontSize: 13,
@@ -107,8 +116,9 @@ class _KycVerificationState extends State<KycVerification> {
                             },
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, bottom: 8),
+                            padding: EdgeInsets.only(
+                                top: height * 0.030788,
+                                bottom: height * 0.00985),
                             child: MyText(
                               'Valid Means of Identification',
                               fontSize: 13,
@@ -117,40 +127,52 @@ class _KycVerificationState extends State<KycVerification> {
                               color: black2121,
                             ),
                           ),
-                          DropdownButton<String>(
-                            value: dropdownValue,
-                            enableFeedback: true,
-                            dropdownColor: white,
-                            isExpanded: true,
-                            iconSize: 30,
-                            borderRadius: BorderRadius.circular(7),
-                            iconEnabledColor: black2121.withOpacity(0.9),
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: black2121.withOpacity(0.9),
-                              fontFamily: 'Poppins',
+                          Container(
+                            height: 50,
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: Colors.grey.withOpacity(0.4),
+                                )),
+                            child: DropdownButton<String>(
+                              value: dropdownValue,
+                              enableFeedback: true,
+                              dropdownColor: white,
+                              isExpanded: true,
+                              iconSize: 30,
+                              iconEnabledColor: black2121.withOpacity(0.9),
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: black2121.withOpacity(0.9),
+                                fontFamily: 'Poppins',
+                              ),
+                              items: <String>[
+                                'National Identification Number',
+                                'Voters Card',
+                                'Driver\'s Licence',
+                                'International Passport',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: MyText(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                  data.identificationTextController.text =
+                                      dropdownValue;
+                                });
+                              },
                             ),
-                            items: <String>[
-                              'National Identification Number',
-                              'Voters Card',
-                            ].map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: MyText(value),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                dropdownValue = newValue!;
-                                data.identificationTextController.text =
-                                    dropdownValue;
-                              });
-                            },
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, bottom: 8),
+                            padding: EdgeInsets.only(
+                                top: height * 0.030788,
+                                bottom: height * 0.00985),
                             child: MyText(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
@@ -174,8 +196,9 @@ class _KycVerificationState extends State<KycVerification> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, bottom: 8),
+                            padding: EdgeInsets.only(
+                                top: height * 0.030788,
+                                bottom: height * 0.00985),
                             child: MyText(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
@@ -197,31 +220,12 @@ class _KycVerificationState extends State<KycVerification> {
                               RegExp("[0-9]"),
                             ),
                           ),
-                          // Padding(
-                          //   padding:
-                          //       const EdgeInsets.only(top: 20.0, bottom: 8),
-                          //   child: MyText(
-                          //     fontSize: 13,
-                          //     fontWeight: FontWeight.w400,
-                          //     color: black2121,
-                          //     'Password',
-                          //   ),
-                          // ),
-                          // InputField(
-                          //   inputController: data.passwordTextController,
-                          //   isPassword: true,
-                          //   hintText: 'Enter Password',
-                          //   hasSuffixIcon: true,
-                          //   keyBoardType: TextInputType.name,
-                          //   validator: validatePassword,
-                          //   onChanged: (value) {
-                          //     _updateFormFieldsFilled(value, 3);
-                          //   },
-                          // ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 30),
+                            padding: EdgeInsets.only(
+                              top: height * 0.061576,
+                            ),
                             child: MyButton(
-                              height: 50,
+                              height: 54,
                               width: double.infinity,
                               color: _validate.contains(false)
                                   ? unValidated

@@ -1,7 +1,6 @@
 // This is the splash screen
 import 'package:compact_pay/screens/auth/login.dart';
 import 'package:compact_pay/screens/onboarding/onboarding2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,6 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: darkBlue,
       body: SafeArea(
@@ -48,13 +49,13 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 317),
+                SizedBox(height: height * 0.39),
                 Image.asset('assets/images/Logo.png'),
-                const SizedBox(height: 15.11),
+                SizedBox(height: height * 0.0185),
                 MyText(
                   'CompactPay',
                   color: white,
-                  fontSize: 24,
+                  fontSize: width * 0.064,
                   fontWeight: FontWeight.w600,
                 ),
               ],

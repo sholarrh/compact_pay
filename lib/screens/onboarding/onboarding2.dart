@@ -20,16 +20,19 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Stack(children: [
-          PageView.builder(
-              controller: _pageController,
-              itemCount: tabs.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Stack(
-                  children: [
+        child: Stack(
+          children: [
+            PageView.builder(
+                controller: _pageController,
+                itemCount: tabs.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Stack(
+                    children: [
                       Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -40,37 +43,39 @@ class _OnBoardingState extends State<OnBoarding> {
                       ),
                       _currentIndex <= 2
                           ? Positioned(
-                              right: 23,
-                              top: 590,
-                              left: 23,
+                              right: width * 0.0613,
+                              top: height * 0.7266,
+                              left: width * 0.0613,
                               child: MyText(
                                 tabs[index].title,
                                 textAlign: TextAlign.center,
-                                fontSize: 24,
+                                fontSize: width * 0.064,
                                 fontWeight: FontWeight.w600,
                                 color: white,
                               ),
                             )
                           : Positioned(
-                              right: 23,
-                              top: 600,
+                        right: 23,
+                              // width * 0.0613,
+                              top: height * 0.80665,
                               left: 23,
+                              //width * 0.0613,
                               child: MyText(
                                 tabs[index].title,
                                 textAlign: TextAlign.center,
-                                fontSize: 12,
+                                fontSize: width * 0.032,
                                 fontWeight: FontWeight.w400,
                                 color: const Color(0xffD4D3D3),
                               ),
                             ),
                       _currentIndex == 3
                           ? Positioned(
-                              right: 20,
-                              top: 595,
-                              left: 20,
+                              right: width * 0.0533,
+                              top: height * 0.72044335,
+                              left: width * 0.0533,
                               child: Container(
                                 width: double.infinity,
-                                height: 54,
+                                height: height * 0.0665,
                                 decoration: BoxDecoration(
                                   color: mainBlue,
                                   borderRadius: BorderRadius.circular(20),
@@ -85,15 +90,16 @@ class _OnBoardingState extends State<OnBoarding> {
                                                 const Login()),
                                       );
                                     },
-                                    child:  MyText('Get Started',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                                    child: MyText(
+                                      'Get Started',
+                                      fontSize: width * 0.0423,
+                                      fontWeight: FontWeight.w600,
                                       color: white,
                                     ),
                                   ),
-                                ),
-                              ),
-                            )
+                          ),
+                        ),
+                      )
                           : const SizedBox(),
                     ],
                   );
@@ -107,30 +113,30 @@ class _OnBoardingState extends State<OnBoarding> {
                   }
                   setState(() {});
                 }),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Login()),
-                );
-              },
-              child: Positioned(
-                right: 34,
-                top: 54,
+            Positioned(
+              right: width * 0.0901,
+              top: height * 0.0665,
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Login()),
+                  );
+                },
                 child: Row(
                   children: [
                     MyText(
                       'Skip',
                       fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                      fontSize: width * 0.04267,
                       color: white,
                     ),
-                    const SizedBox(
-                      width: 11,
+                    SizedBox(
+                      width: width * 0.0293,
                     ),
                     const Icon(
                       Icons.arrow_forward_ios_outlined,
-                      size: 13,
+                      size: 14,
                       color: white,
                     ),
                   ],
@@ -138,8 +144,8 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             Positioned(
-                bottom: 100,
-                left: 138,
+                bottom: height * 0.10077,
+                left: width * 0.32533,
                 child: _currentIndex <= 2
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -159,9 +165,10 @@ class _OnBoardingState extends State<OnBoarding> {
                             ),
                           ),
                         ],
-              ): const SizedBox()
-          ),
-        ],),
+                      )
+                    : const SizedBox()),
+          ],
+        ),
       ),
     );
   }
@@ -169,13 +176,12 @@ class _OnBoardingState extends State<OnBoarding> {
 
 List<OnboardingModel> tabs = [
   OnboardingModel(
-      'assets/images/1st splash.png',
-      'Send and receive money \nonline',
+    'assets/images/1st splash.png',
+    'Send and receive money \nonline',
   ),
   OnboardingModel(
     'assets/images/onboard2.png',
     'Pay bills easier and \nfaster',
-
   ),
   OnboardingModel(
     'assets/images/onboard3.png',
@@ -191,9 +197,8 @@ class OnboardingModel {
   final String assetImage;
   final String title;
 
-
   OnboardingModel(
-      this.assetImage,
-      this.title,
-      );
+    this.assetImage,
+    this.title,
+  );
 }
