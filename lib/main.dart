@@ -1,5 +1,6 @@
 import 'package:compact_pay/provider/provider.dart';
 import 'package:compact_pay/screens/SplashScreen/splashscreen.dart';
+import 'package:compact_pay/screens/airtime/airtime_top_up.dart';
 import 'package:compact_pay/widgets/custom_error.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,9 +32,8 @@ class MyApp extends StatelessWidget {
           };
           return widget!;
         },
-        home: const SplashScreen(),
-      ),);
+        home: const AirtimeTopUp(),
+      ),
+    );
   }
 }
-
-
