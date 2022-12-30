@@ -1,9 +1,9 @@
 // Adigun solafunmi
 
+import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/Help/help.dart';
-import '../utils/app_colors.dart';
 import 'my_text.dart';
 
 class ContainerWidget extends StatelessWidget {
@@ -41,10 +41,11 @@ class ContainerWidget extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                  offset: const Offset(12, 26),
-                  blurRadius: 50,
-                  spreadRadius: 0,
-                  color: Colors.grey.withOpacity(.1)),
+                offset: const Offset(0, 0),
+                blurRadius: 5,
+                spreadRadius: 0,
+                color: const Color(0xff212121).withOpacity(0.1),
+              ),
             ]),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

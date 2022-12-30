@@ -22,24 +22,26 @@ class _AddMoneyState extends State<AddMoney> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backWhite,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 22),
+                padding: const EdgeInsets.only(top: 31, bottom: 22),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      iconSize: 12,
-                      color: close,
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         Navigator.pop(context);
                       },
+                      child: const Icon(
+                        Icons.close,
+                        size: 17,
+                        color: close,
+                      ),
                     ),
                     const SizedBox(
                       width: 30,

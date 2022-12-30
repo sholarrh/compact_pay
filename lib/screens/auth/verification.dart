@@ -172,6 +172,9 @@ class _VerificationState extends State<Verification> {
                                             widget.goToPasswordScreen
                                                 ? const NewPassword()
                                                 : const Login()));
+                              } else {
+                                showSnackBar(context, black2121,
+                                    'status code: ${data.signUpResponse.statusCode}\n${data.errorMessage}');
                               }
                             });
                           } catch (e, s) {
@@ -183,10 +186,7 @@ class _VerificationState extends State<Verification> {
                             }
                           }
                         } else {
-                          const ShowSnackBar(
-                            text: "Invalid OTP",
-                            duration: 5,
-                          );
+                          showSnackBar(context, black2121, 'Invalid OTP');
                         }
                       },
                       child: _verificationIsLoading == false

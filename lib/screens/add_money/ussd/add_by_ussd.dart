@@ -53,18 +53,20 @@ class _AddByUssdState extends State<AddByUssd> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 10,
+                        top: 31,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          IconButton(
-                            icon: const Icon(Icons.close),
-                            iconSize: 20,
-                            color: close,
-                            onPressed: () {
+                          InkWell(
+                            onTap: () {
                               Navigator.pop(context);
                             },
+                            child: const Icon(
+                              Icons.close,
+                              size: 17,
+                              color: close,
+                            ),
                           ),
                           const SizedBox(
                             width: 30,
@@ -79,8 +81,10 @@ class _AddByUssdState extends State<AddByUssd> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 20, top: 8),
-                      child: Image.asset('assets/images/ussd image.png'),
+                      padding: const EdgeInsets.only(bottom: 20, top: 16),
+                      child: SizedBox(
+                          width: double.infinity,
+                          child: Image.asset('assets/images/ussd image.png')),
                     ),
                     MyText(
                       'Fund Method',
@@ -89,136 +93,156 @@ class _AddByUssdState extends State<AddByUssd> {
                       color: black2121,
                     ),
                     data.bankName == null
-                        ? Container(
-                            margin: const EdgeInsets.only(top: 12, bottom: 30),
-                            padding: const EdgeInsets.only(
-                                top: 12, bottom: 12, left: 12),
-                            height: 60,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.wallet_sharp,
-                                      color: mainBlue,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        MyText(
-                                          'Add Bank',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: black2121,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const SelectBank(
-                                          addMoney: 'Add by ussd',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    color: mainBlue,
-                                    size: 12,
+                        ? InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SelectBank(
+                                    addMoney: 'Add by ussd',
                                   ),
                                 ),
-                              ],
+                              );
+                            },
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.only(top: 12, bottom: 30),
+                              padding: const EdgeInsets.only(
+                                  top: 12, bottom: 12, left: 12),
+                              height: 60,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: white,
+                                border: Border.all(
+                                  color: black2121.withOpacity(0.1),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: const Offset(0, 0),
+                                    blurRadius: 5,
+                                    spreadRadius: 0,
+                                    color: black2121.withOpacity(0.1),
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(7),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.wallet_sharp,
+                                        color: mainBlue,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          MyText(
+                                            'Add Bank',
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: black2121,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      color: mainBlue,
+                                      size: 12,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           )
-                         :Container(
-                            margin: const EdgeInsets.only(top: 12, bottom: 30),
-                            padding: const EdgeInsets.only(
-                                top: 12, bottom: 12, left: 12),
-                            height: 60,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(7),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 20,
-                                      backgroundColor: mainBlue,
-                                      backgroundImage:
-                                          NetworkImage(data.bankLogo!),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        MyText(
-                                          data.bankName!,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: black2121,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    MyText(
-                                      'Change',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: black2121,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const SelectBank(
-                                                      addMoney: 'Add by ussd',
-                                                    )));
-                                      },
-                                      icon: const Icon(
-                                        Icons.arrow_forward_ios_outlined,
-                                        color: mainBlue,
-                                        size: 12,
+                        : InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SelectBank(
+                                            addMoney: 'Add by ussd',
+                                          )));
+                            },
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.only(top: 12, bottom: 30),
+                              padding: const EdgeInsets.only(
+                                  top: 12, bottom: 12, left: 12),
+                              height: 60,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(7),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: mainBlue,
+                                        backgroundImage:
+                                            NetworkImage(data.bankLogo!),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          MyText(
+                                            data.bankName!,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                            color: black2121,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      MyText(
+                                        'Change',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500,
+                                        color: black2121,
+                                      ),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                          Icons.arrow_forward_ios_outlined,
+                                          color: mainBlue,
+                                          size: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                     MyText(
@@ -276,7 +300,7 @@ class _AddByUssdState extends State<AddByUssd> {
                           const SizedBox(
                             height: 10,
                           ),
-                          TvInputField(
+                          UssdInputField(
                             validator: validateAmount,
                             inputController: data.amountToSendTextController,
                             keyBoardType: TextInputType.number,
@@ -291,28 +315,28 @@ class _AddByUssdState extends State<AddByUssd> {
                                       color: black2121,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w400,
-                                        fontFamily: 'poppins',
-                                      ),
+                                      fontFamily: 'poppins',
                                     ),
-                                    // const SizedBox(
-                                    //   width: 8,
-                                    // ),
+                                  ),
+                                  // const SizedBox(
+                                  //   width: 8,
+                                  // ),
 
-                                    // SizedBox(
-                                    //   width: 1,
-                                    //   child: Center(
-                                    //     child: Container(
-                                    //       width: 1,
-                                    //       margin: const EdgeInsets.only(top: 2, bottom: 2),
-                                    //       decoration: BoxDecoration(
-                                    //         border: Border(
-                                    //           left: Divider.createBorderSide(context, color: black2121, width: 1),
-                                    //         ),
-                                    //       ),
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    // const VerticalDivider(
+                                  // SizedBox(
+                                  //   width: 1,
+                                  //   child: Center(
+                                  //     child: Container(
+                                  //       width: 1,
+                                  //       margin: const EdgeInsets.only(top: 2, bottom: 2),
+                                  //       decoration: BoxDecoration(
+                                  //         border: Border(
+                                  //           left: Divider.createBorderSide(context, color: black2121, width: 1),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const VerticalDivider(
                                   //   indent: 2,
                                   //   endIndent: 2,
                                   //   width: 1,
@@ -355,10 +379,8 @@ class _AddByUssdState extends State<AddByUssd> {
                                     }
                                   }
                                 } else {
-                                  const ShowSnackBar(
-                                    text: "There is an error",
-                                    duration: 5,
-                                  );
+                                  showSnackBar(context, black2121,
+                                      'Please enter an amount');
                                 }
                               },
                               child: _isLoading == false

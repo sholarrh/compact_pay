@@ -40,13 +40,19 @@ class _HomePageState extends State<HomePage> {
     var data = Provider.of<ProviderClass>(
       context,
     );
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     // data.get();
     return Scaffold(
       backgroundColor: white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+            padding: EdgeInsets.only(
+              left: width * 0.0533,
+              right: width * 0.0533,
+              top: height * 0.030788,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -61,7 +67,6 @@ class _HomePageState extends State<HomePage> {
                 //     },
                 //   ),
                 // ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -73,20 +78,22 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context) => const Profile()));
                       },
                       child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: const Color(0xffD9D9D9),
+                        radius: width * 0.0533,
+                        backgroundColor: mainBlue.withOpacity(0.4),
                         child: data.image == null
                             ? Icon(
-                          Icons.camera_alt_outlined,
-                                color: const Color(0xff292D32).withOpacity(0.4),
-                                size: 20,
+                                Icons.person,
+                                color: mainBlue,
+                                size: width * 0.10667,
                               )
-                            : Image.file(
-                          data.image!,
-                          fit: BoxFit.fill,
-                          height: 40,
-                          width: 40,
-                        ),
+                            : ClipOval(
+                                child: Image.file(
+                                  data.image!,
+                                  fit: BoxFit.fill,
+                                  height: height * 0.04926,
+                                  width: width * 0.10667,
+                                ),
+                              ),
                       ),
                     ),
                     Row(
@@ -101,12 +108,13 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: Image.asset('assets/images/scanner.png'),
                         ),
-                        const SizedBox(
-                          width: 24,
+                        SizedBox(
+                          width: width * 0.064,
                         ),
                         GestureDetector(
                             onTap: () {},
-                            child: Image.asset('assets/images/notification.png')),
+                            child:
+                                Image.asset('assets/images/notification.png')),
                       ],
                     ),
                   ],
@@ -140,10 +148,11 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Container(
-                    padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 16),
+                    padding: const EdgeInsets.only(
+                        top: 12, bottom: 10, left: 16, right: 16),
                     width: double.infinity,
-                    height: 100,
-                    decoration:  BoxDecoration(
+                    height: height * 0.12315,
+                    decoration: BoxDecoration(
                       color: mainBlue,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -157,28 +166,35 @@ class _HomePageState extends State<HomePage> {
                               'Account Number',
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
-                              color: white,
+                              color: white.withOpacity(0.8),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                MyText('Transaction History',
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500 ,
-                                  color: white,
-                                ),
-                                const SizedBox(width: 4.4,),
-                                GestureDetector(
-                                  onTap: (){},
-                                  child: const Icon(Icons.arrow_forward_ios,
+                            InkWell(
+                              onTap: () {},
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  MyText(
+                                    'Transaction History',
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    color: white.withOpacity(0.8),
+                                  ),
+                                  const SizedBox(
+                                    width: 4.4,
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward_ios,
                                     size: 8,
-                                    color: white,),
-                                )
-                              ],
+                                    color: white,
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 7,),
+                        SizedBox(
+                          height: height * 0.029557,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -203,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                               },
                               child: Icon(
                                 Icons.remove_red_eye_outlined,
-                                size: 20,
+                                size: 24,
                                 color: white.withOpacity(0.7),
                               ),
                             ),
@@ -275,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: MyText(
                     'Recent Transactions',
                     fontSize: 16,

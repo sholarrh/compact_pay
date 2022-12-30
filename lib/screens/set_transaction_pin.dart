@@ -134,8 +134,6 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                       width: double.infinity,
                       color: mainBlue,
                       onTap: () async {
-                        // print(data.pinList.join(""));
-                        // print(data.confirmPinList.join(""));
                         if (data.pinList.join("") ==
                             data.confirmPinList.join("")) {
                           _setIsLoading = true;
@@ -165,6 +163,9 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                                     builder: (context) => const BottomNav(),
                                   ),
                                 );
+                              } else {
+                                showSnackBar(context, black2121,
+                                    'status code: ${data.putTransactionPinResponse.statusCode}\n${data.errorMessage}');
                               }
                             });
                           } catch (e, s) {
@@ -176,10 +177,8 @@ class _SetTransactionPinState extends State<SetTransactionPin> {
                             }
                           }
                         } else {
-                          const ShowSnackBar(
-                            text: "Transaction pin does not match",
-                            duration: 5,
-                          );
+                          showSnackBar(context, black2121,
+                              'Transaction pin does not match');
                         }
                       },
                       child: _setIsLoading == false

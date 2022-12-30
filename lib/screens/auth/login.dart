@@ -218,27 +218,22 @@ class _LoginState extends State<Login> {
                                                   builder: (context) =>
                                                       const BottomNav()),
                                               (route) => false);
-                                } else {}
+                                } else {
+                                  showSnackBar(context, black2121,
+                                      'status code: ${data.postLoginResponse.statusCode}\n${data.errorMessage}');
+                                }
                               });
                             } catch (e, s) {
                               if (kDebugMode) {
                                 print('e: $e');
-                                SnackBar(
-                                  content: MyText(data.errorMessage),
-                                );
                               }
                               if (kDebugMode) {
                                 print('s: $s');
-                                ShowSnackBar(
-                                  text: "$s",
-                                  duration: 5,
-                                );
                               }
                             }
                           } else {
-                            SnackBar(
-                              content: MyText(data.errorMessage),
-                            );
+                            showSnackBar(context, black2121,
+                                'Please fill the forms correctly');
                           }
                         },
                         child: _loginIsLoading == false

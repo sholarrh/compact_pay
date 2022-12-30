@@ -398,6 +398,8 @@ class ProviderClass extends ChangeNotifier {
     }
 
     var signUpResponseDecoded = jsonDecode(signUpResponse.body);
+    _errorMessage = signUpResponseDecoded.toString();
+    notifyListeners();
     if (kDebugMode) {
       print('Response body 2: $signUpResponseDecoded');
     }
@@ -431,9 +433,11 @@ class ProviderClass extends ChangeNotifier {
       }
       if (kDebugMode) {
         print('Response body: ${postLoginResponse.body}');
-        _errorMessage = ' ${postLoginResponse.body}';
       }
       var postLoginResponseData = jsonDecode(postLoginResponse.body);
+
+      _errorMessage = postLoginResponseData.toString();
+      notifyListeners();
 
       final storage = await SharedPreferences.getInstance();
       storage.setInt('initScreen', 1);
@@ -495,6 +499,8 @@ class ProviderClass extends ChangeNotifier {
       if (kDebugMode) {
         print('Response status: ${jsonDecode(putKycResponse.body)}');
       }
+      var kycDecoded = jsonDecode(putKycResponse.body);
+      _errorMessage = kycDecoded;
       notifyListeners();
     } catch (e, s) {
       if (kDebugMode) {
@@ -535,6 +541,10 @@ class ProviderClass extends ChangeNotifier {
       if (kDebugMode) {
         print('Response status: ${jsonDecode(putTransactionPinResponse.body)}');
       }
+      var transactionPinDecoded = jsonDecode(putTransactionPinResponse.body);
+      _errorMessage = transactionPinDecoded.toString();
+      notifyListeners();
+
       final storage = await SharedPreferences.getInstance();
       storage.setBool('hasSetTransactionPin', true);
       notifyListeners();

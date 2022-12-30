@@ -122,10 +122,8 @@ class _EnterAmountState extends State<EnterAmount> {
                               }
                             }
                           } else {
-                            const ShowSnackBar(
-                              text: "There is an error",
-                              duration: 5,
-                            );
+                            showSnackBar(
+                                context, black2121, 'Please enter an amount');
                           }
                         },
                         child: data.isLoading == false

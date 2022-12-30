@@ -9,7 +9,6 @@ import '../../provider/provider.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
-import '../../widgets/show_snackbar.dart';
 import '../../widgets/text_form_field.dart';
 import '../../widgets/validator.dart';
 
@@ -177,10 +176,10 @@ class _NewPasswordState extends State<NewPassword> {
                             try {
                               data.sendOtp();
                               if (await data.myAuth.sendOTP() == true) {
-                                const ShowSnackBar(
-                                  text: "OTP has been sent",
-                                  duration: 5,
-                                );
+                                // const ShowSnackBar(
+                                //   text: "OTP has been sent",
+                                //   duration: 5,
+                                // );
                                 data.passwordTextController.clear();
                                 data.confirmPasswordTextController.clear();
                                 Navigator.push(

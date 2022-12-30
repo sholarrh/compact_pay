@@ -260,6 +260,9 @@ class _KycVerificationState extends State<KycVerification> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     const SetTransactionPin()));
+                                      } else {
+                                        showSnackBar(context, black2121,
+                                            'status code: ${data.putKycResponse.statusCode}\n${data.errorMessage}');
                                       }
                                     });
                                   } catch (e, s) {
@@ -271,10 +274,8 @@ class _KycVerificationState extends State<KycVerification> {
                                     }
                                   }
                                 } else {
-                                  const ShowSnackBar(
-                                    text: "There is an error",
-                                    duration: 5,
-                                  );
+                                  showSnackBar(context, black2121,
+                                      'Please fill the form correctly');
                                 }
                               },
                               child: _kycIsLoading == false

@@ -331,10 +331,8 @@ class _SignUpState extends State<SignUp> {
                             try {
                               data.sendOtp();
                               if (await data.myAuth.sendOTP() == true) {
-                                const ShowSnackBar(
-                                  text: "OTP has been sent",
-                                  duration: 5,
-                                );
+                                showSnackBar(
+                                    context, black2121, 'OTP has been sent');
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -350,10 +348,8 @@ class _SignUpState extends State<SignUp> {
                               }
                             }
                           } else {
-                            const ShowSnackBar(
-                              text: "There is an error",
-                              duration: 5,
-                            );
+                            showSnackBar(context, black2121,
+                                'Please check that you filled the form correctly');
                           }
                         },
                         child: _signUpIsLoading == false

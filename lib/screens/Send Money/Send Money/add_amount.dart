@@ -7,7 +7,6 @@ import '../../../utils/app_colors.dart';
 import '../../../widgets/bottom_nav.dart';
 import '../../../widgets/my_button.dart';
 import '../../../widgets/my_text.dart';
-import '../../../widgets/show_snackbar.dart';
 import '../../../widgets/text_form_field.dart';
 import '../../../widgets/validator.dart';
 
@@ -19,7 +18,6 @@ class AddAmount extends StatefulWidget {
 }
 
 class _AddAmountState extends State<AddAmount> {
-  @override
   final _formKey = GlobalKey<FormState>();
 
   GlobalKey<FormState> get formKey => _formKey;
@@ -51,7 +49,9 @@ class _AddAmountState extends State<AddAmount> {
                           Navigator.pop(context);
                         },
                       ),
-                      const SizedBox(width: 30,),
+                      const SizedBox(
+                        width: 30,
+                      ),
                       MyText(
                         'To Bank Account',
                         fontSize: 16,
@@ -61,17 +61,19 @@ class _AddAmountState extends State<AddAmount> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Row(
                     children: [
-                      const Icon(Icons.access_time,
-                        color: mainBlue,),
-
-                      MyText('Beneficiaries',
+                      const Icon(
+                        Icons.access_time,
+                        color: mainBlue,
+                      ),
+                      MyText(
+                        'Beneficiaries',
                         fontSize: 12,
-                        fontWeight: FontWeight.w400 ,
+                        fontWeight: FontWeight.w400,
                         color: black2121,
                       ),
                     ],
@@ -90,20 +92,22 @@ class _AddAmountState extends State<AddAmount> {
                 //     child: Icon(Icons.account_circle_sharp, size: 50, color: mainBlue),
                 //   ),
                 // ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15, right: 304,left: 31.83),
-                  child: Icon(Icons.account_circle_sharp, size: 50, color: mainBlue),
+                const Padding(
+                  padding: EdgeInsets.only(top: 15, right: 304, left: 31.83),
+                  child: Icon(Icons.account_circle_sharp,
+                      size: 50, color: mainBlue),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 250.0, left: 21),
-                  child: MyText('Choose\nBeneficiary',
+                  child: MyText(
+                    'Choose\nBeneficiary',
                     fontSize: 11,
                     fontWeight: FontWeight.w400,
                     color: black,
                     fontFamily: 'Poppins',
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.only(right: 315.0),
                   child: MyText(
@@ -237,7 +241,6 @@ class _AddAmountState extends State<AddAmount> {
                       onChanged: (value) {
                         setState(() {
                           isSwitched1 = value;
-                          print(isSwitched1);
                         });
                       },
                       activeColor: lightGreen,
@@ -315,8 +318,8 @@ Future<dynamic> ussdBottomSheet(BuildContext context, ProviderClass data) {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 21.0),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 21.0),
                   // child: MyText(
                   //   '${getCurrency()} ${data.amountToSendTextController.text}',
                   //   fontWeight: FontWeight.w600,
@@ -426,10 +429,10 @@ Future<dynamic> ussdBottomSheet(BuildContext context, ProviderClass data) {
                           }
                         }
                       } else {
-                        const ShowSnackBar(
-                          text: "There is an error",
-                          duration: 5,
-                        );
+                        // const ShowSnackBar(
+                        //   text: "There is an error",
+                        //   duration: 5,
+                        // );
                       }
                     },
                     child: data.isLoading == false

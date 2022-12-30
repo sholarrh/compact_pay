@@ -10,7 +10,6 @@ import '../../utils/app_colors.dart';
 import '../../widgets/my_button.dart';
 import '../../widgets/my_text.dart';
 import '../../widgets/otp_box.dart';
-import '../../widgets/show_snackbar.dart';
 import '../../widgets/validator.dart';
 
 class Tv extends StatefulWidget {
@@ -725,10 +724,10 @@ class _TvState extends State<Tv> {
                                 }
                               }
                             } else {
-                              const ShowSnackBar(
-                                text: "There is an error",
-                                duration: 5,
-                              );
+                              // const ShowSnackBar(
+                              //   text: "There is an error",
+                              //   duration: 5,
+                              // );
                             }
                           },
                           child: _isLoading == false

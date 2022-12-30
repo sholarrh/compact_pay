@@ -209,19 +209,17 @@ class _AddNewCardState extends State<AddNewCard> {
                               }
                             }
                           } else {
-                            const ShowSnackBar(
-                              text: "There is an error",
-                              duration: 5,
-                            );
+                            showSnackBar(context, black2121,
+                                'Please fill the forms correctly');
                           }
                         },
-                        child: data.isLoading == false
+                        child: _isLoading == false
                             ? MyText(
-                          'Continue',
-                          color: white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                        )
+                                'Continue',
+                                color: white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                              )
                             : const Center(
                                 child: CircularProgressIndicator(
                                   color: white,

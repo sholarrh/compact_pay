@@ -338,10 +338,8 @@ class _AddByCardState extends State<AddByCard> {
                                     }
                                   }
                                 } else {
-                                  const ShowSnackBar(
-                                    text: "There is an error",
-                                    duration: 5,
-                                  );
+                                  showSnackBar(context, black2121,
+                                      'Please select an amount');
                                 }
                               },
                               child: data.isLoading == false

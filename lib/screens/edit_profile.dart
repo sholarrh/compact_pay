@@ -40,29 +40,37 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     var data = Provider.of<ProviderClass>(context);
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: darkBlue,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(
+              left: width * 0.0533,
+              right: width * 0.0533,
+              top: height * 0.02799,
+            ),
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  padding: EdgeInsets.only(bottom: height * 0.02799),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.close),
-                        iconSize: 17,
-                        color: white,
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Navigator.pop(context);
                         },
+                        child: const Icon(
+                          Icons.close,
+                          color: white,
+                          size: 17,
+                        ),
                       ),
-                      const SizedBox(
-                        width: 30,
+                      SizedBox(
+                        width: width * 0.08,
                       ),
                       MyText(
                         'Edit Profile',
@@ -82,8 +90,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.firstNameTextController,
@@ -92,8 +100,8 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validateFullName,
                   hasSuffixIcon: false,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -104,8 +112,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.middleNameTextController,
@@ -114,8 +122,8 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validateFullName,
                   hasSuffixIcon: false,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -126,8 +134,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.lastNameTextController,
@@ -136,8 +144,8 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validateFullName,
                   hasSuffixIcon: false,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -148,8 +156,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.emailTextController,
@@ -158,8 +166,8 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validateEmail,
                   hasSuffixIcon: false,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -170,8 +178,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.phoneNumberTextController,
@@ -180,8 +188,8 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validatePhoneNumber,
                   hasSuffixIcon: false,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -192,8 +200,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.addressTextController,
@@ -202,8 +210,8 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validateFullName,
                   hasSuffixIcon: false,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -214,8 +222,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.ageTextController,
@@ -224,8 +232,8 @@ class _EditProfileState extends State<EditProfile> {
                   validator: validateFullName,
                   hasSuffixIcon: false,
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -236,8 +244,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: editProfile.withOpacity(0.9),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.genderTextController,
@@ -271,8 +279,8 @@ class _EditProfileState extends State<EditProfile> {
                   //   },
                   // ),
                 ),
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  height: height * 0.030788,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -283,8 +291,8 @@ class _EditProfileState extends State<EditProfile> {
                     color: white,
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: height * 0.00985,
                 ),
                 InputField2(
                   inputController: data.bvnTextController,
@@ -294,9 +302,10 @@ class _EditProfileState extends State<EditProfile> {
                   hasSuffixIcon: false,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 100, bottom: 100),
+                  padding: EdgeInsets.only(
+                      top: height * 0.123, bottom: height * 0.123),
                   child: MyButton(
-                    height: 50,
+                    height: 54,
                     width: double.infinity,
                     color: mainBlue,
                     onTap: () async {
@@ -321,11 +330,13 @@ class _EditProfileState extends State<EditProfile> {
                         }
                       }
                     },
-                    child: data.isLoading == false ? MyText(
-                      'Done',
-                      color: white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,)
+                    child: data.isLoading == false
+                        ? MyText(
+                            'Done',
+                            color: white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                          )
                         : const Center(
                             child: CircularProgressIndicator(
                               color: mainBlue,
@@ -333,15 +344,11 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                   ),
                 ),
-
               ],
-
             ),
           ),
-
         ),
       ),
     );
   }
 }
-

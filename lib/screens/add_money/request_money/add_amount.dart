@@ -196,10 +196,8 @@ class _AddAmountState extends State<AddAmount> {
                               }
                             }
                           } else {
-                            const ShowSnackBar(
-                              text: "There is an error",
-                              duration: 5,
-                            );
+                            showSnackBar(context, black2121,
+                                'Please fill the forms correctly');
                           }
                         },
                         child: data.isLoading == false

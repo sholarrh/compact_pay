@@ -21,7 +21,7 @@ class BankAccount extends StatefulWidget {
 }
 
 class _BankAccountState extends State<BankAccount> {
-   bool _isLoading = false;
+  bool _isLoading = false;
   bool isSwitched1 = false;
 
   final formKey = GlobalKey<FormState>();
@@ -265,25 +265,23 @@ class _BankAccountState extends State<BankAccount> {
                             }
                           }
                         } else {
-                          const ShowSnackBar(
-                            text: "There is an error",
-                            duration: 5,
-                          );
+                          showSnackBar(context, black2121,
+                              'Please fill the forms correctly');
                         }
                       },
-                      child: data.isLoading == false
+                      child: _isLoading == false
                           ? MyText(
-                        'Continue',
-                        color: white,
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      )
+                              'Continue',
+                              color: white,
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            )
                           : const Center(
-                        child: CircularProgressIndicator(
-                          color: white,
-                        ),
-                      ),
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            ),
                     ),
                   ],
                 ),
