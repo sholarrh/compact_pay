@@ -219,7 +219,6 @@ class _AddAmountState extends State<AddAmount> {
                 const SizedBox(height: 9),
                 InputField(
                   hintText: 'What’s this for?',
-                  // validator: validateFullName,
                   keyBoardType: TextInputType.name,
                   isPassword: false,
                   hasSuffixIcon: false,

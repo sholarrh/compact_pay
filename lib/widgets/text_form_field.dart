@@ -3,6 +3,9 @@
 import 'package:compact_pay/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/provider.dart';
 
 class InputField extends StatefulWidget {
   final Widget? prefixIcon;
@@ -42,8 +45,9 @@ class _InputFieldState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      //height: 50,
       child: TextFormField(
+        //65autovalidateMode: AutovalidateMode.always,
         validator: (value) => widget.validator!(value),
         controller: widget.inputController,
         onChanged: (value) => widget.onChanged!(value),
@@ -59,6 +63,12 @@ class _InputFieldState extends State<InputField> {
         showCursor: true,
         decoration: InputDecoration(
           fillColor: white,
+          // errorMaxLines: 1,
+          // errorText: '',
+          //  errorStyle: const TextStyle(
+          //    fontSize: 6,
+          //  ),
+          border: InputBorder.none,
           prefixIcon: widget.prefixIcon,
           filled: true,
           focusColor: Colors.red,
@@ -100,13 +110,15 @@ class _InputFieldState extends State<InputField> {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
           ),
-          // enabledBorder: const OutlineInputBorder(
-          //   borderSide: BorderSide(color: Color(0xFF333333), width: 0.7),
-          //   borderRadius: BorderRadius.all(Radius.circular(15.0)),
-          // ),
         ),
         obscureText: _obscureText,
       ),
@@ -164,6 +176,7 @@ class _InputField2State extends State<InputField2> {
         showCursor: true,
         obscureText: _obscureText,
         decoration: InputDecoration(
+          border: InputBorder.none,
           prefixIcon: widget.prefixIcon,
           hintText: widget.hintText,
           hintStyle: TextStyle(
@@ -182,8 +195,14 @@ class _InputField2State extends State<InputField2> {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
           ),
           suffixIcon: widget.hasSuffixIcon == true
               ? GestureDetector(
@@ -192,18 +211,18 @@ class _InputField2State extends State<InputField2> {
                       _obscureText = !_obscureText;
                     });
                   },
-                  child: _obscureText
-                      ? const Icon(
-                          Icons.remove_red_eye_outlined,
-                          color: white,
-                          size: 20,
-                        )
-                      : const Icon(
-                          Icons.visibility_off_outlined,
-                          color: white,
-                          size: 20,
-                        ),
-                )
+            child: _obscureText
+                ? const Icon(
+              Icons.remove_red_eye_outlined,
+              color: white,
+              size: 20,
+            )
+                : const Icon(
+              Icons.visibility_off_outlined,
+              color: white,
+              size: 20,
+            ),
+          )
               : null,
         ),
       ),
@@ -274,6 +293,7 @@ class _InputField3 extends State<InputField3> {
             fontWeight: FontWeight.w400),
         showCursor: true,
         decoration: InputDecoration(
+          border: InputBorder.none,
           prefixIcon: widget.prefixIcon,
           suffixIcon: widget.suffixIcon,
           focusColor: Colors.red,
@@ -294,8 +314,14 @@ class _InputField3 extends State<InputField3> {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
           ),
           // enabledBorder: const OutlineInputBorder(
           //   borderSide: BorderSide(color: Color(0xFF333333), width: 0.7),
@@ -352,6 +378,7 @@ class _TvInputFieldState extends State<TvInputField> {
             fontSize: 16, color: black2121, fontWeight: FontWeight.w500),
         showCursor: true,
         decoration: InputDecoration(
+          border: InputBorder.none,
           prefixIcon: widget.prefixIcon,
           suffixIcon: widget.suffixIcon,
           focusColor: Colors.red,
@@ -363,7 +390,7 @@ class _TvInputFieldState extends State<TvInputField> {
               fontSize: 10,
               fontWeight: FontWeight.w400),
           contentPadding:
-              const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+          const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
           enabledBorder: OutlineInputBorder(
             borderSide:
                 BorderSide(color: Colors.grey.withOpacity(0.4), width: 0.7),
@@ -374,8 +401,14 @@ class _TvInputFieldState extends State<TvInputField> {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
           ),
           // enabledBorder: const OutlineInputBorder(
           //   borderSide: BorderSide(color: Color(0xFF333333), width: 0.7),
@@ -416,12 +449,22 @@ class _UssdInputFieldState extends State<UssdInputField> {
 
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
     return SizedBox(
       height: 50,
       child: TextFormField(
         validator: (value) => widget.validator!(value),
         controller: widget.inputController,
-        onChanged: (value) {},
+        onChanged: (value) {
+          // if (value.isNotEmpty) {
+          //   data.listOfBools.add(true);
+          // }else {
+          //   data.listOfBools.add(false);
+          // }
+          // setState(() {
+          //   print(data.listOfBools);
+          // });
+        },
         keyboardType: widget.keyBoardType,
         autocorrect: true,
         textCapitalization: TextCapitalization.words,
@@ -432,6 +475,7 @@ class _UssdInputFieldState extends State<UssdInputField> {
         showCursor: true,
         obscureText: _obscureText,
         decoration: InputDecoration(
+          border: InputBorder.none,
           prefixIcon: widget.prefixIcon,
           fillColor: white,
           filled: true,
@@ -452,8 +496,14 @@ class _UssdInputFieldState extends State<UssdInputField> {
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
           errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //gapPadding: 0,
           ),
         ),
       ),

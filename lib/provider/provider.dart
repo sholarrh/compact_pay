@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ import 'package:timer_count_down/timer_controller.dart';
 import '../widgets/image_button.dart';
 
 class ProviderClass extends ChangeNotifier {
+  //List listOfBools = [];
+
   bool isLoading = false;
 
   bool submitValid = false;
@@ -414,6 +417,38 @@ class ProviderClass extends ChangeNotifier {
   // Login Api
   late http.Response postLoginResponse;
 
+  Future<void> testingDio() async {
+    // var options =
+
+    try {
+      var dio = Dio(
+        BaseOptions(
+          baseUrl: 'https://compactpay.onrender.com/api',
+          connectTimeout: 5000,
+          receiveTimeout: 3000,
+        ),
+      );
+      var dioResponse;
+
+      var dioData = {
+        "password": passwordTextController.text,
+        "email": emailTextController.text
+      };
+
+      dioResponse = await dio.post(
+        'https://compactpay.onrender.com/api/users/login',
+        data: dioData,
+        onSendProgress: (int sent, int total) {
+          print('$sent $total');
+        },
+      );
+      print('the response is: ${dioResponse}');
+    } on DioError catch (e) {
+      print(e.message.toString());
+    }
+    notifyListeners();
+  }
+
   Future<void> postLogin() async {
     var url = Uri.parse('https://compactpay.onrender.com/api/users/login');
     Map<String, String> requestHeaders = {
@@ -464,6 +499,24 @@ class ProviderClass extends ChangeNotifier {
       }
     }
   }
+
+  //
+  // try {
+  // //404
+  // await dio.get('https://wendux.github.io/xsddddd');
+  // } on DioError catch (e) {
+  // // The request was made and the server responded with a status code
+  // // that falls out of the range of 2xx and is also not 304.
+  // if (e.response != null) {
+  // print(e.response.data)
+  // print(e.response.headers)
+  // print(e.response.requestOptions)
+  // } else {
+  // // Something happened in setting up or sending the request that triggered an Error
+  // print(e.requestOptions)
+  // print(e.message)
+  // }
+  // }
 
   //UPDATE KYC API
 

@@ -348,12 +348,64 @@ class _AddByUssdState extends State<AddByUssd> {
                             ),
                             hintText: 'Enter 100 ~ 99,999,999',
                           ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          UssdInputField(
+                            validator: validateAmount,
+                            inputController: data.accountNameTextController,
+                            keyBoardType: TextInputType.number,
+                            prefixIcon: SizedBox(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    getCurrency(),
+                                    style: const TextStyle(
+                                      color: black2121,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'poppins',
+                                    ),
+                                  ),
+                                  // const SizedBox(
+                                  //   width: 8,
+                                  // ),
+
+                                  // SizedBox(
+                                  //   width: 1,
+                                  //   child: Center(
+                                  //     child: Container(
+                                  //       width: 1,
+                                  //       margin: const EdgeInsets.only(top: 2, bottom: 2),
+                                  //       decoration: BoxDecoration(
+                                  //         border: Border(
+                                  //           left: Divider.createBorderSide(context, color: black2121, width: 1),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const VerticalDivider(
+                                  //   indent: 2,
+                                  //   endIndent: 2,
+                                  //   width: 1,
+                                  //   thickness: 2,
+                                  //   color: black2121,
+                                  // ),
+                                ],
+                              ),
+                            ),
+                            hintText: 'Enter 100 ~ 99,999,999',
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 80),
                             child: MyButton(
                               height: 50,
                               width: double.infinity,
                               color: mainBlue,
+                              //data.listOfBools.contains(false) ? mainBlue : backWhite,
                               onTap: () async {
                                 if (formKey.currentState!.validate()) {
                                   _isLoading = true;
