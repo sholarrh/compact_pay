@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/app_colors.dart';
 import '../../widgets/my_text.dart';
+import '../../widgets/size_config.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -40,8 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
+    SizeConfig.init(context);
     return Scaffold(
       backgroundColor: darkBlue,
       body: SafeArea(
@@ -49,13 +49,13 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(height: height * 0.39),
+                SizedBox(height: getProportionateScreenHeight(317)),
                 Image.asset('assets/images/Logo.png'),
-                SizedBox(height: height * 0.0185),
+                SizedBox(height: getProportionateScreenHeight(15.11)),
                 MyText(
                   'CompactPay',
                   color: white,
-                  fontSize: width * 0.064,
+                  fontSize: 24,
                   fontWeight: FontWeight.w600,
                 ),
               ],

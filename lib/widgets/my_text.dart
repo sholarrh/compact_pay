@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:compact_pay/widgets/size_config.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -43,6 +44,7 @@ class MyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Text(
       data,
       textAlign: textAlign,
@@ -52,7 +54,7 @@ class MyText extends StatelessWidget {
       textDirection: textDirection,
       style: TextStyle(
           color: color,
-          fontSize: fontSize,
+          fontSize: getProportionateScreenWidth(fontSize!),
           fontWeight: fontWeight,
           fontFamily: fontFamily,
           letterSpacing: letterSpacing,

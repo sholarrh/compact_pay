@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "75399604633",
+    "project_id": "compact-pay",
+    "storage_bucket": "compact-pay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75399604633:android:9b3c67d157be9096c20b08",
+        "android_client_info": {
+          "package_name": "com.example.compact_pay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75399604633-369iifiji57hmqr49m5nta071c2pah8d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9sN7nHJxk4Q8VuJ1Z6E0ckcvzdZJNt9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75399604633-369iifiji57hmqr49m5nta071c2pah8d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

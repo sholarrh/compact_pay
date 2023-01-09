@@ -29,7 +29,7 @@ class _SelectBankState extends State<SelectBank> {
     setState(() {
       displayList = nigerianBanks
           .where((element) =>
-          element['name']!.toLowerCase().contains(value.toLowerCase()))
+              element['name']!.toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -42,61 +42,116 @@ class _SelectBankState extends State<SelectBank> {
     return Scaffold(
       backgroundColor: backWhite,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    iconSize: 12,
-                    color: close,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  MyText(
-                    'Select Bank',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: black2121,
-                  ),
-                ],
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  iconSize: 12,
+                  color: close,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                const SizedBox(
+                  width: 30,
+                ),
+                MyText(
+                  'Select Bank',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: black2121,
+                ),
+              ],
+            ),
+          ),
+          TextFormField(
+            onChanged: (value) => updateList(value),
+            keyboardType: TextInputType.name,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(7),
+                borderSide: BorderSide.none,
               ),
-            ),
-            TextFormField(
-              onChanged: (value) => updateList(value),
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(7),
-                  borderSide: BorderSide.none,
-                ),
-                hintText: 'Search Bank Name',
-                hintStyle: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xffBDBDBD),
-                ),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: mainBlue,
-                ),
-                prefixIconColor: mainBlue,
+              hintText: 'Search Bank Name',
+              hintStyle: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: Color(0xffBDBDBD),
               ),
+              prefixIcon: const Icon(
+                Icons.search,
+                color: mainBlue,
+              ),
+              prefixIconColor: mainBlue,
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          // GroupedListView(
+          //   elements: displayList,
+          //
+          //   groupBy: (element) => displayList[0],
+          //     itemBuilder: (context, index) => Card(
+          //       margin: const EdgeInsets.symmetric(
+          //           horizontal: 1.0, vertical: 12.0),
+          //       child: ListTile(
+          //         onTap: () {
+          //           //print('addmoney is ${widget.addMoney}');
+          //           data.bankName = displayList[index]['name'];
+          //           data.bankLogo = displayList[index]['logo'];
+          //
+          //           if (widget.addMoney == 'Add by ussd') {
+          //             Navigator.push(
+          //               context,
+          //               MaterialPageRoute(
+          //                 builder: (context) => const AddByUssd(),
+          //               ),
+          //             );
+          //           } else if (widget.addMoney == 'Bank Account') {
+          //             Navigator.push(
+          //               context,
+          //               MaterialPageRoute(
+          //                 builder: (context) => const BankAccount(),
+          //               ),
+          //             );
+          //           } else {
+          //             Navigator.push(
+          //               context,
+          //               MaterialPageRoute(
+          //                 builder: (context) => const AddByCard(),
+          //               ),
+          //             );
+          //           }
+          //         },
+          //         dense: true,
+          //         tileColor: white,
+          //         enabled: true,
+          //         leading: CircleAvatar(
+          //             radius: 20,
+          //             backgroundColor: Colors.grey,
+          //             backgroundImage:
+          //             NetworkImage(displayList[index]['logo']!)),
+          //         title: MyText(
+          //           displayList[index]['name']!,
+          //           fontSize: 12,
+          //           fontWeight: FontWeight.w400,
+          //           color: black2121,
+          //           fontFamily: 'Poppins',
+          //         ),
+          //       ),
+          //     ),
+          //   g
+          // ),
+          Expanded(
+            child: ListView.builder(
+                //physics: const NeverScrollableScrollPhysics(),
                 itemCount: displayList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) => Card(
@@ -104,7 +159,7 @@ class _SelectBankState extends State<SelectBank> {
                           horizontal: 1.0, vertical: 12.0),
                       child: ListTile(
                         onTap: () {
-                          print('addmoney is ${widget.addMoney}');
+                          //print('addmoney is ${widget.addMoney}');
                           data.bankName = displayList[index]['name'];
                           data.bankLogo = displayList[index]['logo'];
 
@@ -138,7 +193,7 @@ class _SelectBankState extends State<SelectBank> {
                             radius: 20,
                             backgroundColor: Colors.grey,
                             backgroundImage:
-                            NetworkImage(displayList[index]['logo']!)),
+                                NetworkImage(displayList[index]['logo']!)),
                         title: MyText(
                           displayList[index]['name']!,
                           fontSize: 12,
@@ -148,8 +203,8 @@ class _SelectBankState extends State<SelectBank> {
                         ),
                       ),
                     )),
-          ]),
-        ),
+          ),
+        ]),
       ),
     );
   }
