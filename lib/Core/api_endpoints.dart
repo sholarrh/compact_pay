@@ -1,8 +1,8 @@
-const String BASE_URL = 'https://app-sandbox.mypasspoint.com';
+const String BASE_URL = 'https://compactpay.onrender.com';
 
 class ApiEndpoint {
-  static String initializeEmail() {
-    return '$BASE_URL/passpoint-oneapp/v1/user-app/init-email-reg';
+  static String loginUser() {
+    return '$BASE_URL/api/users/login';
   }
 
   static String verifyEmailReg() {
