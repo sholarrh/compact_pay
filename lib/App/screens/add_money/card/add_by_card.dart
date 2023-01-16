@@ -1,0 +1,515 @@
+//ADIGUN SOLAFUNMI
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../Core/provider/provider.dart';
+import '../../../../Core/utils/app_colors.dart';
+import '../../../../Core/widgets/currency_box.dart';
+import '../../../../Core/widgets/my_button.dart';
+import '../../../../Core/widgets/my_text.dart';
+import '../../../../Core/widgets/otp_box.dart';
+import '../../../../Core/widgets/show_snackbar.dart';
+import '../../../../Core/widgets/text_form_field.dart';
+import '../../../../Core/widgets/validator.dart';
+import '../../tv/payment_successful.dart';
+import 'add_new_card.dart';
+
+class AddByCard extends StatefulWidget {
+  const AddByCard({Key? key}) : super(key: key);
+
+  @override
+  State<AddByCard> createState() => _AddByCardState();
+}
+
+class _AddByCardState extends State<AddByCard> {
+  final _formKey = GlobalKey<FormState>();
+
+  GlobalKey<FormState> get formKey => _formKey;
+
+  bool _sheetIsLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+    var data = Provider.of<ProviderClass>(context);
+    return Scaffold(
+      backgroundColor: backWhite,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Form(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            iconSize: 12,
+                            color: close,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          ),
+                          MyText(
+                            'Add By Card',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: black2121,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20, top: 8),
+                      child: Image.asset('assets/images/ussd image.png'),
+                    ),
+                    MyText(
+                      'Fund Method',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: black2121,
+                    ),
+                    data.bankName == null &&
+                            data.cardNumberTextController.text.isEmpty
+                        ? Container(
+                            margin: const EdgeInsets.only(top: 12, bottom: 30),
+                            padding: const EdgeInsets.only(
+                                top: 12, bottom: 12, left: 12),
+                            height: 60,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.wallet_sharp,
+                                      color: mainBlue,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        MyText(
+                                          'Add New Card',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: black2121,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const AddNewCard()));
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_forward_ios_outlined,
+                                    color: mainBlue,
+                                    size: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(
+                            margin: const EdgeInsets.only(top: 12, bottom: 30),
+                            padding: const EdgeInsets.only(
+                                top: 12, bottom: 12, left: 12),
+                            height: 60,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 20,
+                                      backgroundColor: mainBlue,
+                                      backgroundImage:
+                                          NetworkImage(data.bankLogo!),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        MyText(
+                                          data.bankName!,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          color: black2121,
+                                        ),
+                                        const SizedBox(
+                                          height: 1,
+                                        ),
+                                        MyText(
+                                          '**** ${data.cardNumberTextController.text.substring(data.cardNumberTextController.text.length - 4)}',
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'Poppins',
+                                          color: black2121.withOpacity(0.5),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    MyText(
+                                      'Change',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: black2121,
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const AddNewCard()));
+                                      },
+                                      icon: const Icon(
+                                        Icons.arrow_forward_ios_outlined,
+                                        color: mainBlue,
+                                        size: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                    MyText(
+                      'Select or enter amount',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: black2121,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12, right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          CurrencyBox(
+                            amount: '100',
+                          ),
+                          CurrencyBox(
+                            amount: '200',
+                          ),
+                          CurrencyBox(
+                            amount: '500',
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 15, right: 15, bottom: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          CurrencyBox(
+                            amount: '1000',
+                          ),
+                          CurrencyBox(
+                            amount: '2000',
+                          ),
+                          CurrencyBox(
+                            amount: '5000',
+                          ),
+                        ],
+                      ),
+                    ),
+                    MyText(
+                      'Amount',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: black2121,
+                    ),
+                    Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          TvInputField(
+                            validator: validateAmount,
+                            inputController: data.amountToSendTextController,
+                            keyBoardType: TextInputType.number,
+                            prefixIcon: SizedBox(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    getCurrency(),
+                                    style: const TextStyle(
+                                      color: black2121,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'poppins',
+                                    ),
+                                  ),
+                                  // const SizedBox(
+                                  //   width: 8,
+                                  // ),
+
+                                  // SizedBox(
+                                  //   width: 1,
+                                  //   child: Center(
+                                  //     child: Container(
+                                  //       width: 1,
+                                  //       margin: const EdgeInsets.only(top: 2, bottom: 2),
+                                  //       decoration: BoxDecoration(
+                                  //         border: Border(
+                                  //           left: Divider.createBorderSide(context, color: black2121, width: 1),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const VerticalDivider(
+                                  //   indent: 2,
+                                  //   endIndent: 2,
+                                  //   width: 1,
+                                  //   thickness: 2,
+                                  //   color: black2121,
+                                  // ),
+                                ],
+                              ),
+                            ),
+                            hintText: 'Enter 100 ~ 99,999,999',
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 80),
+                            child: MyButton(
+                              height: 50,
+                              width: double.infinity,
+                              color: mainBlue,
+                              onTap: () async {
+                                if (formKey.currentState!.validate()) {
+                                  data.isLoading = true;
+                                  setState(() {});
+                                  data.delay(4);
+                                  try {
+                                    cardBottomSheet(context, data);
+                                  } catch (e, s) {
+                                    if (kDebugMode) {
+                                      print(e);
+                                    }
+                                    if (kDebugMode) {
+                                      print(s);
+                                    }
+                                  }
+                                } else {
+                                  showSnackBar(context, black2121,
+                                      'Please select an amount');
+                                }
+                              },
+                              child: data.isLoading == false
+                                  ? MyText(
+                                      'Fund',
+                                      color: white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20,
+                                    )
+                                  : const Center(
+                                      child: CircularProgressIndicator(
+                                        color: white,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<dynamic> cardBottomSheet(BuildContext context, ProviderClass data) {
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        )),
+        enableDrag: false,
+        isDismissible: true,
+        context: context,
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Stack(children: [
+              IconButton(
+                icon: const Icon(Icons.close),
+                iconSize: 17,
+                color: close,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 40),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyText(
+                          'Input PIN',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: black2121,
+                          fontFamily: 'Poppins',
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 20, right: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        OtpBox2(
+                          obscureText: false,
+                        ),
+                        SizedBox(
+                          width: 25,
+                        ),
+                        OtpBox2(
+                          obscureText: false,
+                        ),
+                        SizedBox(
+                          width: 25,
+                        ),
+                        OtpBox2(
+                          obscureText: false,
+                        ),
+                        SizedBox(
+                          width: 25,
+                        ),
+                        OtpBox2(
+                          obscureText: false,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 21.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyText(
+                          'Forgot PIN?',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          fontFamily: 'poppins',
+                          color: mainBlue,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 78, bottom: 44),
+                    child: MyButton(
+                      height: 50,
+                      width: double.infinity,
+                      color: mainBlue,
+                      onTap: () async {
+                        // if (formKey.currentState!.validate()) {
+                        _sheetIsLoading = true;
+                        setState(() {});
+                        Duration waitTime = const Duration(seconds: 4);
+                        Future.delayed(waitTime, () {
+                          _sheetIsLoading = false;
+                          if (mounted) {
+                            setState(() {});
+                          }
+                        });
+
+                        try {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PaymentSuccessful()));
+                        } catch (e, s) {
+                          if (kDebugMode) {
+                            print(e);
+                          }
+                          if (kDebugMode) {
+                            print(s);
+                          }
+                        }
+                        // } else {
+                        //   const ShowSnackBar(
+                        //     text: "There is an error",
+                        //     duration: 5,
+                        //   );
+                        // }
+                      },
+                      child: _sheetIsLoading == false
+                          ? MyText(
+                              'Continue',
+                              color: white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                            )
+                          : const Center(
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            ),
+                    ),
+                  ),
+                ],
+              ),
+            ]),
+          );
+        });
+  }
+}

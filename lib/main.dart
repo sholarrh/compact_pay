@@ -1,18 +1,21 @@
-import 'package:compact_pay/provider/provider.dart';
-import 'package:compact_pay/screens/onboarding/onboarding2.dart';
 //import 'package:compact_pay/testing_notifications.dart';
-import 'package:compact_pay/widgets/custom_error.dart';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 //import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'App/screens/onboarding/splashscreen.dart';
+import 'Core/provider/provider.dart';
+import 'Core/widgets/custom_error.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   //await FirebaseMessaging.instance.getInitialMessage();
-  runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
+  runApp(DevicePreview(enabled: false, builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
           };
           return widget!;
         },
-        home: const OnBoarding(),
+        home: const SplashScreen(),
       ),);
   }
 }
